@@ -1,2 +1,2 @@
 # elexyzzy
-elexyzzy project
+elecxzy project
