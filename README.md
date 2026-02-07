@@ -36,6 +36,10 @@ Unlike traditional Emacs, **`elecxzy` deliberately omits the Lisp interpreter an
 - **Dual Window Support**: Easy window splitting (vertical/horizontal) to manage multiple buffers simultaneously.
 - **Seamless Japanese IME Support**: Optimized for smooth Japanese typing without the common "flicker" or focus issues in web-based editors. (Toggle with `C-\`)
 
+<p align="center">
+  <img src="./assets/ime-screenshot.png" height="400" alt="elecxzy IME Screenshot">
+</p>
+
 ### 🛠 Tech Stack
 
 - **Framework**: Electron (Node.js)
