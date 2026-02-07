@@ -1,5 +1,7 @@
 # elecxzy
 
+[![Zenn](https://img.shields.io/badge/Zenn-Article-blue)](https://zenn.dev/kurouna/articles/44cf61b7cfce4c)
+
 **A lightweight, Lisp-free text editor with Emacs keybindings.**
 Lisp非搭載・設定最小限。迷わず書ける、Emacs操作の軽量エディタ。
 
