@@ -21,6 +21,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-x C-q` | `read-only-mode` | Toggle read-only mode | 書き込み禁止状態を切り替えます |
 | `C-x C-c` | `quit` | Exit the application | アプリケーションを終了します |
 | `M-x show-config` | `show-config` | Open the configuration file | 設定ファイル(config.json)を開きます |
+| `M-x show-color-config` | `show-color-config` | Open the color configuration file | カラー設定ファイル(color-config.json)を開きます |
 | `M-x recentf-open-files` | `recentf-open-files` | List recently opened files | 最近開いたファイルの一覧を表示します |
 
 ## Navigation (カーソル移動)
