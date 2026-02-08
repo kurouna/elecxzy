@@ -62,6 +62,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-j` | `newline-and-indent` | Newline and indent | 改行してインデントを維持します |
 | `C-t` | `transpose-chars` | Swap characters around cursor | 文字を入れ替えます |
 | `M-t` | `transpose-words` | Swap words around cursor | 単語を入れ替えます |
+| `C-c d` | `duplicate-line` | Duplicate current line below (does not affect kill ring) | 現在の行を次の行に複製します（キルリングは変更しません） |
 | `C-/` | `undo` | Undo the last action | 直前の操作を取り消します |
 | `C-SPC` | `set-mark-command` | Set mark at current position | 現在位置にマークをセットします |
 | `C-x C-x` | `exchange-point-and-mark` | Swap cursor and mark positions | カーソルとマークの位置を入れ替えます |
@@ -86,6 +87,11 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-x 0` | `delete-window` | Close the current window | 現在のウィンドウを閉じます |
 | `C-x 1` | `delete-other-windows` | Close all other windows | 他のウィンドウを閉じます |
 | `C-x o` | `other-window` | Switch focus to another window | 他のウィンドウに移動します |
+| `C-x ^` | `enlarge-window` | Enlarge window vertically | ウィンドウを垂直方向に拡大します |
+| `C-x -` | `shrink-window` | Shrink window vertically | ウィンドウを垂直方向に縮小します |
+| `C-x }` | `enlarge-window-horizontally` | Enlarge window horizontally | ウィンドウを水平方向に拡大します |
+| `C-x {` | `shrink-window-horizontally` | Shrink window horizontally | ウィンドウを水平方向に縮小します |
+| `C-x +` | `balance-windows` | Balance all window sizes | すべてのウィンドウのサイズを均等にします |
 | `C-x b` | `switch-to-buffer` | Switch to another buffer | バッファを切り替えます（補完候補あり） |
 | `C-x C-b` | `list-buffers` | Show a list of all open buffers | バッファ一覧を表示します |
 | `C-x k` | `kill-buffer` | Close the current buffer | バッファを閉じます |

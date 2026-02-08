@@ -35,9 +35,9 @@ Unlike traditional Emacs, **`elecxzy` deliberately omits the Lisp interpreter an
 - **High-Performance Buffer Engine**: Uses a **Piece Table** data structure for efficient handling of large files.
 - **Interactive Search & Replace**: Feature-rich `isearch` (incremental search) and `query-replace` for complex text transformations.
 - **Living Previews**: Real-time Markdown and HTML preview modes for modern documentation.
-- **Dual Window Support**: Easy window splitting (vertical/horizontal) to manage multiple buffers simultaneously.
+- **Dynamic Layout & Window Resizing**: Support for recursive window splitting (vertical/horizontal) with intuitive, Emacs-style size adjustments.
 - **Appearance Customization**: Adjust colors for the editor, title bar, and status line via a simple JSON configuration file.
-- **Seamless Japanese IME Support**: Optimized for smooth Japanese typing without the common "flicker" or focus issues in web-based editors. (Toggle with `C-\`)
+- **Seamless Japanese IME Support**: Optimized for smooth Japanese typing without the common "flicker" or focus issues in web-based editors. (Toggle with `C-\` or `C-]`)
 
 <p align="center">
   <img src="./assets/ime-screenshot.png" height="400" alt="elecxzy IME Screenshot">
@@ -79,9 +79,9 @@ Source code is currently private.
 - **Piece Tableエンジン**: 大容量ファイルも軽快に扱え、履歴消費が少ない高度なバッファ管理。
 - **対話的な検索と置換**: インクリメンタル検索 (isearch) や、一箇所ずつ確認しながら置換できる query-replace を搭載。
 - **リアルタイム・プレビュー**: Markdown や HTML の書き換えを即座に確認できるプレビューモード。
-- **画面分割・マルチバッファ**: ウィンドウを上下左右に分割し、複数のファイルを効率的に編集可能。
+- **柔軟な画面分割とリサイズ**: ウィンドウを上下左右に自由に（再帰的に）分割でき、各領域のサイズは Emacs 風のキー操作で直感的にリサイズ可能です。
 - **外観のカスタマイズ**: JSON設定ファイルを編集することで、エディタやタイトルバー、ステータスラインの配色を自分好みに変更可能。
-- **高精度な日本語IME対応**: Webベースエディタの課題であるIMEの挙動を最適化し、ストレスのない入力を実現。(C-\でON/OFF切り替え)
+- **高精度な日本語IME対応**: Webベースエディタの課題であるIMEの挙動を最適化し、ストレスのない入力を実現。(`C-\` または `C-]` でON/OFF切り替え)
 
 <p align="center">
   <img src="./assets/ime-screenshot.png" height="400" alt="elecxzy Screenshot">
