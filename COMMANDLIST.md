@@ -41,6 +41,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-v` | `scroll-down-command` | Scroll up one page | 1ページ分上にスクロールします |
 | `C-l` | `recenter` | Recenter the cursor | カーソル位置が中心になるよう画面を再配置します |
 | `M-g g` / `M-g M-g` | `goto-line` | Jump to a specific line number | 指定した行番号へジャンプします |
+| `M-g c` | `goto-char` | Jump to a character position from the start (newlines count as 1) | バッファ先頭からの文字数（改行は1文字としてカウント）へジャンプします |
 
 ## Editing (編集)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
@@ -53,9 +54,14 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-y` | `yank` | Paste from the kill ring | キルリングから貼り付け（ヤンク）します |
 | `M-y` | `yank-pop` | Cycle through previous kills | キルリングを遡って貼り付けます |
 | `M-d` | `kill-word` | Kill word forward | 次の単語を削除（キル）します |
+| `M-u` | `upcase-word` | Uppercase from cursor to end of word | 単語を大文字にします |
+| `M-l` | `downcase-word` | Lowercase from cursor to end of word | 単語を小文字にします |
+| `M-c` | `capitalize-word` | Capitalize first letter of word | 単語の先頭を大文字にします |
 | `M-backspace` | `backward-kill-word` | Kill word backward | 前の単語を削除（キル）します |
 | `C-o` | `open-line` | Insert a newline after cursor | カーソル位置に改行を挿入します |
+| `C-j` | `newline-and-indent` | Newline and indent | 改行してインデントを維持します |
 | `C-t` | `transpose-chars` | Swap characters around cursor | 文字を入れ替えます |
+| `M-t` | `transpose-words` | Swap words around cursor | 単語を入れ替えます |
 | `C-/` | `undo` | Undo the last action | 直前の操作を取り消します |
 | `C-SPC` | `set-mark-command` | Set mark at current position | 現在位置にマークをセットします |
 | `C-x C-x` | `exchange-point-and-mark` | Swap cursor and mark positions | カーソルとマークの位置を入れ替えます |
