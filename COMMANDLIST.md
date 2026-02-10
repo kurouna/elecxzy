@@ -70,6 +70,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x delete-trailing-whitespace` | `delete-trailing-whitespace` | Delete trailing whitespace in buffer | バッファ全体の行末の空白を削除します |
 | `M-x delete-trailing-whitespace-region` | `delete-trailing-whitespace-region` | Delete trailing whitespace in region | 選択範囲の行末の空白を削除します |
 | `M-x replace-string` | `replace-string` | Replace string from cursor to end | 現在位置から末尾まで文字列を置換します |
+| `M-x replace-string-buffer` | `replace-string-buffer` | Replace string in entire buffer | バッファ全体の文字列を置換します |
 | `M-x replace-string-region` | `replace-string-region` | Replace string in selected region | 選択範囲内の文字列を置換します |
 
 ## Search (検索)
