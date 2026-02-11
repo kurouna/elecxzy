@@ -118,6 +118,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x get-font` | `get-font` | Get current buffer font | 現在のバッファのフォントを表示します |
 | `M-x get-font-size` | `get-font-size` | Get font size | フォントサイズを表示します |
 | `M-x get-line-terminator` | `get-line-terminator` | Get line terminator | 改行コードを表示します |
+| `M-x get-max-undo-limit` | `get-max-undo-limit` | Get current maximum number of undo operations | 最大Undo回数を表示します |
+| `M-x get-tab-width` | `get-tab-width` | Get current tab width | タブ幅を表示します |
 | `M-x set-auto-save` | `set-auto-save` | Toggle auto-save (yes/no) | オートセーブを有効/無効にします |
 | `M-x set-auto-save-interval` | `set-auto-save-interval` | Set auto-save interval (min) | オートセーブの間隔(分)を設定します |
 | `M-x set-case-sensitive-search` | `set-case-sensitive-search` | Set case sensitive search (on/off) | 検索の大文字小文字区別を設定します |
@@ -128,6 +130,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x set-font-size` | `set-font-size` | Set font size | フォントサイズを設定します |
 | `M-x set-highlight-mode` | `set-highlight-mode` | Set major mode for current buffer | 現在のバッファのモードを設定します |
 | `M-x set-line-terminator` | `set-line-terminator` | Set line terminator (CRLF/LF/CR) | 改行コードを設定します |
+| `M-x set-max-undo-limit` | `set-max-undo-limit` | Set the maximum number of undo operations | 最大Undo回数を設定します |
+| `M-x set-tab-width` | `set-tab-width` | Set the tab width | タブ幅を設定します |
 
 ## Advanced (その他)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
