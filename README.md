@@ -116,9 +116,14 @@ This software is released under the [MIT License](./LICENSE).
 
 ## Acknowledgements / 謝辞
 
-This application is inspired by the legendary editor **xyzzy**:
+This application is inspired by the legendary editors **GNU Emacs** and **xyzzy**, and was developed from scratch to carry on their spirit:
+
+- **GNU Emacs**
+  - Copyright (C) 1985-2024 Free Software Foundation, Inc.
+  - Created by Richard Stallman
+
 - **xyzzy**
   - Copyright (c) 1996-2005 Tetsuya Kamei
   - Copyright (c) 2012-2014 xyzzy Project
 
-Special thanks to the original authors for their pioneering work in the Japanese Emacs-like editor ecosystem.
+Special thanks to the original authors for their pioneering work in the editor ecosystem.
