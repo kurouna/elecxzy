@@ -106,6 +106,30 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x preview-markdown` | `preview-markdown` | Preview current Markdown buffer | 現在のMarkdownバッファをプレビューします |
 | `M-x print-buffer` | `print-buffer` | Print active buffer | 現在のバッファを印刷します |
 
+## Major Modes (メジャーモード)
+| Command / コマンド | ID | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `M-x set-highlight-mode` | `set-highlight-mode` | Set major mode for current buffer (with completion) | 現在のバッファのモードを設定します（補完あり） |
+| `M-x fundamental-mode` | `fundamental-mode` | Switch to Fundamental mode | Fundamental モード（基本）に切り替えます |
+| `M-x text-mode` | `text-mode` | Switch to Plain Text mode | テキストモードに切り替えます |
+| `M-x c-mode` | `c-mode` | Switch to C mode | C言語モードに切り替えます |
+| `M-x cpp-mode` | `cpp-mode` | Switch to C++ mode | C++モードに切り替えます |
+| `M-x csharp-mode` | `csharp-mode` | Switch to C# mode | C#モードに切り替えます |
+| `M-x python-mode` | `python-mode` | Switch to Python mode | Pythonモードに切り替えます |
+| `M-x ruby-mode` | `ruby-mode` | Switch to Ruby mode | Rubyモードに切り替えます |
+| `M-x go-mode` | `go-mode` | Switch to Go mode | Goモードに切り替えます |
+| `M-x rust-mode` | `rust-mode` | Switch to Rust mode | Rustモードに切り替えます |
+| `M-x typescript-mode` | `typescript-mode` | Switch to TypeScript mode | TypeScriptモードに切り替えます |
+| `M-x javascript-mode` | `javascript-mode` | Switch to JavaScript mode | JavaScriptモードに切り替えます |
+| `M-x json-mode` | `json-mode` | Switch to JSON mode | JSONモードに切り替えます |
+| `M-x html-mode` | `html-mode` | Switch to HTML mode | HTMLモードに切り替えます |
+| `M-x xml-mode` | `xml-mode` | Switch to XML mode | XMLモードに切り替えます |
+| `M-x css-mode` | `css-mode` | Switch to CSS mode | CSSモードに切り替えます |
+| `M-x markdown-mode` | `markdown-mode` | Switch to Markdown mode | Markdownモードに切り替えます |
+| `M-x sql-mode` | `sql-mode` | Switch to SQL mode | SQLモードに切り替えます |
+| `M-x yaml-mode` | `yaml-mode` | Switch to YAML mode | YAMLモードに切り替えます |
+| `M-x bash-mode` | `bash-mode` | Switch to Bash/Shell mode | Bash/Shellモードに切り替えます |
+
 ## Settings (設定)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
@@ -128,7 +152,6 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x set-encoding` | `set-encoding` | Set file encoding for saving | 保存時のエンコーディングを設定します |
 | `M-x set-font` | `set-font` | Set buffer local font | バッファ固有のフォントを設定します |
 | `M-x set-font-size` | `set-font-size` | Set font size | フォントサイズを設定します |
-| `M-x set-highlight-mode` | `set-highlight-mode` | Set major mode for current buffer | 現在のバッファのモードを設定します |
 | `M-x set-line-terminator` | `set-line-terminator` | Set line terminator (CRLF/LF/CR) | 改行コードを設定します |
 | `M-x set-max-undo-limit` | `set-max-undo-limit` | Set the maximum number of undo operations | 最大Undo回数を設定します |
 | `M-x set-tab-width` | `set-tab-width` | Set the tab width | タブ幅を設定します |
