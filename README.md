@@ -24,21 +24,20 @@ Lisp非搭載・設定最小限。迷わず書ける、Emacs操作の軽量エ�
 <a name="english"></a>
 ## English
 
-`elecxzy` is a streamlined text editor built from the ground up to provide a vintage Emacs experience within a modern web-technology ecosystem.
-
-Unlike traditional Emacs, **`elecxzy` deliberately omits the Lisp interpreter and complex configuration layers.** This design choice prioritizes raw speed and simplicity—perfect for quick edits without the "configuration bankruptcy".
+`elecxzy` is a modern text editor built from the ground up to reconstruct the powerful and beloved Emacs user experience using contemporary web technologies. It is designed for those who value the Emacs workflow but seek a streamlined, lightweight, and efficient environment, allowing you to start coding or writing immediately with the familiar keybindings you've mastered, without the burden of complex configuration.
 
 ### 🚀 Key Features
 
 - **Lisp-free & Lightweight**: No heavy script engine overhead. Just the essential text editing features you need.
-- **Zero-Config Philosophy**: Minimal customization options mean you can stop tweaking and start coding immediately.
-- **Emacs-inspired Workflow**: Familiar keybindings (C-x, M-x, etc.) and command structures for power users.
-- **High-Performance Buffer Engine**: Uses a **Piece Table** data structure for efficient handling of large files.
-- **Interactive Search & Replace**: Feature-rich `isearch` (incremental search) and `query-replace` for complex text transformations.
-- **Living Previews**: Real-time Markdown and HTML preview modes for modern documentation.
-- **Dynamic Layout & Window Resizing**: Support for recursive window splitting (vertical/horizontal) with intuitive, Emacs-style size adjustments.
-- **Appearance Customization**: Adjust colors for the editor, title bar, and status line via a simple JSON configuration file.
-- **Seamless Japanese IME Support**: Optimized for smooth Japanese typing without the common "flicker" or focus issues in web-based editors. (Toggle with `C-\` or `C-]`)
+- **Ready-to-Use Defaults**: Comes with sensible default settings so you can start coding or writing immediately after installation without tedious configuration.
+- **Emacs-inspired Workflow**: Familiar keybindings (C-f, C-b, C-n, C-p, C-a, C-e, etc.) and command structures for power users.
+- **Flexible Window Management**: Support for recursive window splitting (vertical/horizontal) with `C-x 2`, `C-x 3`. Adjust sizes with intuitive, Emacs-style commands (`C-x ^`, `C-x }`).
+- **Major Modes & Syntax Highlighting**: Specialized modes for TypeScript, JavaScript, C/C++, Python, Go, Rust, SQL, YAML, and more.
+- **Real-time Previews**: Instant preview modes for Markdown and HTML to bridge the gap between editing and publishing.
+- **Interactive Search & Replace**: Powerful `isearch` (incremental search) and `query-replace` for fast navigation and editing.
+- **High-Performance Buffer Engine**: Uses a **Piece Table** data structure for efficient handling of large files and infinite undo history.
+- **Appearance Customization**: Adjust colors and fonts (Global or Buffer-local) via simple JSON configuration or M-x commands.
+- **Seamless Japanese IME Support**: Optimized for smooth Japanese typing with dedicated focus handling. (Toggle with `C-\` or `C-]`)
 
 <p align="center">
   <img src="./assets/ime-screenshot.png" height="400" alt="elecxzy IME Screenshot">
@@ -47,7 +46,7 @@ Unlike traditional Emacs, **`elecxzy` deliberately omits the Lisp interpreter an
 ### 🛠 Tech Stack
 
 - **Framework**: Electron (Node.js)
-- **Frontend**: React, TypeScript
+- **Frontend**: React, TypeScript (Custom rendering engine)
 - **Styling**: Vanilla CSS (Simple and distraction-free design)
 - **Syntax Highlighting**: Highlight.js integrated
 
@@ -68,20 +67,21 @@ Source code is currently private.
 <a name="japanese"></a>
 ## 日本語
 
-`elecxzy` は、古典的な Emacs の操作体験を最新の Web 技術（Electron）で再現したテキストエディタです。
+`elecxzy` は、長年愛されてきた Emacs の強力なユーザー体験を、最新の Web 技術（Electron）を用いてゼロから再構築したテキストエディタです。
 
-本家 Emacs との最大の違いは、**Lispインタプリタや複雑な拡張機能をあえて搭載していない点**です。「設定ファイル（init.el）のメンテナンスに疲れてしまった」「機能は最小限でいいから、あのキー操作でサクサク書きたい」というユーザーのために設計されました。
+Emacs の伝統的なキーバインドやワークフローを最大限に尊重しつつ、現代的な軽快さと使いやすさを両立。煩雑な環境構築に時間を取られることなく、あのお馴染みの操作感ですぐに創作活動を開始できる「スピード」と「シンプルさ」を追求しています。
 
 ### 🚀 主な機能
 
 - **Lisp非搭載の軽快さ**: 複雑な処理系を持たないため、起動が速く、動作も軽量です。
-- **設定最小限の「即戦力」設計**: カスタマイズの自由度をあえて制限しました。インストール直後から、迷うことなく執筆に集中できます。
+- **「即戦力」の初期設定**: インストール後、すぐに使い始められるような初期設定を内蔵しており、直後からコーディングや執筆を行うことができます。
 - **Emacs風の操作体系**: C-x、M-x、C-s などの慣れ親しんだキーバインドをフルサポート。
-- **Piece Tableエンジン**: 大容量ファイルも軽快に扱え、履歴消費が少ない高度なバッファ管理。
-- **対話的な検索と置換**: インクリメンタル検索 (isearch) や、一箇所ずつ確認しながら置換できる query-replace を搭載。
-- **リアルタイム・プレビュー**: Markdown や HTML の書き換えを即座に確認できるプレビューモード。
-- **柔軟な画面分割とリサイズ**: ウィンドウを上下左右に自由に（再帰的に）分割でき、各領域のサイズは Emacs 風のキー操作で直感的にリサイズ可能です。
-- **外観のカスタマイズ**: JSON設定ファイルを編集することで、エディタやタイトルバー、ステータスラインの配色を自分好みに変更可能。
+- **柔軟な画面分割とリサイズ**: `C-x 2` / `C-x 3` による再帰的なウィンドウ分割と、`C-x ^` / `C-x }` 等による直感的なサイズ調整。
+- **多様なメジャーモード**: TypeScript, JavaScript, C/C++, Python, Go, Rust, SQL, YAML など、多数の言語のシンタックスハイライトに対応。
+- **リアルタイム・プレビュー**: Markdown や HTML の書き換えを即座に確認できるプレビューモードを搭載。
+- **対話的な検索と置換**: インクリメンタル検索 (isearch) や、一箇所ずつ確認しながら置換できる query-replace。
+- **Piece Tableエンジン**: 大容量ファイルも軽快に扱え、高速な履歴管理（Undo/Redo）を可能にするバッファエンジン。
+- **外観・フォントの調整**: `M-x set-font` によるバッファごとのフォント設定や、JSONによる配色カスタマイズが可能。
 - **高精度な日本語IME対応**: Webベースエディタの課題であるIMEの挙動を最適化し、ストレスのない入力を実現。(`C-\` または `C-]` でON/OFF切り替え)
 
 <p align="center">
