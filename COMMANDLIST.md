@@ -18,6 +18,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-x C-f` | `find-file` | Open a file | ファイルを開きます |
 | `C-x C-s` | `save-buffer` | Save current buffer | 現在のバッファを保存します |
 | `C-x C-w` | `write-file` | Save buffer as a new file | 名前を付けて保存します |
+| `C-x i` | `insert-file` | Insert a file at cursor | カーソル位置にファイルを挿入します |
 | `C-x C-q` | `read-only-mode` | Toggle read-only mode | 書き込み禁止状態を切り替えます |
 | `C-x C-c` | `quit` | Exit the application | アプリケーションを終了します |
 | `M-x show-config` | `show-config` | Open the configuration file | 設定ファイル(config.json)を開きます |
