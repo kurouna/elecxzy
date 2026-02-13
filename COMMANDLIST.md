@@ -105,7 +105,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 |:---|:---|:---|:---|
 | `M-x preview-html` | `preview-html` | Preview current HTML buffer | 現在のHTMLバッファをプレビューします |
 | `M-x preview-markdown` | `preview-markdown` | Preview current Markdown buffer | 現在のMarkdownバッファをプレビューします |
-| `M-x print-buffer` | `print-buffer` | Print active buffer | 現在のバッファを印刷します |
+| `C-c p` / `M-x print-buffer` | `print-buffer` | Print active buffer | 現在のバッファを印刷します |
 
 ## Major Modes (メジャーモード)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
