@@ -109,6 +109,18 @@ Windows用のバイナリは、GitHubのリリースページからダウンロ�
 
 ---
 
+## FAQ
+
+### English
+**Q: Horizontal scrolling with my mouse tilt-wheel doesn't work.**
+A: In some environments using mouse utility software (e.g., Logi Options), the horizontal scroll signal (deltaX) may be blocked for unrecognized applications. In such cases, you can horizontally scroll by rotating the wheel while holding the **Shift** key.
+
+### 日本語
+**Q: マウスのチルトホイールを倒しても水平スクロールが動作しません。**
+A: 一部のマウスユーティリティソフト（例：Logi Options）がインストールされている環境では、ソフト側が「未知のアプリ」への水平スクロール信号をブロックする場合があります。その場合は、**Shiftキーを押しながらホイールを回転**させることで、水平方向へスクロールが可能です。
+
+---
+
 ## License / ライセンス
 
 This software is released under the [MIT License](./LICENSE). 
