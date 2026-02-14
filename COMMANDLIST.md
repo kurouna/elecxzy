@@ -166,3 +166,4 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `M-x navigate-url` | `navigate-url` | Open a URL in a preview buffer | 指定したURLをバッファ内で表示します |
+| `M-x shell` | `shell` | Run an interactive shell (cmd.exe) | 対話的なシェル(cmd.exe)を実行します |
