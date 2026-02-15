@@ -142,6 +142,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x get-encoding` | `get-encoding` | Get current buffer encoding | 現在のバッファのエンコーディングを表示します |
 | `M-x get-font` | `get-font` | Get current buffer font | 現在のバッファのフォントを表示します |
 | `M-x get-font-size` | `get-font-size` | Get font size | フォントサイズを表示します |
+| `M-x get-line-number-mode` | `get-line-number-mode` | Get line number display status | 行番号表示の状態を表示します |
 | `M-x get-line-terminator` | `get-line-terminator` | Get line terminator | 改行コードを表示します |
 | `M-x get-max-undo-limit` | `get-max-undo-limit` | Get current maximum number of undo operations | 最大Undo回数を表示します |
 | `M-x get-tab-width` | `get-tab-width` | Get current tab width | タブ幅を表示します |
@@ -153,6 +154,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x set-encoding` | `set-encoding` | Set file encoding for saving | 保存時のエンコーディングを設定します |
 | `M-x set-font` | `set-font` | Set buffer local font | バッファ固有のフォントを設定します |
 | `M-x set-font-size` | `set-font-size` | Set font size | フォントサイズを設定します |
+| `M-x set-line-number-mode` | `set-line-number-mode` | Toggle line number display (on/off) | 行番号の表示状態を設定します |
 | `M-x set-line-terminator` | `set-line-terminator` | Set line terminator (CRLF/LF/CR) | 改行コードを設定します |
 | `M-x set-max-undo-limit` | `set-max-undo-limit` | Set the maximum number of undo operations | 最大Undo回数を設定します |
 | `M-x set-tab-width` | `set-tab-width` | Set the tab width | タブ幅を設定します |
