@@ -112,18 +112,25 @@ Windows用のバイナリは、GitHubのリリースページからダウンロ�
 ## FAQ
 
 ### English
+
 **Q: Horizontal scrolling with my mouse tilt-wheel doesn't work.**
+
 A: In some environments using mouse utility software (e.g., Logi Options), the horizontal scroll signal (deltaX) may be blocked for unrecognized applications. In such cases, you can horizontally scroll by rotating the wheel while holding the **Shift** key.
 
 **Q: The cursor is misaligned when using "MS Gothic" or "MS Mincho" fonts.**
+
 A: This is caused by the legacy bitmap data embedded in these older fonts conflicting with modern text rendering. To maintain optimal display quality for modern programming fonts, this behavior is by design. Please use the default **BIZ UDGothic** or other modern monospace fonts.
 
 ### 日本語
+
 **Q: マウスのチルトホイールを倒しても水平スクロールが動作しません。**
+
 A: 一部のマウスユーティリティソフト（例：Logi Options）がインストールされている環境では、ソフト側が「未知のアプリ」への水平スクロール信号をブロックする場合があります。その場合は、**Shiftキーを押しながらホイールを回転**させることで、水平方向へスクロールが可能です。
 
 **Q: 「MS ゴシック」や「MS 明朝」を使うと、カーソルの位置がずれます。**
+
 A: これらのフォントが内蔵する古いビットマップ仕様と、最新の描画エンジンとの相性によるものです。他のモダンフォントの滑らかな描画や合字（リガチャー）を優先しているため、仕様となります。デフォルトの **BIZ UDGothic** などのご利用を推奨します。
+
 ---
 
 ## License / ライセンス
