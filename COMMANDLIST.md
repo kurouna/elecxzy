@@ -65,6 +65,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-t` | `transpose-words` | Swap words around cursor | 単語を入れ替えます |
 | `C-c d` | `duplicate-line` | Duplicate current line below (does not affect kill ring) | 現在の行を次の行に複製します（キルリングは変更しません） |
 | `C-/` | `undo` | Undo the last action | 直前の操作を取り消します |
+| `M-/` | `dabbrev-expand` | Dynamic word completion | 動的な単語補完 (dabbrev) を実行します |
 | `C-SPC` | `set-mark-command` | Set mark at current position | 現在位置にマークをセットします |
 | `C-x C-x` | `exchange-point-and-mark` | Swap cursor and mark positions | カーソルとマークの位置を入れ替えます |
 | `C-g` | `keyboard-quit` | Cancel current command or operation | コマンドや操作を中断します |
