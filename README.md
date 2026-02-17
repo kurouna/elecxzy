@@ -28,6 +28,7 @@ Lisp非搭載・設定最小限。迷わず書ける、Emacs操作の軽量エ�
 
 ### 🚀 Key Features
 
+- **Modern UI & Interface**: A contemporary visual design utilizing web technologies, featuring floating minibuffer popups, distraction-free scrollbars, and high-quality typography while preserving core Emacs semantics.
 - **Lisp-free & Lightweight**: No heavy script engine overhead. Just the essential text editing features you need.
 - **Ready-to-Use Defaults**: Comes with sensible default settings so you can start coding or writing immediately after installation without tedious configuration.
 - **Emacs-inspired Workflow**: Familiar keybindings (C-f, C-b, C-n, C-p, C-a, C-e, etc.) and command structures for power users.
@@ -47,7 +48,7 @@ Lisp非搭載・設定最小限。迷わず書ける、Emacs操作の軽量エ�
 
 - **Framework**: Electron (Node.js)
 - **Frontend**: React, TypeScript (Custom rendering engine)
-- **Styling**: Vanilla CSS (Simple and distraction-free design)
+- **Styling**: Styled-components (CSS-in-JS for clean, component-scoped design)
 - **Syntax Highlighting**: Highlight.js integrated
 
 ### 📖 Commands
@@ -73,6 +74,7 @@ Emacs の伝統的なキーバインドやワークフローを最大限に尊�
 
 ### 🚀 主な機能
 
+- **モダンなUIデザイン**: フローティング形式のミニバッファ（ポップアップ）、ステルス・スクロールバー、洗練されたタイポグラフィを採用。Web技術を活用した視認性の高いインターフェースと、Emacs独自の操作体系を共存させています。
 - **Lisp非搭載の軽快さ**: 複雑な処理系を持たないため、起動が速く、動作も軽量です。
 - **「即戦力」の初期設定**: インストール後、すぐに使い始められるような初期設定を内蔵しており、直後からコーディングや執筆を行うことができます。
 - **Emacs風の操作体系**: C-x、M-x、C-s などの慣れ親しんだキーバインドをフルサポート。
@@ -92,7 +94,7 @@ Emacs の伝統的なキーバインドやワークフローを最大限に尊�
 
 - **フレームワーク**: Electron (Node.js)
 - **フロントエンド**: React, TypeScript
-- **スタイリング**: Vanilla CSS (シンプルで集中しやすいデザイン)
+- **スタイリング**: Styled-components (CSS-in-JS による堅牢なコンポーネント設計)
 - **シンタックスハイライト**: Highlight.js 搭載
 
 ### 📖 操作・コマンド一覧
@@ -113,6 +115,10 @@ Windows用のバイナリは、GitHubのリリースページからダウンロ�
 
 ### English
 
+**Q: Is word wrap (wrapping at the window edge) supported?**
+
+A: We currently have no plans to support word wrap. Implementing line folding significantly complicates rendering calculations, which would negatively impact elecxzy's core strengths: "extreme lightweightness" and "maintainability." Thank you for your understanding.
+
 **Q: Horizontal scrolling with my mouse tilt-wheel doesn't work.**
 
 A: In some environments using mouse utility software (e.g., Logi Options), the horizontal scroll signal (deltaX) may be blocked for unrecognized applications. In such cases, you can horizontally scroll by rotating the wheel while holding the **Shift** key.
@@ -122,6 +128,10 @@ A: In some environments using mouse utility software (e.g., Logi Options), the h
 A: This is caused by the legacy bitmap data embedded in these older fonts conflicting with modern text rendering. To maintain optimal display quality for modern programming fonts, this behavior is by design. Please use the default **BIZ UDGothic** or other modern monospace fonts.
 
 ### 日本語
+
+**Q: 右端で折り返し表示はできないのですか？**
+
+A: 現時点では対応予定はありません。折り返し処理（Wrap）を組み込むと画面描画の計算が大幅に複雑化し、elecxzyの強みである「動作の軽快さ」や「メンテナンスのしやすさ」に大きな影響を及ぼしてしまうためです。何卒ご了承ください。
 
 **Q: マウスのチルトホイールを倒しても水平スクロールが動作しません。**
 
