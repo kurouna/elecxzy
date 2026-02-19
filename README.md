@@ -1,6 +1,7 @@
 # elecxzy
 
-[![Zenn](https://img.shields.io/badge/Zenn-Article-blue)](https://zenn.dev/kurouna/articles/44cf61b7cfce4c)
+[![Zenn](https://img.shields.io/badge/Zenn-kurouna-blue)](https://zenn.dev/kurouna)
+[![X](https://img.shields.io/badge/X-elecxzy-black)](https://x.com/elecxzy)
 
 **A lightweight, Lisp-free text editor with Emacs keybindings.**
 Lisp非搭載・設定最小限。迷わず書ける、Emacs操作の軽量エディタ。
@@ -23,21 +24,21 @@ Lisp非搭載・設定最小限。迷わず書ける、Emacs操作の軽量エ�
 <a name="english"></a>
 ## English
 
-`elecxzy` is a streamlined text editor built from the ground up to provide a vintage Emacs experience within a modern web-technology ecosystem.
-
-Unlike traditional Emacs, **`elecxzy` deliberately omits the Lisp interpreter and complex configuration layers.** This design choice prioritizes raw speed and simplicity—perfect for quick edits without the "configuration bankruptcy".
+`elecxzy` is a modern text editor built from the ground up to reconstruct the powerful and beloved Emacs user experience using contemporary web technologies. It is designed for those who value the Emacs workflow but seek a streamlined, lightweight, and efficient environment, allowing you to start coding or writing immediately with the familiar keybindings you've mastered, without the burden of complex configuration.
 
 ### 🚀 Key Features
 
+- **Modern UI & Interface**: A contemporary visual design utilizing web technologies, featuring floating minibuffer popups, distraction-free scrollbars, and high-quality typography while preserving core Emacs semantics.
 - **Lisp-free & Lightweight**: No heavy script engine overhead. Just the essential text editing features you need.
-- **Zero-Config Philosophy**: Minimal customization options mean you can stop tweaking and start coding immediately.
-- **Emacs-inspired Workflow**: Familiar keybindings (C-x, M-x, etc.) and command structures for power users.
-- **High-Performance Buffer Engine**: Uses a **Piece Table** data structure for efficient handling of large files.
-- **Interactive Search & Replace**: Feature-rich `isearch` (incremental search) and `query-replace` for complex text transformations.
-- **Living Previews**: Real-time Markdown and HTML preview modes for modern documentation.
-- **Dynamic Layout & Window Resizing**: Support for recursive window splitting (vertical/horizontal) with intuitive, Emacs-style size adjustments.
-- **Appearance Customization**: Adjust colors for the editor, title bar, and status line via a simple JSON configuration file.
-- **Seamless Japanese IME Support**: Optimized for smooth Japanese typing without the common "flicker" or focus issues in web-based editors. (Toggle with `C-\` or `C-]`)
+- **Ready-to-Use Defaults**: Comes with sensible default settings so you can start coding or writing immediately after installation without tedious configuration.
+- **Emacs-inspired Workflow**: Familiar keybindings (C-f, C-b, C-n, C-p, C-a, C-e, etc.) and command structures for power users.
+- **Flexible Window Management**: Support for recursive window splitting (vertical/horizontal) with `C-x 2`, `C-x 3`. Adjust sizes with intuitive, Emacs-style commands (`C-x ^`, `C-x }`).
+- **Major Modes & Syntax Highlighting**: Specialized modes for TypeScript, JavaScript, C/C++, Python, Go, Rust, SQL, YAML, and more.
+- **Real-time Previews**: Instant preview modes for Markdown and HTML to bridge the gap between editing and publishing.
+- **Interactive Search & Replace**: Powerful `isearch` (incremental search) and `query-replace` for fast navigation and editing.
+- **High-Performance Buffer Engine**: Uses a **Piece Table** data structure for efficient handling of large files and infinite undo history.
+- **Appearance Customization**: Adjust colors and fonts (Global or Buffer-local) via simple JSON configuration or M-x commands.
+- **Seamless Japanese IME Support**: Optimized for smooth Japanese typing with dedicated focus handling. (Toggle with `C-\` or `C-]`)
 
 <p align="center">
   <img src="./assets/ime-screenshot.png" height="400" alt="elecxzy IME Screenshot">
@@ -46,8 +47,8 @@ Unlike traditional Emacs, **`elecxzy` deliberately omits the Lisp interpreter an
 ### 🛠 Tech Stack
 
 - **Framework**: Electron (Node.js)
-- **Frontend**: React, TypeScript
-- **Styling**: Vanilla CSS (Simple and distraction-free design)
+- **Frontend**: React, TypeScript (Custom rendering engine)
+- **Styling**: Styled-components (CSS-in-JS for clean, component-scoped design)
 - **Syntax Highlighting**: Highlight.js integrated
 
 ### 📖 Commands
@@ -67,20 +68,22 @@ Source code is currently private.
 <a name="japanese"></a>
 ## 日本語
 
-`elecxzy` は、古典的な Emacs の操作体験を最新の Web 技術（Electron）で再現したテキストエディタです。
+`elecxzy` は、長年愛されてきた Emacs の強力なユーザー体験を、最新の Web 技術（Electron）を用いてゼロから再構築したテキストエディタです。
 
-本家 Emacs との最大の違いは、**Lispインタプリタや複雑な拡張機能をあえて搭載していない点**です。「設定ファイル（init.el）のメンテナンスに疲れてしまった」「機能は最小限でいいから、あのキー操作でサクサク書きたい」というユーザーのために設計されました。
+Emacs の伝統的なキーバインドやワークフローを最大限に尊重しつつ、現代的な軽快さと使いやすさを両立。煩雑な環境構築に時間を取られることなく、あのお馴染みの操作感ですぐに創作活動を開始できる「スピード」と「シンプルさ」を追求しています。
 
 ### 🚀 主な機能
 
+- **モダンなUIデザイン**: フローティング形式のミニバッファ（ポップアップ）、ステルス・スクロールバー、洗練されたタイポグラフィを採用。Web技術を活用した視認性の高いインターフェースと、Emacs独自の操作体系を共存させています。
 - **Lisp非搭載の軽快さ**: 複雑な処理系を持たないため、起動が速く、動作も軽量です。
-- **設定最小限の「即戦力」設計**: カスタマイズの自由度をあえて制限しました。インストール直後から、迷うことなく執筆に集中できます。
+- **「即戦力」の初期設定**: インストール後、すぐに使い始められるような初期設定を内蔵しており、直後からコーディングや執筆を行うことができます。
 - **Emacs風の操作体系**: C-x、M-x、C-s などの慣れ親しんだキーバインドをフルサポート。
-- **Piece Tableエンジン**: 大容量ファイルも軽快に扱え、履歴消費が少ない高度なバッファ管理。
-- **対話的な検索と置換**: インクリメンタル検索 (isearch) や、一箇所ずつ確認しながら置換できる query-replace を搭載。
-- **リアルタイム・プレビュー**: Markdown や HTML の書き換えを即座に確認できるプレビューモード。
-- **柔軟な画面分割とリサイズ**: ウィンドウを上下左右に自由に（再帰的に）分割でき、各領域のサイズは Emacs 風のキー操作で直感的にリサイズ可能です。
-- **外観のカスタマイズ**: JSON設定ファイルを編集することで、エディタやタイトルバー、ステータスラインの配色を自分好みに変更可能。
+- **柔軟な画面分割とリサイズ**: `C-x 2` / `C-x 3` による再帰的なウィンドウ分割と、`C-x ^` / `C-x }` 等による直感的なサイズ調整。
+- **多様なメジャーモード**: TypeScript, JavaScript, C/C++, Python, Go, Rust, SQL, YAML など、多数の言語のシンタックスハイライトに対応。
+- **リアルタイム・プレビュー**: Markdown や HTML の書き換えを即座に確認できるプレビューモードを搭載。
+- **対話的な検索と置換**: インクリメンタル検索 (isearch) や、一箇所ずつ確認しながら置換できる query-replace。
+- **Piece Tableエンジン**: 大容量ファイルも軽快に扱え、高速な履歴管理（Undo/Redo）を可能にするバッファエンジン。
+- **外観・フォントの調整**: `M-x set-font` によるバッファごとのフォント設定や、JSONによる配色カスタマイズが可能。
 - **高精度な日本語IME対応**: Webベースエディタの課題であるIMEの挙動を最適化し、ストレスのない入力を実現。(`C-\` または `C-]` でON/OFF切り替え)
 
 <p align="center">
@@ -91,7 +94,7 @@ Source code is currently private.
 
 - **フレームワーク**: Electron (Node.js)
 - **フロントエンド**: React, TypeScript
-- **スタイリング**: Vanilla CSS (シンプルで集中しやすいデザイン)
+- **スタイリング**: Styled-components (CSS-in-JS による堅牢なコンポーネント設計)
 - **シンタックスハイライト**: Highlight.js 搭載
 
 ### 📖 操作・コマンド一覧
@@ -108,6 +111,38 @@ Windows用のバイナリは、GitHubのリリースページからダウンロ�
 
 ---
 
+## FAQ
+
+### English
+
+**Q: Is word wrap (wrapping at the window edge) supported?**
+
+A: We currently have no plans to support word wrap. Implementing line folding significantly complicates rendering calculations, which would negatively impact elecxzy's core strengths: "extreme lightweightness" and "maintainability." Thank you for your understanding.
+
+**Q: Horizontal scrolling with my mouse tilt-wheel doesn't work.**
+
+A: In some environments using mouse utility software (e.g., Logi Options), the horizontal scroll signal (deltaX) may be blocked for unrecognized applications. In such cases, you can horizontally scroll by rotating the wheel while holding the **Shift** key.
+
+**Q: The cursor is misaligned when using "MS Gothic" or "MS Mincho" fonts.**
+
+A: This is caused by the legacy bitmap data embedded in these older fonts conflicting with modern text rendering. To maintain optimal display quality for modern programming fonts, this behavior is by design. Please use the default **BIZ UDGothic** or other modern monospace fonts.
+
+### 日本語
+
+**Q: 右端で折り返し表示はできないのですか？**
+
+A: 現時点では対応予定はありません。折り返し処理（Wrap）を組み込むと画面描画の計算が大幅に複雑化し、elecxzyの強みである「動作の軽快さ」や「メンテナンスのしやすさ」に大きな影響を及ぼしてしまうためです。何卒ご了承ください。
+
+**Q: マウスのチルトホイールを倒しても水平スクロールが動作しません。**
+
+A: 一部のマウスユーティリティソフト（例：Logi Options）がインストールされている環境では、ソフト側が「未知のアプリ」への水平スクロール信号をブロックする場合があります。その場合は、**Shiftキーを押しながらホイールを回転**させることで、水平方向へスクロールが可能です。
+
+**Q: 「MS ゴシック」や「MS 明朝」を使うと、カーソルの位置がずれます。**
+
+A: これらのフォントが内蔵する古いビットマップ仕様と、最新の描画エンジンとの相性によるものです。他のモダンフォントの滑らかな描画や合字（リガチャー）を優先しているため、仕様となります。デフォルトの **BIZ UDGothic** などのご利用を推奨します。
+
+---
+
 ## License / ライセンス
 
 This software is released under the [MIT License](./LICENSE). 
@@ -115,9 +150,14 @@ This software is released under the [MIT License](./LICENSE).
 
 ## Acknowledgements / 謝辞
 
-This application is inspired by the legendary editor **xyzzy**:
+This application is inspired by the legendary editors **GNU Emacs** and **xyzzy**, and was developed from scratch to carry on their spirit:
+
+- **GNU Emacs**
+  - Copyright (C) 1985-2024 Free Software Foundation, Inc.
+  - Created by Richard Stallman
+
 - **xyzzy**
   - Copyright (c) 1996-2005 Tetsuya Kamei
   - Copyright (c) 2012-2014 xyzzy Project
 
-Special thanks to the original authors for their pioneering work in the Japanese Emacs-like editor ecosystem.
+Special thanks to the original authors for their pioneering work in the editor ecosystem.
