@@ -16,8 +16,10 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `C-x C-f` | `find-file` | Open a file | ファイルを開きます |
+| `C-x M-f` | `find-file-dialog` | Open a file using OS dialog | OSダイアログを使用してファイルを開きます |
 | `C-x C-s` | `save-buffer` | Save current buffer | 現在のバッファを保存します |
 | `C-x C-w` | `write-file` | Save buffer as a new file | 名前を付けて保存します |
+| `C-x M-w` | `write-file-dialog` | Save buffer using OS dialog | OSダイアログを使用して保存します |
 | `C-x i` | `insert-file` | Insert a file at cursor | カーソル位置にファイルを挿入します |
 | `C-x C-q` | `read-only-mode` | Toggle read-only mode | 書き込み禁止状態を切り替えます |
 | `C-x C-c` | `quit` | Exit the application | アプリケーションを終了します |
@@ -81,6 +83,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-s` | `isearch-forward` | Incremental search forward | 前方インクリメンタル検索を開始します |
 | `C-r` | `isearch-backward` | Incremental search backward | 後方インクリメンタル検索を開始します |
 | `M-%` | `query-replace` | Interactive search and replace | 対話的な文字列置換（y/n/!/q）を実行します |
+| `M-x grep` | `grep` | Run grep to search files in directory | ディレクトリ内の複数ファイルをまたいで文字列検索（Grep）を行います |
 
 ## Windows & Buffers (ウィンドウ・バッファ)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
