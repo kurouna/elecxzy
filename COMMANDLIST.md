@@ -17,7 +17,6 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 |:---|:---|:---|:---|
 | `C-x C-f` | `find-file` | Open a file | ファイルを開きます |
 | `C-x M-f` | `find-file-dialog` | Open a file using OS dialog | OSダイアログを使用してファイルを開きます |
-| `C-x d` | `toggle-sidebar` | Toggle Sidebar File Tree | サイドバー型ファイラを開閉します |
 | `C-x C-s` | `save-buffer` | Save current buffer | 現在のバッファを保存します |
 | `C-x C-w` | `write-file` | Save buffer as a new file | 名前を付けて保存します |
 | `C-x M-w` | `write-file-dialog` | Save buffer using OS dialog | OSダイアログを使用して保存します |
