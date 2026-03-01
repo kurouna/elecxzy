@@ -17,6 +17,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 |:---|:---|:---|:---|
 | `C-x C-f` | `find-file` | Open a file | ファイルを開きます |
 | `C-x M-f` | `find-file-dialog` | Open a file using OS dialog | OSダイアログを使用してファイルを開きます |
+| `C-x d` | `toggle-sidebar` | Toggle Sidebar File Tree | サイドバー型ファイラを開閉します |
 | `C-x C-s` | `save-buffer` | Save current buffer | 現在のバッファを保存します |
 | `C-x C-w` | `write-file` | Save buffer as a new file | 名前を付けて保存します |
 | `C-x M-w` | `write-file-dialog` | Save buffer using OS dialog | OSダイアログを使用して保存します |
@@ -103,6 +104,21 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-x k` | `kill-buffer` | Close the current buffer | バッファを閉じます |
 | `f` (in Buffer List) | `buffer-menu-execute` | Switch to the buffer under cursor | カーソル位置のバッファに切り替えます（バッファ一覧にて） |
 | `q` (in Buffer List) | `keyboard-quit` | Quit buffer list | バッファ一覧を閉じます |
+
+## Filer Operations (ファイラ操作)
+| Command / コマンド | ID | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `C-x d` | `toggle-sidebar` | Toggle Sidebar File Tree | サイドバー型ファイラを開閉します |
+| `C-n` / `j` | (Sidebar Open) | Move focus down | ファイラ内でフォーカスを下に移動します |
+| `C-p` / `k` | (Sidebar Open) | Move focus up | ファイラ内でフォーカスを上に移動します |
+| `C-f` / `l` / `Right`| (Sidebar Open) | Expand folder / Preview file | フォルダを展開 / ファイルをプレビューします |
+| `C-b` / `h` / `Left` | (Sidebar Open) | Collapse folder / Move to parent | フォルダを折り畳む / 親フォルダへ移動します |
+| `Enter` / `Click` / `f` | (Sidebar Open) | Toggle folder / Open file & Close | フォルダを開閉 / ファイルを開いてファイラを閉じます |
+| `Space` / `Tab` | (Sidebar Open) | Toggle folder | フォルダを開閉します |
+| `u` | (Sidebar Open) | Change root to parent directory | 1つ上の親フォルダをルート階層に設定します |
+| `r` | (Sidebar Open) | Jump to root / drives | システムドライブルート（または`/`）へジャンプします |
+| `g` | (Sidebar Open) | Reload tree | ツリー（ディレクトリ情報）を最新状態に再読み込みします |
+| `C-g` / `q` / `Esc` | (Sidebar Open) | Close sidebar | ファイラを閉じます |
 
 ## Preview & Web (プレビュー・Web)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
