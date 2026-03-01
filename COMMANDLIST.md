@@ -153,6 +153,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 ## Settings (設定)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
+| `C-,` / `M-x open-config` | `open-config` | Open the Settings Sidebar | 設定サイドバーを開きます |
 | `M-x get-auto-save` | `get-auto-save` | Show auto-save status | オートセーブの状態を表示します |
 | `M-x get-auto-save-interval` | `get-auto-save-interval` | Show auto-save interval | オートセーブの間隔を表示します |
 | `M-x get-case-sensitive-search` | `get-case-sensitive-search` | Get case sensitive search status | 検索の大文字小文字区別の状態を表示します |
