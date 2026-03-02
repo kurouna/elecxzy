@@ -110,6 +110,11 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-x d` | `toggle-sidebar` | Toggle Sidebar File Tree | サイドバー型ファイラを開閉します |
 | `C-n` / `j` | (Sidebar Open) | Move focus down | ファイラ内でフォーカスを下に移動します |
 | `C-p` / `k` | (Sidebar Open) | Move focus up | ファイラ内でフォーカスを上に移動します |
+| `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロール（フォーカス移動）します |
+| `M-v` | (Sidebar Open) | Scroll up one page | 1ページ分上にスクロール（フォーカス移動）します |
+| `M-<` | (Sidebar Open) | Jump to the beginning of the list | リストの先頭に移動します |
+| `M->` | (Sidebar Open) | Jump to the end of the list | リストの末尾に移動します |
+| `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
 | `C-f` / `l` / `Right`| (Sidebar Open) | Expand folder / Preview file | フォルダを展開 / ファイルをプレビューします |
 | `C-b` / `h` / `Left` | (Sidebar Open) | Collapse folder / Move to parent | フォルダを折り畳む / 親フォルダへ移動します |
 | `Enter` / `Click` / `f` | (Sidebar Open) | Toggle folder / Open file & Close | フォルダを開閉 / ファイルを開いてファイラを閉じます |
@@ -135,18 +140,26 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x c-mode` | `c-mode` | Switch to C mode | C言語モードに切り替えます |
 | `M-x cpp-mode` | `cpp-mode` | Switch to C++ mode | C++モードに切り替えます |
 | `M-x csharp-mode` | `csharp-mode` | Switch to C# mode | C#モードに切り替えます |
-| `M-x python-mode` | `python-mode` | Switch to Python mode | Pythonモードに切り替えます |
-| `M-x ruby-mode` | `ruby-mode` | Switch to Ruby mode | Rubyモードに切り替えます |
+| `M-x dart-mode` | `dart-mode` | Switch to Dart mode | Dartモードに切り替えます |
 | `M-x go-mode` | `go-mode` | Switch to Go mode | Goモードに切り替えます |
-| `M-x rust-mode` | `rust-mode` | Switch to Rust mode | Rustモードに切り替えます |
-| `M-x typescript-mode` | `typescript-mode` | Switch to TypeScript mode | TypeScriptモードに切り替えます |
+| `M-x java-mode` | `java-mode` | Switch to Java mode | Javaモードに切り替えます |
 | `M-x javascript-mode` | `javascript-mode` | Switch to JavaScript mode | JavaScriptモードに切り替えます |
 | `M-x json-mode` | `json-mode` | Switch to JSON mode | JSONモードに切り替えます |
+| `M-x kotlin-mode` | `kotlin-mode` | Switch to Kotlin mode | Kotlinモードに切り替えます |
+| `M-x lua-mode` | `lua-mode` | Switch to Lua mode | Luaモードに切り替えます |
+| `M-x markdown-mode` | `markdown-mode` | Switch to Markdown mode | Markdownモードに切り替えます |
+| `M-x perl-mode` | `perl-mode` | Switch to Perl mode | Perlモードに切り替えます |
+| `M-x php-mode` | `php-mode` | Switch to PHP mode | PHPモードに切り替えます |
+| `M-x python-mode` | `python-mode` | Switch to Python mode | Pythonモードに切り替えます |
+| `M-x ruby-mode` | `ruby-mode` | Switch to Ruby mode | Rubyモードに切り替えます |
+| `M-x rust-mode` | `rust-mode` | Switch to Rust mode | Rustモードに切り替えます |
+| `M-x sql-mode` | `sql-mode` | Switch to SQL mode | SQLモードに切り替えます |
+| `M-x swift-mode` | `swift-mode` | Switch to Swift mode | Swiftモードに切り替えます |
+| `M-x toml-mode` | `toml-mode` | Switch to TOML mode | TOMLモードに切り替えます |
+| `M-x typescript-mode` | `typescript-mode` | Switch to TypeScript mode | TypeScriptモードに切り替えます |
+| `M-x css-mode` | `css-mode` | Switch to CSS mode | CSSモードに切り替えます |
 | `M-x html-mode` | `html-mode` | Switch to HTML mode | HTMLモードに切り替えます |
 | `M-x xml-mode` | `xml-mode` | Switch to XML mode | XMLモードに切り替えます |
-| `M-x css-mode` | `css-mode` | Switch to CSS mode | CSSモードに切り替えます |
-| `M-x markdown-mode` | `markdown-mode` | Switch to Markdown mode | Markdownモードに切り替えます |
-| `M-x sql-mode` | `sql-mode` | Switch to SQL mode | SQLモードに切り替えます |
 | `M-x yaml-mode` | `yaml-mode` | Switch to YAML mode | YAMLモードに切り替えます |
 | `M-x bash-mode` | `bash-mode` | Switch to Bash/Shell mode | Bash/Shellモードに切り替えます |
 
