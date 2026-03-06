@@ -61,6 +61,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-l` | `downcase-word` | Lowercase from cursor to end of word | 単語を小文字にします |
 | `M-c` | `capitalize-word` | Capitalize first letter of word | 単語の先頭を大文字にします |
 | `M-backspace` | `backward-kill-word` | Kill word backward | 前の単語を削除（キル）します |
+| `M-q` | `fill-paragraph` | Fill paragraph matching wrap column | 段落を折り返し幅に合わせて整形(ハードラップ)します |
+| `M-x auto-fill-mode` | `auto-fill-mode` | Toggle auto-fill-mode | 自動改行モード (Auto Fill Mode) を切り替えます |
 | `C-o` | `open-line` | Insert a newline after cursor | カーソル位置に改行を挿入します |
 | `C-j` | `newline-and-indent` | Newline and indent | 改行してインデントを維持します |
 | `C-t` | `transpose-chars` | Swap characters around cursor | 文字を入れ替えます |
@@ -167,6 +169,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `C-,` / `M-x open-config` | `open-config` | Open the Settings Sidebar | 設定サイドバーを開きます |
+| `M-x get-auto-fill-mode` | `get-auto-fill-mode` | Show auto-fill mode status | 自動改行モードの状態を表示します |
 | `M-x get-auto-save` | `get-auto-save` | Show auto-save status | オートセーブの状態を表示します |
 | `M-x get-auto-save-interval` | `get-auto-save-interval` | Show auto-save interval | オートセーブの間隔を表示します |
 | `M-x get-case-sensitive-search` | `get-case-sensitive-search` | Get case sensitive search status | 検索の大文字小文字区別の状態を表示します |
@@ -179,6 +182,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x get-line-terminator` | `get-line-terminator` | Get line terminator | 改行コードを表示します |
 | `M-x get-max-undo-limit` | `get-max-undo-limit` | Get current maximum number of undo operations | 最大Undo回数を表示します |
 | `M-x get-tab-width` | `get-tab-width` | Get current tab width | タブ幅を表示します |
+| `M-x get-wrap-column` | `get-wrap-column` | Get current wrap column | 現在の折り返し幅を表示します |
+| `M-x set-auto-fill-mode` | `set-auto-fill-mode` | Toggle auto-fill mode (on/off) | 自動改行モードを有効/無効にします |
 | `M-x set-auto-save` | `set-auto-save` | Toggle auto-save (yes/no) | オートセーブを有効/無効にします |
 | `M-x set-auto-save-interval` | `set-auto-save-interval` | Set auto-save interval (min) | オートセーブの間隔(分)を設定します |
 | `M-x set-case-sensitive-search` | `set-case-sensitive-search` | Set case sensitive search (on/off) | 検索の大文字小文字区別を設定します |
@@ -191,6 +196,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x set-line-terminator` | `set-line-terminator` | Set line terminator (CRLF/LF/CR) | 改行コードを設定します |
 | `M-x set-max-undo-limit` | `set-max-undo-limit` | Set the maximum number of undo operations | 最大Undo回数を設定します |
 | `M-x set-tab-width` | `set-tab-width` | Set the tab width | タブ幅を設定します |
+| `M-x set-wrap-column` | `set-wrap-column` | Set the wrap column | 折り返し幅を設定します |
 
 ## Advanced (その他)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
