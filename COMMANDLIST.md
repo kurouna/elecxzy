@@ -109,16 +109,6 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 ## Filer Operations (ファイラ操作)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `C-x d` | `toggle-sidebar` | Toggle Sidebar File Tree | サイドバー型ファイラを開閉します |
-| `C-n` / `j` | (Sidebar Open) | Move focus down | ファイラ内でフォーカスを下に移動します |
-| `C-p` / `k` | (Sidebar Open) | Move focus up | ファイラ内でフォーカスを上に移動します |
-| `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロール（フォーカス移動）します |
-| `M-v` | (Sidebar Open) | Scroll up one page | 1ページ分上にスクロール（フォーカス移動）します |
-| `M-<` | (Sidebar Open) | Jump to the beginning of the list | リストの先頭に移動します |
-| `M->` | (Sidebar Open) | Jump to the end of the list | リストの末尾に移動します |
-| `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
-| `C-f` / `l` / `Right`| (Sidebar Open) | Expand folder / Preview file | フォルダを展開 / ファイルをプレビューします |
-| `C-b` / `h` / `Left` | (Sidebar Open) | Collapse folder / Move to parent | フォルダを折り畳む / 親フォルダへ移動します |
 | `Enter` / `Click` / `f` | (Sidebar Open) | Toggle folder / Open file & Close | フォルダを開閉 / ファイルを開いてファイラを閉じます |
 | `Space` / `Tab` | (Sidebar Open) | Toggle folder | フォルダを開閉します |
 | `u` | (Sidebar Open) | Change root to parent directory | 1つ上の親フォルダをルート階層に設定します |
@@ -126,11 +116,29 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `g` | (Sidebar Open) | Reload tree | ツリー（ディレクトリ情報）を最新状態に再読み込みします |
 | `C-g` / `q` / `Esc` | (Sidebar Open) | Close sidebar | ファイラを閉じます |
 
+## Outline Operations (アウトライン操作)
+| Command / コマンド | ID | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `C-c o` | `outline-view` | Toggle Outline Sidebar | アウトライン表示を開閉します |
+| `C-n` / `j` | (Outline Open) | Move focus down (Preview jumps to heading) | フォーカスを下に移動（エディタも連動）します |
+| `C-p` / `k` | (Outline Open) | Move focus up (Preview jumps to heading) | フォーカスを上に移動（エディタも連動）します |
+| `C-v` | (Outline Open) | Scroll down one page | 1ページ分下にスクロールします |
+| `M-v` | (Outline Open) | Scroll up one page | 1ページ分上にスクロールします |
+| `M-<` | (Outline Open) | Jump to the beginning of the list | アウトラインの先頭に移動します |
+| `M->` | (Outline Open) | Jump to the end of the list | アウトラインの末尾に移動します |
+| `C-l` | (Outline Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
+| `C-f` / `l` / `Right`| (Outline Open) | Expand item / Move to child | 項目を展開 / 子階層へ移動します |
+| `C-b` / `h` / `Left` | (Outline Open) | Collapse item / Move to parent | 項目を折り畳む / 親階層へ移動します |
+| `g` | (Outline Open) | Refresh outline | アウトライン解析を最新状態に更新します |
+| `Enter` / `Click` | (Outline Open) | Jump to heading & Close | 該当の見出しにジャンプしてサイドバーを閉じます |
+| `C-g` / `q` / `Esc` | (Outline Open) | Cancel & Return to original position | キャンセルして元のカーソル位置に戻ります |
+
 ## Preview & Web (プレビュー・Web)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `M-x preview-html` | `preview-html` | Preview current HTML buffer | 現在のHTMLバッファをプレビューします |
 | `M-x preview-markdown` | `preview-markdown` | Preview current Markdown buffer | 現在のMarkdownバッファをプレビューします |
+| `C-c o` / `M-x outline-view` | `outline-view` | Toggle Outline Sidebar (Markdown/HTML) | アウトライン表示を開閉します (Markdown/HTML) |
 | `C-c p` / `M-x print-buffer` | `print-buffer` | Print active buffer | 現在のバッファを印刷します |
 
 ## Major Modes (メジャーモード)
@@ -168,7 +176,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 ## Settings (設定)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `C-,` / `M-x open-config` | `open-config` | Open the Settings Sidebar | 設定サイドバーを開きます |
+| `M-x open-config` | `open-config` | Open the Settings Sidebar | 設定サイドバーを開きます |
+| `M-x auto-save` | `auto-save` | Toggle auto-save status | オートセーブを切り替えます |
 | `M-x get-auto-fill-mode` | `get-auto-fill-mode` | Show auto-fill mode status | 自動改行モードの状態を表示します |
 | `M-x get-auto-save` | `get-auto-save` | Show auto-save status | オートセーブの状態を表示します |
 | `M-x get-auto-save-interval` | `get-auto-save-interval` | Show auto-save interval | オートセーブの間隔を表示します |
