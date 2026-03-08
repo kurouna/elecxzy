@@ -119,7 +119,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 ## Outline Operations (アウトライン操作)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `C-c o` | `outline-view` | Toggle Outline Sidebar | アウトライン表示を開閉します |
+| `C-c o` | `outline-view` | Toggle Outline Sidebar (Parses up to 50,000 lines) | アウトライン表示を開閉します (50,000行まで) |
 | `C-n` / `j` | (Outline Open) | Move focus down (Preview jumps to heading) | フォーカスを下に移動（エディタも連動）します |
 | `C-p` / `k` | (Outline Open) | Move focus up (Preview jumps to heading) | フォーカスを上に移動（エディタも連動）します |
 | `C-v` | (Outline Open) | Scroll down one page | 1ページ分下にスクロールします |
@@ -138,7 +138,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 |:---|:---|:---|:---|
 | `M-x preview-html` | `preview-html` | Preview current HTML buffer | 現在のHTMLバッファをプレビューします |
 | `M-x preview-markdown` | `preview-markdown` | Preview current Markdown buffer | 現在のMarkdownバッファをプレビューします |
-| `C-c o` / `M-x outline-view` | `outline-view` | Toggle Outline Sidebar (Markdown/HTML) | アウトライン表示を開閉します (Markdown/HTML) |
+| `C-c o` / `M-x outline-view` | `outline-view` | Toggle Outline Sidebar (Parses up to 50,000 lines) | アウトライン表示を開閉します (50,000行まで) |
 | `C-c p` / `M-x print-buffer` | `print-buffer` | Print active buffer | 現在のバッファを印刷します |
 
 ## Major Modes (メジャーモード)
