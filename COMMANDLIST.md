@@ -79,6 +79,15 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x replace-string-buffer` | `replace-string-buffer` | Replace string in entire buffer | バッファ全体の文字列を置換します |
 | `M-x replace-string-region` | `replace-string-region` | Replace string in selected region | 選択範囲内の文字列を置換します |
 
+## Registers (レジスタ)
+| Command / コマンド | ID | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `C-x r s` | `copy-to-register` | Copy region to register | 選択範囲をレジスタに保存します |
+| `C-x r i` | `insert-register` | Insert contents of register | レジスタの内容を挿入します |
+| `C-x r SPC` | `point-to-register` | Store current position in register | 現在のカーソル位置をレジスタに保存します |
+| `C-x r j` | `jump-to-register` | Jump to position stored in register | レジスタに保存された位置へジャンプします |
+
+
 ## Search (検索)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
