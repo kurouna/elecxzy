@@ -177,6 +177,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 ## Preview & Web (プレビュー・Web)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
+| `C-c v` | `preview-dispatch` | Preview current buffer (Markdown/HTML) | 現在のバッファをプレビューします（Markdown/HTML） |
 | `M-x preview-html` | `preview-html` | Preview current HTML buffer | 現在のHTMLバッファをプレビューします |
 | `M-x preview-markdown` | `preview-markdown` | Preview current Markdown buffer | 現在のMarkdownバッファをプレビューします |
 | `C-c o` / `M-x outline-view` | `outline-view` | Toggle Outline Sidebar (Parses up to 50,000 lines) | アウトライン表示を開閉します (50,000行まで) |
