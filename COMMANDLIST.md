@@ -123,7 +123,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `u` | (Sidebar Open) | Change root to parent directory | 1つ上の親フォルダをルート階層に設定します |
 | `r` | (Sidebar Open) | Jump to root / drives | システムドライブルート（または`/`）へジャンプします |
 | `g` | (Sidebar Open) | Reload tree | ツリー（ディレクトリ情報）を最新状態に再読み込みします |
-| `C-g` / `q` / `Esc` | (Sidebar Open) | Close sidebar | ファイラを閉じます |
+| `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | ファイラを閉じます |
+| `Right Click` (Backdrop) | (Sidebar Open) | Close sidebar | 背景の右クリックで閉じます |
 
 ## Outline Operations (アウトライン操作)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
@@ -139,8 +140,24 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-f` / `l` / `Right`| (Outline Open) | Expand item / Move to child | 項目を展開 / 子階層へ移動します |
 | `C-b` / `h` / `Left` | (Outline Open) | Collapse item / Move to parent | 項目を折り畳む / 親階層へ移動します |
 | `g` | (Outline Open) | Refresh outline | アウトライン解析を最新状態に更新します |
-| `Enter` / `Click` | (Outline Open) | Jump to heading & Close | 該当の見出しにジャンプしてサイドバーを閉じます |
-| `C-g` / `q` / `Esc` | (Outline Open) | Cancel & Return to original position | キャンセルして元のカーソル位置に戻ります |
+| `Enter` / `Click` | (Outline Open) | Jump to heading & Close | 該当の見出しにジャンプして閉じます |
+| `C-g` / `C-q` / `q` / `Esc` | (Outline Open) | Cancel & Close sidebar | キャンセルしてサイドバーを閉じます |
+| `Click` (Editor) | (Outline Open) | Cancel & Close sidebar | エディタ部分のクリックで閉じます |
+
+## Kill Ring Sidebar Operations (キルリング・サイドバー操作)
+| Command / コマンド | ID | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `C-c y` | `browse-kill-ring` | Open Kill Ring Sidebar | キルリング表示を開閉します |
+| `C-n` / `j` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
+| `C-p` / `k` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
+| `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロールします |
+| `M-v` | (Sidebar Open) | Scroll up one page | 1ページ分上にスクロールします |
+| `M-<` | (Sidebar Open) | Jump to the beginning of the list | 履歴の先頭に移動します |
+| `M->` | (Sidebar Open) | Jump to the end of the list | 履歴の末尾に移動します |
+| `g` | (Sidebar Open) | Refresh list | 履歴を最新の状態に更新します |
+| `Enter` / `Click` / `f` | (Sidebar Open) | Insert selected text & Close | 選択したテキストを挿入して閉じます |
+| `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
+| `Click` (Editor) | (Sidebar Open) | Close sidebar | エディタ部分のクリックで閉じます |
 
 ## Preview & Web (プレビュー・Web)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
@@ -186,6 +203,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `M-x open-config` | `open-config` | Open the Settings Sidebar | 設定サイドバーを開きます |
+| `C-g` / `C-q` / `Esc` | (Settings Open) | Save & Close sidebar | 設定を保存して閉じます |
+| `Right Click` (Backdrop) | (Settings Open) | Save & Close sidebar | 背景の右クリックで閉じます |
 | `M-x auto-save` | `auto-save` | Toggle auto-save status | オートセーブを切り替えます |
 | `M-x get-auto-fill-mode` | `get-auto-fill-mode` | Show auto-fill mode status | 自動改行モードの状態を表示します |
 | `M-x get-auto-save` | `get-auto-save` | Show auto-save status | オートセーブの状態を表示します |
