@@ -159,6 +159,21 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 | `Click` (Editor) | (Sidebar Open) | Close sidebar | エディタ部分のクリックで閉じます |
 
+## Register Sidebar Operations (レジスタ・サイドバー操作)
+| Command / コマンド | ID | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `C-c r` | `browse-registers` | Open Register Sidebar | レジスタ表示を開閉します |
+| `C-n` / `j` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
+| `C-p` / `k` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
+| `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロールします |
+| `M-v` | (Sidebar Open) | Scroll up one page | 1ページ分上にスクロールします |
+| `M-<` | (Sidebar Open) | Jump to the beginning of the list | 履歴の先頭に移動します |
+| `M->` | (Sidebar Open) | Jump to the end of the list | 履歴の末尾に移動します |
+| `g` | (Sidebar Open) | Refresh list | 履歴を最新の状態に更新します |
+| `Enter` / `Click` / `f` | (Sidebar Open) | Action(Insert/Jump) & Close | 決定（挿入または移動）して閉じます |
+| `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
+| `Click` (Editor) | (Sidebar Open) | Close sidebar | エディタ部分のクリックで閉じます |
+
 ## Preview & Web (プレビュー・Web)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
@@ -212,7 +227,6 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x get-case-sensitive-search` | `get-case-sensitive-search` | Get case sensitive search status | 検索の大文字小文字区別の状態を表示します |
 | `M-x get-current-directory` | `get-current-directory` | Show current working directory | カレントディレクトリを表示します |
 | `M-x get-kill-ring-max` | `get-kill-ring-max` | Get current maximum number of items in the kill ring | キルリングの最大保持件数を表示します |
-
 | `M-x get-default-font` | `get-default-font` | Get default font | デフォルトフォントを表示します |
 | `M-x get-encoding` | `get-encoding` | Get current buffer encoding | 現在のバッファのエンコーディングを表示します |
 | `M-x get-font` | `get-font` | Get current buffer font | 現在のバッファのフォントを表示します |
@@ -228,7 +242,6 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x set-case-sensitive-search` | `set-case-sensitive-search` | Set case sensitive search (on/off) | 検索の大文字小文字区別を設定します |
 | `M-x set-current-directory` | `set-current-directory` | Change current working directory | カレントディレクトリを変更します |
 | `M-x set-kill-ring-max` | `set-kill-ring-max` | Set the maximum number of items in the kill ring | キルリングの最大保持件数を設定します |
-
 | `M-x set-default-font` | `set-default-font` | Set the default display font | デフォルトのフォントを設定します |
 | `M-x set-encoding` | `set-encoding` | Set file encoding for saving | 保存時のエンコーディングを設定します |
 | `M-x set-font` | `set-font` | Set buffer local font | バッファ固有のフォントを設定します |
