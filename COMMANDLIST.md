@@ -33,12 +33,12 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 ## Navigation (カーソル移動)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `C-f` / `right` | `cursor-forward` | Move cursor forward one character | カーソルを右に1文字移動します |
-| `C-b` / `left` | `cursor-backward` | Move cursor backward one character | カーソルを左に1文字移動します |
-| `C-n` / `down` | `cursor-next-line` | Move cursor to the next line | 次の行に移動します |
-| `C-p` / `up` | `cursor-previous-line` | Move cursor to the previous line | 前の行に移動します |
-| `C-a` / `home` | `cursor-bol` | Move to the beginning of the line | 行頭に移動します |
-| `C-e` / `end` | `cursor-eol` | Move to the end of the line | 行末に移動します |
+| `C-f` / `right` | `forward-char` | Move cursor forward one character | カーソルを右に1文字移動します |
+| `C-b` / `left` | `backward-char` | Move cursor backward one character | カーソルを左に1文字移動します |
+| `C-n` / `down` | `next-line` | Move cursor to the next line | 次の行に移動します |
+| `C-p` / `up` | `previous-line` | Move cursor to the previous line | 前の行に移動します |
+| `C-a` / `home` | `beginning-of-line` | Move to the beginning of the line | 行頭に移動します |
+| `C-e` / `end` | `end-of-line` | Move to the end of the line | 行末に移動します |
 | `M-f` | `word-forward` | Move forward one word | 1単語分右に移動します |
 | `M-b` | `word-backward` | Move backward one word | 1単語分左に移動します |
 | `M-<` | `beginning-of-buffer` | Move to the beginning of the buffer | バッファの先頭に移動します |
@@ -74,6 +74,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-/` | `undo` | Undo the last action | 直前の操作を取り消します |
 | `M-/` | `dabbrev-expand` | Dynamic word completion | 動的な単語補完 (dabbrev) を実行します |
 | `C-SPC` | `set-mark-command` | Set mark at current position | 現在位置にマークをセットします |
+| `C-u C-SPC` | `pop-mark-command` | Pop mark from mark ring | マークリングの履歴を遡ってジャンプします |
 | `C-x C-x` | `exchange-point-and-mark` | Swap cursor and mark positions | カーソルとマークの位置を入れ替えます |
 | `C-x h` | `mark-whole-buffer` | Mark the whole buffer | バッファ全体（全文）を選択します |
 | `C-g` | `keyboard-quit` | Cancel current command or operation | コマンドや操作を中断します |
