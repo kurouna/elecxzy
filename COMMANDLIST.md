@@ -59,6 +59,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-w` | `kill-ring-save` | Copy the selected region (or current line) to kill ring | 選択範囲（または現在行）をコピーします |
 | `C-y` | `yank` | Paste from the kill ring | キルリングから貼り付け（ヤンク）します |
 | `M-y` | `yank-pop` | Cycle through previous kills | キルリングを遡って貼り付けます |
+| `M-x kill-whole-line` | `kill-whole-line` | Kill the whole line (including newline) | 行全体（改行を含む）を削除（キル）します |
 | `M-d` | `kill-word` | Kill word forward | 次の単語を削除（キル）します |
 | `M-u` | `upcase-word` | Uppercase from cursor to end of word | 単語を大文字にします |
 | `M-l` | `downcase-word` | Lowercase from cursor to end of word | 単語を小文字にします |
@@ -95,6 +96,13 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-x r SPC` | `point-to-register` | Store current position in register | 現在のカーソル位置をレジスタに保存します |
 | `C-x r j` | `jump-to-register` | Jump to position stored in register | レジスタに保存された位置へジャンプします |
 
+## Rectangle Operations (矩形操作)
+| Command / コマンド | ID | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `C-x SPC` | `rectangle-mark-mode` | Toggle rectangle mark mode | 矩形選択モードを切り替えます |
+| `C-x r k` | `kill-rectangle` | Kill the rectangle defined by mark and point | マークとカーソル間の矩形領域を削除（キル）します |
+| `C-x r y` | `yank-rectangle` | Yank the last killed rectangle at cursor position | キルした矩形をカーソル位置にヤンク（貼り付け）します |
+| `C-x r t` | `string-rectangle` | Replace rectangle contents with a string | 矩形領域の内容を指定した文字列で置換します |
 
 ## Search (検索)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
