@@ -1,4 +1,6 @@
-# elecxzy
+<p align="center">
+  <img src="./public/elecxzy_repo_card.svg" width="800" alt="elecxzy - Next-generation Emacs-like modern editor">
+</p>
 
 [![Zenn](https://img.shields.io/badge/Zenn-kurouna-blue)](https://zenn.dev/kurouna)
 [![X](https://img.shields.io/badge/X-elecxzy-black)](https://x.com/elecxzy)
