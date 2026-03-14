@@ -244,6 +244,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x css-mode` | `css-mode` | Switch to CSS mode | CSSモードに切り替えます |
 | `M-x html-mode` | `html-mode` | Switch to HTML mode | HTMLモードに切り替えます |
 | `M-x xml-mode` | `xml-mode` | Switch to XML mode | XMLモードに切り替えます |
+| `M-x svg-mode` | `svg-mode` | Switch to SVG mode | SVGモードに切り替えます |
 | `M-x yaml-mode` | `yaml-mode` | Switch to YAML mode | YAMLモードに切り替えます |
 | `M-x bash-mode` | `bash-mode` | Switch to Bash/Shell mode | Bash/Shellモードに切り替えます |
 
