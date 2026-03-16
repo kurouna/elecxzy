@@ -90,6 +90,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-;` | `comment-dwim` | Comment / uncomment region | 選択範囲のコメント状態を切り替えます |
 | `M-x comment-region` | `comment-region` | Comment lines in region | 選択範囲をコメント化します |
 | `M-x uncomment-region` | `uncomment-region` | Uncomment lines in region | 選択範囲のコメントを解除します |
+| `C-M-\` | `indent-region` | Indent region | 選択範囲をインデントします |
+| `M-x indent-buffer` | `indent-buffer` | Indent entire buffer | バッファ全体をインデントします |
 
 ## Registers (レジスタ)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
