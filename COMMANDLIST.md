@@ -87,6 +87,9 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x replace-string-region` | `replace-string-region` | Replace string in selected region | 選択範囲内の文字列を置換します |
 | `M-x count-words-region` | `count-words-region` | Count words, characters, and lines in region | 選択範囲の単語数、文字数、行数をカウントします |
 | `M-x count-words-buffer` | `count-words-buffer` | Count words, characters, and lines in buffer | バッファ全体の単語数、文字数、行数をカウントします |
+| `M-;` | `comment-dwim` | Comment / uncomment region | 選択範囲のコメント状態を切り替えます |
+| `M-x comment-region` | `comment-region` | Comment lines in region | 選択範囲をコメント化します |
+| `M-x uncomment-region` | `uncomment-region` | Uncomment lines in region | 選択範囲のコメントを解除します |
 
 ## Registers (レジスタ)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
