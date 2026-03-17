@@ -92,6 +92,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x uncomment-region` | `uncomment-region` | Uncomment lines in region | 選択範囲のコメントを解除します |
 | `C-M-\` | `indent-region` | Indent region | 選択範囲をインデントします |
 | `M-x indent-buffer` | `indent-buffer` | Indent entire buffer | バッファ全体をインデントします |
+| `C-x TAB` | `indent-rigidly` | Indent rigidly (interactive) | 選択範囲を左右にスライド（シフト）させます |
 
 ## Registers (レジスタ)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
