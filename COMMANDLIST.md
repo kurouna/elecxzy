@@ -300,6 +300,13 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x set-tab-width` | `set-tab-width` | Set the tab width | タブ幅を設定します |
 | `M-x set-wrap-column` | `set-wrap-column` | Set the wrap column | 折り返し幅を設定します |
 
+## MCP (AI Integration / AI 連携)
+| Command / コマンド | ID | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `M-x mcp-start` | `mcp-start` | Start the internal MCP server | 内蔵 MCP サーバーを起動します |
+| `M-x mcp-stop` | `mcp-stop` | Stop the internal MCP server | 内蔵 MCP サーバーを停止します |
+| `C-c m` / `M-x mcp-toggle` | `mcp-toggle` | Toggle the internal MCP server | 内蔵 MCP サーバーの起動・停止を切り替えます |
+
 ## Advanced (その他)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
