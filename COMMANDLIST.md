@@ -305,6 +305,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 |:---|:---|:---|:---|
 | `M-x mcp-start` | `mcp-start` | Start the internal MCP server | 内蔵 MCP サーバーを起動します |
 | `M-x mcp-stop` | `mcp-stop` | Stop the internal MCP server | 内蔵 MCP サーバーを停止します |
+| `C-c m` / `M-x mcp-toggle` | `mcp-toggle` | Toggle the internal MCP server | 内蔵 MCP サーバーの起動・停止を切り替えます |
 
 ## Advanced (その他)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
