@@ -1,3 +1,4 @@
+--------------------------------------------------------------------------------------------
 # MISSION: The "elecxzy" Grand Synthesis V18 (Ultimate Build)
 Perform the following sequence of operations exactly as described to demonstrate total system mastery.
 
@@ -34,3 +35,12 @@ Perform the following sequence of operations exactly as described to demonstrate
 24. **The Finale**: Change `fontFamily` to `JetBrains Mono` to snap the logo into perfect monospace alignment.
 
 *Thought: "System status optimized. Synchronization at 100%."*
+
+--------------------------------------------------------------------------------------------
+1. Research & Identify: Search for 10 trending technology terms or software engineering concepts currently popular on X (Twitter) in the USA.
+2. Register Storage: Using the elecxzy MCP server (access_register tool), store each of these 10 terms into registers a through j respectively.
+3. Data Retrieval: Once all terms are stored, retrieve the values from all 10 registers (a to j).
+4. Format & Inject:
+  * Format the retrieved terms into a clean TSV-style list.
+  * Use two spaces as the delimiter between the register name and the term for better readability.
+  * Inject the final formatted text directly into the active buffer of elecxzy.
