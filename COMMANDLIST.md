@@ -79,6 +79,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-u C-SPC` | `pop-mark-command` | Pop mark from mark ring | マークリングの履歴を遡ってジャンプします |
 | `C-x C-x` | `exchange-point-and-mark` | Swap cursor and mark positions | カーソルとマークの位置を入れ替えます |
 | `C-x h` | `mark-whole-buffer` | Mark the whole buffer | バッファ全体（全文）を選択します |
+| `C-=` | `expand-region` | Expand region incrementally | 選択範囲を段階的に拡大します |
+| `C-- C-=` | `contract-region` | Contract region to previous state | 選択範囲を段階的に縮小します |
 | `C-g` | `keyboard-quit` | Cancel current command or operation | コマンドや操作を中断します |
 | `M-x delete-trailing-whitespace` | `delete-trailing-whitespace` | Delete trailing whitespace in buffer | バッファ全体の行末の空白を削除します |
 | `M-x delete-trailing-whitespace-region` | `delete-trailing-whitespace-region` | Delete trailing whitespace in region | 選択範囲の行末の空白を削除します |
