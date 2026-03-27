@@ -6,7 +6,7 @@
 [![Zenn](https://img.shields.io/badge/Zenn-kurouna-blue)](https://zenn.dev/kurouna)
 [![X](https://img.shields.io/badge/X-elecxzy-black)](https://x.com/elecxzy)
 
-**A Lisp-free text editor with Emacs keybindings.**
+**A Lisp-free text editor with Emacs keybindings, featuring a built-in MCP server for AI-driven editing.**
 
 <p align="center">
   <img src="./assets/main-screenshot.gif" height="400" alt="elecxzy Screenshot">
@@ -26,7 +26,7 @@
 <a name="english"></a>
 ## English
 
-`elecxzy` is a text editor developed to provide an Emacs-like editing experience within a web technology stack (Electron). It focuses on maintaining core Emacs workflows and keybindings without an embedded Lisp engine. By providing well-considered default settings out of the box, it reduces the need for extensive initial configuration, allowing you to start editing immediately.
+`elecxzy` is a text editor developed to provide an Emacs-like editing experience within a web technology stack (Electron). While it does not include an embedded Lisp engine, it features a built-in MCP (Model Context Protocol) server, enabling AI assistants to directly interact with and control the editor. By providing well-considered default settings out of the box, it reduces the need for extensive initial configuration, allowing you to start editing immediately.
 
 ### Architecture & Design
 
@@ -126,7 +126,8 @@ Binary distributions for Windows are provided via GitHub Releases. The source re
 ## 日本語
 
 `elecxzy` は、Electronを基盤として開発された、Emacsキーバインドをサポートするテキストエディタです。
-Lispなどのスクリプトエンジンを含まず、あらかじめ使いやすい設定をデフォルト値として組み込んでおくことで、初期設定のオーバーヘッドを減らし、インストール直後からすぐに作業を開始できることを目的に設計されています。
+Lispなどのスクリプトエンジンは内蔵していませんが、テキスト編集機能を提供するMCP（Model Context Protocol）サーバー機能を備えており、各種AIアシスタントから直接エディタを操作することが可能です。
+あらかじめ使いやすい設定をデフォルト値として組み込んでおくことで、初期設定のオーバーヘッドを減らし、インストール直後からすぐに作業を開始できることを目的に設計されています。
 
 ### アーキテクチャと設計方針
 
