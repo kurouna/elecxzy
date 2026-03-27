@@ -76,7 +76,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-/` | `undo` | Undo the last action | 直前の操作を取り消します |
 | `M-/` | `dabbrev-expand` | Dynamic word completion | 動的な単語補完 (dabbrev) を実行します |
 | `C-SPC` | `set-mark-command` | Set mark at current position | 現在位置にマークをセットします |
-| `C-u C-SPC` | `pop-mark-command` | Pop mark from mark ring | マークリングの履歴を遡ってジャンプします |
+| `C-u C-SPC` | `set-mark-command` | Pop mark from mark ring (with argument) | マークリングから位置を復元してジャンプします |
 | `C-x C-x` | `exchange-point-and-mark` | Swap cursor and mark positions | カーソルとマークの位置を入れ替えます |
 | `C-x h` | `mark-whole-buffer` | Mark the whole buffer | バッファ全体（全文）を選択します |
 | `C-=` | `expand-region` | Expand region incrementally | 選択範囲を段階的に拡大します |
@@ -95,6 +95,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-M-\` | `indent-region` | Indent region | 選択範囲をインデントします |
 | `M-x indent-buffer` | `indent-buffer` | Indent entire buffer | バッファ全体をインデントします |
 | `C-x TAB` | `indent-rigidly` | Indent rigidly (interactive) | 選択範囲を左右にスライド（シフト）させます |
+| `M-x sort-lines` | `sort-lines` | Sort lines in region alphabetically | 選択範囲内の行をアルファベット順にソートします |
+| `C-u M-x sort-lines` | - | Sort lines in reverse order | 逆順（降順）で行をソートします |
 
 ## Registers (レジスタ)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
@@ -308,6 +310,12 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x mcp-start` | `mcp-start` | Start the internal MCP server | 内蔵 MCP サーバーを起動します |
 | `M-x mcp-stop` | `mcp-stop` | Stop the internal MCP server | 内蔵 MCP サーバーを停止します |
 | `C-c m` / `M-x mcp-toggle` | `mcp-toggle` | Toggle the internal MCP server | 内蔵 MCP サーバーの起動・停止を切り替えます |
+
+## Prefix Arguments (プレフィックス引数)
+| Command / コマンド | ID | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `C-u` | `universal-argument` | Provide a numeric argument for the next command | 次に実行するコマンドに引数（数値）を渡します |
+| `C-u C-u ...` | - | Multiply universal argument (4, 16, 64...) | 引数を累積（4, 16, 64倍...）させます |
 
 ## Advanced (その他)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
