@@ -45,7 +45,10 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M->` | `end-of-buffer` | Move to the end of the buffer | バッファの末尾に移動します |
 | `C-v` | `scroll-up-command` | Scroll down one page | 1ページ分下にスクロールします |
 | `M-v` | `scroll-down-command` | Scroll up one page | 1ページ分上にスクロールします |
-| `C-l` | `recenter` | Recenter the cursor | カーソル位置が中心になるよう画面を再配置します |
+| `C-l` | `recenter` | Recenter the cursor (center of window) | カーソル位置が中心になるよう画面を再配置します |
+| `C-u 0 C-l` | `recenter` | Scroll so cursor is at the top of the window | カーソル行を画面の一番上に配置します |
+| `C-u -1 C-l` | `recenter` | Scroll so cursor is at the bottom of the window | カーソル行を画面の一番下に配置します |
+| `C-u n C-l` | `recenter` | Scroll so cursor is at the n-th line from the top | カーソル行を画面上から n 行目に配置します |
 | `M-g g` / `M-g M-g` | `goto-line` | Jump to a specific line number | 指定した行番号へジャンプします |
 | `M-g c` | `goto-char` | Jump to a character position from the start (newlines count as 1) | バッファ先頭からの文字数（改行は1文字としてカウント）へジャンプします |
 
