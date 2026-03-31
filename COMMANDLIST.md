@@ -49,8 +49,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-u 0 C-l` | `recenter` | Scroll so cursor is at the top of the window | カーソル行を画面の一番上に配置します |
 | `C-u -1 C-l` | `recenter` | Scroll so cursor is at the bottom of the window | カーソル行を画面の一番下に配置します |
 | `C-u n C-l` | `recenter` | Scroll so cursor is at the n-th line from the top | カーソル行を画面上から n 行目に配置します |
-| `M-g g` / `M-g M-g` | `goto-line` | Jump to a specific line number | 指定した行番号へジャンプします |
-| `M-g c` | `goto-char` | Jump to a character position from the start (newlines count as 1) | バッファ先頭からの文字数（改行は1文字としてカウント）へジャンプします |
+| `M-g` | `goto-line` | Jump to a specific line number | 指定した行番号へジャンプします |
+| `M-x goto-char` | `goto-char` | Jump to a character position from the start (newlines count as 1) | バッファ先頭からの文字数（改行は1文字としてカウント）へジャンプします |
 
 ## Editing (編集)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
