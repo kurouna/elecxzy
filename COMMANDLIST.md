@@ -51,6 +51,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-u n C-l` | `recenter` | Scroll so cursor is at the n-th line from the top | カーソル行を画面上から n 行目に配置します |
 | `M-g` | `goto-line` | Jump to a specific line number | 指定した行番号へジャンプします |
 | `M-x goto-char` | `goto-char` | Jump to a character position from the start (newlines count as 1) | バッファ先頭からの文字数（改行は1文字としてカウント）へジャンプします |
+| `C-'` | `avy-goto-char-timer` | Jump to visible text using character labels | 画面上の文字（単語境界）へラベルを入力して高速にジャンプします |
 
 ## Editing (編集)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
@@ -289,6 +290,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x get-line-number-mode` | `get-line-number-mode` | Get line number display status | 行番号表示の状態を表示します |
 | `M-x get-line-terminator` | `get-line-terminator` | Get line terminator | 改行コードを表示します |
 | `M-x get-max-undo-limit` | `get-max-undo-limit` | Get current maximum number of undo operations | 最大Undo回数を表示します |
+| `M-x get-show-ime-indicator` | `get-show-ime-indicator` | Get current IME indicator visibility setting | IMEインジケータの表示状態（自動判定を含む）を表示します |
 | `M-x get-tab-width` | `get-tab-width` | Get current tab width | タブ幅を表示します |
 | `M-x get-wrap-column` | `get-wrap-column` | Get current wrap column | 現在の折り返し幅を表示します |
 | `M-x set-auto-fill-mode` | `set-auto-fill-mode` | Toggle auto-fill mode (on/off) | 自動改行モードを有効/無効にします |
@@ -304,6 +306,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x set-line-number-mode` | `set-line-number-mode` | Toggle line number display (on/off) | 行番号の表示状態を設定します |
 | `M-x set-line-terminator` | `set-line-terminator` | Set line terminator (CRLF/LF/CR) | 改行コードを設定します |
 | `M-x set-max-undo-limit` | `set-max-undo-limit` | Set the maximum number of undo operations | 最大Undo回数を設定します |
+| `M-x set-show-ime-indicator` | `set-show-ime-indicator` | Set IME indicator visibility (on/off/auto) | IMEインジケータの表示状態（ON/OFF/自動）を設定します |
 | `M-x set-tab-width` | `set-tab-width` | Set the tab width | タブ幅を設定します |
 | `M-x set-wrap-column` | `set-wrap-column` | Set the wrap column | 折り返し幅を設定します |
 
