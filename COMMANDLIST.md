@@ -51,6 +51,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-u n C-l` | `recenter` | Scroll so cursor is at the n-th line from the top | カーソル行を画面上から n 行目に配置します |
 | `M-g` | `goto-line` | Jump to a specific line number | 指定した行番号へジャンプします |
 | `M-x goto-char` | `goto-char` | Jump to a character position from the start (newlines count as 1) | バッファ先頭からの文字数（改行は1文字としてカウント）へジャンプします |
+| `M-x move-to-column` | `move-to-column` | Move to a specific column on the current line | 現在の行の指定したカラムに移動します |
 | `C-'` | `avy-goto-char-timer` | Jump to visible text using character labels | 画面上の文字（単語境界）へラベルを入力して高速にジャンプします |
 
 ## Editing (編集)
