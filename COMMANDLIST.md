@@ -310,7 +310,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x set-line-terminator` | `set-line-terminator` | Set line terminator (CRLF/LF/CR) | 改行コードを設定します |
 | `M-x set-max-undo-limit` | `set-max-undo-limit` | Set the maximum number of undo operations | 最大Undo回数を設定します |
 | `M-x set-show-ime-indicator` | `set-show-ime-indicator` | Set IME indicator visibility (on/off/auto) | IMEインジケータの表示状態（ON/OFF/自動）を設定します |
-| `M-x set-cursor-vfx` | `set-cursor-vfx` | Set cursor particle VFX (on/off) | カーソルの粒子エフェクト（VFX）の有効・無効を設定します |
+| `M-x set-cursor-vfx` | `set-cursor-vfx` | Select cursor VFX style (off/Light Particle/Cyber Trace) | カーソルVFXの種類（OFF/Light Particle/Cyber Trace）を選択します |
 | `M-x set-smooth-cursor` | `set-smooth-cursor` | Set smooth cursor animation (on/off) | ヒュンヒュンカーソル（滑らかな移動）の有効・無効を設定します |
 | `M-x set-tab-width` | `set-tab-width` | Set the tab width | タブ幅を設定します |
 | `M-x set-wrap-column` | `set-wrap-column` | Set the wrap column | 折り返し幅を設定します |
