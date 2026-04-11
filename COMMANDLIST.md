@@ -103,6 +103,13 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x sort-lines` | `sort-lines` | Sort lines in region alphabetically | 選択範囲内の行をアルファベット順にソートします |
 | `C-u M-x sort-lines` | - | Sort lines in reverse order | 逆順（降順）で行をソートします |
 
+## Lightweight Cursor-based Macros (簡易的なカーソルベースマクロ)
+| Command / コマンド | ID | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `C-x (` | `start-kbd-macro` | Start defining a lightweight cursor-based macro | 簡易的なカーソルベースマクロの記録を開始します |
+| `C-x )` | `end-kbd-macro` | Stop defining a lightweight cursor-based macro | 簡易的なカーソルベースマクロの記録を終了します |
+| `C-x e` | `call-last-kbd-macro` | Execute the last defined lightweight cursor-based macro (Supports `C-u n` for repeat) | 最後に記録した簡易的なカーソルベースマクロを実行します（`C-u n` で回数指定が可能） |
+
 ## Registers (レジスタ)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
