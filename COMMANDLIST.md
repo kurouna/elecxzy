@@ -300,6 +300,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x get-max-undo-limit` | `get-max-undo-limit` | Get current maximum number of undo operations | 最大Undo回数を表示します |
 | `M-x get-show-ime-indicator` | `get-show-ime-indicator` | Get current IME indicator visibility setting | IMEインジケータの表示状態（自動判定を含む）を表示します |
 | `M-x get-cursor-vfx` | `get-cursor-vfx` | Get current cursor particle VFX setting | カーソルの粒子エフェクト（VFX）の現在の設定を表示します |
+| `M-x get-macro-vfx` | `get-macro-vfx` | Get current macro execution visual effects setting | マクロ実行時の視覚効果（VFX）の現在の設定を表示します |
 | `M-x get-smooth-cursor` | `get-smooth-cursor` | Get current smooth cursor animation setting | ヒュンヒュンカーソル（滑らかな移動）の現在の設定を表示します |
 | `M-x get-tab-width` | `get-tab-width` | Get current tab width | タブ幅を表示します |
 | `M-x get-wrap-column` | `get-wrap-column` | Get current wrap column | 現在の折り返し幅を表示します |
@@ -325,6 +326,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-c 4` | `set-cursor-vfx-arcane-sigil` | Set cursor VFX to Arcane Sigil | カーソルVFXを Arcane Sigil に設定します |
 | `C-c 5` | `set-cursor-vfx-inferno-flame` | Set cursor VFX to Inferno Flame | カーソルVFXを Inferno Flame に設定します |
 | `C-c 6` | `set-cursor-vfx-phantom-merge` | Set cursor VFX to Phantom Merge | カーソルVFXを Phantom Merge に設定します |
+| `M-x set-macro-vfx` | `set-macro-vfx` | Set macro execution visual effects (on/off) | マクロ実行時の視覚効果（VFX）の有効・無効を設定します |
 | `M-x set-smooth-cursor` | `set-smooth-cursor` | Set smooth cursor animation (on/off) | ヒュンヒュンカーソル（滑らかな移動）の有効・無効を設定します |
 | `M-x set-tab-width` | `set-tab-width` | Set the tab width | タブ幅を設定します |
 | `M-x set-wrap-column` | `set-wrap-column` | Set the wrap column | 折り返し幅を設定します |
