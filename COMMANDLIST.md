@@ -103,6 +103,13 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x sort-lines` | `sort-lines` | Sort lines in region alphabetically | 選択範囲内の行をアルファベット順にソートします |
 | `C-u M-x sort-lines` | - | Sort lines in reverse order | 逆順（降順）で行をソートします |
 
+## Lightweight Cursor-based Macros (簡易的なカーソルベースマクロ)
+| Command / コマンド | ID | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `C-x (` | `start-kbd-macro` | Start defining a lightweight cursor-based macro | 簡易的なカーソルベースマクロの記録を開始します |
+| `C-x )` | `end-kbd-macro` | Stop defining a lightweight cursor-based macro | 簡易的なカーソルベースマクロの記録を終了します |
+| `C-x e` | `call-last-kbd-macro` | Execute the last defined lightweight cursor-based macro (Supports `C-u n` for repeat) | 最後に記録した簡易的なカーソルベースマクロを実行します（`C-u n` で回数指定が可能） |
+
 ## Registers (レジスタ)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
@@ -310,7 +317,14 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x set-line-terminator` | `set-line-terminator` | Set line terminator (CRLF/LF/CR) | 改行コードを設定します |
 | `M-x set-max-undo-limit` | `set-max-undo-limit` | Set the maximum number of undo operations | 最大Undo回数を設定します |
 | `M-x set-show-ime-indicator` | `set-show-ime-indicator` | Set IME indicator visibility (on/off/auto) | IMEインジケータの表示状態（ON/OFF/自動）を設定します |
-| `M-x set-cursor-vfx` | `set-cursor-vfx` | Select cursor VFX style (off/Light Particle/Cyber Trace) | カーソルVFXの種類（OFF/Light Particle/Cyber Trace）を選択します |
+| `M-x set-cursor-vfx` | `set-cursor-vfx` | Select cursor VFX style (off/Light Particle/Cyber Trace/Prismatic Nova/Arcane Sigil/Inferno Flame/Phantom Merge) | カーソルVFXの種類（OFF/Light Particle/Cyber Trace/Prismatic Nova/Arcane Sigil/Inferno Flame/Phantom Merge）を選択します |
+| `C-c 0` | `set-cursor-vfx-off` | Set cursor VFX to Off | カーソルVFXをオフにします |
+| `C-c 1` | `set-cursor-vfx-light-particle` | Set cursor VFX to Light Particle | カーソルVFXを Light Particle に設定します |
+| `C-c 2` | `set-cursor-vfx-cyber-trace` | Set cursor VFX to Cyber Trace | カーソルVFXを Cyber Trace に設定します |
+| `C-c 3` | `set-cursor-vfx-prismatic-nova` | Set cursor VFX to Prismatic Nova | カーソルVFXを Prismatic Nova に設定します |
+| `C-c 4` | `set-cursor-vfx-arcane-sigil` | Set cursor VFX to Arcane Sigil | カーソルVFXを Arcane Sigil に設定します |
+| `C-c 5` | `set-cursor-vfx-inferno-flame` | Set cursor VFX to Inferno Flame | カーソルVFXを Inferno Flame に設定します |
+| `C-c 6` | `set-cursor-vfx-phantom-merge` | Set cursor VFX to Phantom Merge | カーソルVFXを Phantom Merge に設定します |
 | `M-x set-smooth-cursor` | `set-smooth-cursor` | Set smooth cursor animation (on/off) | ヒュンヒュンカーソル（滑らかな移動）の有効・無効を設定します |
 | `M-x set-tab-width` | `set-tab-width` | Set the tab width | タブ幅を設定します |
 | `M-x set-wrap-column` | `set-wrap-column` | Set the wrap column | 折り返し幅を設定します |
