@@ -52,17 +52,17 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-g` | `goto-line` | Jump to a specific line number | 指定した行番号へジャンプします |
 | `M-x goto-char` | `goto-char` | Jump to a character position from the start (newlines count as 1) | バッファ先頭からの文字数（改行は1文字としてカウント）へジャンプします |
 | `M-x move-to-column` | `move-to-column` | Move to a specific column on the current line | 現在の行の指定したカラムに移動します |
-| `C-'` | `avy-goto-char-timer` | Jump to visible text using character labels | 画面上の文字（単語境界）へラベルを入力して高速にジャンプします |
+| `C-'` | `avy-goto-char-timer` | Jump to visible text using character labels (Can be used during isearch to jump with current query) | 画面上の文字（単語境界）へラベルを入力して高速にジャンプします (C-s/C-r の最中に実行すると現在の検索クエリを引き継いでジャンプします) |
 
 ## Editing (編集)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `C-d` | `delete-char` | Delete character at cursor | カーソル位置の文字を削除します |
 | `C-h` / `backspace` | `backward-delete-char` | Delete character before cursor | カーソルの前の文字を削除します |
-| `C-k` | `kill-line` | Kill from cursor to end of line | 行末まで削除（キル）します |
+| `C-k` | `kill-line` | Kill from cursor to end of line (Supports `C-u n`) | 行末まで削除（キル）します（`C-u n` で回数指定が可能） |
 | `C-w` | `kill-region` | Kill the selected region | 選択範囲を削除（キル）します |
 | `M-w` | `kill-ring-save` | Copy the selected region (or current line) to kill ring | 選択範囲（または現在行）をコピーします |
-| `C-y` | `yank` | Paste from the kill ring | キルリングから貼り付け（ヤンク）します |
+| `C-y` | `yank` | Paste from the kill ring (Supports `C-u n` for repeat) | キルリングから貼り付け（ヤンク）します（`C-u n` で回数指定が可能） |
 | `M-y` | `yank-pop` | Cycle through previous kills | キルリングを遡って貼り付けます |
 | `M-x kill-whole-line` | `kill-whole-line` | Kill the whole line (including newline) | 行全体（改行を含む）を削除（キル）します |
 | `M-d` | `kill-word` | Kill word forward | 次の単語を削除（キル）します |
@@ -129,8 +129,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 ## Search (検索)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `C-s` | `isearch-forward` | Incremental search forward | 前方インクリメンタル検索を開始します |
-| `C-r` | `isearch-backward` | Incremental search backward | 後方インクリメンタル検索を開始します |
+| `C-s` | `isearch-forward` | Incremental search forward (Supports `C-'` to trigger Avy jump) | 前方インクリメンタル検索を開始します (`C-'` で Avy ジャンプへ移行可能) |
+| `C-r` | `isearch-backward` | Incremental search backward (Supports `C-'` to trigger Avy jump) | 後方インクリメンタル検索を開始します (`C-'` で Avy ジャンプへ移行可能) |
 | `M-%` | `query-replace` | Interactive search and replace | 対話的な文字列置換（y/n/!/q）を実行します |
 | `M-x grep` | `grep` | Run grep to search files in directory | ディレクトリ内の複数ファイルをまたいで文字列検索（Grep）を行います |
 
@@ -289,6 +289,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x get-auto-save` | `get-auto-save` | Show auto-save status | オートセーブの状態を表示します |
 | `M-x get-auto-save-interval` | `get-auto-save-interval` | Show auto-save interval | オートセーブの間隔を表示します |
 | `M-x get-case-sensitive-search` | `get-case-sensitive-search` | Get case sensitive search status | 検索の大文字小文字区別の状態を表示します |
+| `M-x get-clipboard-integration` | `get-clipboard-integration` | Get current OS clipboard integration setting | OSクリップボード連携の現在の設定を表示します |
 | `M-x get-current-directory` | `get-current-directory` | Show current working directory | カレントディレクトリを表示します |
 | `M-x get-kill-ring-max` | `get-kill-ring-max` | Get current maximum number of items in the kill ring | キルリングの最大保持件数を表示します |
 | `M-x get-default-font` | `get-default-font` | Get default font | デフォルトフォントを表示します |
@@ -300,6 +301,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x get-max-undo-limit` | `get-max-undo-limit` | Get current maximum number of undo operations | 最大Undo回数を表示します |
 | `M-x get-show-ime-indicator` | `get-show-ime-indicator` | Get current IME indicator visibility setting | IMEインジケータの表示状態（自動判定を含む）を表示します |
 | `M-x get-cursor-vfx` | `get-cursor-vfx` | Get current cursor particle VFX setting | カーソルの粒子エフェクト（VFX）の現在の設定を表示します |
+| `M-x get-macro-vfx` | `get-macro-vfx` | Get current macro execution visual effects setting | マクロ実行時の視覚効果（VFX）の現在の設定を表示します |
 | `M-x get-smooth-cursor` | `get-smooth-cursor` | Get current smooth cursor animation setting | ヒュンヒュンカーソル（滑らかな移動）の現在の設定を表示します |
 | `M-x get-tab-width` | `get-tab-width` | Get current tab width | タブ幅を表示します |
 | `M-x get-wrap-column` | `get-wrap-column` | Get current wrap column | 現在の折り返し幅を表示します |
@@ -307,6 +309,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x set-auto-save` | `set-auto-save` | Toggle auto-save (yes/no) | オートセーブを有効/無効にします |
 | `M-x set-auto-save-interval` | `set-auto-save-interval` | Set auto-save interval (min) | オートセーブの間隔(分)を設定します |
 | `M-x set-case-sensitive-search` | `set-case-sensitive-search` | Set case sensitive search (on/off) | 検索の大文字小文字区別を設定します |
+| `M-x set-clipboard-integration` | `set-clipboard-integration` | Set OS clipboard integration (on/off) | OSクリップボード連携の有効・無効を設定します |
 | `M-x set-current-directory` | `set-current-directory` | Change current working directory | カレントディレクトリを変更します |
 | `M-x set-kill-ring-max` | `set-kill-ring-max` | Set the maximum number of items in the kill ring | キルリングの最大保持件数を設定します |
 | `M-x set-default-font` | `set-default-font` | Set the default display font | デフォルトのフォントを設定します |
@@ -325,6 +328,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-c 4` | `set-cursor-vfx-arcane-sigil` | Set cursor VFX to Arcane Sigil | カーソルVFXを Arcane Sigil に設定します |
 | `C-c 5` | `set-cursor-vfx-inferno-flame` | Set cursor VFX to Inferno Flame | カーソルVFXを Inferno Flame に設定します |
 | `C-c 6` | `set-cursor-vfx-phantom-merge` | Set cursor VFX to Phantom Merge | カーソルVFXを Phantom Merge に設定します |
+| `M-x set-macro-vfx` | `set-macro-vfx` | Set macro execution visual effects (on/off) | マクロ実行時の視覚効果（VFX）の有効・無効を設定します |
 | `M-x set-smooth-cursor` | `set-smooth-cursor` | Set smooth cursor animation (on/off) | ヒュンヒュンカーソル（滑らかな移動）の有効・無効を設定します |
 | `M-x set-tab-width` | `set-tab-width` | Set the tab width | タブ幅を設定します |
 | `M-x set-wrap-column` | `set-wrap-column` | Set the wrap column | 折り返し幅を設定します |
