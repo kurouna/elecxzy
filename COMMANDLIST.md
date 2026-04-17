@@ -69,6 +69,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x kill-whole-line` | `kill-whole-line` | Kill the whole line (including newline) | 行全体（改行を含む）を削除（キル）します |
 | `M-d` | `kill-word` | Kill word forward | 次の単語を削除（キル）します |
 | `M-k` | `kill-sentence` | Kill from cursor to end of sentence | 文末（句読点や行末）まで削除（キル）します |
+| `C-c C-k` | `kill-line-save` | Save from point to end of line (elecxzy original) | 行末（または改行）までを消さずに保存します（オリジナル） |
 | `M-u` | `upcase-word` | Uppercase from cursor to end of word | 単語を大文字にします |
 | `M-l` | `downcase-word` | Lowercase from cursor to end of word | 単語を小文字にします |
 | `M-c` | `capitalize-word` | Capitalize first letter of word | 単語の先頭を大文字にします |
