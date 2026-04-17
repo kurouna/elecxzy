@@ -41,6 +41,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-e` / `end` | `end-of-line` | Move to the end of the line | 行末に移動します |
 | `M-f` | `word-forward` | Move forward one word | 1単語分右に移動します |
 | `M-b` | `word-backward` | Move backward one word | 1単語分左に移動します |
+| `M-a` | `backward-sentence` | Move backward to start of sentence | 文の先頭（または前の文）に移動します |
+| `M-e` | `forward-sentence` | Move forward to end of sentence | 文の末尾（句読点や行末）に移動します |
 | `M-<` | `beginning-of-buffer` | Move to the beginning of the buffer | バッファの先頭に移動します |
 | `M->` | `end-of-buffer` | Move to the end of the buffer | バッファの末尾に移動します |
 | `C-v` | `scroll-up-command` | Scroll down one page | 1ページ分下にスクロールします |
@@ -66,6 +68,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-y` | `yank-pop` | Cycle through previous kills | キルリングを遡って貼り付けます |
 | `M-x kill-whole-line` | `kill-whole-line` | Kill the whole line (including newline) | 行全体（改行を含む）を削除（キル）します |
 | `M-d` | `kill-word` | Kill word forward | 次の単語を削除（キル）します |
+| `M-k` | `kill-sentence` | Kill from cursor to end of sentence | 文末（句読点や行末）まで削除（キル）します |
 | `M-u` | `upcase-word` | Uppercase from cursor to end of word | 単語を大文字にします |
 | `M-l` | `downcase-word` | Lowercase from cursor to end of word | 単語を小文字にします |
 | `M-c` | `capitalize-word` | Capitalize first letter of word | 単語の先頭を大文字にします |
