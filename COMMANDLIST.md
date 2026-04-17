@@ -41,6 +41,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-e` / `end` | `end-of-line` | Move to the end of the line | 行末に移動します |
 | `M-f` | `word-forward` | Move forward one word | 1単語分右に移動します |
 | `M-b` | `word-backward` | Move backward one word | 1単語分左に移動します |
+| `M-a` | `backward-sentence` | Move backward to start of sentence | 文の先頭（または前の文）に移動します |
+| `M-e` | `forward-sentence` | Move forward to end of sentence | 文の末尾（句読点や行末）に移動します |
 | `M-<` | `beginning-of-buffer` | Move to the beginning of the buffer | バッファの先頭に移動します |
 | `M->` | `end-of-buffer` | Move to the end of the buffer | バッファの末尾に移動します |
 | `C-v` | `scroll-up-command` | Scroll down one page | 1ページ分下にスクロールします |
@@ -52,20 +54,22 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-g` | `goto-line` | Jump to a specific line number | 指定した行番号へジャンプします |
 | `M-x goto-char` | `goto-char` | Jump to a character position from the start (newlines count as 1) | バッファ先頭からの文字数（改行は1文字としてカウント）へジャンプします |
 | `M-x move-to-column` | `move-to-column` | Move to a specific column on the current line | 現在の行の指定したカラムに移動します |
-| `C-'` | `avy-goto-char-timer` | Jump to visible text using character labels | 画面上の文字（単語境界）へラベルを入力して高速にジャンプします |
+| `C-'` | `avy-goto-char-timer` | Jump to visible text using character labels (Can be used during isearch to jump with current query) | 画面上の文字（単語境界）へラベルを入力して高速にジャンプします (C-s/C-r の最中に実行すると現在の検索クエリを引き継いでジャンプします) |
 
 ## Editing (編集)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `C-d` | `delete-char` | Delete character at cursor | カーソル位置の文字を削除します |
 | `C-h` / `backspace` | `backward-delete-char` | Delete character before cursor | カーソルの前の文字を削除します |
-| `C-k` | `kill-line` | Kill from cursor to end of line | 行末まで削除（キル）します |
+| `C-k` | `kill-line` | Kill from cursor to end of line (Supports `C-u n`) | 行末まで削除（キル）します（`C-u n` で回数指定が可能） |
 | `C-w` | `kill-region` | Kill the selected region | 選択範囲を削除（キル）します |
 | `M-w` | `kill-ring-save` | Copy the selected region (or current line) to kill ring | 選択範囲（または現在行）をコピーします |
-| `C-y` | `yank` | Paste from the kill ring | キルリングから貼り付け（ヤンク）します |
+| `C-y` | `yank` | Paste from the kill ring (Supports `C-u n` for repeat) | キルリングから貼り付け（ヤンク）します（`C-u n` で回数指定が可能） |
 | `M-y` | `yank-pop` | Cycle through previous kills | キルリングを遡って貼り付けます |
 | `M-x kill-whole-line` | `kill-whole-line` | Kill the whole line (including newline) | 行全体（改行を含む）を削除（キル）します |
 | `M-d` | `kill-word` | Kill word forward | 次の単語を削除（キル）します |
+| `M-k` | `kill-sentence` | Kill from cursor to end of sentence | 文末（句読点や行末）まで削除（キル）します |
+| `C-c C-k` | `kill-line-save` | Save from point to end of line (elecxzy original) | 行末（または改行）までを消さずに保存します（オリジナル） |
 | `M-u` | `upcase-word` | Uppercase from cursor to end of word | 単語を大文字にします |
 | `M-l` | `downcase-word` | Lowercase from cursor to end of word | 単語を小文字にします |
 | `M-c` | `capitalize-word` | Capitalize first letter of word | 単語の先頭を大文字にします |
@@ -129,8 +133,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 ## Search (検索)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `C-s` | `isearch-forward` | Incremental search forward | 前方インクリメンタル検索を開始します |
-| `C-r` | `isearch-backward` | Incremental search backward | 後方インクリメンタル検索を開始します |
+| `C-s` | `isearch-forward` | Incremental search forward (Supports `C-'` to trigger Avy jump) | 前方インクリメンタル検索を開始します (`C-'` で Avy ジャンプへ移行可能) |
+| `C-r` | `isearch-backward` | Incremental search backward (Supports `C-'` to trigger Avy jump) | 後方インクリメンタル検索を開始します (`C-'` で Avy ジャンプへ移行可能) |
 | `M-%` | `query-replace` | Interactive search and replace | 対話的な文字列置換（y/n/!/q）を実行します |
 | `M-x grep` | `grep` | Run grep to search files in directory | ディレクトリ内の複数ファイルをまたいで文字列検索（Grep）を行います |
 
@@ -289,6 +293,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x get-auto-save` | `get-auto-save` | Show auto-save status | オートセーブの状態を表示します |
 | `M-x get-auto-save-interval` | `get-auto-save-interval` | Show auto-save interval | オートセーブの間隔を表示します |
 | `M-x get-case-sensitive-search` | `get-case-sensitive-search` | Get case sensitive search status | 検索の大文字小文字区別の状態を表示します |
+| `M-x get-clipboard-integration` | `get-clipboard-integration` | Get current OS clipboard integration setting | OSクリップボード連携の現在の設定を表示します |
 | `M-x get-current-directory` | `get-current-directory` | Show current working directory | カレントディレクトリを表示します |
 | `M-x get-kill-ring-max` | `get-kill-ring-max` | Get current maximum number of items in the kill ring | キルリングの最大保持件数を表示します |
 | `M-x get-default-font` | `get-default-font` | Get default font | デフォルトフォントを表示します |
@@ -308,6 +313,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x set-auto-save` | `set-auto-save` | Toggle auto-save (yes/no) | オートセーブを有効/無効にします |
 | `M-x set-auto-save-interval` | `set-auto-save-interval` | Set auto-save interval (min) | オートセーブの間隔(分)を設定します |
 | `M-x set-case-sensitive-search` | `set-case-sensitive-search` | Set case sensitive search (on/off) | 検索の大文字小文字区別を設定します |
+| `M-x set-clipboard-integration` | `set-clipboard-integration` | Set OS clipboard integration (on/off) | OSクリップボード連携の有効・無効を設定します |
 | `M-x set-current-directory` | `set-current-directory` | Change current working directory | カレントディレクトリを変更します |
 | `M-x set-kill-ring-max` | `set-kill-ring-max` | Set the maximum number of items in the kill ring | キルリングの最大保持件数を設定します |
 | `M-x set-default-font` | `set-default-font` | Set the default display font | デフォルトのフォントを設定します |
