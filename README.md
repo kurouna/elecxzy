@@ -26,7 +26,6 @@
 **Windows only**
 
 [![Microsoft Store](https://img.shields.io/badge/Download-Microsoft_Store-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)](https://apps.microsoft.com/detail/9P32F2WFL69M)
-([ms-windows-store://pdp/?productid=9P32F2WFL69M](ms-windows-store://pdp/?productid=9P32F2WFL69M))
 
 Automatic updates are provided via the Microsoft Store. For the latest development builds, you can also download binaries from:
 👉 **[GitHub Releases](https://github.com/kurouna/elecxzy/releases)**
@@ -141,7 +140,6 @@ Lispなどのスクリプトエンジンは内蔵していませんが、テキ�
 **Windows専用**
 
 [![Microsoft Storeからダウンロード](https://img.shields.io/badge/Download-Microsoft_Store-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)](https://apps.microsoft.com/detail/9P32F2WFL69M)
-([ms-windows-store://pdp/?productid=9P32F2WFL69M](ms-windows-store://pdp/?productid=9P32F2WFL69M))
 
 Microsoft Store版は、自動更新が提供されます。最新の開発版（GitHub経由）は以下から入手可能です：
 👉 **[GitHub Releases](https://github.com/kurouna/elecxzy/releases)**
