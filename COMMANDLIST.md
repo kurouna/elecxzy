@@ -285,6 +285,11 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 ## Settings (設定)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
+| `M-x dark-theme` | `dark-theme` | Set color theme to Dark Mode (Requires restart) | カラーテーマをダークモードに設定します（要再起動） |
+| `M-x light-theme` | `light-theme` | Set color theme to Light Mode (Requires restart) | カラーテーマをライトモードに設定します（要再起動） |
+| `M-x cyber-theme` | `cyber-theme` | Set color theme to Cyber Mode (Requires restart) | カラーテーマをサイバーモードに設定します（要再起動） |
+| `M-x cute-theme` | `cute-theme` | Set color theme to Cute Mode (Requires restart) | カラーテーマをキュートモードに設定します（要再起動） |
+| `M-x default-theme` | `default-theme` | Set color theme to default (Requires restart) | カラーテーマをデフォルトに戻します（要再起動） |
 | `M-x open-config` | `open-config` | Open the Settings Sidebar | 設定サイドバーを開きます |
 | `C-g` / `C-q` / `Esc` | (Settings Open) | Save & Close sidebar | 設定を保存して閉じます |
 | `Right Click` (Backdrop) | (Settings Open) | Save & Close sidebar | 背景の右クリックで閉じます |
@@ -324,7 +329,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x set-line-terminator` | `set-line-terminator` | Set line terminator (CRLF/LF/CR) | 改行コードを設定します |
 | `M-x set-max-undo-limit` | `set-max-undo-limit` | Set the maximum number of undo operations | 最大Undo回数を設定します |
 | `M-x set-show-ime-indicator` | `set-show-ime-indicator` | Set IME indicator visibility (on/off/auto) | IMEインジケータの表示状態（ON/OFF/自動）を設定します |
-| `M-x set-cursor-vfx` | `set-cursor-vfx` | Select cursor VFX style (off/Light Particle/Cyber Trace/Prismatic Nova/Arcane Sigil/Inferno Flame/Phantom Merge) | カーソルVFXの種類（OFF/Light Particle/Cyber Trace/Prismatic Nova/Arcane Sigil/Inferno Flame/Phantom Merge）を選択します |
+| `M-x set-cursor-vfx` | `set-cursor-vfx` | Select cursor VFX style (off/Light Particle/Cyber Trace/Prismatic Nova/Arcane Sigil/Inferno Flame/Phantom Merge/Rubber Slime/Quantum Tunnel/Kawaii Shower) | カーソルVFXの種類（OFF/Light Particle/Cyber Trace/Prismatic Nova/Arcane Sigil/Inferno Flame/Phantom Merge/Rubber Slime/Quantum Tunnel/Kawaii Shower）を選択します |
 | `C-c 0` | `set-cursor-vfx-off` | Set cursor VFX to Off | カーソルVFXをオフにします |
 | `C-c 1` | `set-cursor-vfx-light-particle` | Set cursor VFX to Light Particle | カーソルVFXを Light Particle に設定します |
 | `C-c 2` | `set-cursor-vfx-cyber-trace` | Set cursor VFX to Cyber Trace | カーソルVFXを Cyber Trace に設定します |
@@ -332,6 +337,9 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-c 4` | `set-cursor-vfx-arcane-sigil` | Set cursor VFX to Arcane Sigil | カーソルVFXを Arcane Sigil に設定します |
 | `C-c 5` | `set-cursor-vfx-inferno-flame` | Set cursor VFX to Inferno Flame | カーソルVFXを Inferno Flame に設定します |
 | `C-c 6` | `set-cursor-vfx-phantom-merge` | Set cursor VFX to Phantom Merge | カーソルVFXを Phantom Merge に設定します |
+| `C-c 7` | `set-cursor-vfx-rubber-slime` | Set cursor VFX to Rubber Slime | カーソルVFXを Rubber Slime に設定します |
+| `C-c 8` | `set-cursor-vfx-quantum-tunnel` | Set cursor VFX to Quantum Tunnel | カーソルVFXを Quantum Tunnel に設定します |
+| `C-c 9` | `set-cursor-vfx-kawaii-shower` | Set cursor VFX to Kawaii Shower | カーソルVFXを Kawaii Shower に設定します |
 | `M-x set-macro-vfx` | `set-macro-vfx` | Set macro execution visual effects (on/off) | マクロ実行時の視覚効果（VFX）の有効・無効を設定します |
 | `M-x set-smooth-cursor` | `set-smooth-cursor` | Set smooth cursor animation (on/off) | ヒュンヒュンカーソル（滑らかな移動）の有効・無効を設定します |
 | `M-x set-tab-width` | `set-tab-width` | Set the tab width | タブ幅を設定します |
