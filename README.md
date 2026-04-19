@@ -8,7 +8,7 @@
 
 **A Lisp-free text editor with Emacs keybindings, featuring a built-in MCP server for AI-driven editing.**
 
-[!['elecxzy demo movie']('')]('https://youtu.be/6-0oezXp_do')
+https://github.com/user-attachments/assets/ea817cb4-85c9-4225-9425-5c61915823ab
 
 [English](#english) | [日本語](#japanese)
 
