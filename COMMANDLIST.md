@@ -76,13 +76,15 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-backspace` | `backward-kill-word` | Kill word backward | 前の単語を削除（キル）します |
 | `M-q` | `fill-paragraph` | Fill paragraph matching wrap column | 段落を折り返し幅に合わせて整形(ハードラップ)します |
 | `M-x auto-fill-mode` | `auto-fill-mode` | Toggle auto-fill-mode | 自動改行モード (Auto Fill Mode) を切り替えます |
+| `Insert` / `M-x toggle-overwrite-mode` | `toggle-overwrite-mode` | Toggle overwrite-mode | 上書きモード (Overwrite Mode) を切り替えます |
 | `C-o` | `open-line` | Insert a newline after cursor | カーソル位置に改行を挿入します |
 | `C-j` | `newline-and-indent` | Newline and indent | 改行してインデントを維持します |
 | `C-t` | `transpose-chars` | Swap characters around cursor | 文字を入れ替えます |
 | `M-t` | `transpose-words` | Swap words around cursor | 単語を入れ替えます |
 | `M-^` | `join-line` | Join current line with the next one | 現在の行を次の行と結合します（CJK文字間以外はスペースを挿入） |
 | `C-c d` | `duplicate-line` | Duplicate current line below (does not affect kill ring) | 現在の行を次の行に複製します（キルリングは変更しません） |
-| `C-/` | `undo` | Undo the last action | 直前の操作を取り消します |
+| `C-/` / `C-_` | `undo` | Undo the last action | 直前の操作を取り消します |
+| `M-_` | `redo` | Redo the last undone action | 取り消した操作をやり直します |
 | `M-/` | `dabbrev-expand` | Dynamic word completion | 動的な単語補完 (dabbrev) を実行します |
 | `C-SPC` | `set-mark-command` | Set mark at current position | 現在位置にマークをセットします |
 | `C-u C-SPC` | `set-mark-command` | Pop mark from mark ring (with argument) | マークリングから位置を復元してジャンプします |
