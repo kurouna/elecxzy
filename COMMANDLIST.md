@@ -301,6 +301,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x get-auto-save-interval` | `get-auto-save-interval` | Show auto-save interval | オートセーブの間隔を表示します |
 | `M-x get-case-sensitive-search` | `get-case-sensitive-search` | Get case sensitive search status | 検索の大文字小文字区別の状態を表示します |
 | `M-x get-clipboard-integration` | `get-clipboard-integration` | Get current OS clipboard integration setting | OSクリップボード連携の現在の設定を表示します |
+| `M-x get-display-datetime-format` | `get-display-datetime-format` | Get current date and time display format | 現在の日時表示フォーマットを表示します |
 | `M-x get-current-directory` | `get-current-directory` | Show current working directory | カレントディレクトリを表示します |
 | `M-x get-kill-ring-max` | `get-kill-ring-max` | Get current maximum number of items in the kill ring | キルリングの最大保持件数を表示します |
 | `M-x get-default-font` | `get-default-font` | Get default font | デフォルトフォントを表示します |
@@ -320,6 +321,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x set-auto-save` | `set-auto-save` | Toggle auto-save (yes/no) | オートセーブを有効/無効にします |
 | `M-x set-auto-save-interval` | `set-auto-save-interval` | Set auto-save interval (min) | オートセーブの間隔(分)を設定します |
 | `M-x set-case-sensitive-search` | `set-case-sensitive-search` | Set case sensitive search (on/off) | 検索の大文字小文字区別を設定します |
+| `M-x display-datetime-mode` | `display-datetime-mode` | Toggle display of date and time in the modeline | 日時表示のON/OFFを切り替えます |
+| `M-x set-display-datetime-format` | `set-display-datetime-format` | Set the format for date and time display | 日時表示のフォーマットを設定します |
 | `M-x set-clipboard-integration` | `set-clipboard-integration` | Set OS clipboard integration (on/off) | OSクリップボード連携の有効・無効を設定します |
 | `M-x set-current-directory` | `set-current-directory` | Change current working directory | カレントディレクトリを変更します |
 | `M-x set-kill-ring-max` | `set-kill-ring-max` | Set the maximum number of items in the kill ring | キルリングの最大保持件数を設定します |
@@ -346,6 +349,27 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x set-smooth-cursor` | `set-smooth-cursor` | Set smooth cursor animation (on/off) | ヒュンヒュンカーソル（滑らかな移動）の有効・無効を設定します |
 | `M-x set-tab-width` | `set-tab-width` | Set the tab width | タブ幅を設定します |
 | `M-x set-wrap-column` | `set-wrap-column` | Set the wrap column | 折り返し幅を設定します |
+
+### DateTime Format Tokens (日時フォーマット・トークン)
+`display-datetime-format` で使用可能なトークンの一覧です。
+
+| Token / トークン | Description / 説明 | Example / 例 |
+|:---|:---|:---|
+| `YYYY` | 4-digit year / 4桁の年 | 2026 |
+| `YY` | 2-digit year / 2桁の年 | 26 |
+| `MM` | Month (01-12) / 月 (01-12) | 04 |
+| `M` | Month (1-12) / 月 (1-12) | 4 |
+| `DD` | Day (01-31) / 日 (01-31) | 09 |
+| `D` | Day (1-31) / 日 (1-31) | 9 |
+| `HH` | 24-hour hour (00-23) / 24時間制の時 (00-23) | 09 |
+| `H` | 24-hour hour (0-23) / 24時間制の時 (0-23) | 9 |
+| `hh` | 12-hour hour (01-12) / 12時間制の時 (01-12) | 02 |
+| `h` | 12-hour hour (1-12) / 12時間制の時 (1-12) | 2 |
+| `mm` | Minute (00-59) / 分 (00-59) | 05 |
+| `m` | Minute (0-59) / 分 (0-59) | 5 |
+| `ss` | Second (00-59) / 秒 (00-59) | 08 |
+| `s` | Second (0-59) / 秒 (0-59) | 8 |
+| `a` | AM/PM | PM |
 
 ## MCP (AI Integration / AI 連携)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
