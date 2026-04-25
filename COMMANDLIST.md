@@ -165,7 +165,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `C-x d` | `toggle-sidebar` | Toggle Filer Sidebar | ファイラサイドバーを開閉します |
-| `Enter` / `Click` / `f` | (Sidebar Open) | Open file & Close | ファイルを開いてファイラを閉じます |
+| `Enter` / `Click` / `f` | (Sidebar Open) | Open file | ファイルを開きます |
 | `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
 | `C-p` / `k` / `p` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
 | `Space` / `Tab` / `C-f` / `l` / `Right` | (Sidebar Open) | Expand folder / Move to child / Preview file | フォルダを展開・子階層へ移動 / ファイルをプレビュー（閉じない）します |
@@ -181,7 +181,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-<` | (Sidebar Open) | Jump to the beginning of the list | 階層の先頭に移動します |
 | `M->` | (Sidebar Open) | Jump to the end of the list | 階層の末尾に移動します |
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
-| `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | ファイラを閉じます |
+| `Q` | (Sidebar Open) | Close workspace | ワークスペースを閉じます |
+| `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 | `M-x set-current-directory` | `set-current-directory` | Change root to a specific directory | 指定したディレクトリをルートに設定します |
 
 ## Workspace Operations (ワークスペース操作)
@@ -195,7 +196,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x close-workspace` | `close-workspace` | Close current workspace | ワークスペースを閉じます |
 | `Drag & Drop Folder` | (Sidebar Open) | Add folder to workspace | フォルダをサイドバーにドロップして追加します |
 | `a` | (Sidebar Open) | Add folder to workspace | フォルダをワークスペースに追加します |
-| `Enter` / `f` | (Sidebar Open) | Open file & Close | ファイルを開いてサイドバーを閉じます |
+| `Enter` / `Click` / `f` | (Sidebar Open) | Open file | ファイルを開きます |
 | `Space` / `Tab` / `C-f` / `l` / `Right` | (Sidebar Open) | Expand folder / Move to child / Preview file | フォルダを展開・子階層へ移動 / ファイルをプレビュー（閉じない）します |
 | `C-b` / `h` / `b` / `Left` | (Sidebar Open) | Collapse folder / Move to parent | フォルダを折り畳む / 親階層へ移動します |
 | `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
@@ -209,8 +210,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-<` | (Sidebar Open) | Jump to the beginning of the list | リストの先頭に移動します |
 | `M->` | (Sidebar Open) | Jump to the end of the list | リストの末尾に移動します |
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
-| `q` | (Sidebar Open) | Close workspace | ワークスペースを閉じます |
-| `C-g` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
+| `Q` | (Sidebar Open) | Close workspace | ワークスペースを閉じます |
+| `C-g` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 
 
 ## Recent Files Sidebar Operations (最近使ったファイル・サイドバー操作)
