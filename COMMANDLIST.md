@@ -82,6 +82,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-t` | `transpose-chars` | Swap characters around cursor | 文字を入れ替えます |
 | `M-t` | `transpose-words` | Swap words around cursor | 単語を入れ替えます |
 | `M-^` | `join-line` | Join current line with the next one | 現在の行を次の行と結合します（CJK文字間以外はスペースを挿入） |
+| `M-x just-one-space` | `just-one-space` | Delete all but one space around point (Supports `C-u n`) | カーソル前後の空白（半角/タブ）を削除し、スペースを1つ（`C-u n` で `n` 個）挿入します |
+| `C-c SPC` | `just-one-space-extended` | Delete all but one space around point, including full-width | カーソル前後の空白（半角/タブ/全角）を削除し、半角スペースを1つ挿入します |
 | `C-c d` | `duplicate-line` | Duplicate current line below (does not affect kill ring) | 現在の行を次の行に複製します（キルリングは変更しません） |
 | `C-/` / `C-_` | `undo` | Undo the last action | 直前の操作を取り消します |
 | `M-_` | `redo` | Redo the last undone action | 取り消した操作をやり直します |
@@ -166,22 +168,57 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `Enter` / `Click` / `f` | (Sidebar Open) | Open file & Close | ファイルを開いてファイラを閉じます |
 | `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
 | `C-p` / `k` / `p` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
-| `Space` / `Tab` / `C-f` / `l` / `Right` | (Sidebar Open) | Expand folder / Move to child | フォルダを展開 / 子階層へ移動します |
+| `Space` / `Tab` / `C-f` / `l` / `Right` | (Sidebar Open) | Expand folder / Move to child / Preview file | フォルダを展開・子階層へ移動 / ファイルをプレビュー（閉じない）します |
 | `C-b` / `h` / `b` / `Left` | (Sidebar Open) | Collapse folder / Move to parent | フォルダを折り畳む / 親階層へ移動します |
 | `u` | (Sidebar Open) | Change root to parent directory | 1つ上の親フォルダをルート階層に設定します |
 | `r` | (Sidebar Open) | Jump to root / drives | システムドライブルート（または`/`）へジャンプします |
 | `g` | (Sidebar Open) | Reload tree | ツリー（ディレクトリ情報）を最新状態に再読み込みします |
+| `d` | (Sidebar Open) | Move file/folder to trash | 選択中のファイルをゴミ箱へ移動、またはフォルダを再帰的にゴミ箱へ移動します |
+| `c` | (Sidebar Open) | Create new file | 選択中のフォルダ内に新しい空ファイルを作成します |
+| `C` (Shift+`c`) | (Sidebar Open) | Create new folder | 選択中のフォルダ内に新しいフォルダを作成します |
 | `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロールします |
 | `M-v` | (Sidebar Open) | Scroll up one page | 1ページ分上にスクロールします |
 | `M-<` | (Sidebar Open) | Jump to the beginning of the list | 階層の先頭に移動します |
 | `M->` | (Sidebar Open) | Jump to the end of the list | 階層の末尾に移動します |
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
 | `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | ファイラを閉じます |
+| `M-x set-current-directory` | `set-current-directory` | Change root to a specific directory | 指定したディレクトリをルートに設定します |
+
+## Workspace Operations (ワークスペース操作)
+| Command / コマンド | ID | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `C-c w` | `toggle-workspace-sidebar` | Toggle Workspace Sidebar | ワークスペースサイドバーを開閉します |
+| `M-x open-workspace` | `open-workspace` | Open a VS Code .code-workspace file | VS Code形式のワークスペースファイルを開きます |
+| `M-x save-workspace` | `save-workspace` | Save current workspace | ワークスペースを上書き保存します |
+| `M-x save-workspace-as` | `save-workspace-as` | Save workspace as... | ワークスペースを名前を付けて保存します |
+| `C-c a` / `M-x add-folder-to-workspace`| `add-folder-to-workspace`| Add a folder to current workspace | フォルダをワークスペースに追加します |
+| `M-x close-workspace` | `close-workspace` | Close current workspace | ワークスペースを閉じます |
+| `Drag & Drop Folder` | (Sidebar Open) | Add folder to workspace | フォルダをサイドバーにドロップして追加します |
+| `a` | (Sidebar Open) | Add folder to workspace | フォルダをワークスペースに追加します |
+| `Enter` / `f` | (Sidebar Open) | Open file & Close | ファイルを開いてサイドバーを閉じます |
+| `Space` / `Tab` / `C-f` / `l` / `Right` | (Sidebar Open) | Expand folder / Move to child / Preview file | フォルダを展開・子階層へ移動 / ファイルをプレビュー（閉じない）します |
+| `C-b` / `h` / `b` / `Left` | (Sidebar Open) | Collapse folder / Move to parent | フォルダを折り畳む / 親階層へ移動します |
+| `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
+| `C-p` / `k` / `p` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
+| `g` | (Sidebar Open) | Reload tree | ツリー（ディレクトリ情報）を最新状態に再読み込みします |
+| `d` | (Sidebar Open) | Remove root / Move to trash | ルートフォルダをワークスペースから除去、または実ファイルをゴミ箱へ移動します |
+| `c` | (Sidebar Open) | Create new file | 選択中のフォルダ内に新しい空ファイルを作成します |
+| `C` (Shift+`c`) | (Sidebar Open) | Create new folder | 選択中のフォルダ内に新しいフォルダを作成します |
+| `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロールします |
+| `M-v` | (Sidebar Open) | Scroll up one page | 1ページ分上にスクロールします |
+| `M-<` | (Sidebar Open) | Jump to the beginning of the list | リストの先頭に移動します |
+| `M->` | (Sidebar Open) | Jump to the end of the list | リストの末尾に移動します |
+| `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
+| `q` | (Sidebar Open) | Close workspace | ワークスペースを閉じます |
+| `C-g` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
+
 
 ## Recent Files Sidebar Operations (最近使ったファイル・サイドバー操作)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `C-c c` | `browse-recent-files` | Open Recent Files Sidebar | 最近使ったファイル表示を開閉します |
+| `Enter` / `f` | (Sidebar Open) | Open file & Close | ファイルを開いて閉じます |
+| `Space` / `Tab` / `C-f` / `l` / `Right` | (Sidebar Open) | Preview file | ファイルをプレビュー（閉じない）します |
 | `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
 | `C-p` / `k` / `p` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
 | `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロールします |
@@ -189,58 +226,50 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-<` | (Sidebar Open) | Jump to the beginning of the list | 履歴の先頭に移動します |
 | `M->` | (Sidebar Open) | Jump to the end of the list | 履歴の末尾に移動します |
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
-| `Space` / `Tab` / `l` / `Right` | (Sidebar Open) | Preview file | ファイルをプレビューします |
-| `Enter` / `Click` / `f` | (Sidebar Open) | Open file & Close | ファイルを開いて閉じます |
-| `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
+| `C-g` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 
 ## Outline Operations (アウトライン操作)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `C-c o` | `outline-view` | Toggle Outline Sidebar (Parses up to 50,000 lines) | アウトライン表示を開閉します (50,000行まで) |
-| `C-n` / `j` / `n` | (Outline Open) | Move focus down (Preview jumps to heading) | フォーカスを下に移動（エディタも連動）します |
-| `C-p` / `k` / `p` | (Outline Open) | Move focus up (Preview jumps to heading) | フォーカスを上に移動（エディタも連動）します |
-| `C-v` | (Outline Open) | Scroll down one page | 1ページ分下にスクロールします |
-| `M-v` | (Outline Open) | Scroll up one page | 1ページ分上にスクロールします |
-| `M-<` | (Outline Open) | Jump to the beginning of the list | アウトラインの先頭に移動します |
-| `M->` | (Outline Open) | Jump to the end of the list | アウトラインの末尾に移動します |
-| `C-l` | (Outline Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
-| `Space` / `Tab` / `C-f` / `l` / `Right` | (Outline Open) | Expand item / Move to child | 項目を展開 / 子階層へ移動します |
-| `C-b` / `h` / `b` / `Left` | (Outline Open) | Collapse item / Move to parent | 項目を折り畳む / 親階層へ移動します |
-| `g` | (Outline Open) | Refresh outline | アウトライン解析を最新状態に更新します |
-| `Enter` / `Click` / `f` | (Outline Open) | Jump to heading & Close | 該当の見出しにジャンプして閉じます |
-| `C-g` / `C-q` / `q` / `Esc` | (Outline Open) | Cancel & Close sidebar | キャンセルしてサイドバーを閉じます |
+| `Enter` / `f` | (Sidebar Open) | Jump to heading & Close | 見出しへジャンプして閉じます |
+| `Space` / `Tab` / `C-f` / `l` / `Right` | (Sidebar Open) | Jump to heading | 見出しへジャンプ（閉じない）します |
+| `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
+| `C-p` / `k` / `p` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
+| `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロールします |
+| `M-v` | (Sidebar Open) | Scroll up one page | 1ページ分上にスクロールします |
+| `M-<` | (Sidebar Open) | Jump to the beginning of the list | リストの先頭に移動します |
+| `M->` | (Sidebar Open) | Jump to the end of the list | リストの末尾に移動します |
+| `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
+| `C-g` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 
 ## Kill Ring Sidebar Operations (キルリング・サイドバー操作)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `C-c y` | `browse-kill-ring` | Open Kill Ring Sidebar | キルリング表示を開閉します |
+| `Enter` / `f` / `y` | (Sidebar Open) | Insert selected text & Close | 選択したテキストを挿入して閉じます |
 | `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
 | `C-p` / `k` / `p` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
 | `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロールします |
 | `M-v` | (Sidebar Open) | Scroll up one page | 1ページ分上にスクロールします |
-| `M-<` | (Sidebar Open) | Jump to the beginning of the list | 履歴の先頭に移動します |
-| `M->` | (Sidebar Open) | Jump to the end of the list | 履歴の末尾に移動します |
+| `M-<` | (Sidebar Open) | Jump to the beginning of the list | リストの先頭に移動します |
+| `M->` | (Sidebar Open) | Jump to the end of the list | リストの末尾に移動します |
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
-| `b` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
-| `g` | (Sidebar Open) | Refresh list | 履歴を最新の状態に更新します |
-| `Enter` / `Click` / `f` | (Sidebar Open) | Insert selected text & Close | 選択したテキストを挿入して閉じます |
-| `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
+| `C-g` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 
 ## Register Sidebar Operations (レジスタ・サイドバー操作)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `C-c r` | `browse-registers` | Open Register Sidebar | レジスタ表示を開閉します |
+| `Enter` / `f` / `r` | (Sidebar Open) | Jump/Insert from register & Close | レジスタの内容へジャンプまたは挿入して閉じます |
 | `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
 | `C-p` / `k` / `p` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
 | `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロールします |
 | `M-v` | (Sidebar Open) | Scroll up one page | 1ページ分上にスクロールします |
-| `M-<` | (Sidebar Open) | Jump to the beginning of the list | 履歴の先頭に移動します |
-| `M->` | (Sidebar Open) | Jump to the end of the list | 履歴の末尾に移動します |
+| `M-<` | (Sidebar Open) | Jump to the beginning of the list | リストの先頭に移動します |
+| `M->` | (Sidebar Open) | Jump to the end of the list | リストの末尾に移動します |
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
-| `b` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
-| `g` | (Sidebar Open) | Refresh list | 履歴を最新の状態に更新します |
-| `Enter` / `Click` / `f` | (Sidebar Open) | Action(Insert/Jump) & Close | 決定（挿入または移動）して閉じます |
-| `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
+| `C-g` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 
 ## Preview & Web (プレビュー・Web)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
@@ -248,7 +277,6 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-c v` | `preview-dispatch` | Preview current buffer (Markdown/HTML) | 現在のバッファをプレビューします（Markdown/HTML） |
 | `M-x preview-html` | `preview-html` | Preview current HTML buffer | 現在のHTMLバッファをプレビューします |
 | `M-x preview-markdown` | `preview-markdown` | Preview current Markdown buffer | 現在のMarkdownバッファをプレビューします |
-| `C-c o` / `M-x outline-view` | `outline-view` | Toggle Outline Sidebar (Parses up to 50,000 lines) | アウトライン表示を開閉します (50,000行まで) |
 | `C-c p` / `M-x print-buffer` | `print-buffer` | Print active buffer | 現在のバッファを印刷します |
 
 ## Major Modes (メジャーモード)
@@ -361,8 +389,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M` | Month (1-12) / 月 (1-12) | 4 |
 | `DD` | Day (01-31) / 日 (01-31) | 09 |
 | `D` | Day (1-31) / 日 (1-31) | 9 |
-| `HH` | 24-hour hour (00-23) / 24時間制の時 (00-23) | 09 |
-| `H` | 24-hour hour (0-23) / 24時間制の時 (0-23) | 9 |
+| `HH` | 24-hour hour (00-23) / 24時間制の時 (00-23) | 14 |
+| `H` | 24-hour hour (0-23) / 24時間制の時 (0-23) | 14 |
 | `hh` | 12-hour hour (01-12) / 12時間制の時 (01-12) | 02 |
 | `h` | 12-hour hour (1-12) / 12時間制の時 (1-12) | 2 |
 | `mm` | Minute (00-59) / 分 (00-59) | 05 |
