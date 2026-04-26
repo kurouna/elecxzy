@@ -176,6 +176,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `d` | (Sidebar Open) | Move file/folder to trash | 選択中のファイルをゴミ箱へ移動、またはフォルダを再帰的にゴミ箱へ移動します |
 | `c` | (Sidebar Open) | Create new file | 選択中のフォルダ内に新しい空ファイルを作成します |
 | `C` (Shift+`c`) | (Sidebar Open) | Create new folder | 選択中のフォルダ内に新しいフォルダを作成します |
+| `R` (Shift+`r`) | (Sidebar Open) | Rename selected file/folder | 選択中のファイル・フォルダの名前を変更します（ミニバッファに現在の名前が表示されます） |
 | `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロールします |
 | `M-v` | (Sidebar Open) | Scroll up one page | 1ページ分上にスクロールします |
 | `M-<` | (Sidebar Open) | Jump to the beginning of the list | 階層の先頭に移動します |
@@ -205,6 +206,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `d` | (Sidebar Open) | Remove root / Move to trash | ルートフォルダをワークスペースから除去、または実ファイルをゴミ箱へ移動します |
 | `c` | (Sidebar Open) | Create new file | 選択中のフォルダ内に新しい空ファイルを作成します |
 | `C` (Shift+`c`) | (Sidebar Open) | Create new folder | 選択中のフォルダ内に新しいフォルダを作成します |
+| `R` (Shift+`r`) | (Sidebar Open) | Rename selected file/folder | 選択中のファイル・フォルダの名前を変更します（ミニバッファに現在の名前が表示されます） |
 | `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロールします |
 | `M-v` | (Sidebar Open) | Scroll up one page | 1ページ分上にスクロールします |
 | `M-<` | (Sidebar Open) | Jump to the beginning of the list | リストの先頭に移動します |
