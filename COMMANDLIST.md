@@ -110,6 +110,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-x TAB` | `indent-rigidly` | Indent rigidly (interactive) | 選択範囲を左右にスライド（シフト）させます |
 | `M-x sort-lines` | `sort-lines` | Sort lines in region alphabetically | 選択範囲内の行をアルファベット順にソートします |
 | `C-u M-x sort-lines` | - | Sort lines in reverse order | 逆順（降順）で行をソートします |
+| `C-\` | - | Toggle IME (Input Method Editor) | IME（日本語入力）のON/OFFを切り替えます |
 
 ## Lightweight Cursor-based Macros (簡易的なカーソルベースマクロ)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
