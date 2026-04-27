@@ -188,7 +188,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 ## Workspace Operations (ワークスペース操作)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `C-c w` | `toggle-workspace-sidebar` | Toggle Workspace Sidebar | ワークスペースサイドバーを開閉します |
+| `C-c w` / `C-.` | `toggle-workspace-sidebar` | Toggle Workspace Sidebar | ワークスペースサイドバーを開閉します |
 | `M-x open-workspace` | `open-workspace` | Open a VS Code .code-workspace file | VS Code形式のワークスペースファイルを開きます |
 | `M-x save-workspace` | `save-workspace` | Save current workspace | ワークスペースを上書き保存します |
 | `M-x save-workspace-as` | `save-workspace-as` | Save workspace as... | ワークスペースを名前を付けて保存します |
