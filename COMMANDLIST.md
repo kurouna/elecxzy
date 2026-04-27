@@ -182,7 +182,6 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-<` | (Sidebar Open) | Jump to the beginning of the list | 階層の先頭に移動します |
 | `M->` | (Sidebar Open) | Jump to the end of the list | 階層の末尾に移動します |
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
-| `Q` | (Sidebar Open) | Close workspace | ワークスペースを閉じます |
 | `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 | `M-x set-current-directory` | `set-current-directory` | Change root to a specific directory | 指定したディレクトリをルートに設定します |
 
@@ -213,14 +212,14 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M->` | (Sidebar Open) | Jump to the end of the list | リストの末尾に移動します |
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
 | `Q` | (Sidebar Open) | Close workspace | ワークスペースを閉じます |
-| `C-g` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
+| `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 
 
 ## Recent Files Sidebar Operations (最近使ったファイル・サイドバー操作)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `C-c c` | `browse-recent-files` | Open Recent Files Sidebar | 最近使ったファイル表示を開閉します |
-| `Enter` / `f` | (Sidebar Open) | Open file & Close | ファイルを開いて閉じます |
+| `Enter` / `f` | (Sidebar Open) | Open file | ファイルを開きます |
 | `Space` / `Tab` / `C-f` / `l` / `Right` | (Sidebar Open) | Preview file | ファイルをプレビュー（閉じない）します |
 | `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
 | `C-p` / `k` / `p` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
@@ -229,14 +228,14 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-<` | (Sidebar Open) | Jump to the beginning of the list | 履歴の先頭に移動します |
 | `M->` | (Sidebar Open) | Jump to the end of the list | 履歴の末尾に移動します |
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
-| `C-g` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
+| `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 
 ## Outline Operations (アウトライン操作)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `C-c o` | `outline-view` | Toggle Outline Sidebar (Parses up to 50,000 lines) | アウトライン表示を開閉します (50,000行まで) |
 | `Enter` / `f` | (Sidebar Open) | Jump to heading & Close | 見出しへジャンプして閉じます |
-| `Space` / `Tab` / `C-f` / `l` / `Right` | (Sidebar Open) | Jump to heading | 見出しへジャンプ（閉じない）します |
+| `Space` / `Tab` / `C-f` / `l` / `Right` | (Sidebar Open) | Expand heading / Move to child | 見出しを展開 / 子要素へ移動します |
 | `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
 | `C-p` / `k` / `p` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
 | `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロールします |
@@ -244,13 +243,13 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-<` | (Sidebar Open) | Jump to the beginning of the list | リストの先頭に移動します |
 | `M->` | (Sidebar Open) | Jump to the end of the list | リストの末尾に移動します |
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
-| `C-g` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
+| `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 
 ## Kill Ring Sidebar Operations (キルリング・サイドバー操作)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `C-c y` | `browse-kill-ring` | Open Kill Ring Sidebar | キルリング表示を開閉します |
-| `Enter` / `f` / `y` | (Sidebar Open) | Insert selected text & Close | 選択したテキストを挿入して閉じます |
+| `Enter` / `f` | (Sidebar Open) | Insert selected text & Close | 選択したテキストを挿入して閉じます |
 | `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
 | `C-p` / `k` / `p` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
 | `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロールします |
@@ -258,13 +257,13 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-<` | (Sidebar Open) | Jump to the beginning of the list | リストの先頭に移動します |
 | `M->` | (Sidebar Open) | Jump to the end of the list | リストの末尾に移動します |
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
-| `C-g` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
+| `C-g` / `C-q` / `q` / `b` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 
 ## Register Sidebar Operations (レジスタ・サイドバー操作)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `C-c r` | `browse-registers` | Open Register Sidebar | レジスタ表示を開閉します |
-| `Enter` / `f` / `r` | (Sidebar Open) | Jump/Insert from register & Close | レジスタの内容へジャンプまたは挿入して閉じます |
+| `Enter` / `f` | (Sidebar Open) | Jump/Insert from register & Close | レジスタの内容へジャンプまたは挿入して閉じます |
 | `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
 | `C-p` / `k` / `p` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
 | `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロールします |
@@ -272,7 +271,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-<` | (Sidebar Open) | Jump to the beginning of the list | リストの先頭に移動します |
 | `M->` | (Sidebar Open) | Jump to the end of the list | リストの末尾に移動します |
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
-| `C-g` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
+| `C-g` / `C-q` / `q` / `b` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 
 ## Preview & Web (プレビュー・Web)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
