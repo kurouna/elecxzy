@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>elecxzy — ドキュメント & チュートリアル</title>
+<meta name="description" content="elecxzy のチュートリアル。インストール、基本操作、MCP設定、全コマンドリファレンス。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:#0a0a0a;color:#e2e8f0;
+  font-family:'Inter',-apple-system,sans-serif;
+  font-weight:400;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+
+/* ── Design Tokens (shared with index.html) ── */
+:root{
+  --bg:        #0a0a0a;
+  --bg-1:      #0f0f0f;
+  --bg-2:      #141414;
+  --bg-3:      #1a1a1a;
+  --border:    rgba(255,255,255,0.08);
+  --border-hi: rgba(255,255,255,0.14);
+  --text:      #e2e8f0;
+  --text-2:    #94a3b8;
+  --text-3:    #475569;
+  --blue:      #3b82f6;
+  --blue-hi:   #60a5fa;
+  --blue-dim:  rgba(59,130,246,0.12);
+  --green:     #10b981;
+  --amber:     #f59e0b;
+  --purple:    #8b5cf6;
+  --mono:      'JetBrains Mono',monospace;
+  --sidebar:   240px;
+  --r:         6px;
+}
+
+/* ── Sidebar ── */
+.sidebar{
+  position:fixed;top:0;left:0;bottom:0;
+  width:var(--sidebar);
+  background:#080808;border-right:1px solid var(--border);
+  overflow-y:auto;z-index:100;padding-bottom:40px;
+}
+.sidebar::-webkit-scrollbar{width:3px;}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+.sb-header{
+  padding:16px 20px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;background:#080808;z-index:1;
+}
+.sb-logo{font-family:var(--mono);font-size:15px;color:#fff;}
+.sb-logo em{color:var(--blue-hi);font-style:normal;}
+.sb-back{font-size:12px;color:var(--text-3);transition:color .15s;}
+.sb-back:hover{color:var(--text-2);}
+.sb-section{
+  padding:16px 20px 4px;font-size:10px;font-weight:500;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);
+}
+.sb-link{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 20px;font-size:13px;color:var(--text-3);
+  transition:all .15s;border-left:2px solid transparent;
+}
+.sb-link:hover{color:var(--text-2);}
+.sb-link.active{color:#fff;border-left-color:var(--blue-hi);background:var(--blue-dim);}
+.sb-num{font-family:var(--mono);font-size:10px;color:var(--text-3);width:16px;text-align:center;flex-shrink:0;}
+
+/* ── Main ── */
+.main{margin-left:var(--sidebar);}
+.topbar{
+  position:sticky;top:0;z-index:50;
+  height:52px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;
+  background:rgba(10,10,10,.92);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.tb-title{font-size:14px;font-weight:500;color:#fff;}
+.tb-btn{
+  padding:7px 18px;border-radius:var(--r);
+  background:#fff;color:#0a0a0a;font-size:12px;font-weight:500;transition:opacity .15s;
+}
+.tb-btn:hover{opacity:0.85;}
+.content{padding:48px 40px 80px;max-width:860px;}
+
+/* ── Doc Hero ── */
+.doc-hero{
+  padding:32px 36px;border-radius:10px;
+  border:1px solid var(--border);background:var(--bg-1);margin-bottom:48px;
+}
+.doc-hero-tag{
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--blue-hi);margin-bottom:10px;
+}
+.doc-hero h1{
+  font-size:28px;font-weight:600;letter-spacing:-0.03em;
+  color:#fff;margin-bottom:10px;
+}
+.doc-hero p{font-size:14px;color:var(--text-2);max-width:520px;}
+.doc-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px;}
+.chip{
+  padding:3px 10px;border-radius:100px;
+  border:1px solid var(--border);background:var(--bg-2);
+  font-family:var(--mono);font-size:11px;color:var(--text-3);
+}
+
+/* ── Step ── */
+.step-section{margin-bottom:56px;scroll-margin-top:60px;}
+.step-header{
+  display:flex;align-items:flex-start;gap:14px;
+  margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border);
+}
+.step-num{
+  width:32px;height:32px;border-radius:7px;flex-shrink:0;
+  background:var(--blue-dim);border:1px solid rgba(96,165,250,.2);
+  font-family:var(--mono);font-size:12px;color:var(--blue-hi);
+  display:flex;align-items:center;justify-content:center;margin-top:2px;
+}
+.step-header-text h2{font-size:20px;font-weight:600;letter-spacing:-0.02em;color:#fff;}
+.step-header-text p{font-size:13px;color:var(--text-3);margin-top:2px;}
+
+/* ── Card ── */
+.card{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:12px;background:var(--bg-1);}
+.card-hd{
+  padding:10px 16px;background:var(--bg-3);border-bottom:1px solid var(--border);
+  font-family:var(--mono);font-size:11px;color:var(--text-3);
+  display:flex;align-items:center;gap:6px;
+}
+.cd{width:8px;height:8px;border-radius:50%;}
+.card-body{padding:20px;}
+.card-body p{font-size:14px;color:var(--text-2);line-height:1.75;margin-bottom:10px;}
+.card-body p:last-child{margin-bottom:0;}
+
+/* ── Table ── */
+.cmd-table{width:100%;border-collapse:collapse;}
+.cmd-table th{
+  text-align:left;padding:8px 12px;font-size:10px;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);
+  background:var(--bg-3);border-bottom:1px solid var(--border);
+}
+.cmd-table td{
+  padding:9px 12px;font-size:13px;
+  border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle;
+}
+.cmd-table tr:last-child td{border-bottom:none;}
+.cmd-table tr:hover td{background:rgba(255,255,255,.02);}
+.cmd-table .desc{color:var(--text-2);}
+kbd{
+  font-family:var(--mono);font-size:11px;
+  padding:3px 8px;border-radius:4px;
+  background:var(--bg-3);border:1px solid var(--border-hi);
+  color:#fff;white-space:nowrap;line-height:1.4;
+  box-shadow:0 1px 0 rgba(0,0,0,.3);
+}
+
+/* ── Note ── */
+.note{
+  display:flex;gap:10px;padding:12px 16px;
+  border-radius:7px;margin:12px 0;
+  font-size:13px;color:var(--text-2);line-height:1.7;
+}
+.note.info{background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.15);}
+.note.warn{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15);}
+.note.ok  {background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);}
+.note strong{color:#e2e8f0;}
+
+/* ── Layout ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.two-col .card{margin-bottom:0;}
+.code-block{
+  background:var(--bg-1);border:1px solid var(--border);border-radius:7px;
+  padding:20px;font-family:var(--mono);font-size:12px;line-height:1.9;
+  overflow-x:auto;color:var(--text-2);margin:12px 0;
+}
+.tk{color:#93c5fd;}.ts{color:#86efac;}.tv{color:#fde68a;}
+
+/* ── VFX grid ── */
+.vfx-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:12px 0;}
+.vfx-item{
+  padding:14px 8px;text-align:center;
+  border:1px solid var(--border);border-radius:7px;background:var(--bg-1);
+}
+.vfx-key{font-family:var(--mono);font-size:11px;color:var(--blue-hi);margin-bottom:4px;}
+.vfx-name{font-size:11px;color:var(--text-2);}
+.vfx-off .vfx-key{color:var(--text-3);}
+
+/* ── Ref ── */
+.ref-header{padding:20px 0 12px;border-top:2px solid var(--border);margin-top:32px;margin-bottom:24px;}
+.ref-header p{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-hi);margin-bottom:6px;}
+.ref-header h2{font-size:22px;font-weight:600;color:#fff;letter-spacing:-0.02em;}
+.cmd-group{margin-bottom:28px;}
+.cmd-group-title{
+  font-size:10px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--blue-hi);margin-bottom:8px;
+}
+
+/* ── Footer ── */
+footer{
+  border-top:1px solid var(--border);padding:24px 40px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:12px;margin-top:48px;
+}
+.footer-logo{font-family:var(--mono);font-size:13px;color:var(--text-3);}
+.footer-logo em{color:var(--blue-hi);font-style:normal;}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{font-size:12px;color:var(--text-3);transition:color .15s;}
+.footer-links a:hover{color:var(--text-2);}
+
+@media(max-width:860px){
+  .sidebar{display:none;}
+  .main{margin-left:0;}
+  .content{padding:24px 20px 60px;max-width:100%;}
+  .two-col{grid-template-columns:1fr;}
+  .vfx-grid{grid-template-columns:repeat(3,1fr);}
+  footer{padding:20px;flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="sb-header">
+    <a href="index.html" class="sb-logo">elec<em>xzy</em></a>
+    <a href="index.html" class="sb-back">← トップ</a>
+  </div>
+  <div class="sb-section">はじめに</div>
+  <a href="#intro" class="sb-link active"><span class="sb-num">—</span>概要</a>
+  <div class="sb-section">チュートリアル</div>
+  <a href="#install" class="sb-link"><span class="sb-num">1</span>インストール</a>
+  <a href="#basics" class="sb-link"><span class="sb-num">2</span>基本操作・Kill Ring</a>
+  <a href="#buffers" class="sb-link"><span class="sb-num">3</span>バッファ・ウィンドウ</a>
+  <a href="#search" class="sb-link"><span class="sb-num">4</span>検索・置換</a>
+  <a href="#rectangle" class="sb-link"><span class="sb-num">5</span>矩形編集</a>
+  <a href="#sidebars" class="sb-link"><span class="sb-num">6</span>サイドバー機能</a>
+  <a href="#mcp" class="sb-link"><span class="sb-num">7</span>MCP サーバー設定</a>
+  <a href="#macro" class="sb-link"><span class="sb-num">8</span>キーボードマクロ</a>
+  <a href="#themes" class="sb-link"><span class="sb-num">9</span>テーマ・カスタマイズ</a>
+  <a href="#vfx" class="sb-link"><span class="sb-num">10</span>カーソル VFX</a>
+  <div class="sb-section">リファレンス</div>
+  <a href="#ref-movement" class="sb-link"><span class="sb-num">—</span>移動</a>
+  <a href="#ref-edit" class="sb-link"><span class="sb-num">—</span>編集・Kill Ring</a>
+  <a href="#ref-window" class="sb-link"><span class="sb-num">—</span>ウィンドウ・バッファ</a>
+  <a href="#ref-rectangle" class="sb-link"><span class="sb-num">—</span>矩形操作</a>
+  <a href="#ref-register" class="sb-link"><span class="sb-num">—</span>レジスタ</a>
+  <a href="#ref-search" class="sb-link"><span class="sb-num">—</span>検索・置換</a>
+  <a href="#ref-mode" class="sb-link"><span class="sb-num">—</span>メジャーモード</a>
+  <a href="#faq" class="sb-link"><span class="sb-num">—</span>FAQ</a>
+</nav>
+
+<div class="main">
+  <div class="topbar">
+    <span class="tb-title">ドキュメント</span>
+    <a href="https://apps.microsoft.com/detail/9P32F2WFL69M" class="tb-btn">ダウンロード</a>
+  </div>
+
+  <div class="content">
+
+    <div class="doc-hero" id="intro">
+      <p class="doc-hero-tag">Documentation</p>
+      <h1>elecxzy の使い方</h1>
+      <p>インストールから日常使い、MCP設定まで。Lisp不要のEmacsライク体験をここで学べます。</p>
+      <div class="doc-chips">
+        <span class="chip">Windows 10/11</span>
+        <span class="chip">v0.3.1+</span>
+        <span class="chip">日本語対応</span>
+        <span class="chip">MCP Server</span>
+        <span class="chip">Intl.Segmenter</span>
+      </div>
+    </div>
+
+    <!-- 1 -->
+    <div class="step-section" id="install">
+      <div class="step-header">
+        <div class="step-num">1</div>
+        <div class="step-header-text"><h2>インストール</h2><p>Windows 専用。2つの方法から選べます。</p></div>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-hd">推奨</div>
+          <div class="card-body">
+            <p style="font-size:15px;font-weight:500;color:#fff;margin-bottom:8px;">Microsoft Store</p>
+            <p>自動アップデート付き。インストール後すぐに使えます。</p>
+            <a href="https://apps.microsoft.com/detail/9P32F2WFL69M" style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:9px 18px;border-radius:var(--r);background:#fff;color:#0a0a0a;font-size:13px;font-weight:500;">Microsoft Store で入手</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-hd">開発版</div>
+          <div class="card-body">
+            <p style="font-size:15px;font-weight:500;color:#fff;margin-bottom:8px;">GitHub Releases</p>
+            <p>最新の開発版バイナリ（.exe インストーラー）を直接入手。</p>
+            <a href="https://github.com/kurouna/elecxzy/releases" style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:9px 18px;border-radius:var(--r);border:1px solid var(--border);color:var(--text-2);font-size:13px;">GitHub Releases →</a>
+          </div>
+        </div>
+      </div>
+      <div class="note info"><span>ℹ️</span><span>現在は <strong>Windows 専用</strong>です。macOS・Linux 対応は今後の予定です。ソースコードは現在非公開です。</span></div>
+    </div>
+
+    <!-- 2 -->
+    <div class="step-section" id="basics">
+      <div class="step-header">
+        <div class="step-num">2</div>
+        <div class="step-header-text"><h2>基本操作・Kill Ring</h2><p>カーソル移動と Emacsライクな中核概念「Kill Ring」</p></div>
+      </div>
+      <div class="card">
+        <div class="card-hd"><span class="cd" style="background:var(--blue-hi)"></span>カーソル移動</div>
+        <div class="card-body" style="padding:0;">
+          <table class="cmd-table">
+            <thead><tr><th>キー</th><th>動作</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>C-f</kbd> / <kbd>C-b</kbd></td><td class="desc">1文字 前進 / 後退</td></tr>
+              <tr><td><kbd>C-n</kbd> / <kbd>C-p</kbd></td><td class="desc">次行 / 前行</td></tr>
+              <tr><td><kbd>C-a</kbd> / <kbd>C-e</kbd></td><td class="desc">行頭 / 行末</td></tr>
+              <tr><td><kbd>M-f</kbd> / <kbd>M-b</kbd></td><td class="desc">単語単位（Intl.Segmenter 対応）</td></tr>
+              <tr><td><kbd>M-&lt;</kbd> / <kbd>M-&gt;</kbd></td><td class="desc">バッファ先頭 / 末尾</td></tr>
+              <tr><td><kbd>C-v</kbd> / <kbd>M-v</kbd></td><td class="desc">1ページ 下 / 上</td></tr>
+              <tr><td><kbd>M-g g</kbd></td><td class="desc">指定行番号へジャンプ</td></tr>
+              <tr><td><kbd>C-'</kbd></td><td class="desc">Avy ジャンプ — 画面内の任意の場所へラベルで即移動</td></tr>
+              <tr><td><kbd>C-u C-SPC</kbd></td><td class="desc">マークリングを遡ってジャンプ</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hd"><span class="cd" style="background:var(--green)"></span>Kill Ring</div>
+        <div class="card-body"><p>削除・切り取りした内容がすべて「Kill Ring」に蓄積。<kbd>M-y</kbd> でサイクルして過去の内容も取り出せます。</p></div>
+        <div class="card-body" style="padding:0;border-top:1px solid var(--border);">
+          <table class="cmd-table">
+            <thead><tr><th>キー</th><th>動作</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>C-SPC</kbd></td><td class="desc">マークをセット</td></tr>
+              <tr><td><kbd>C-w</kbd></td><td class="desc">選択範囲を kill</td></tr>
+              <tr><td><kbd>M-w</kbd></td><td class="desc">コピー（選択なしの場合は現在行全体）</td></tr>
+              <tr><td><kbd>C-k</kbd></td><td class="desc">カーソルから行末まで kill</td></tr>
+              <tr><td><kbd>M-x kill-whole-line</kbd></td><td class="desc">行全体（改行含む）を kill</td></tr>
+              <tr><td><kbd>C-y</kbd></td><td class="desc">ヤンク</td></tr>
+              <tr><td><kbd>M-y</kbd></td><td class="desc">ヤンクポップ</td></tr>
+              <tr><td><kbd>C-c y</kbd></td><td class="desc">Kill Ring サイドバーを開く</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hd"><span class="cd" style="background:var(--amber)"></span>その他の編集</div>
+        <div class="card-body" style="padding:0;">
+          <table class="cmd-table">
+            <thead><tr><th>キー</th><th>動作</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>C-/</kbd></td><td class="desc">Undo</td></tr>
+              <tr><td><kbd>C-d</kbd></td><td class="desc">カーソル位置の1文字を削除</td></tr>
+              <tr><td><kbd>M-d</kbd></td><td class="desc">次の単語を kill</td></tr>
+              <tr><td><kbd>M-Backspace</kbd></td><td class="desc">前の単語を kill</td></tr>
+              <tr><td><kbd>C-t</kbd> / <kbd>M-t</kbd></td><td class="desc">前後の文字 / 単語を入れ替え</td></tr>
+              <tr><td><kbd>M-u</kbd> / <kbd>M-l</kbd> / <kbd>M-c</kbd></td><td class="desc">大文字 / 小文字 / 先頭大文字に変換</td></tr>
+              <tr><td><kbd>M-q</kbd></td><td class="desc">段落を折り返し幅で整形（fill-paragraph）</td></tr>
+              <tr><td><kbd>M-x auto-fill-mode</kbd></td><td class="desc">自動改行モードを切り替え</td></tr>
+              <tr><td><kbd>M-/</kbd></td><td class="desc">動的単語補完（dabbrev-expand）</td></tr>
+              <tr><td><kbd>C-c d</kbd></td><td class="desc">現在行を複製</td></tr>
+              <tr><td><kbd>M-^</kbd></td><td class="desc">現在行を次行と結合（CJK間はスペース不要）</td></tr>
+              <tr><td><kbd>Insert</kbd></td><td class="desc">上書きモード（Overwrite Mode）の切り替え</td></tr>
+              <tr><td><kbd>C-\</kbd></td><td class="desc">IME 無効化 / トグル</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="step-section" id="buffers">
+      <div class="step-header">
+        <div class="step-num">3</div>
+        <div class="step-header-text"><h2>バッファ・ウィンドウ</h2><p>複数ファイルと分割ウィンドウの管理</p></div>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-hd">ウィンドウ分割</div>
+          <div class="card-body" style="padding:0;">
+            <table class="cmd-table">
+              <tbody>
+                <tr><td><kbd>C-x 2</kbd></td><td class="desc">上下分割</td></tr>
+                <tr><td><kbd>C-x 3</kbd></td><td class="desc">左右分割</td></tr>
+                <tr><td><kbd>C-x 1</kbd></td><td class="desc">このみ残す</td></tr>
+                <tr><td><kbd>C-x 0</kbd></td><td class="desc">このウィンドウを閉じる</td></tr>
+                <tr><td><kbd>C-x o</kbd></td><td class="desc">other-window</td></tr>
+                <tr><td><kbd>C-x ^</kbd> / <kbd>C-x }</kbd></td><td class="desc">縦 / 横に拡大</td></tr>
+                <tr><td><kbd>C-x +</kbd></td><td class="desc">サイズを均等化</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-hd">ファイル・バッファ</div>
+          <div class="card-body" style="padding:0;">
+            <table class="cmd-table">
+              <tbody>
+                <tr><td><kbd>C-x C-f</kbd></td><td class="desc">ファイルを開く</td></tr>
+                <tr><td><kbd>C-x M-f</kbd></td><td class="desc">OSダイアログで開く</td></tr>
+                <tr><td><kbd>C-x C-s</kbd></td><td class="desc">保存</td></tr>
+                <tr><td><kbd>C-x C-w</kbd></td><td class="desc">名前を付けて保存</td></tr>
+                <tr><td><kbd>C-x b</kbd></td><td class="desc">バッファ切り替え</td></tr>
+                <tr><td><kbd>C-x C-b</kbd></td><td class="desc">バッファ一覧</td></tr>
+                <tr><td><kbd>C-x k</kbd></td><td class="desc">バッファを閉じる</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="note ok"><span>💡</span><span>PDF・Word（.docx）・Excel（.xlsx）ファイルも開けます。プレーンテキストとして自動インポート（50MB以下）。読み取り専用で開かれるので元ファイルは安全です。</span></div>
+    </div>
+
+    <!-- 4 -->
+    <div class="step-section" id="search">
+      <div class="step-header">
+        <div class="step-num">4</div>
+        <div class="step-header-text"><h2>検索・置換</h2><p>インクリメンタル検索からディレクトリ横断 grep まで</p></div>
+      </div>
+      <div class="card">
+        <div class="card-hd">インクリメンタル検索</div>
+        <div class="card-body" style="padding:0;">
+          <table class="cmd-table">
+            <thead><tr><th>キー</th><th>動作</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>C-s</kbd></td><td class="desc">前方検索を開始</td></tr>
+              <tr><td><kbd>C-r</kbd></td><td class="desc">後方検索を開始</td></tr>
+              <tr><td><kbd>C-s</kbd> (検索中)</td><td class="desc">次の一致へ</td></tr>
+              <tr><td><kbd>Enter</kbd></td><td class="desc">検索を終了（その場に留まる）</td></tr>
+              <tr><td><kbd>C-g</kbd></td><td class="desc">キャンセル（元の位置に戻る）</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hd">置換</div>
+        <div class="card-body" style="padding:0;">
+          <table class="cmd-table">
+            <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>M-%</kbd></td><td class="desc">対話的置換 — y/n/!/q で1件ずつ確認</td></tr>
+              <tr><td><kbd>M-x replace-string</kbd></td><td class="desc">カーソル以降を一括置換</td></tr>
+              <tr><td><kbd>M-x replace-string-buffer</kbd></td><td class="desc">バッファ全体を一括置換</td></tr>
+              <tr><td><kbd>M-x grep</kbd></td><td class="desc">ディレクトリ内の複数ファイルを横断検索</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="step-section" id="rectangle">
+      <div class="step-header">
+        <div class="step-num">5</div>
+        <div class="step-header-text"><h2>矩形編集</h2><p>列単位の一括編集。コード整形に強力な機能です。</p></div>
+      </div>
+      <div class="note info"><span>💡</span><span>矩形モードでは、マークとカーソルが作る「四角形」の範囲を操作対象にします。複数行の同じ列にある文字をまとめて置換できます。</span></div>
+      <div class="card">
+        <div class="card-hd">矩形操作コマンド</div>
+        <div class="card-body" style="padding:0;">
+          <table class="cmd-table">
+            <thead><tr><th>キー</th><th>動作</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>C-x SPC</kbd></td><td class="desc">矩形マークモードを切り替え</td></tr>
+              <tr><td><kbd>C-x r k</kbd></td><td class="desc">矩形領域を kill（専用 Kill Ring に保存）</td></tr>
+              <tr><td><kbd>C-x r y</kbd></td><td class="desc">矩形をカーソル位置にヤンク</td></tr>
+              <tr><td><kbd>C-x r t</kbd></td><td class="desc">矩形領域を指定文字列で一括置換</td></tr>
+              <tr><td><kbd>C-x r s</kbd></td><td class="desc">矩形をレジスタに保存</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="step-section" id="sidebars">
+      <div class="step-header">
+        <div class="step-num">6</div>
+        <div class="step-header-text"><h2>サイドバー機能</h2><p>Emacsライクな操作を視覚化するサイドバースイート</p></div>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-hd"><span class="cd" style="background:var(--blue-hi)"></span>ファイラ — C-x d</div>
+          <div class="card-body"><p>ファイルエクスプローラ。<kbd>l</kbd>/<kbd>Right</kbd> でプレビュー。<kbd>r</kbd> でドライブルートへ。</p></div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><span class="cd" style="background:var(--green)"></span>アウトライン — C-c o</div>
+          <div class="card-body"><p>Markdown・HTMLの見出し階層をリアルタイム表示。最大50,000行対応。</p></div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><span class="cd" style="background:var(--amber)"></span>Kill Ring — C-c y</div>
+          <div class="card-body"><p>削除・コピーの履歴を一覧。選択してヤンク可能。最大60件。</p></div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><span class="cd" style="background:var(--purple)"></span>レジスタ — C-c r</div>
+          <div class="card-body"><p>テキストや位置を永続保存（ローカルストレージ）。セッション間も保持。</p></div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><span class="cd" style="background:#f87171"></span>最近使ったファイル — C-c c</div>
+          <div class="card-body"><p>最近開いたファイルを一覧。<kbd>Space</kbd> でプレビュー。パス表示付き。</p></div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><span class="cd" style="background:#34d399"></span>ワークスペース — C-.</div>
+          <div class="card-body"><p>複数フォルダをまとめて管理。VS Code互換の <code style="font-family:var(--mono);font-size:11px;">.code-workspace</code> に対応。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="step-section" id="mcp">
+      <div class="step-header">
+        <div class="step-num">7</div>
+        <div class="step-header-text"><h2>MCP サーバー設定</h2><p>Claude・Google Antigravity と elecxzy を連携させる</p></div>
+      </div>
+      <div class="note info"><span>🤖</span><span>elecxzy は <strong>MCPサーバー</strong>として動作します。AIが未保存の編集状態を含むバッファを直接読み書きできます。</span></div>
+      <div class="card">
+        <div class="card-hd"><span class="cd" style="background:#ff5f56"></span><span class="cd" style="background:#ffbd2e"></span><span class="cd" style="background:#27c93f"></span>claude_desktop_config.json</div>
+        <div class="code-block"><span style="color:var(--text-3);">{</span>
+  <span class="tk">"mcpServers"</span>: <span style="color:var(--text-3);">{</span>
+    <span class="tk">"elecxzy"</span>: <span style="color:var(--text-3);">{</span>
+      <span class="tk">"command"</span>:
+        <span class="ts">"C:\\Users\\[ユーザー名]\\AppData\\Local\\Programs\\elecxzy\\elecxzy.exe"</span>,
+      <span class="tk">"args"</span>: [
+        <span class="ts">"C:\\Users\\[ユーザー名]\\AppData\\Local\\Programs\\elecxzy\\resources\\app.asar"</span>
+      ],
+      <span class="tk">"env"</span>: {
+        <span class="tk">"ELECXZY_MCP_MODE"</span>: <span class="tv">"true"</span>
+      }
+    }
+  }
+<span style="color:var(--text-3);">}</span></div>
+      </div>
+      <div class="note warn"><span>⚠️</span><span><code style="font-family:var(--mono);font-size:11px;">[ユーザー名]</code> を実際のWindowsユーザー名に置き換えてください。Microsoft Store版と GitHub版でインストールパスが異なる場合があります。</span></div>
+      <div class="card">
+        <div class="card-hd">起動コマンド</div>
+        <div class="card-body"><p>設定後、elecxzy を起動してから <kbd>M-x mcp-start</kbd> または <kbd>C-c m</kbd> でMCPサーバーを開始します。</p></div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="step-section" id="macro">
+      <div class="step-header">
+        <div class="step-num">8</div>
+        <div class="step-header-text"><h2>キーボードマクロ (Beta)</h2><p>繰り返し操作を記録・再生する</p></div>
+      </div>
+      <div class="card">
+        <div class="card-hd">マクロ操作</div>
+        <div class="card-body" style="padding:0;">
+          <table class="cmd-table">
+            <thead><tr><th>キー</th><th>動作</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>C-x (</kbd></td><td class="desc">マクロ記録を開始</td></tr>
+              <tr><td><kbd>C-x )</kbd></td><td class="desc">マクロ記録を終了</td></tr>
+              <tr><td><kbd>C-x e</kbd></td><td class="desc">マクロを1回再生（続けて <kbd>e</kbd> で繰り返し）</td></tr>
+              <tr><td><kbd>C-u 10 C-x e</kbd></td><td class="desc">マクロを10回繰り返し実行</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="note info"><span>💡</span><span>カーソルを基準とした <strong>insert / delete</strong> 操作を記録・再現します。例えば「各行末にカンマを追加する」操作をマクロ化すれば、<kbd>C-u 100 C-x e</kbd> で100行に一括適用できます。</span></div>
+    </div>
+
+    <!-- 9 -->
+    <div class="step-section" id="themes">
+      <div class="step-header">
+        <div class="step-num">9</div>
+        <div class="step-header-text"><h2>テーマ・カスタマイズ</h2><p>見た目と動作を自分好みに調整する</p></div>
+      </div>
+      <div class="card">
+        <div class="card-hd">カラーテーマ</div>
+        <div class="card-body" style="padding:0;">
+          <table class="cmd-table">
+            <thead><tr><th>コマンド</th><th>テーマ</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>M-x dark-theme</kbd></td><td class="desc">Dark — 標準のダークテーマ</td></tr>
+              <tr><td><kbd>M-x light-theme</kbd></td><td class="desc">Light — ライトテーマ</td></tr>
+              <tr><td><kbd>M-x cyber-theme</kbd></td><td class="desc">Cyber — ネオン/近未来スタイル</td></tr>
+              <tr><td><kbd>M-x cute-theme</kbd></td><td class="desc">Cute — パステル/マカロン</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hd">フォント・動作設定</div>
+        <div class="card-body" style="padding:0;">
+          <table class="cmd-table">
+            <thead><tr><th>コマンド</th><th>動作</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>M-x set-default-font</kbd></td><td class="desc">デフォルトフォントを変更</td></tr>
+              <tr><td><kbd>M-x set-font-size</kbd></td><td class="desc">フォントサイズを変更</td></tr>
+              <tr><td><kbd>Ctrl+Wheel</kbd></td><td class="desc">マウスホイールでフォントサイズを拡大/縮小</td></tr>
+              <tr><td><kbd>M-x set-tab-width</kbd></td><td class="desc">タブ幅を変更</td></tr>
+              <tr><td><kbd>M-x set-wrap-column</kbd></td><td class="desc">M-q の折り返し幅（デフォルト: 70）</td></tr>
+              <tr><td><kbd>M-x set-line-terminator</kbd></td><td class="desc">改行コードを設定（CRLF/LF/CR）</td></tr>
+              <tr><td><kbd>C-,</kbd> または <kbd>M-x open-config</kbd></td><td class="desc">設定サイドバーを開く（GUI）</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="note ok"><span>💡</span><span>日本語フォントには <strong>BIZ UDGothic</strong> の使用を推奨します。MS ゴシック・MS 明朝は Canvas API との相性でカーソル位置がずれる場合があります。</span></div>
+    </div>
+
+    <!-- 10: VFX -->
+    <div class="step-section" id="vfx">
+      <div class="step-header">
+        <div class="step-num">10</div>
+        <div class="step-header-text">
+          <h2>カーソル VFX</h2>
+          <p>カーソル移動に動的な視覚エフェクトを追加</p>
+        </div>
+      </div>
+      <div class="note info">
+        <span>ℹ️</span>
+        <span>READMEに記載されているスタイル例: <strong>Light Particle</strong>、<strong>Cyber Trace</strong>、<strong>Kawaii Shower</strong>。詳細な全スタイル名は <kbd>M-x command-list</kbd> でご確認ください。</span>
+      </div>
+      <div class="vfx-grid">
+        <div class="vfx-item vfx-off"><div class="vfx-key">C-c 0</div><div class="vfx-name">VFX OFF</div></div>
+        <div class="vfx-item"><div class="vfx-key">C-c 1</div><div class="vfx-name">Style 1</div></div>
+        <div class="vfx-item"><div class="vfx-key">C-c 2</div><div class="vfx-name">Style 2</div></div>
+        <div class="vfx-item"><div class="vfx-key">C-c 3</div><div class="vfx-name">Style 3</div></div>
+        <div class="vfx-item"><div class="vfx-key">C-c 4</div><div class="vfx-name">Style 4</div></div>
+        <div class="vfx-item"><div class="vfx-key">C-c 5</div><div class="vfx-name">Style 5</div></div>
+        <div class="vfx-item"><div class="vfx-key">C-c 6</div><div class="vfx-name">Style 6</div></div>
+        <div class="vfx-item"><div class="vfx-key">C-c 7</div><div class="vfx-name">Style 7</div></div>
+        <div class="vfx-item"><div class="vfx-key">C-c 8</div><div class="vfx-name">Style 8</div></div>
+        <div class="vfx-item"><div class="vfx-key">C-c 9</div><div class="vfx-name">kawaii</div></div>
+      </div>
+      <div class="note warn"><span>⚠️</span><span>Style 1〜8 の正式名称は COMMANDLIST.md に未記載のため、アプリ内の <kbd>M-x command-list</kbd> または README をご参照ください。<strong>C-c 9 = kawaii</strong> はXポスト（@elecxzy）で確認済みです。</span></div>
+    </div>
+
+    <!-- REFERENCE -->
+    <div class="ref-header">
+      <p>Command Reference</p>
+      <h2>全コマンドリファレンス</h2>
+    </div>
+
+    <div class="step-section" id="ref-movement">
+      <div class="cmd-group">
+        <div class="cmd-group-title">移動</div>
+        <div class="card">
+          <div class="card-body" style="padding:0;">
+            <table class="cmd-table">
+              <thead><tr><th>キー</th><th>動作</th></tr></thead>
+              <tbody>
+                <tr><td><kbd>C-f</kbd> / <kbd>right</kbd></td><td class="desc">1文字前進</td></tr>
+                <tr><td><kbd>C-b</kbd> / <kbd>left</kbd></td><td class="desc">1文字後退</td></tr>
+                <tr><td><kbd>C-n</kbd> / <kbd>down</kbd></td><td class="desc">次行</td></tr>
+                <tr><td><kbd>C-p</kbd> / <kbd>up</kbd></td><td class="desc">前行</td></tr>
+                <tr><td><kbd>C-a</kbd> / <kbd>home</kbd></td><td class="desc">行頭</td></tr>
+                <tr><td><kbd>C-e</kbd> / <kbd>end</kbd></td><td class="desc">行末</td></tr>
+                <tr><td><kbd>M-f</kbd></td><td class="desc">単語単位で前進（Intl.Segmenter 対応）</td></tr>
+                <tr><td><kbd>M-b</kbd></td><td class="desc">単語単位で後退</td></tr>
+                <tr><td><kbd>M-&lt;</kbd></td><td class="desc">バッファ先頭</td></tr>
+                <tr><td><kbd>M-&gt;</kbd></td><td class="desc">バッファ末尾</td></tr>
+                <tr><td><kbd>C-v</kbd></td><td class="desc">1ページ下</td></tr>
+                <tr><td><kbd>M-v</kbd></td><td class="desc">1ページ上</td></tr>
+                <tr><td><kbd>C-l</kbd></td><td class="desc">カーソル行を画面中央に</td></tr>
+                <tr><td><kbd>M-g g</kbd> / <kbd>M-g M-g</kbd></td><td class="desc">指定行番号へジャンプ</td></tr>
+                <tr><td><kbd>M-g c</kbd></td><td class="desc">指定文字位置へジャンプ</td></tr>
+                <tr><td><kbd>C-'</kbd></td><td class="desc">Avy ジャンプ</td></tr>
+                <tr><td><kbd>C-u C-SPC</kbd></td><td class="desc">マークリングを遡ってジャンプ</td></tr>
+                <tr><td><kbd>C-x C-x</kbd></td><td class="desc">カーソルとマークを入れ替え</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-section" id="ref-edit">
+      <div class="cmd-group">
+        <div class="cmd-group-title">編集・Kill Ring</div>
+        <div class="card">
+          <div class="card-body" style="padding:0;">
+            <table class="cmd-table">
+              <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
+              <tbody>
+                <tr><td><kbd>C-d</kbd></td><td class="desc">カーソル位置の文字を削除</td></tr>
+                <tr><td><kbd>C-h</kbd> / <kbd>Backspace</kbd></td><td class="desc">カーソル前の文字を削除</td></tr>
+                <tr><td><kbd>C-k</kbd></td><td class="desc">行末まで kill</td></tr>
+                <tr><td><kbd>M-x kill-whole-line</kbd></td><td class="desc">行全体（改行含む）を kill</td></tr>
+                <tr><td><kbd>C-w</kbd></td><td class="desc">選択範囲を kill</td></tr>
+                <tr><td><kbd>M-w</kbd></td><td class="desc">コピー（選択なしは現在行）</td></tr>
+                <tr><td><kbd>C-y</kbd></td><td class="desc">ヤンク</td></tr>
+                <tr><td><kbd>M-y</kbd></td><td class="desc">ヤンクポップ</td></tr>
+                <tr><td><kbd>M-d</kbd></td><td class="desc">次の単語を kill</td></tr>
+                <tr><td><kbd>M-Backspace</kbd></td><td class="desc">前の単語を kill</td></tr>
+                <tr><td><kbd>C-/</kbd></td><td class="desc">Undo</td></tr>
+                <tr><td><kbd>C-t</kbd></td><td class="desc">前後の文字を入れ替え</td></tr>
+                <tr><td><kbd>M-t</kbd></td><td class="desc">前後の単語を入れ替え</td></tr>
+                <tr><td><kbd>M-u</kbd> / <kbd>M-l</kbd> / <kbd>M-c</kbd></td><td class="desc">大文字 / 小文字 / 先頭大文字に変換</td></tr>
+                <tr><td><kbd>M-q</kbd></td><td class="desc">段落を折り返し整形</td></tr>
+                <tr><td><kbd>M-x auto-fill-mode</kbd></td><td class="desc">自動改行モードを切り替え</td></tr>
+                <tr><td><kbd>M-/</kbd></td><td class="desc">動的単語補完（dabbrev）</td></tr>
+                <tr><td><kbd>C-o</kbd></td><td class="desc">カーソル後に改行を挿入</td></tr>
+                <tr><td><kbd>C-j</kbd></td><td class="desc">改行してインデントを維持</td></tr>
+                <tr><td><kbd>M-^</kbd></td><td class="desc">現在行と次行を結合（CJK対応）</td></tr>
+                <tr><td><kbd>C-c d</kbd></td><td class="desc">現在行を複製</td></tr>
+                <tr><td><kbd>C-x h</kbd></td><td class="desc">バッファ全体を選択</td></tr>
+                <tr><td><kbd>M-x delete-trailing-whitespace</kbd></td><td class="desc">行末空白を一括削除</td></tr>
+                <tr><td><kbd>M-x sort-lines</kbd></td><td class="desc">選択行をソート</td></tr>
+                <tr><td><kbd>M-x count-words-buffer</kbd></td><td class="desc">文字数・単語数・行数を表示</td></tr>
+                <tr><td><kbd>Insert</kbd></td><td class="desc">上書きモード（Overwrite Mode）の切り替え</td></tr>
+                <tr><td><kbd>C-\</kbd></td><td class="desc">IME 無効化 / トグル</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-section" id="ref-window">
+      <div class="cmd-group">
+        <div class="cmd-group-title">ウィンドウ・バッファ</div>
+        <div class="card">
+          <div class="card-body" style="padding:0;">
+            <table class="cmd-table">
+              <thead><tr><th>キー</th><th>動作</th></tr></thead>
+              <tbody>
+                <tr><td><kbd>C-x 2</kbd> / <kbd>C-x 3</kbd></td><td class="desc">上下 / 左右分割</td></tr>
+                <tr><td><kbd>C-x 0</kbd> / <kbd>C-x 1</kbd></td><td class="desc">このウィンドウを閉じる / このみ残す</td></tr>
+                <tr><td><kbd>C-x o</kbd></td><td class="desc">other-window</td></tr>
+                <tr><td><kbd>C-x ^</kbd> / <kbd>C-x -</kbd></td><td class="desc">縦方向に拡大 / 縮小</td></tr>
+                <tr><td><kbd>C-x }</kbd> / <kbd>C-x {</kbd></td><td class="desc">横方向に拡大 / 縮小</td></tr>
+                <tr><td><kbd>C-x +</kbd></td><td class="desc">全ウィンドウサイズを均等化</td></tr>
+                <tr><td><kbd>C-x b</kbd></td><td class="desc">バッファ切り替え</td></tr>
+                <tr><td><kbd>C-x C-b</kbd></td><td class="desc">バッファ一覧</td></tr>
+                <tr><td><kbd>C-x k</kbd></td><td class="desc">バッファを閉じる</td></tr>
+                <tr><td><kbd>C-x C-f</kbd> / <kbd>C-x M-f</kbd></td><td class="desc">ファイルを開く / OSダイアログ</td></tr>
+                <tr><td><kbd>C-x C-s</kbd></td><td class="desc">保存</td></tr>
+                <tr><td><kbd>C-x C-w</kbd> / <kbd>C-x M-w</kbd></td><td class="desc">名前を付けて保存 / OSダイアログ</td></tr>
+                <tr><td><kbd>C-x C-r</kbd></td><td class="desc">読み取り専用で開く</td></tr>
+                <tr><td><kbd>C-x C-q</kbd></td><td class="desc">読み取り専用モードの切り替え</td></tr>
+                <tr><td><kbd>C-x i</kbd></td><td class="desc">カーソル位置にファイルを挿入</td></tr>
+                <tr><td><kbd>M-x shell</kbd></td><td class="desc">シェルバッファを開く（cmd.exe）</td></tr>
+                <tr><td><kbd>C-x C-c</kbd></td><td class="desc">アプリを終了</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-section" id="ref-rectangle">
+      <div class="cmd-group">
+        <div class="cmd-group-title">矩形操作</div>
+        <div class="card">
+          <div class="card-body" style="padding:0;">
+            <table class="cmd-table">
+              <thead><tr><th>キー</th><th>動作</th></tr></thead>
+              <tbody>
+                <tr><td><kbd>C-x SPC</kbd></td><td class="desc">矩形マークモードを切り替え</td></tr>
+                <tr><td><kbd>C-x r k</kbd></td><td class="desc">矩形を kill</td></tr>
+                <tr><td><kbd>C-x r y</kbd></td><td class="desc">矩形をヤンク</td></tr>
+                <tr><td><kbd>C-x r t</kbd></td><td class="desc">矩形を指定文字列で一括置換</td></tr>
+                <tr><td><kbd>C-x r s</kbd></td><td class="desc">選択範囲をレジスタに保存</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-section" id="ref-register">
+      <div class="cmd-group">
+        <div class="cmd-group-title">レジスタ</div>
+        <div class="card">
+          <div class="card-body" style="padding:0;">
+            <table class="cmd-table">
+              <thead><tr><th>キー</th><th>動作</th></tr></thead>
+              <tbody>
+                <tr><td><kbd>C-x r s</kbd></td><td class="desc">選択範囲をレジスタに保存</td></tr>
+                <tr><td><kbd>C-x r i</kbd></td><td class="desc">レジスタの内容を挿入</td></tr>
+                <tr><td><kbd>C-x r SPC</kbd></td><td class="desc">現在のカーソル位置をレジスタに保存</td></tr>
+                <tr><td><kbd>C-x r j</kbd></td><td class="desc">レジスタに保存した位置へジャンプ</td></tr>
+                <tr><td><kbd>C-c r</kbd></td><td class="desc">レジスタサイドバーを開く</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-section" id="ref-search">
+      <div class="cmd-group">
+        <div class="cmd-group-title">検索・置換</div>
+        <div class="card">
+          <div class="card-body" style="padding:0;">
+            <table class="cmd-table">
+              <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
+              <tbody>
+                <tr><td><kbd>C-s</kbd></td><td class="desc">前方インクリメンタル検索</td></tr>
+                <tr><td><kbd>C-r</kbd></td><td class="desc">後方インクリメンタル検索</td></tr>
+                <tr><td><kbd>M-%</kbd></td><td class="desc">対話的置換（y/n/!/q）</td></tr>
+                <tr><td><kbd>M-x replace-string</kbd></td><td class="desc">カーソル以降を一括置換</td></tr>
+                <tr><td><kbd>M-x replace-string-buffer</kbd></td><td class="desc">バッファ全体を一括置換</td></tr>
+                <tr><td><kbd>M-x replace-string-region</kbd></td><td class="desc">選択範囲を一括置換</td></tr>
+                <tr><td><kbd>M-x grep</kbd></td><td class="desc">ディレクトリ横断検索</td></tr>
+                <tr><td><kbd>M-x set-case-sensitive-search</kbd></td><td class="desc">大文字小文字の区別を設定</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-section" id="ref-mode">
+      <div class="cmd-group">
+        <div class="cmd-group-title">メジャーモード（シンタックスハイライト）</div>
+        <div class="card">
+          <div class="card-body">
+            <p style="margin-bottom:14px;">拡張子から自動判別。手動切り替えは <kbd>M-x set-highlight-mode</kbd> または各モードコマンド。</p>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <span class="chip">C / C++ / C#</span><span class="chip">Dart / Go</span>
+              <span class="chip">Java / Kotlin</span><span class="chip">JavaScript / TypeScript</span>
+              <span class="chip">JSON / YAML / TOML</span><span class="chip">Lua / Perl / PHP</span>
+              <span class="chip">Python / Ruby / Rust</span><span class="chip">SQL / Swift</span>
+              <span class="chip">Bash / Shell</span>
+              <span class="chip">HTML / CSS / XML / SVG</span>
+              <span class="chip">Markdown / Text / Fundamental</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="step-section" id="faq">
+      <div class="step-header">
+        <div class="step-num" style="background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.2);color:var(--purple);">?</div>
+        <div class="step-header-text"><h2>FAQ</h2></div>
+      </div>
+      <div class="card" style="margin-bottom:8px;">
+        <div class="card-body">
+          <p style="color:#fff;font-size:14px;font-weight:500;margin-bottom:6px;">右端での折り返し表示はできますか？</p>
+          <p>現時点では動的な折り返し（ソフトラップ）には対応していません。<kbd>M-q</kbd>（fill-paragraph）によるハードラップ、または <kbd>M-x auto-fill-mode</kbd> による自動改行をご利用ください。</p>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:8px;">
+        <div class="card-body">
+          <p style="color:#fff;font-size:14px;font-weight:500;margin-bottom:6px;">チルトホイールで水平スクロールできません。</p>
+          <p>Logi Options などのマウスユーティリティが水平スクロール信号をブロックしている場合があります。<strong style="color:#e2e8f0;">Shift + ホイール回転</strong>で水平スクロールが可能です。</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <p style="color:#fff;font-size:14px;font-weight:500;margin-bottom:6px;">MS ゴシックでカーソル位置がずれます。</p>
+          <p>古いフォントのビットマップ仕様と Canvas API の文字幅計測の競合です。<strong style="color:#e2e8f0;">BIZ UDGothic</strong> などのモダンな等幅フォントを推奨します。</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <span class="footer-logo">elec<em>xzy</em></span>
+    <div class="footer-links">
+      <a href="index.html">トップ</a>
+      <a href="https://github.com/kurouna/elecxzy">GitHub</a>
+      <a href="https://github.com/kurouna/elecxzy/releases">Releases</a>
+      <a href="https://zenn.dev/kurouna">Zenn</a>
+      <a href="https://x.com/elecxzy">X</a>
+    </div>
+    <span style="font-size:12px;color:var(--text-3);">© 2026 kurouna — MIT License</span>
+  </footer>
+</div>
+
+<script>
+const sections=document.querySelectorAll('.step-section[id]');
+const links=document.querySelectorAll('.sb-link[href^="#"]');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const id=e.target.id;
+      links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+id));
+    }
+  });
+},{rootMargin:'-20% 0px -70% 0px'});
+sections.forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
