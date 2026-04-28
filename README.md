@@ -96,7 +96,8 @@ Add the following to your `claude_desktop_config.json` or the relevant configura
       "command": "C:\\path\\to\\elecxzy\\elecxzy.exe",
       "args": ["C:\\path\\to\\elecxzy\\resources\\app.asar"],
       "env": {
-        "ELECXZY_MCP_MODE": "true"
+        "ELECXZY_MCP_MODE": "true",
+        "ELECTRON_RUN_AS_NODE": "1"
       }
     }
   }
@@ -110,7 +111,8 @@ Add the following to your `claude_desktop_config.json` or the relevant configura
       "command": "C:\\Users\\...\\AppData\\Local\\Programs\\elecxzy\\elecxzy.exe",
       "args": ["C:\\Users\\...\\AppData\\Local\\Programs\\elecxzy\\resources\\app.asar"],
       "env": {
-        "ELECXZY_MCP_MODE": "true"
+        "ELECXZY_MCP_MODE": "true",
+        "ELECTRON_RUN_AS_NODE": "1"
       }
     }
   }
@@ -215,7 +217,8 @@ Microsoft Store版は、自動更新が提供されます。最新の開発版�
       "command": "C:\\path\\to\\elecxzy\\elecxzy.exe",
       "args": ["C:\\path\\to\\elecxzy\\resources\\app.asar"],
       "env": {
-        "ELECXZY_MCP_MODE": "true"
+        "ELECXZY_MCP_MODE": "true",
+        "ELECTRON_RUN_AS_NODE": "1"
       }
     }
   }
@@ -229,7 +232,8 @@ Microsoft Store版は、自動更新が提供されます。最新の開発版�
       "command": "C:\\Users\\...\\AppData\\Local\\Programs\\elecxzy\\elecxzy.exe",
       "args": ["C:\\Users\\...\\AppData\\Local\\Programs\\elecxzy\\resources\\app.asar"],
       "env": {
-        "ELECXZY_MCP_MODE": "true"
+        "ELECXZY_MCP_MODE": "true",
+        "ELECTRON_RUN_AS_NODE": "1"
       }
     }
   }
