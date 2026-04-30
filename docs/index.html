@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>elecxzy — Emacs-like Editor with MCP Server</title>
-  <meta name="description" content="LispなしでEmacsライクな操作を。内蔵MCPサーバーでAIと繋がるモダンなテキストエディタ。Windows向け、無料。">
-  <meta property="og:title" content="elecxzy — Emacs-like Editor">
+  <title>elecxzy — emacs-like Editor with Modern Web UX & MCP Server</title>
+  <meta name="description" content="Lispなしでemacsライクな操作を。内蔵MCPサーバーでAIと繋がるモダンなテキストエディタ。Windows向け、無料。">
+  <meta property="og:title" content="elecxzy — emacs-like Editor">
   <meta property="og:description" content="LispなしでEmacsライクな操作を。内蔵MCPサーバーでAIと繋がるモダンなテキストエディタ。">
   <meta property="og:image" content="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot1.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1050,8 +1050,16 @@
       margin-right: 8px;
       white-space: nowrap;
     }
-    .copy-btn:hover { color: var(--text-2); border-color: var(--border-hi); }
-    .copy-btn.copied { color: var(--green); border-color: rgba(16,185,129,.3); }
+
+    .copy-btn:hover {
+      color: var(--text-2);
+      border-color: var(--border-hi);
+    }
+
+    .copy-btn.copied {
+      color: var(--green);
+      border-color: rgba(16, 185, 129, .3);
+    }
 
     /* ── Lightbox ── */
     .lightbox-overlay {
@@ -1109,10 +1117,65 @@
     }
 
     /* Clickable images */
-    .feat-big-img img, .ss-item img {
+    .feat-big-img img,
+    .ss-item img {
       cursor: zoom-in;
     }
+
+    /* ── VFX previews ── */
+    .vfx-preview {
+      height: 44px;
+      width: 100%;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      background: #000;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .vfx-preview canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .vfx-grid-idx {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 48px;
+    }
+
+    .vfx-item-idx {
+      padding: 16px 12px;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-1);
+      transition: border-color .2s;
+    }
+
+    .vfx-item-idx:hover {
+      border-color: var(--border-hi);
+    }
+
+    .vfx-key-idx {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--blue-hi);
+      margin-bottom: 4px;
+    }
+
+    .vfx-name-idx {
+      font-size: 11px;
+      color: var(--text-2);
+    }
   </style>
+  <script src="vfx-preview.js"></script>
 </head>
 
 <body>
@@ -1140,19 +1203,21 @@
   <!-- HERO -->
   <section>
     <div class="hero fi">
-      <div class="hero-badge"><span class="dot"></span>Emacs-Inspired & Modern Web UX</div>
+      <div class="hero-badge"><span class="dot"></span>emacs-Inspired & Modern Web UX</div>
       <h1>ウェブ技術で進化する<br>Electronベースの<br><span class="hl">次世代エディタ</span>。</h1>
-      <p class="hero-sub">Electronとモダンなウェブ技術を基盤に構築。<br>Emacsの直感的な操作体系を設定不要で今すぐ体験。</p>
+      <p class="hero-sub">Electronとモダンなウェブ技術を基盤に構築。<br>emacsの直感的な操作体系を設定不要で今すぐ体験。</p>
       <a href="https://apps.microsoft.com/detail/9P32F2WFL69M" class="hero-dl">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
           <path d="M0 0h11.5v11.5H0V0zm12.5 0H24v11.5H12.5V0zM0 12.5h11.5V24H0V12.5zm12.5 0H24V24H12.5V12.5z" />
         </svg>
         今すぐ無料でダウンロード
       </a>
-      <span class="hero-dl-sub">Microsoft Store から自動更新付きで入手 &nbsp;·&nbsp; または <a href="https://github.com/kurouna/elecxzy/releases">GitHub Releases</a>
+      <span class="hero-dl-sub">Microsoft Store から自動更新付きで入手 &nbsp;·&nbsp; または <a
+          href="https://github.com/kurouna/elecxzy/releases">GitHub Releases</a>
         から直接ダウンロード</span>
       <div class="hero-ss-wrap">
-        <video src="https://github.com/user-attachments/assets/ea817cb4-85c9-4225-9425-5c61915823ab" autoplay loop muted playsinline></video>
+        <video src="https://github.com/user-attachments/assets/ea817cb4-85c9-4225-9425-5c61915823ab" autoplay loop muted
+          playsinline></video>
       </div>
     </div>
   </section>
@@ -1207,8 +1272,10 @@
       <div class="feat-tag">日本語対応</div>
       <h2 class="section-h">標準でのIMEサポート。</h2>
       <p class="section-p" style="max-width:100%;">
-        <kbd>C-\</kbd> による IME ON/OFF 切り替えはもちろん、<kbd>M-x</kbd> や <kbd>C-u</kbd> などのプレフィックスキー入力時には自動的に IME をオフにするなど、デフォルト状態での使いやすさにこだわっています。<br><br>
-        また、<code style="font-family:var(--mono);font-size:13px;color:var(--blue-hi);">Intl.Segmenter</code> を活用した日本語処理により、<kbd>M-f</kbd>/<kbd>M-b</kbd> での文節単位の移動や、ポップアップ時の正確な折り返しにも対応しています。
+        <kbd>C-\</kbd> による IME ON/OFF 切り替えはもちろん、<kbd>M-x</kbd> や <kbd>C-u</kbd> などのプレフィックスキー入力時には自動的に IME
+        をオフにするなど、デフォルト状態での使いやすさにこだわっています。<br><br>
+        また、<code style="font-family:var(--mono);font-size:13px;color:var(--blue-hi);">Intl.Segmenter</code>
+        を活用した日本語処理により、<kbd>M-f</kbd>/<kbd>M-b</kbd> での文節単位の移動や、ポップアップ時の正確な折り返しにも対応しています。
       </p>
     </div>
     <div class="feat-big-img">
@@ -1246,7 +1313,8 @@
       </p>
     </div>
     <div class="feat-big-img">
-      <img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot5.png" alt="Avy ジャンプ" loading="lazy">
+      <img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot5.png" alt="Avy ジャンプ"
+        loading="lazy">
     </div>
   </div>
 
@@ -1260,11 +1328,15 @@
       <p class="section-p" style="max-width:100%;">
         Light Particle や Cyber Trace など、9種類の視覚エフェクトを搭載。タイピングの体験をより楽しく演出します。
       </p>
-      <a href="tutorial.html#vfx" style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:13px;color:var(--blue-hi);">VFX設定の詳細を見る →</a>
+      <a href="tutorial.html#vfx"
+        style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:13px;color:var(--blue-hi);">VFX設定の詳細を見る
+        →</a>
     </div>
     <div class="feat-big-img" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-      <img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot12.png" alt="VFX 1" loading="lazy">
-      <img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot13.png" alt="VFX 2" loading="lazy">
+      <img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot12.png" alt="VFX 1"
+        loading="lazy">
+      <img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot13.png" alt="VFX 2"
+        loading="lazy">
     </div>
   </div>
 
@@ -1278,10 +1350,13 @@
       <p class="section-p" style="max-width:100%;">
         複数フォルダを1つのウィンドウで管理。フォルダツリーから素早くファイルにアクセスできます。
       </p>
-      <a href="tutorial.html#ref-workspace" style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:13px;color:var(--blue-hi);">ワークスペースの詳細を見る →</a>
+      <a href="tutorial.html#ref-workspace"
+        style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:13px;color:var(--blue-hi);">ワークスペースの詳細を見る
+        →</a>
     </div>
     <div class="feat-big-img">
-      <img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot14.png" alt="ワークスペース" loading="lazy">
+      <img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot14.png" alt="ワークスペース"
+        loading="lazy">
     </div>
   </div>
 
@@ -1420,7 +1495,63 @@
 
   <div class="divider"></div>
 
-  <!-- THEMES -->
+  <!-- CURSOR VFX -->
+  <section class="section">
+    <div class="section-inner fi">
+      <p class="tag">Visual Effects</p>
+      <h2 class="section-h">カーソル VFX</h2>
+      <p class="section-p">タイピングを彩る9種類の視覚効果。<kbd>C-c 1〜9</kbd> で瞬時に切り替え可能です。</p>
+      <div class="vfx-grid-idx">
+        <div class="vfx-item-idx">
+          <div class="vfx-preview" data-vfx="1"></div>
+          <div class="vfx-key-idx">C-c 1</div>
+          <div class="vfx-name-idx">Light Particle</div>
+        </div>
+        <div class="vfx-item-idx">
+          <div class="vfx-preview" data-vfx="2"></div>
+          <div class="vfx-key-idx">C-c 2</div>
+          <div class="vfx-name-idx">Cyber Trace</div>
+        </div>
+        <div class="vfx-item-idx">
+          <div class="vfx-preview" data-vfx="3"></div>
+          <div class="vfx-key-idx">C-c 3</div>
+          <div class="vfx-name-idx">Prismatic Nova</div>
+        </div>
+        <div class="vfx-item-idx">
+          <div class="vfx-preview" data-vfx="4"></div>
+          <div class="vfx-key-idx">C-c 4</div>
+          <div class="vfx-name-idx">Arcane Sigil</div>
+        </div>
+        <div class="vfx-item-idx">
+          <div class="vfx-preview" data-vfx="5"></div>
+          <div class="vfx-key-idx">C-c 5</div>
+          <div class="vfx-name-idx">Inferno Flame</div>
+        </div>
+        <div class="vfx-item-idx">
+          <div class="vfx-preview" data-vfx="6"></div>
+          <div class="vfx-key-idx">C-c 6</div>
+          <div class="vfx-name-idx">Phantom Merge</div>
+        </div>
+        <div class="vfx-item-idx">
+          <div class="vfx-preview" data-vfx="7"></div>
+          <div class="vfx-key-idx">C-c 7</div>
+          <div class="vfx-name-idx">Rubber Slime</div>
+        </div>
+        <div class="vfx-item-idx">
+          <div class="vfx-preview" data-vfx="8"></div>
+          <div class="vfx-key-idx">C-c 8</div>
+          <div class="vfx-name-idx">Quantum Tunnel</div>
+        </div>
+        <div class="vfx-item-idx">
+          <div class="vfx-preview" data-vfx="9"></div>
+          <div class="vfx-key-idx">C-c 9</div>
+          <div class="vfx-name-idx">Kawaii Shower</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
   <section class="section">
     <div class="section-inner fi">
       <p class="tag">Themes</p>
@@ -1682,23 +1813,25 @@
           </div>
         </div>
         <div class="mcb-body" id="mcp-body-index"><span style="color:var(--text-3);">{</span>
-  <span class="tk">"mcpServers"</span>: <span style="color:var(--text-3);">{</span>
-    <span class="tk">"elecxzy"</span>: <span style="color:var(--text-3);">{</span>
-      <span class="tk">"command"</span>:
-        <span class="ts">"C:\\...\\elecxzy.exe"</span>,
-      <span class="tk">"args"</span>: [
-        <span class="ts">"C:\\...\\app.asar"</span>
-      ],
-      <span class="tk">"env"</span>: {
-        <span class="tk">"ELECXZY_MCP_MODE"</span>: <span class="tv">"true"</span>,
-        <span class="tk">"ELECTRON_RUN_AS_NODE"</span>: <span class="tv">"1"</span>
-      }
-    }
-  }
-<span style="color:var(--text-3);">}</span></div>
+          <span class="tk">"mcpServers"</span>: <span style="color:var(--text-3);">{</span>
+          <span class="tk">"elecxzy"</span>: <span style="color:var(--text-3);">{</span>
+          <span class="tk">"command"</span>:
+          <span class="ts">"C:\\...\\elecxzy.exe"</span>,
+          <span class="tk">"args"</span>: [
+          <span class="ts">"C:\\...\\app.asar"</span>
+          ],
+          <span class="tk">"env"</span>: {
+          <span class="tk">"ELECXZY_MCP_MODE"</span>: <span class="tv">"true"</span>,
+          <span class="tk">"ELECTRON_RUN_AS_NODE"</span>: <span class="tv">"1"</span>
+          }
+          }
+          }
+          <span style="color:var(--text-3);">}</span>
+        </div>
       </div>
       <div class="mcp-note">
-        💡 <kbd>M-x mcp-start</kbd> でサーバーを起動、<kbd>C-c m</kbd> / <kbd>M-x mcp-toggle</kbd> で起動/停止を切り替えます。設定後はAIがバッファの内容をリアルタイムで参照できます。
+        💡 <kbd>M-x mcp-start</kbd> でサーバーを起動、<kbd>C-c m</kbd> / <kbd>M-x mcp-toggle</kbd>
+        で起動/停止を切り替えます。設定後はAIがバッファの内容をリアルタイムで参照できます。
       </div>
     </div>
   </div>
@@ -1772,7 +1905,8 @@
       <a href="https://x.com/elecxzy">X (Twitter)</a>
     </div>
     <span class="footer-copy">© 2026 kurouna — MIT License</span>
-    <div style="width:100%; text-align:center; margin-top:24px; font-size:11px; color:var(--text-3); font-family:var(--mono); opacity:0.6;">
+    <div
+      style="width:100%; text-align:center; margin-top:24px; font-size:11px; color:var(--text-3); font-family:var(--mono); opacity:0.6;">
       ✨ Portions of this page were generated with AI assistance.
     </div>
   </footer>
