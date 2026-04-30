@@ -91,9 +91,11 @@ img{display:block;max-width:100%;}
 
 /* ── Search Bar ── */
 .tb-search-wrap{flex-grow:1;max-width:320px;position:relative;margin:0 20px;}
-.tb-search{width:100%;background:var(--bg-1);border:1px solid var(--border);border-radius:6px;padding:6px 12px 6px 32px;color:#fff;font-size:13px;outline:none;transition:border-color .15s;}
+.tb-search{width:100%;background:var(--bg-1);border:1px solid var(--border);border-radius:6px;padding:6px 32px 6px 32px;color:#fff;font-size:13px;outline:none;transition:border-color .15s;}
 .tb-search:focus{border-color:var(--blue-hi);}
 .tb-search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-3);pointer-events:none;}
+.tb-search-clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);color:var(--text-3);cursor:pointer;display:none;background:none;border:none;padding:4px;transition:color .15s;align-items:center;justify-content:center;}
+.tb-search-clear:hover{color:#fff;}
 
 /* ── Doc Hero ── */
 .doc-hero{
@@ -319,6 +321,9 @@ footer{
     <div class="tb-search-wrap">
       <svg class="tb-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
       <input type="text" id="command-search" class="tb-search" placeholder="コマンド検索 (例: kill, save)...">
+      <button id="search-clear" class="tb-search-clear" aria-label="検索をクリア">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
     </div>
     <a href="https://apps.microsoft.com/detail/9P32F2WFL69M" class="tb-btn">ダウンロード</a>
   </div>
@@ -1487,10 +1492,11 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
 
 // ── Command search ──
 const searchInput = document.getElementById('command-search');
+const searchClear = document.getElementById('search-clear');
 const docHero     = document.getElementById('intro');
 
-searchInput.addEventListener('input', (e) => {
-  const q = e.target.value.toLowerCase();
+function doSearch(q) {
+  if (searchClear) searchClear.style.display = q === '' ? 'none' : 'flex';
   
   // Toggle hero visibility based on search activity
   if (docHero) {
@@ -1498,6 +1504,11 @@ searchInput.addEventListener('input', (e) => {
   }
 
   document.querySelectorAll('.cmd-table tbody tr').forEach(tr => {
+    // Exclude "Quick Reference" from search results to avoid duplication
+    if (tr.closest('#ref-quickref')) {
+      tr.style.display = q === '' ? '' : 'none';
+      return;
+    }
     const text = tr.textContent.toLowerCase();
     tr.style.display = text.includes(q) ? '' : 'none';
   });
@@ -1521,7 +1532,19 @@ searchInput.addEventListener('input', (e) => {
       container.style.display = '';
     }
   });
+}
+
+searchInput.addEventListener('input', (e) => {
+  doSearch(e.target.value.toLowerCase());
 });
+
+if (searchClear) {
+  searchClear.addEventListener('click', () => {
+    searchInput.value = '';
+    doSearch('');
+    searchInput.focus();
+  });
+}
 </script>
 </body>
 </html>
