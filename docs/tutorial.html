@@ -38,7 +38,7 @@ img{display:block;max-width:100%;}
   --purple:    #8b5cf6;
   --mono:      'JetBrains Mono',monospace;
   --sidebar:   240px;
-  --r:         6px;
+  --r:         8px;
 }
 
 /* ── Sidebar ── */
@@ -89,6 +89,12 @@ img{display:block;max-width:100%;}
 .tb-btn:hover{opacity:0.85;}
 .content{padding:48px 40px 80px;max-width:860px;}
 
+/* ── Search Bar ── */
+.tb-search-wrap{flex-grow:1;max-width:320px;position:relative;margin:0 20px;}
+.tb-search{width:100%;background:var(--bg-1);border:1px solid var(--border);border-radius:6px;padding:6px 12px 6px 32px;color:#fff;font-size:13px;outline:none;transition:border-color .15s;}
+.tb-search:focus{border-color:var(--blue-hi);}
+.tb-search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-3);pointer-events:none;}
+
 /* ── Doc Hero ── */
 .doc-hero{
   padding:32px 36px;border-radius:10px;
@@ -111,7 +117,7 @@ img{display:block;max-width:100%;}
 }
 
 /* ── Step ── */
-.step-section{margin-bottom:56px;scroll-margin-top:60px;}
+.step-section{margin-bottom:56px;scroll-margin-top:80px;}
 .step-header{
   display:flex;align-items:flex-start;gap:14px;
   margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border);
@@ -216,12 +222,30 @@ footer{
 .footer-links a{font-size:12px;color:var(--text-3);transition:color .15s;}
 .footer-links a:hover{color:var(--text-2);}
 
+/* ── Hamburger / Overlay ── */
+#sb-toggle{display:none;background:none;border:none;color:var(--text-2);cursor:pointer;padding:6px;border-radius:var(--r);transition:background .15s;}
+#sb-toggle:hover{background:rgba(255,255,255,.06);}
+#sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:90;backdrop-filter:blur(2px);}
+#sb-overlay.active{display:block;}
+
+/* ── Copy Button ── */
+.copy-btn{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:4px;border:1px solid var(--border);background:transparent;color:var(--text-3);font-size:11px;font-family:var(--mono);cursor:pointer;transition:all .15s;margin-left:auto;margin-right:8px;white-space:nowrap;}
+.copy-btn:hover{color:var(--text-2);border-color:var(--border-hi);}
+.copy-btn.copied{color:var(--green);border-color:rgba(16,185,129,.3);}
+
+/* ── Quick-ref grid ── */
+.qr-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
+.qr-col{background:var(--bg-1);}
+
 @media(max-width:860px){
-  .sidebar{display:none;}
+  #sb-toggle{display:flex;align-items:center;}
+  .sidebar{display:none;position:fixed;z-index:100;box-shadow:4px 0 24px rgba(0,0,0,.6);}
+  .sidebar.sb-open{display:block;}
   .main{margin-left:0;}
   .content{padding:24px 20px 60px;max-width:100%;}
   .two-col{grid-template-columns:1fr;}
   .vfx-grid{grid-template-columns:repeat(3,1fr);}
+  .qr-grid{grid-template-columns:1fr;}
   footer{padding:20px;flex-direction:column;text-align:center;}
 }
 </style>
@@ -237,7 +261,7 @@ footer{
   <a href="#intro" class="sb-link active"><span class="sb-num">—</span>概要</a>
   <div class="sb-section">チュートリアル</div>
   <a href="#install" class="sb-link"><span class="sb-num">1</span>インストール</a>
-  <a href="#basics" class="sb-link"><span class="sb-num">2</span>基本操作・Kill Ring</a>
+  <a href="#basics" class="sb-link"><span class="sb-num">2</span>基本操作・キルリング</a>
   <a href="#buffers" class="sb-link"><span class="sb-num">3</span>バッファ・ウィンドウ</a>
   <a href="#search" class="sb-link"><span class="sb-num">4</span>検索・置換</a>
   <a href="#rectangle" class="sb-link"><span class="sb-num">5</span>矩形編集</a>
@@ -247,6 +271,7 @@ footer{
   <a href="#themes" class="sb-link"><span class="sb-num">9</span>テーマ・カスタマイズ</a>
   <a href="#vfx" class="sb-link"><span class="sb-num">10</span>カーソル VFX</a>
       <div class="sb-section">リファレンス</div>
+  <a href="#ref-quickref" class="sb-link"><span class="sb-num">—</span>よく使うキー早見表</a>
   <a href="#ref-help" class="sb-link"><span class="sb-num">—</span>ヘルプ・情報</a>
   <a href="#ref-file" class="sb-link"><span class="sb-num">—</span>ファイル</a>
   <a href="#ref-movement" class="sb-link"><span class="sb-num">—</span>カーソル移動</a>
@@ -256,12 +281,12 @@ footer{
   <a href="#ref-rectangle" class="sb-link"><span class="sb-num">—</span>矩形</a>
   <a href="#ref-search" class="sb-link"><span class="sb-num">—</span>検索</a>
   <a href="#ref-window" class="sb-link"><span class="sb-num">—</span>ウィンドウ・バッファ</a>
-  <a href="#ref-file" class="sb-link"><span class="sb-num">—</span>ファイラ</a>
+  <a href="#ref-filer" class="sb-link"><span class="sb-num">—</span>ファイラ</a>
   <a href="#ref-workspace" class="sb-link"><span class="sb-num">—</span>ワークスペース</a>
-  <a href="#ref-file" class="sb-link"><span class="sb-num">—</span>最近使ったファイル</a>
+  <a href="#ref-recentfiles" class="sb-link"><span class="sb-num">—</span>最近使ったファイル</a>
   <a href="#ref-outline" class="sb-link"><span class="sb-num">—</span>アウトライン</a>
   <a href="#ref-killring-sb" class="sb-link"><span class="sb-num">—</span>キルリング</a>
-  <a href="#ref-register" class="sb-link"><span class="sb-num">—</span>レジスタ</a>
+  <a href="#ref-register-sidebar" class="sb-link"><span class="sb-num">—</span>レジスタ サイドバー</a>
   <a href="#ref-preview" class="sb-link"><span class="sb-num">—</span>プレビュー・Web</a>
   <a href="#ref-mode" class="sb-link"><span class="sb-num">—</span>メジャーモード</a>
   <a href="#ref-settings" class="sb-link"><span class="sb-num">—</span>設定</a>
@@ -274,9 +299,17 @@ footer{
 
 <div class="main">
   <div class="topbar">
+    <button id="sb-toggle" aria-label="メニュー">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    </button>
     <span class="tb-title">ドキュメント</span>
+    <div class="tb-search-wrap">
+      <svg class="tb-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="command-search" class="tb-search" placeholder="コマンド検索 (例: kill, save)...">
+    </div>
     <a href="https://apps.microsoft.com/detail/9P32F2WFL69M" class="tb-btn">ダウンロード</a>
   </div>
+  <div id="sb-overlay"></div>
 
   <div class="content" style="padding-top:32px;">
 
@@ -323,7 +356,7 @@ footer{
     <div class="step-section" id="basics">
       <div class="step-header">
         <div class="step-num">2</div>
-        <div class="step-header-text"><h2>基本操作・Kill Ring</h2><p>カーソル移動と Emacsライクな中核概念「Kill Ring」</p></div>
+        <div class="step-header-text"><h2>基本操作・キルリング</h2><p>カーソル移動と Emacsライクな中核概念「キルリング」</p></div>
       </div>
       <div class="card">
         <div class="card-hd"><span class="cd" style="background:var(--blue-hi)"></span>カーソル移動</div>
@@ -346,20 +379,20 @@ footer{
         </div>
       </div>
       <div class="card">
-        <div class="card-hd"><span class="cd" style="background:var(--green)"></span>Kill Ring</div>
-        <div class="card-body"><p>削除・切り取りした内容がすべて「Kill Ring」に蓄積。<kbd>M-y</kbd> でサイクルして過去の内容も取り出せます。</p></div>
+        <div class="card-hd"><span class="cd" style="background:var(--green)"></span>キルリング</div>
+        <div class="card-body"><p>削除・切り取りした内容がすべて「キルリング」に蓄積。<kbd>M-y</kbd> でサイクルして過去の内容も取り出せます。</p></div>
         <div class="card-body" style="padding:0;border-top:1px solid var(--border);">
           <table class="cmd-table">
             <thead><tr><th>キー</th><th>動作</th></tr></thead>
             <tbody>
               <tr><td><kbd>C-SPC</kbd></td><td class="desc">マークをセット</td></tr>
-              <tr><td><kbd>C-w</kbd></td><td class="desc">選択範囲を kill</td></tr>
+              <tr><td><kbd>C-w</kbd></td><td class="desc">選択範囲をキルする</td></tr>
               <tr><td><kbd>M-w</kbd></td><td class="desc">コピー（選択なしの場合は現在行全体）</td></tr>
-              <tr><td><kbd>C-k</kbd></td><td class="desc">カーソルから行末まで kill</td></tr>
-              <tr><td><kbd>M-x kill-whole-line</kbd></td><td class="desc">行全体（改行含む）を kill</td></tr>
+              <tr><td><kbd>C-k</kbd></td><td class="desc">カーソルから行末までキル</td></tr>
+              <tr><td><kbd>M-x kill-whole-line</kbd></td><td class="desc">行全体（改行含む）をキルする</td></tr>
               <tr><td><kbd>C-y</kbd></td><td class="desc">ヤンク</td></tr>
               <tr><td><kbd>M-y</kbd></td><td class="desc">ヤンクポップ</td></tr>
-              <tr><td><kbd>C-c y</kbd></td><td class="desc">Kill Ring サイドバーを開く</td></tr>
+              <tr><td><kbd>C-c y</kbd></td><td class="desc">キルリング サイドバーを開く</td></tr>
             </tbody>
           </table>
         </div>
@@ -372,8 +405,8 @@ footer{
             <tbody>
               <tr><td><kbd>C-/</kbd></td><td class="desc">Undo</td></tr>
               <tr><td><kbd>C-d</kbd></td><td class="desc">カーソル位置の1文字を削除</td></tr>
-              <tr><td><kbd>M-d</kbd></td><td class="desc">次の単語を kill</td></tr>
-              <tr><td><kbd>M-Backspace</kbd></td><td class="desc">前の単語を kill</td></tr>
+              <tr><td><kbd>M-d</kbd></td><td class="desc">次の単語をキルする</td></tr>
+              <tr><td><kbd>M-Backspace</kbd></td><td class="desc">前の単語をキルする</td></tr>
               <tr><td><kbd>C-t</kbd> / <kbd>M-t</kbd></td><td class="desc">前後の文字 / 単語を入れ替え</td></tr>
               <tr><td><kbd>M-u</kbd> / <kbd>M-l</kbd> / <kbd>M-c</kbd></td><td class="desc">大文字 / 小文字 / 先頭大文字に変換</td></tr>
               <tr><td><kbd>M-q</kbd></td><td class="desc">段落を折り返し幅で整形（fill-paragraph）</td></tr>
@@ -429,7 +462,7 @@ footer{
           </div>
         </div>
       </div>
-      <div class="note ok"><span>💡</span><span>PDF・Word（.docx）・Excel（.xlsx）ファイルも開けます。プレーンテキストとして自動インポート（50MB以下）。読み取り専用で開かれるので元ファイルは安全です。</span></div>
+      <div class="note info"><span>💡</span><span>PDF・Word（.docx）・Excel（.xlsx）ファイルも開けます。プレーンテキストとして自動インポート（50MB以下）。読み取り専用で開かれるので元ファイルは安全です。</span></div>
     </div>
 
     <!-- 4 -->
@@ -486,7 +519,7 @@ footer{
             <thead><tr><th>キー</th><th>動作</th></tr></thead>
             <tbody>
               <tr><td><kbd>C-x SPC</kbd></td><td class="desc">矩形マークモードを切り替え</td></tr>
-              <tr><td><kbd>C-x r k</kbd></td><td class="desc">矩形領域を kill（専用 Kill Ring に保存）</td></tr>
+              <tr><td><kbd>C-x r k</kbd></td><td class="desc">矩形領域をキルする（専用 キルリング に保存）</td></tr>
               <tr><td><kbd>C-x r y</kbd></td><td class="desc">矩形をカーソル位置にヤンク</td></tr>
               <tr><td><kbd>C-x r t</kbd></td><td class="desc">矩形領域を指定文字列で一括置換</td></tr>
               <tr><td><kbd>C-x r s</kbd></td><td class="desc">矩形をレジスタに保存</td></tr>
@@ -512,7 +545,7 @@ footer{
           <div class="card-body"><p>Markdown・HTMLの見出し階層をリアルタイム表示。最大50,000行対応。</p></div>
         </div>
         <div class="card">
-          <div class="card-hd"><span class="cd" style="background:var(--amber)"></span>Kill Ring — C-c y</div>
+          <div class="card-hd"><span class="cd" style="background:var(--amber)"></span>キルリング — C-c y</div>
           <div class="card-body"><p>削除・コピーの履歴を一覧。選択してヤンク可能。</p></div>
         </div>
         <div class="card">
@@ -540,13 +573,14 @@ footer{
       <div class="card">
         <div class="card-hd" style="padding-right:0;">
           <span>claude_desktop_config.json</span>
+          <button class="copy-btn" data-target="mcp-body-tutorial">コピー</button>
           <div class="win-controls">
             <div class="win-btn"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M0,5.5h12v1H0z" fill="currentColor"/></svg></div>
             <div class="win-btn"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M1,1h10v10H1V1z M2,2v8h8V2H2z" fill="currentColor"/></svg></div>
             <div class="win-btn close"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M1,2l1,-1l4,4l4,-4l1,1l-4,4l4,4l-1,1l-4,-4l-4,4l-1,-1l4,-4Z" fill="currentColor"/></svg></div>
           </div>
         </div>
-        <div class="code-block" style="margin:0;border:none;border-top:1px solid var(--border);border-radius:0 0 8px 8px;"><span style="color:var(--text-3);">{</span>
+        <div class="code-block" id="mcp-body-tutorial" style="margin:0;border:none;border-top:1px solid var(--border);border-radius:0 0 8px 8px;"><span style="color:var(--text-3);">{</span>
   <span class="tk">"mcpServers"</span>: <span style="color:var(--text-3);">{</span>
     <span class="tk">"elecxzy"</span>: <span style="color:var(--text-3);">{</span>
       <span class="tk">"command"</span>:
@@ -603,6 +637,7 @@ footer{
           <table class="cmd-table">
             <thead><tr><th>コマンド</th><th>テーマ</th></tr></thead>
             <tbody>
+              <tr><td><kbd>M-x default-theme</kbd></td><td class="desc">Default — デフォルトテーマ（水色）</td></tr>
               <tr><td><kbd>M-x dark-theme</kbd></td><td class="desc">Dark — 標準のダークテーマ</td></tr>
               <tr><td><kbd>M-x light-theme</kbd></td><td class="desc">Light — ライトテーマ</td></tr>
               <tr><td><kbd>M-x cyber-theme</kbd></td><td class="desc">Cyber — ネオン/近未来スタイル</td></tr>
@@ -640,10 +675,6 @@ footer{
           <p>カーソル移動に動的な視覚エフェクトを追加</p>
         </div>
       </div>
-      <div class="note info">
-        <span>ℹ️</span>
-        <span>READMEに記載されているスタイル例: <strong>Light Particle</strong>、<strong>Cyber Trace</strong>、<strong>Kawaii Shower</strong>。詳細な全スタイル名は <kbd>M-x command-list</kbd> でご確認ください。</span>
-      </div>
       <div class="vfx-grid">
         <div class="vfx-item vfx-off"><div class="vfx-key">C-c 0</div><div class="vfx-name">Off</div></div>
         <div class="vfx-item"><div class="vfx-key">C-c 1</div><div class="vfx-name">Light Particle</div></div>
@@ -662,6 +693,42 @@ footer{
             <div class="ref-header" id="reference">
       <p>Command Reference</p>
       <h2>全コマンドリファレンス</h2>
+    </div>
+
+    <div class="card" id="ref-quickref" style="margin-bottom:32px;scroll-margin-top:80px;">
+      <div class="card-hd"><span class="cd" style="background:var(--amber)"></span>よく使うキー早見表</div>
+      <div class="qr-grid">
+        <div class="qr-col">
+          <table class="cmd-table">
+            <tbody>
+              <tr><td><kbd>C-x C-f</kbd></td><td class="desc">ファイルを開く</td></tr>
+              <tr><td><kbd>C-x C-w</kbd></td><td class="desc">名前を付けて保存</td></tr>
+              <tr><td><kbd>C-x C-c</kbd></td><td class="desc">アプリを終了</td></tr>
+              <tr><td><kbd>C-k</kbd></td><td class="desc">カーソル位置から行末までキル</td></tr>
+              <tr><td><kbd>C-y</kbd></td><td class="desc">ヤンク（貼り付け）</td></tr>
+              <tr><td><kbd>C-s</kbd> / <kbd>C-r</kbd></td><td class="desc">インクリメンタル検索 / 逆検索</td></tr>
+              <tr><td><kbd>M-%</kbd></td><td class="desc">対話的置換</td></tr>
+              <tr><td><kbd>C-'</kbd></td><td class="desc">Avy ジャンプ（ラベルで即移動）</td></tr>
+              <tr><td><kbd>C-;</kbd></td><td class="desc">行展開ポップアップ</td></tr>
+              <tr><td><kbd>M-x grep</kbd></td><td class="desc">ディレクトリ横断検索</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="qr-col">
+          <table class="cmd-table">
+            <tbody>
+              <tr><td><kbd>C-x 2</kbd> / <kbd>C-x 3</kbd></td><td class="desc">ウィンドウ 上下 / 左右分割</td></tr>
+              <tr><td><kbd>C-x 1</kbd></td><td class="desc">他のウィンドウを閉じる</td></tr>
+              <tr><td><kbd>C-x o</kbd></td><td class="desc">次のウィンドウへ移動</td></tr>
+              <tr><td><kbd>C-x k</kbd></td><td class="desc">バッファを閉じる</td></tr>
+              <tr><td><kbd>C-c v</kbd></td><td class="desc">Markdown / HTML プレビュー</td></tr>
+              <tr><td><kbd>C-x SPC</kbd></td><td class="desc">矩形マークモード</td></tr>
+              <tr><td><kbd>C-c m</kbd></td><td class="desc">MCP サーバー 起動/停止</td></tr>
+              <tr><td><kbd>M-x</kbd></td><td class="desc">コマンド実行（補完付き）</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
     <div class="step-section" id="ref-help">
@@ -756,19 +823,19 @@ footer{
               <tbody>
                 <tr><td><kbd>C-d</kbd></td><td class="desc">カーソル位置の文字を削除します</td></tr>
                 <tr><td><kbd>C-h</kbd> / <kbd>backspace</kbd></td><td class="desc">カーソルの前の文字を削除します</td></tr>
-                <tr><td><kbd>C-k</kbd></td><td class="desc">行末まで削除（キル）します（`C-u n` で回数指定が可能）</td></tr>
-                <tr><td><kbd>C-w</kbd></td><td class="desc">選択範囲を削除（キル）します</td></tr>
+                <tr><td><kbd>C-k</kbd></td><td class="desc">行末までキルします（`C-u n` で回数指定が可能）</td></tr>
+                <tr><td><kbd>C-w</kbd></td><td class="desc">選択範囲をキルします</td></tr>
                 <tr><td><kbd>M-w</kbd></td><td class="desc">選択範囲（または現在行）をコピーします</td></tr>
                 <tr><td><kbd>C-y</kbd></td><td class="desc">キルリングから貼り付け（ヤンク）します（`C-u n` で回数指定が可能）</td></tr>
                 <tr><td><kbd>M-y</kbd></td><td class="desc">キルリングを遡って貼り付けます</td></tr>
-                <tr><td><kbd>M-x kill-whole-line</kbd></td><td class="desc">行全体（改行を含む）を削除（キル）します</td></tr>
-                <tr><td><kbd>M-d</kbd></td><td class="desc">次の単語を削除（キル）します</td></tr>
-                <tr><td><kbd>M-k</kbd></td><td class="desc">文末（句読点や行末）まで削除（キル）します</td></tr>
+                <tr><td><kbd>M-x kill-whole-line</kbd></td><td class="desc">行全体（改行を含む）をキルします</td></tr>
+                <tr><td><kbd>M-d</kbd></td><td class="desc">次の単語をキルします</td></tr>
+                <tr><td><kbd>M-k</kbd></td><td class="desc">文末（句読点や行末）までキルします</td></tr>
                 <tr><td><kbd>C-c C-k</kbd></td><td class="desc">行末（または改行）までを消さずに保存します（オリジナル）</td></tr>
                 <tr><td><kbd>M-u</kbd></td><td class="desc">単語を大文字にします</td></tr>
                 <tr><td><kbd>M-l</kbd></td><td class="desc">単語を小文字にします</td></tr>
                 <tr><td><kbd>M-c</kbd></td><td class="desc">単語の先頭を大文字にします</td></tr>
-                <tr><td><kbd>M-backspace</kbd></td><td class="desc">前の単語を削除（キル）します</td></tr>
+                <tr><td><kbd>M-backspace</kbd></td><td class="desc">前の単語をキルします</td></tr>
                 <tr><td><kbd>M-q</kbd></td><td class="desc">段落を折り返し幅に合わせて整形(ハードラップ)します</td></tr>
                 <tr><td><kbd>M-x auto-fill-mode</kbd></td><td class="desc">自動改行モード (Auto Fill Mode) を切り替えます</td></tr>
                 <tr><td><kbd>Insert</kbd> / <kbd>M-x toggle-overwrite-mode</kbd></td><td class="desc">上書きモード (Overwrite Mode) を切り替えます</td></tr>
@@ -856,7 +923,7 @@ footer{
               <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
               <tbody>
                 <tr><td><kbd>C-x SPC</kbd></td><td class="desc">矩形選択モードを切り替えます</td></tr>
-                <tr><td><kbd>C-x r k</kbd></td><td class="desc">マークとカーソル間の矩形領域を削除（キル）します</td></tr>
+                <tr><td><kbd>C-x r k</kbd></td><td class="desc">マークとカーソル間の矩形領域をキルします</td></tr>
                 <tr><td><kbd>C-x r y</kbd></td><td class="desc">キルした矩形をカーソル位置にヤンク（貼り付け）します</td></tr>
                 <tr><td><kbd>C-x r t</kbd></td><td class="desc">矩形領域の内容を指定した文字列で置換します</td></tr>
               </tbody>
@@ -912,7 +979,7 @@ footer{
         </div>
       </div>
     </div>
-    <div class="step-section" id="ref-file">
+    <div class="step-section" id="ref-filer">
       <div class="cmd-group">
         <div class="cmd-group-title">Filer Operations（ファイラ操作）</div>
         <div class="card">
@@ -985,7 +1052,7 @@ footer{
         </div>
       </div>
     </div>
-    <div class="step-section" id="ref-file">
+    <div class="step-section" id="ref-recentfiles">
       <div class="cmd-group">
         <div class="cmd-group-title">Recent Files Sidebar Operations（最近使ったファイル・サイドバー操作）</div>
         <div class="card">
@@ -1037,7 +1104,7 @@ footer{
     </div>
     <div class="step-section" id="ref-killring-sb">
       <div class="cmd-group">
-        <div class="cmd-group-title">Kill Ring Sidebar Operations（キルリング・サイドバー操作）</div>
+        <div class="cmd-group-title">キルリング Sidebar Operations（キルリング・サイドバー操作）</div>
         <div class="card">
           <div class="card-body" style="padding:0;">
             <table class="cmd-table">
@@ -1059,7 +1126,7 @@ footer{
         </div>
       </div>
     </div>
-    <div class="step-section" id="ref-register">
+    <div class="step-section" id="ref-register-sidebar">
       <div class="cmd-group">
         <div class="cmd-group-title">Register Sidebar Operations（レジスタ・サイドバー操作）</div>
         <div class="card">
@@ -1320,7 +1387,7 @@ footer{
       <a href="https://github.com/kurouna/elecxzy">GitHub</a>
       <a href="https://github.com/kurouna/elecxzy/releases">Releases</a>
       <a href="https://zenn.dev/kurouna">Zenn</a>
-      <a href="https://x.com/elecxzy">X</a>
+      <a href="https://x.com/elecxzy">X (Twitter)</a>
     </div>
     <span style="font-size:12px;color:var(--text-3);">© 2026 kurouna — MIT License</span>
     <div style="width:100%; text-align:center; margin-top:20px; font-size:11px; color:var(--text-3); font-family:var(--mono); opacity:0.6;">
@@ -1330,17 +1397,88 @@ footer{
 </div>
 
 <script>
-const sections=document.querySelectorAll('.step-section[id]');
-const links=document.querySelectorAll('.sb-link[href^="#"]');
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      const id=e.target.id;
-      links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+id));
+// ── Sidebar scroll-based active highlight ──
+const sections = [...document.querySelectorAll('.step-section[id], .ref-header[id], .card[id]')];
+const links    = document.querySelectorAll('.sb-link[href^="#"]');
+
+function updateActive() {
+  let current = '';
+  for (const s of sections) {
+    if (s.getBoundingClientRect().top <= 90) current = s.id;
+  }
+  links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + current));
+}
+window.addEventListener('scroll', updateActive, {passive: true});
+updateActive();
+
+// ── Hamburger menu ──
+const sbToggle  = document.getElementById('sb-toggle');
+const sidebar   = document.querySelector('.sidebar');
+const sbOverlay = document.getElementById('sb-overlay');
+
+function closeSidebar() {
+  sidebar.classList.remove('sb-open');
+  sbOverlay.classList.remove('active');
+}
+
+sbToggle.addEventListener('click', () => {
+  const open = sidebar.classList.toggle('sb-open');
+  sbOverlay.classList.toggle('active', open);
+});
+sbOverlay.addEventListener('click', closeSidebar);
+links.forEach(l => l.addEventListener('click', closeSidebar));
+
+// ── Copy buttons ──
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = document.getElementById(btn.dataset.target);
+    if (!target) return;
+    navigator.clipboard.writeText(target.textContent.trim()).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = '✓ コピー済み';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+    });
+  });
+});
+
+// ── Command search ──
+const searchInput = document.getElementById('command-search');
+const docHero     = document.getElementById('intro');
+
+searchInput.addEventListener('input', (e) => {
+  const q = e.target.value.toLowerCase();
+  
+  // Toggle hero visibility based on search activity
+  if (docHero) {
+    docHero.style.display = q === '' ? '' : 'none';
+  }
+
+  document.querySelectorAll('.cmd-table tbody tr').forEach(tr => {
+    const text = tr.textContent.toLowerCase();
+    tr.style.display = text.includes(q) ? '' : 'none';
+  });
+
+  // Hide container if all rows inside it are filtered out
+  document.querySelectorAll('.card, .step-section, .ref-header, .note').forEach(container => {
+    const table = container.querySelector('.cmd-table');
+    if (table) {
+      const visibleRows = table.querySelectorAll('tbody tr:not([style*="display: none"])');
+      container.style.display = (visibleRows.length === 0 && q !== '') ? 'none' : '';
+    } else if (container.classList.contains('note')) {
+      // Hide notes that don't match the query
+      const matches = container.textContent.toLowerCase().includes(q);
+      container.style.display = (q !== '' && !matches) ? 'none' : '';
+    } else if (q !== '') {
+      // Hide sections/headers that have no visible cards or matches
+      const hasVisibleContent = [...container.querySelectorAll('.card, .cmd-table, .note')].some(el => el.style.display !== 'none');
+      const headerMatch = container.textContent.toLowerCase().includes(q);
+      container.style.display = (!hasVisibleContent && !headerMatch) ? 'none' : '';
+    } else {
+      container.style.display = '';
     }
   });
-},{rootMargin:'-20% 0px -70% 0px'});
-sections.forEach(s=>obs.observe(s));
+});
 </script>
 </body>
 </html>

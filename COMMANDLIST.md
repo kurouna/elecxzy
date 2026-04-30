@@ -55,25 +55,26 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x goto-char` | `goto-char` | Jump to a character position from the start (newlines count as 1) | バッファ先頭からの文字数（改行は1文字としてカウント）へジャンプします |
 | `M-x move-to-column` | `move-to-column` | Move to a specific column on the current line | 現在の行の指定したカラムに移動します |
 | `C-'` | `avy-goto-char-timer` | Jump to visible text using character labels (Can be used during isearch to jump with current query) | 画面上の文字（単語境界）へラベルを入力して高速にジャンプします (C-s/C-r の最中に実行すると現在の検索クエリを引き継いでジャンプします) |
+| `C-;` | `show-line-expansion` | Show full text of the truncated line in an overlay (also triggered by clicking the `...` indicator). When text is selected, it pops up the selection instead. | 右端で切れた行をポップアップ表示します（`...` インジケーターのクリックでも実行可能）。また、選択範囲がある場合はその内容を表示します。 |
 
 ## Editing (編集)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `C-d` | `delete-char` | Delete character at cursor | カーソル位置の文字を削除します |
 | `C-h` / `backspace` | `backward-delete-char` | Delete character before cursor | カーソルの前の文字を削除します |
-| `C-k` | `kill-line` | Kill from cursor to end of line (Supports `C-u n`) | 行末まで削除（キル）します（`C-u n` で回数指定が可能） |
-| `C-w` | `kill-region` | Kill the selected region | 選択範囲を削除（キル）します |
+| `C-k` | `kill-line` | Kill from cursor to end of line (Supports `C-u n`) | 行末までキルします（`C-u n` で回数指定が可能） |
+| `C-w` | `kill-region` | Kill the selected region | 選択範囲をキルします |
 | `M-w` | `kill-ring-save` | Copy the selected region (or current line) to kill ring | 選択範囲（または現在行）をコピーします |
 | `C-y` | `yank` | Paste from the kill ring (Supports `C-u n` for repeat) | キルリングから貼り付け（ヤンク）します（`C-u n` で回数指定が可能） |
 | `M-y` | `yank-pop` | Cycle through previous kills | キルリングを遡って貼り付けます |
-| `M-x kill-whole-line` | `kill-whole-line` | Kill the whole line (including newline) | 行全体（改行を含む）を削除（キル）します |
-| `M-d` | `kill-word` | Kill word forward | 次の単語を削除（キル）します |
-| `M-k` | `kill-sentence` | Kill from cursor to end of sentence | 文末（句読点や行末）まで削除（キル）します |
+| `M-x kill-whole-line` | `kill-whole-line` | Kill the whole line (including newline) | 行全体（改行を含む）をキルします |
+| `M-d` | `kill-word` | Kill word forward | 次の単語をキルします |
+| `M-k` | `kill-sentence` | Kill from cursor to end of sentence | 文末（句読点や行末）までキルします |
 | `C-c C-k` | `kill-line-save` | Save from point to end of line (elecxzy original) | 行末（または改行）までを消さずに保存します（オリジナル） |
 | `M-u` | `upcase-word` | Uppercase from cursor to end of word | 単語を大文字にします |
 | `M-l` | `downcase-word` | Lowercase from cursor to end of word | 単語を小文字にします |
 | `M-c` | `capitalize-word` | Capitalize first letter of word | 単語の先頭を大文字にします |
-| `M-backspace` | `backward-kill-word` | Kill word backward | 前の単語を削除（キル）します |
+| `M-backspace` | `backward-kill-word` | Kill word backward | 前の単語をキルします |
 | `M-q` | `fill-paragraph` | Fill paragraph matching wrap column | 段落を折り返し幅に合わせて整形(ハードラップ)します |
 | `M-x auto-fill-mode` | `auto-fill-mode` | Toggle auto-fill-mode | 自動改行モード (Auto Fill Mode) を切り替えます |
 | `Insert` / `M-x toggle-overwrite-mode` | `toggle-overwrite-mode` | Toggle overwrite-mode | 上書きモード (Overwrite Mode) を切り替えます |
@@ -131,7 +132,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `C-x SPC` | `rectangle-mark-mode` | Toggle rectangle mark mode | 矩形選択モードを切り替えます |
-| `C-x r k` | `kill-rectangle` | Kill the rectangle defined by mark and point | マークとカーソル間の矩形領域を削除（キル）します |
+| `C-x r k` | `kill-rectangle` | Kill the rectangle defined by mark and point | マークとカーソル間の矩形領域をキルします |
 | `C-x r y` | `yank-rectangle` | Yank the last killed rectangle at cursor position | キルした矩形をカーソル位置にヤンク（貼り付け）します |
 | `C-x r t` | `string-rectangle` | Replace rectangle contents with a string | 矩形領域の内容を指定した文字列で置換します |
 
@@ -246,10 +247,10 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
 | `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 
-## Kill Ring Sidebar Operations (キルリング・サイドバー操作)
+## キルリング Sidebar Operations (キルリング・サイドバー操作)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `C-c y` | `browse-kill-ring` | Open Kill Ring Sidebar | キルリング表示を開閉します |
+| `C-c y` | `browse-kill-ring` | Open キルリング Sidebar | キルリング表示を開閉します |
 | `Enter` / `f` | (Sidebar Open) | Insert selected text & Close | 選択したテキストを挿入して閉じます |
 | `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
 | `C-p` / `k` / `p` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |

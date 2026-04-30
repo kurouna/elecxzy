@@ -1033,6 +1033,26 @@
       }
     }
 
+    /* ── Copy Button ── */
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-3);
+      font-size: 11px;
+      font-family: var(--mono);
+      cursor: pointer;
+      transition: all .15s;
+      margin-right: 8px;
+      white-space: nowrap;
+    }
+    .copy-btn:hover { color: var(--text-2); border-color: var(--border-hi); }
+    .copy-btn.copied { color: var(--green); border-color: rgba(16,185,129,.3); }
+
     /* ── Lightbox ── */
     .lightbox-overlay {
       position: fixed;
@@ -1122,14 +1142,14 @@
     <div class="hero fi">
       <div class="hero-badge"><span class="dot"></span>Emacs-Inspired & Modern Web UX</div>
       <h1>ウェブ技術で進化する<br>Electronベースの<br><span class="hl">次世代エディタ</span>。</h1>
-      <p class="hero-sub">洗練されたElectron基盤と、モダンなウェブ技術の融合。<br>Emacsの直感的な操作体系を設定不要で今すぐ体験。</p>
+      <p class="hero-sub">Electronとモダンなウェブ技術を基盤に構築。<br>Emacsの直感的な操作体系を設定不要で今すぐ体験。</p>
       <a href="https://apps.microsoft.com/detail/9P32F2WFL69M" class="hero-dl">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
           <path d="M0 0h11.5v11.5H0V0zm12.5 0H24v11.5H12.5V0zM0 12.5h11.5V24H0V12.5zm12.5 0H24V24H12.5V12.5z" />
         </svg>
-        Microsoft Store で入手 — 無料
+        今すぐ無料でダウンロード
       </a>
-      <span class="hero-dl-sub">または <a href="https://github.com/kurouna/elecxzy/releases">GitHub Releases</a>
+      <span class="hero-dl-sub">Microsoft Store から自動更新付きで入手 &nbsp;·&nbsp; または <a href="https://github.com/kurouna/elecxzy/releases">GitHub Releases</a>
         から直接ダウンロード</span>
       <div class="hero-ss-wrap">
         <video src="https://github.com/user-attachments/assets/ea817cb4-85c9-4225-9425-5c61915823ab" autoplay loop muted playsinline></video>
@@ -1295,7 +1315,7 @@
         </div>
         <div class="fg-item">
           <div class="fg-icon">⏺</div>
-          <h3>簡易的なカーソルベースマクロ</h3>
+          <h3>カーソルベースマクロ</h3>
           <p><code style="font-family:var(--mono);font-size:11px;">C-x (</code> で記録を開始し、<code
               style="font-family:var(--mono);font-size:11px;">C-x )</code> で終了、<code
               style="font-family:var(--mono);font-size:11px;">C-x e</code> で再生します。<code
@@ -1533,7 +1553,7 @@
                 class="kb-desc">バッファ先頭 / 末尾</span>
             </div>
             <div class="kb-row">
-              <div class="kb-keys"><kbd>M-g g</kbd></div><span class="kb-desc">指定行へジャンプ</span>
+              <div class="kb-keys"><kbd>M-g</kbd></div><span class="kb-desc">指定行へジャンプ</span>
             </div>
           </div>
           <div class="kb-group">
@@ -1593,7 +1613,7 @@
           <div class="kb-group">
             <div class="kb-group-title">サイドバー・AI</div>
             <div class="kb-row">
-              <div class="kb-keys"><kbd>C-c m</kbd></div><span class="kb-desc">MCP サーバー起動</span>
+              <div class="kb-keys"><kbd>C-c m</kbd></div><span class="kb-desc">MCP サーバー 起動/停止</span>
             </div>
             <div class="kb-row">
               <div class="kb-keys"><kbd>C-c o</kbd></div><span class="kb-desc">アウトライン</span>
@@ -1648,6 +1668,7 @@
       <div class="mcp-code-block">
         <div class="mcb-header">
           <span class="mcb-file">claude_desktop_config.json</span>
+          <button class="copy-btn" data-target="mcp-body-index">コピー</button>
           <div class="win-controls" style="height:100%;">
             <div class="win-btn" style="width:36px;"><svg width="10" height="10" viewBox="0 0 12 12">
                 <path d="M0,5.5h12v1H0z" fill="currentColor" />
@@ -1660,7 +1681,7 @@
               </svg></div>
           </div>
         </div>
-        <div class="mcb-body"><span style="color:var(--text-3);">{</span>
+        <div class="mcb-body" id="mcp-body-index"><span style="color:var(--text-3);">{</span>
   <span class="tk">"mcpServers"</span>: <span style="color:var(--text-3);">{</span>
     <span class="tk">"elecxzy"</span>: <span style="color:var(--text-3);">{</span>
       <span class="tk">"command"</span>:
@@ -1677,7 +1698,7 @@
 <span style="color:var(--text-3);">}</span></div>
       </div>
       <div class="mcp-note">
-        💡 <kbd>M-x mcp-start</kbd> または <kbd>C-c m</kbd> でサーバーを起動。設定後はAIがバッファの内容をリアルタイムで参照できます。
+        💡 <kbd>M-x mcp-start</kbd> でサーバーを起動、<kbd>C-c m</kbd> / <kbd>M-x mcp-toggle</kbd> で起動/停止を切り替えます。設定後はAIがバッファの内容をリアルタイムで参照できます。
       </div>
     </div>
   </div>
@@ -1722,8 +1743,8 @@
   <div class="divider"></div>
 
   <section class="cta fi">
-    <h2>今すぐ始める。</h2>
-    <p>Microsoft Store から無料でダウンロード。</p>
+    <h2>今すぐ無料で試す。</h2>
+    <p>インストール後すぐ使える。設定不要。Emacsライクな編集体験を今日から。</p>
     <div class="cta-btns">
       <a href="https://apps.microsoft.com/detail/9P32F2WFL69M" class="btn-cta-p">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -1773,6 +1794,20 @@
     });
     const obs = new IntersectionObserver(e => { e.forEach(el => { if (el.isIntersecting) el.target.classList.add('in'); }); }, { threshold: 0.08 });
     document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+
+    // Copy buttons
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = document.getElementById(btn.dataset.target);
+        if (!target) return;
+        navigator.clipboard.writeText(target.textContent.trim()).then(() => {
+          const orig = btn.textContent;
+          btn.textContent = '✓ コピー済み';
+          btn.classList.add('copied');
+          setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+        });
+      });
+    });
 
     // Lightbox
     const lb = document.getElementById('lightbox');
