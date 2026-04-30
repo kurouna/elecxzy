@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>elecxzy — Emacs-like Editor with MCP Server</title>
+  <meta name="description" content="LispなしでEmacsライクな操作を。内蔵MCPサーバーでAIと繋がるモダンなテキストエディタ。Windows向け、無料。">
+  <meta property="og:title" content="elecxzy — Emacs-like Editor">
+  <meta property="og:description" content="LispなしでEmacsライクな操作を。内蔵MCPサーバーでAIと繋がるモダンなテキストエディタ。">
+  <meta property="og:image" content="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot1.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ── Reset ── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #0a0a0a;
+      color: #e2e8f0;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* ── Design Tokens (shared with tutorial.html) ── */
+    :root {
+      --bg: #0a0a0a;
+      --bg-1: #0f0f0f;
+      --bg-2: #141414;
+      --bg-3: #1a1a1a;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hi: rgba(255, 255, 255, 0.14);
+      --text: #e2e8f0;
+      --text-2: #94a3b8;
+      --text-3: #475569;
+      --blue: #3b82f6;
+      --blue-hi: #60a5fa;
+      --blue-dim: rgba(59, 130, 246, 0.12);
+      --green: #10b981;
+      --green-dim: rgba(16, 185, 129, 0.12);
+      --amber: #f59e0b;
+      --amber-dim: rgba(245, 158, 11, 0.1);
+      --purple: #8b5cf6;
+      --mono: 'JetBrains Mono', monospace;
+      --max: 1100px;
+      --r: 8px;
+      --r-sm: 5px;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 16px;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo em {
+      color: var(--blue-hi);
+      font-style: normal;
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav-center a {
+      font-size: 14px;
+      color: var(--text-2);
+      transition: color .15s;
+    }
+
+    .nav-center a:hover {
+      color: var(--text);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-gh {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-3);
+      transition: color .15s;
+    }
+
+    .nav-gh:hover {
+      color: var(--text-2);
+    }
+
+    .btn-nav {
+      padding: 7px 18px;
+      border-radius: var(--r-sm);
+      background: #fff;
+      color: #0a0a0a;
+      font-size: 13px;
+      font-weight: 500;
+      transition: opacity .15s;
+    }
+
+    .btn-nav:hover {
+      opacity: 0.85;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 140px 40px 80px;
+      max-width: var(--max);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-3);
+      font-family: var(--mono);
+      margin-bottom: 32px;
+    }
+
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: .4
+      }
+
+      50% {
+        opacity: 1
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .hl {
+      background: linear-gradient(135deg, var(--blue-hi), #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--text-2);
+      font-weight: 300;
+      max-width: 520px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+    }
+
+    .hero-dl {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: #fff;
+      color: #0a0a0a;
+      border-radius: var(--r);
+      font-size: 15px;
+      font-weight: 500;
+      transition: all .2s;
+      margin-bottom: 12px;
+    }
+
+    .hero-dl:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    .hero-dl-sub {
+      display: block;
+      font-size: 12px;
+      color: var(--text-3);
+      margin-bottom: 56px;
+    }
+
+    .hero-dl-sub a {
+      color: var(--blue-hi);
+    }
+
+    .hero-dl-sub a:hover {
+      text-decoration: underline;
+    }
+
+    .hero-ss-wrap {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .win-controls {
+      display: flex;
+      height: 100%;
+    }
+
+    .win-btn {
+      width: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-3);
+      transition: background .15s, color .15s;
+    }
+
+    .win-btn:hover {
+      background: rgba(255, 255, 255, .05);
+      color: #fff;
+    }
+
+    .win-btn.close:hover {
+      background: #e81123;
+      color: #fff;
+    }
+
+    .hero-ss-wrap img {
+      width: 100%;
+      display: block;
+    }
+
+    .hero-ss-wrap video {
+      width: 60%;
+      margin: 0 auto;
+      display: block;
+    }
+
+    /* ── Stats ── */
+    .stats-wrap {
+      padding: 0 40px;
+    }
+
+    .stats {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+
+    .stat {
+      background: var(--bg);
+      padding: 40px 48px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 48px;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-num em {
+      color: var(--blue-hi);
+      font-style: normal;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+
+    /* ── Util ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0;
+    }
+
+    .section {
+      padding: 100px 40px;
+    }
+
+    .section-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue-hi);
+      margin-bottom: 12px;
+    }
+
+    .section-h {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-p {
+      font-size: 16px;
+      color: var(--text-2);
+      max-width: 480px;
+      line-height: 1.75;
+    }
+
+    /* ── Feature Big ── */
+    .feat-big {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      padding: 100px 40px;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .feat-big.rev {
+      direction: rtl;
+    }
+
+    .feat-big.rev>* {
+      direction: ltr;
+    }
+
+    .feat-big-img {
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .feat-big-img img {
+      width: 100%;
+      display: block;
+    }
+
+    .feat-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: var(--blue-dim);
+      border: 1px solid rgba(59, 130, 246, .2);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--blue-hi);
+      margin-bottom: 20px;
+    }
+
+    /* ── Features Grid ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+      margin-top: 56px;
+    }
+
+    .fg-item {
+      background: var(--bg-1);
+      padding: 32px 28px;
+      transition: background .2s;
+    }
+
+    .fg-item:hover {
+      background: var(--bg-2);
+    }
+
+    .fg-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-bottom: 16px;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid var(--border);
+    }
+
+    .fg-item h3 {
+      font-size: 15px;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .fg-item p {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+
+    .fg-kbd {
+      display: inline-block;
+      margin-top: 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid var(--border);
+      color: var(--blue-hi);
+    }
+
+    /* ── MCP ── */
+    .mcp-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .mcp-code-block {
+      background: var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .mcb-header {
+      padding: 0;
+      background: var(--bg-3);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 34px;
+    }
+
+    .mcb-file {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-3);
+      padding-left: 16px;
+    }
+
+    .mcb-body {
+      padding: 24px;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.9;
+      overflow-x: auto;
+      color: var(--text-2);
+      white-space: pre;
+    }
+
+    .tk {
+      color: #93c5fd;
+    }
+
+    .ts {
+      color: #86efac;
+    }
+
+    .tv {
+      color: #fde68a;
+    }
+
+    .mcp-apps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .mcp-app {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-1);
+      font-size: 13px;
+      color: var(--text-2);
+    }
+
+    .mcp-app-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .mcp-note {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 7px;
+      border: 1px solid var(--blue-dim);
+      background: rgba(59, 130, 246, .05);
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.7;
+    }
+
+    /* ── Screenshots ── */
+    .ss-tabs {
+      display: flex;
+      gap: 2px;
+      margin-top: 40px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ss-tab {
+      padding: 10px 20px;
+      font-size: 13px;
+      color: var(--text-2);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all .15s;
+      margin-bottom: -1px;
+    }
+
+    .ss-tab.active,
+    .ss-tab:hover {
+      color: #fff;
+    }
+
+    .ss-tab.active {
+      border-bottom-color: #fff;
+    }
+
+    .ss-panel {
+      display: none;
+    }
+
+    .ss-panel.active {
+      display: block;
+    }
+
+    .ss-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .ss-item {
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+
+    .ss-item:hover {
+      border-color: var(--border-hi);
+    }
+
+    .ss-item img {
+      width: 100%;
+      display: block;
+    }
+
+    .ss-item.full {
+      grid-column: span 2;
+    }
+
+    /* ── Themes ── */
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 48px;
+    }
+
+    .theme-card {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: border-color .2s, transform .2s;
+    }
+
+    .theme-card:hover {
+      border-color: var(--border-hi);
+      transform: translateY(-3px);
+    }
+
+    .theme-preview {
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      gap: 0;
+      overflow: hidden;
+    }
+
+    .theme-titlebar {
+      height: 12px;
+      width: 100%;
+    }
+
+    .theme-editor {
+      flex-grow: 1;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .theme-line {
+      height: 3px;
+      border-radius: 1px;
+    }
+
+    .theme-modeline {
+      height: 6px;
+      width: 100%;
+    }
+
+    .theme-minibuffer {
+      height: 12px;
+      width: 100%;
+    }
+
+    .theme-info {
+      padding: 14px 16px;
+      background: var(--bg-1);
+    }
+
+    .theme-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #fff;
+    }
+
+    .theme-cmd {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-3);
+      margin-top: 3px;
+    }
+
+    /* ── Keybinds ── */
+    .kb-section {
+      margin-top: 56px;
+    }
+
+    .kb-cols {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+
+    .kb-group {
+      background: var(--bg-1);
+      padding: 28px 32px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .kb-group:nth-child(2n) {
+      border-right: none;
+    }
+
+    .kb-group:nth-child(3),
+    .kb-group:nth-child(4) {
+      border-bottom: none;
+    }
+
+    .kb-group-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue-hi);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .kb-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .04);
+      font-size: 13px;
+    }
+
+    .kb-row:last-child {
+      border-bottom: none;
+    }
+
+    .kb-keys {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    kbd {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--bg-3);
+      border: 1px solid var(--border-hi);
+      color: #fff;
+      white-space: nowrap;
+      line-height: 1.4;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, .3);
+    }
+
+    .kb-desc {
+      color: var(--text-2);
+      text-align: right;
+      padding-left: 12px;
+      line-height: 1.4;
+    }
+
+    .kb-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--blue-hi);
+      transition: gap .15s;
+    }
+
+    .kb-more:hover {
+      gap: 10px;
+    }
+
+    /* ── Tech ── */
+    .tech-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-top: 48px;
+    }
+
+    .tech-item {
+      padding: 20px 16px;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      background: var(--bg-1);
+      transition: border-color .2s;
+    }
+
+    .tech-item:hover {
+      border-color: var(--border-hi);
+    }
+
+    .tech-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .tech-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: #fff;
+    }
+
+    .tech-role {
+      font-size: 11px;
+      color: var(--text-3);
+      margin-top: 2px;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      padding: 120px 40px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .cta h2 {
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      font-size: 16px;
+      color: var(--text-2);
+      margin-bottom: 40px;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-cta-p {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: var(--r);
+      background: #fff;
+      color: #0a0a0a;
+      font-size: 15px;
+      font-weight: 500;
+      transition: opacity .2s;
+    }
+
+    .btn-cta-p:hover {
+      opacity: 0.88;
+    }
+
+    .btn-cta-s {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: var(--r);
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      font-size: 15px;
+      transition: all .2s;
+    }
+
+    .btn-cta-s:hover {
+      border-color: var(--border-hi);
+      color: #fff;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--text-3);
+    }
+
+    .footer-logo em {
+      color: var(--blue-hi);
+      font-style: normal;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--text-3);
+      transition: color .15s;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-2);
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--text-3);
+    }
+
+    /* ── Fade in ── */
+    .fi {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+
+    .fi.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── Responsive ── */
+    @media(max-width:900px) {
+      nav {
+        padding: 0 20px;
+      }
+
+      .nav-center {
+        display: none;
+      }
+
+      .hero {
+        padding: 100px 20px 60px;
+      }
+
+      .stats-wrap {
+        padding: 0 20px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .feat-big {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 60px 20px;
+      }
+
+      .feat-big.rev {
+        direction: ltr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mcp-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .ss-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ss-item.full {
+        grid-column: span 1;
+      }
+
+      .themes-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .kb-cols {
+        grid-template-columns: 1fr;
+      }
+
+      .kb-group {
+        border-right: none;
+      }
+
+      .kb-group:nth-child(3) {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .tech-row {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .section {
+        padding: 60px 20px;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 20px;
+      }
+    }
+
+    /* ── Lightbox ── */
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      backdrop-filter: blur(10px);
+      padding: 40px;
+    }
+
+    .lightbox-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-content {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 8px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+      cursor: zoom-out;
+    }
+
+    .lightbox-overlay.active .lightbox-content {
+      transform: scale(1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Clickable images */
+    .feat-big-img img, .ss-item img {
+      cursor: zoom-in;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <span class="nav-logo">elec<em>xzy</em></span>
+    <div class="nav-center">
+      <a href="#features">機能</a>
+      <a href="#screenshots">ギャラリー</a>
+      <a href="#mcp">MCP</a>
+      <a href="tutorial.html">ドキュメント</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://github.com/kurouna/elecxzy" class="nav-gh">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.08-.74.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.3 3.47.99.1-.77.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.65.24 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z" />
+        </svg>
+        GitHub
+      </a>
+      <a href="https://apps.microsoft.com/detail/9P32F2WFL69M" class="btn-nav">ダウンロード</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section>
+    <div class="hero fi">
+      <div class="hero-badge"><span class="dot"></span>Emacs-Inspired & Modern Web UX</div>
+      <h1>ウェブ技術で進化する<br>Electronベースの<br><span class="hl">次世代エディタ</span>。</h1>
+      <p class="hero-sub">洗練されたElectron基盤と、モダンなウェブ技術の融合。<br>Emacsの直感的な操作体系を設定不要で今すぐ体験。</p>
+      <a href="https://apps.microsoft.com/detail/9P32F2WFL69M" class="hero-dl">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M0 0h11.5v11.5H0V0zm12.5 0H24v11.5H12.5V0zM0 12.5h11.5V24H0V12.5zm12.5 0H24V24H12.5V12.5z" />
+        </svg>
+        Microsoft Store で入手 — 無料
+      </a>
+      <span class="hero-dl-sub">または <a href="https://github.com/kurouna/elecxzy/releases">GitHub Releases</a>
+        から直接ダウンロード</span>
+      <div class="hero-ss-wrap">
+        <video src="https://github.com/user-attachments/assets/ea817cb4-85c9-4225-9425-5c61915823ab" autoplay loop muted playsinline></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-wrap" style="padding-top:80px;">
+    <div class="stats fi">
+      <div class="stat">
+        <div class="stat-num"><em>0</em> Lisp</div>
+        <div class="stat-label">スクリプトエンジン不要<br>インストール即使える</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><em>40</em>+</div>
+        <div class="stat-label">バージョン<br>毎日リリースで進化中</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><em>300</em>+</div>
+        <div class="stat-label">Emacs キーバインド<br>手に馴染んだ操作を即実行</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin:80px 0;"></div>
+
+  <!-- FEAT BIG 0: Emacs Keybinds -->
+  <div class="feat-big fi" id="features">
+    <div>
+      <div class="feat-tag">Emacs-Inspired Experience</div>
+      <h2 class="section-h">手に馴染んだキーバインドを、<br>そのまま最新の環境へ。</h2>
+      <p class="section-p" style="max-width:100%;">
+        C-f/b/n/p による基本移動から、Kill Ring、マークセット、ウィンドウ分割まで。長年培われてきた直感的な操作体系を、設定不要でそのまま利用できます。<br><br>
+        ブラウザ世代の技術スタックにより、高速なレスポンスと高い拡張性を両立しました。
+      </p>
+      <div style="display:flex;gap:24px;flex-wrap:wrap;">
+        <a href="#keybinds"
+          style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:13px;color:var(--blue-hi);">主要キーバインドを見る
+          →</a>
+        <a href="tutorial.html#reference"
+          style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:13px;color:var(--blue-hi);">すべてのキーバインドを見る
+          →</a>
+      </div>
+    </div>
+    <div class="feat-big-img">
+      <img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot4.png" alt="Emacs キーバインド"
+        loading="lazy">
+    </div>
+  </div>
+
+  <!-- FEAT BIG 3: IME Support -->
+  <div class="feat-big rev fi">
+    <div>
+      <div class="feat-tag">日本語対応</div>
+      <h2 class="section-h">標準でのIMEサポート。</h2>
+      <p class="section-p" style="max-width:100%;">
+        <kbd>C-\</kbd> による IME ON/OFF 切り替えはもちろん、<kbd>M-x</kbd> や <kbd>C-u</kbd> などのプレフィックスキー入力時には自動的に IME をオフにするなど、デフォルト状態での使いやすさにこだわっています。<br><br>
+        また、<code style="font-family:var(--mono);font-size:13px;color:var(--blue-hi);">Intl.Segmenter</code> を活用した日本語処理により、<kbd>M-f</kbd>/<kbd>M-b</kbd> での文節単位の移動や、ポップアップ時の正確な折り返しにも対応しています。
+      </p>
+    </div>
+    <div class="feat-big-img">
+      <img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot2.png" alt="IMEサポート"
+        loading="lazy">
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FEAT BIG 2: Piece Table Engine -->
+  <div class="feat-big fi">
+    <div>
+      <div class="feat-tag">Piece Table Engine</div>
+      <h2 class="section-h">高速・省メモリな<br>バッファ管理。</h2>
+      <p class="section-p" style="max-width:100%;">RB-Tree ベースの Piece Table
+        アルゴリズムを採用。大容量ファイルでもメモリ効率よく動作し、インクリメンタルなUndo履歴を実現します。</p>
+    </div>
+    <div class="feat-big-img">
+      <img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot7.png" alt="elecxzy エディタ"
+        loading="lazy">
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FEAT BIG 4: Avy -->
+  <div class="feat-big rev fi">
+    <div>
+      <div class="feat-tag">Quick Navigation</div>
+      <h2 class="section-h">Avy ジャンプで高速移動。</h2>
+      <p class="section-p" style="max-width:100%;">
+        <kbd>C-'</kbd> に続けて文字を入力し、画面内の任意の場所へ数ストロークでジャンプ。視覚的なラベルにより、マウスを使わず正確な移動が可能です。<br><br>
+        また、インクリメンタル検索（<kbd>C-s</kbd> / <kbd>C-r</kbd>）の実行中にも <kbd>C-'</kbd> を押すことで、検索結果を対象とした Avy ジャンプへシームレスに移行できます。
+      </p>
+    </div>
+    <div class="feat-big-img">
+      <img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot5.png" alt="Avy ジャンプ" loading="lazy">
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FEAT BIG 5: Cursor VFX -->
+  <div class="feat-big fi">
+    <div>
+      <div class="feat-tag">Visual Effects</div>
+      <h2 class="section-h">打鍵を彩るカーソル VFX。</h2>
+      <p class="section-p" style="max-width:100%;">
+        Light Particle や Cyber Trace など、9種類の視覚エフェクトを搭載。タイピングの体験をより楽しく演出します。
+      </p>
+      <a href="tutorial.html#vfx" style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:13px;color:var(--blue-hi);">VFX設定の詳細を見る →</a>
+    </div>
+    <div class="feat-big-img" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot12.png" alt="VFX 1" loading="lazy">
+      <img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot13.png" alt="VFX 2" loading="lazy">
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FEAT BIG 6: Workspace -->
+  <div class="feat-big rev fi">
+    <div>
+      <div class="feat-tag">Workspace</div>
+      <h2 class="section-h">プロジェクトをまとめる<br>ワークスペース。</h2>
+      <p class="section-p" style="max-width:100%;">
+        複数フォルダを1つのウィンドウで管理。フォルダツリーから素早くファイルにアクセスできます。
+      </p>
+      <a href="tutorial.html#ref-workspace" style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:13px;color:var(--blue-hi);">ワークスペースの詳細を見る →</a>
+    </div>
+    <div class="feat-big-img">
+      <img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot14.png" alt="ワークスペース" loading="lazy">
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FEATURES GRID -->
+  <section class="section">
+    <div class="section-inner fi">
+      <p class="tag">All Features</p>
+      <h2 class="section-h">主な機能</h2>
+      <p class="section-p">Emacsライクな操作体系を継承しつつ、現代の開発体験に合わせた機能セットです。</p>
+      <div class="features-grid">
+        <div class="fg-item">
+          <div class="fg-icon">⌨</div>
+          <h3>Emacsライク キーバインド</h3>
+          <p>C-f/b/n/p の基本移動からKill Ring、ウィンドウ分割まで対応しています。<code
+              style="font-family:var(--mono);font-size:11px;">M-x</code> で全コマンドをインクリメンタル補完付きで実行できます。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-icon">▦</div>
+          <h3>矩形編集</h3>
+          <p>列単位の一括編集を行います。<code style="font-family:var(--mono);font-size:11px;">C-x SPC</code> で矩形マークモード、<code
+              style="font-family:var(--mono);font-size:11px;">C-x r k/y/t</code> でkill・yank・文字列置換が可能です。専用のKill
+            Ringも備えています。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-icon">🏃</div>
+          <h3>Avy ジャンプ</h3>
+          <p><code style="font-family:var(--mono);font-size:11px;">C-'</code>
+            に続けて文字を入力すると、画面内の一致箇所にラベルが表示され、指定した場所へジャンプします。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-icon">⏺</div>
+          <h3>簡易的なカーソルベースマクロ</h3>
+          <p><code style="font-family:var(--mono);font-size:11px;">C-x (</code> で記録を開始し、<code
+              style="font-family:var(--mono);font-size:11px;">C-x )</code> で終了、<code
+              style="font-family:var(--mono);font-size:11px;">C-x e</code> で再生します。<code
+              style="font-family:var(--mono);font-size:11px;">C-u 10 C-x e</code> で10回繰り返すことも可能です。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-icon">📋</div>
+          <h3>Kill Ring サイドバー</h3>
+          <p><code style="font-family:var(--mono);font-size:11px;">C-c y</code> でKill
+            Ring履歴を一覧表示します。視覚的に選択してヤンクが可能です。履歴は永続保存されます。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-icon">🔭</div>
+          <h3>アウトラインビュー</h3>
+          <p><code style="font-family:var(--mono);font-size:11px;">C-c o</code>
+            でMarkdown・HTMLの見出し階層を表示します。カーソル移動とリアルタイムに同期します（最大50,000行対応）。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-icon">💾</div>
+          <h3>レジスタ サイドバー</h3>
+          <p><code style="font-family:var(--mono);font-size:11px;">C-c r</code>
+            で保存したテキストや位置を一覧表示します。視覚的に選択して利用可能です。内容は永続保存されます。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-icon">🎨</div>
+          <h3>カーソル VFX</h3>
+          <p>Light Particle、Cyber Trace、Kawaii Shower など9種類の視覚エフェクトを <code
+              style="font-family:var(--mono);font-size:11px;">C-c 1〜9</code> で瞬時に切り替えます。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-icon">📎</div>
+          <h3>ドキュメントインポーター</h3>
+          <p>PDF・Word（.docx）・Excel（.xlsx）をプレーンテキストとして自動インポートします。50MB以下のファイルを読み取り専用で開きます。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-icon">🔍</div>
+          <h3>検索・置換</h3>
+          <p>インクリメンタル検索（<code style="font-family:var(--mono);font-size:11px;">C-s/r</code>）、対話的置換（<code
+              style="font-family:var(--mono);font-size:11px;">M-%</code>）、ディレクトリ横断grep（<code
+              style="font-family:var(--mono);font-size:11px;">M-x grep</code>）に対応しています。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-icon">👁</div>
+          <h3>ライブプレビュー</h3>
+          <p>MarkdownとHTMLをリアルタイムプレビューします。<code style="font-family:var(--mono);font-size:11px;">C-c v</code>
+            でモードに応じたプレビューを自動起動し、スクロールも同期します。</p>
+        </div>
+        <div class="fg-item">
+          <div class="fg-icon">🗂</div>
+          <h3>ワークスペース</h3>
+          <p>複数フォルダをまとめて管理します。<code style="font-family:var(--mono);font-size:11px;">.code-workspace</code>
+            形式のファイルに対応しており、<code style="font-family:var(--mono);font-size:11px;">C-.</code> で開閉します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SCREENSHOTS -->
+  <section class="section" id="screenshots">
+    <div class="section-inner fi">
+      <p class="tag">Screenshots</p>
+      <h2 class="section-h">洗練されたデザインと、<br>機能的なインターフェース。</h2>
+      <div class="ss-tabs">
+        <div class="ss-tab active" data-panel="p1">Dark</div>
+        <div class="ss-tab" data-panel="p2">Cyber</div>
+        <div class="ss-tab" data-panel="p3">Cute</div>
+        <div class="ss-tab" data-panel="p4">サイドバー</div>
+      </div>
+      <div id="p1" class="ss-panel active">
+        <div class="ss-grid">
+          <div class="ss-item full"><img
+              src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot6.png" alt="Dark テーマ"
+              loading="lazy"></div>
+        </div>
+      </div>
+      <div id="p2" class="ss-panel">
+        <div class="ss-grid">
+          <div class="ss-item full"><img
+              src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot12.png" alt="Cyber テーマ"
+              loading="lazy"></div>
+        </div>
+      </div>
+      <div id="p3" class="ss-panel">
+        <div class="ss-grid">
+          <div class="ss-item full"><img
+              src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot13.png" alt="Cute テーマ"
+              loading="lazy"></div>
+        </div>
+      </div>
+      <div id="p4" class="ss-panel">
+        <div class="ss-grid">
+          <div class="ss-item"><img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot8.png"
+              alt="サイドバー 1" loading="lazy"></div>
+          <div class="ss-item"><img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot9.png"
+              alt="サイドバー 2" loading="lazy"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- THEMES -->
+  <section class="section">
+    <div class="section-inner fi">
+      <p class="tag">Themes</p>
+      <h2 class="section-h">カラーテーマ</h2>
+      <p class="section-p"><kbd>M-x &lt;theme&gt;-theme</kbd> で切り替え。再起動後に反映されます。</p>
+      <div class="themes-grid">
+        <div class="theme-card">
+          <div class="theme-preview" style="background:#ffffff;">
+            <div class="theme-titlebar" style="background:#0EA5E9;"></div>
+            <div class="theme-editor">
+              <div class="theme-line" style="background:#000000;width:55%;opacity:0.1;"></div>
+              <div class="theme-line" style="background:#000000;width:75%;opacity:0.1;"></div>
+              <div class="theme-line" style="background:#0EA5E9;width:42%;opacity:0.4;"></div>
+            </div>
+            <div class="theme-modeline" style="background:#0EA5E9;"></div>
+            <div class="theme-minibuffer" style="background:#ffffff;"></div>
+          </div>
+          <div class="theme-info">
+            <div class="theme-name">Default</div>
+            <div class="theme-cmd">M-x default-theme</div>
+          </div>
+        </div>
+        <div class="theme-card">
+          <div class="theme-preview" style="background:#1e1e2e;">
+            <div class="theme-titlebar" style="background:#1e1e2e;"></div>
+            <div class="theme-editor">
+              <div class="theme-line" style="background:#89b4fa;width:55%"></div>
+              <div class="theme-line" style="background:#a6e3a1;width:75%"></div>
+              <div class="theme-line" style="background:#fab387;width:42%"></div>
+            </div>
+            <div class="theme-modeline" style="background:#89b4fa;"></div>
+            <div class="theme-minibuffer" style="background:#181825;"></div>
+          </div>
+          <div class="theme-info">
+            <div class="theme-name">Dark</div>
+            <div class="theme-cmd">M-x dark-theme</div>
+          </div>
+        </div>
+        <div class="theme-card">
+          <div class="theme-preview" style="background:#eff1f5;">
+            <div class="theme-titlebar" style="background:#eff1f5;"></div>
+            <div class="theme-editor">
+              <div class="theme-line" style="background:#1e66f5;width:55%"></div>
+              <div class="theme-line" style="background:#40a02b;width:75%"></div>
+              <div class="theme-line" style="background:#fe640b;width:42%"></div>
+            </div>
+            <div class="theme-modeline" style="background:#1e66f5;"></div>
+            <div class="theme-minibuffer" style="background:#e6e9ef;"></div>
+          </div>
+          <div class="theme-info">
+            <div class="theme-name">Light</div>
+            <div class="theme-cmd">M-x light-theme</div>
+          </div>
+        </div>
+        <div class="theme-card">
+          <div class="theme-preview" style="background:#090912;">
+            <div class="theme-titlebar" style="background:#050510;"></div>
+            <div class="theme-editor">
+              <div class="theme-line" style="background:#FF007F;width:55%;box-shadow:0 0 4px #FF007F66;"></div>
+              <div class="theme-line" style="background:#00FFD1;width:75%;box-shadow:0 0 4px #00FFD166;"></div>
+              <div class="theme-line" style="background:#ffff00;width:42%;box-shadow:0 0 4px #ffff0066;"></div>
+            </div>
+            <div class="theme-modeline" style="background:#FF007F;"></div>
+            <div class="theme-minibuffer" style="background:#000000;"></div>
+          </div>
+          <div class="theme-info">
+            <div class="theme-name">Cyber</div>
+            <div class="theme-cmd">M-x cyber-theme</div>
+          </div>
+        </div>
+        <div class="theme-card">
+          <div class="theme-preview" style="background:#FFF5F8;">
+            <div class="theme-titlebar" style="background:#FFECF2;"></div>
+            <div class="theme-editor">
+              <div class="theme-line" style="background:#FFA6C9;width:55%"></div>
+              <div class="theme-line" style="background:#c9b1ff;width:75%"></div>
+              <div class="theme-line" style="background:#ffcba4;width:42%"></div>
+            </div>
+            <div class="theme-modeline" style="background:#FFA6C9;"></div>
+            <div class="theme-minibuffer" style="background:#FFECF2;"></div>
+          </div>
+          <div class="theme-info">
+            <div class="theme-name">Cute</div>
+            <div class="theme-cmd">M-x cute-theme</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- KEYBINDS -->
+  <section class="section" id="keybinds">
+    <div class="section-inner fi">
+      <p class="tag">Key Bindings</p>
+      <h2 class="section-h">よく使うキーバインド</h2>
+      <p class="section-p" style="margin-bottom:0;">Emacsライクな操作体系。主要コマンドの早見表です。</p>
+
+      <div class="kb-section">
+        <div class="kb-cols">
+          <div class="kb-group">
+            <div class="kb-group-title">カーソル移動</div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-f</kbd><span
+                  style="color:var(--text-3);font-size:11px;">/</span><kbd>C-b</kbd></div><span class="kb-desc">1文字 前進 /
+                後退</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-n</kbd><span
+                  style="color:var(--text-3);font-size:11px;">/</span><kbd>C-p</kbd></div><span class="kb-desc">次行 /
+                前行</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-a</kbd><span
+                  style="color:var(--text-3);font-size:11px;">/</span><kbd>C-e</kbd></div><span class="kb-desc">行頭 /
+                行末</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>M-f</kbd><span
+                  style="color:var(--text-3);font-size:11px;">/</span><kbd>M-b</kbd></div><span
+                class="kb-desc">単語単位（日本語対応）</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-'</kbd></div><span class="kb-desc">Avy ジャンプ</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>M-&lt;</kbd><span
+                  style="color:var(--text-3);font-size:11px;">/</span><kbd>M-&gt;</kbd></div><span
+                class="kb-desc">バッファ先頭 / 末尾</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>M-g g</kbd></div><span class="kb-desc">指定行へジャンプ</span>
+            </div>
+          </div>
+          <div class="kb-group">
+            <div class="kb-group-title">編集・Kill Ring</div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-SPC</kbd></div><span class="kb-desc">マークをセット</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-w</kbd><span
+                  style="color:var(--text-3);font-size:11px;">/</span><kbd>M-w</kbd></div><span class="kb-desc">kill /
+                コピー</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-y</kbd><span
+                  style="color:var(--text-3);font-size:11px;">/</span><kbd>M-y</kbd></div><span class="kb-desc">ヤンク /
+                ヤンクポップ</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-k</kbd></div><span class="kb-desc">行末まで kill</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-/</kbd></div><span class="kb-desc">Undo</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>M-%</kbd></div><span class="kb-desc">対話的置換</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>M-/</kbd></div><span class="kb-desc">動的単語補完</span>
+            </div>
+          </div>
+          <div class="kb-group">
+            <div class="kb-group-title">ウィンドウ・バッファ</div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-x 2</kbd><span style="color:var(--text-3);font-size:11px;">/</span><kbd>C-x
+                  3</kbd></div><span class="kb-desc">上下 / 左右分割</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-x o</kbd></div><span class="kb-desc">other-window</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-x b</kbd></div><span class="kb-desc">バッファ切り替え</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-x C-s</kbd></div><span class="kb-desc">保存</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-x SPC</kbd></div><span class="kb-desc">矩形マークモード</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-x (</kbd><span style="color:var(--text-3);font-size:11px;">/</span><kbd>C-x
+                  )</kbd></div><span class="kb-desc">マクロ 記録開始 / 終了</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-x e</kbd></div><span class="kb-desc">マクロ再生</span>
+            </div>
+          </div>
+          <div class="kb-group">
+            <div class="kb-group-title">サイドバー・AI</div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-c m</kbd></div><span class="kb-desc">MCP サーバー起動</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-c o</kbd></div><span class="kb-desc">アウトライン</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-c y</kbd></div><span class="kb-desc">Kill Ring サイドバー</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-c r</kbd></div><span class="kb-desc">レジスタ サイドバー</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-.</kbd></div><span class="kb-desc">ワークスペース開閉</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-c c</kbd></div><span class="kb-desc">最近使ったファイル</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-c v</kbd></div><span class="kb-desc">プレビュー（Markdown/HTML）</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-c 1〜9</kbd></div><span class="kb-desc">カーソル VFX</span>
+            </div>
+          </div>
+        </div>
+        <a href="tutorial.html#reference" class="kb-more">全コマンドリファレンスを見る →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FEAT BIG: MCP -->
+  <div class="feat-big fi" id="mcp">
+    <div>
+      <div class="feat-tag">MCP Server</div>
+      <h2 class="section-h">AIと直接連携。</h2>
+      <p class="section-p" style="max-width:100%;">
+        elecxzy 自身が MCP（Model Context Protocol）サーバーとして動作します。Claude Desktop・Claude Code・Google Antigravity
+        などのAIクライアントが、開いているバッファを読み書きし、コマンドを実行できます。<br><br>
+        未保存の編集状態や、Piece Tableが持つ差分情報などを含めたバッファ情報をAIと共有することが可能です。
+      </p>
+      <div class="mcp-apps">
+        <span class="mcp-app"><span class="mcp-app-dot"></span>Claude Desktop</span>
+        <span class="mcp-app"><span class="mcp-app-dot"></span>Claude Code</span>
+        <span class="mcp-app"><span class="mcp-app-dot"></span>Google Antigravity</span>
+      </div>
+      <a href="tutorial.html#mcp"
+        style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:13px;color:var(--blue-hi);">設定方法を見る
+        →</a>
+    </div>
+    <div>
+      <div class="mcp-code-block">
+        <div class="mcb-header">
+          <span class="mcb-file">claude_desktop_config.json</span>
+          <div class="win-controls" style="height:100%;">
+            <div class="win-btn" style="width:36px;"><svg width="10" height="10" viewBox="0 0 12 12">
+                <path d="M0,5.5h12v1H0z" fill="currentColor" />
+              </svg></div>
+            <div class="win-btn" style="width:36px;"><svg width="10" height="10" viewBox="0 0 12 12">
+                <path d="M1,1h10v10H1V1z M2,2v8h8V2H2z" fill="currentColor" />
+              </svg></div>
+            <div class="win-btn close" style="width:36px;"><svg width="10" height="10" viewBox="0 0 12 12">
+                <path d="M1,2l1,-1l4,4l4,-4l1,1l-4,4l4,4l-1,1l-4,-4l-4,4l-1,-1l4,-4Z" fill="currentColor" />
+              </svg></div>
+          </div>
+        </div>
+        <div class="mcb-body"><span style="color:var(--text-3);">{</span>
+  <span class="tk">"mcpServers"</span>: <span style="color:var(--text-3);">{</span>
+    <span class="tk">"elecxzy"</span>: <span style="color:var(--text-3);">{</span>
+      <span class="tk">"command"</span>:
+        <span class="ts">"C:\\...\\elecxzy.exe"</span>,
+      <span class="tk">"args"</span>: [
+        <span class="ts">"C:\\...\\app.asar"</span>
+      ],
+      <span class="tk">"env"</span>: {
+        <span class="tk">"ELECXZY_MCP_MODE"</span>: <span class="tv">"true"</span>,
+        <span class="tk">"ELECTRON_RUN_AS_NODE"</span>: <span class="tv">"1"</span>
+      }
+    }
+  }
+<span style="color:var(--text-3);">}</span></div>
+      </div>
+      <div class="mcp-note">
+        💡 <kbd>M-x mcp-start</kbd> または <kbd>C-c m</kbd> でサーバーを起動。設定後はAIがバッファの内容をリアルタイムで参照できます。
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- TECH -->
+  <section class="section">
+    <div class="section-inner fi">
+      <p class="tag">Architecture</p>
+      <h2 class="section-h">技術スタック</h2>
+      <div class="tech-row">
+        <div class="tech-item">
+          <div class="tech-icon">⚡</div>
+          <div class="tech-name">Electron</div>
+          <div class="tech-role">Platform</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">⚛</div>
+          <div class="tech-name">React</div>
+          <div class="tech-role">UI</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">🔷</div>
+          <div class="tech-name">TypeScript</div>
+          <div class="tech-role">Language</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">🌲</div>
+          <div class="tech-name">Piece Table</div>
+          <div class="tech-role">Buffer Engine</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">🎨</div>
+          <div class="tech-name">Canvas API</div>
+          <div class="tech-role">Rendering</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="cta fi">
+    <h2>今すぐ始める。</h2>
+    <p>Microsoft Store から無料でダウンロード。</p>
+    <div class="cta-btns">
+      <a href="https://apps.microsoft.com/detail/9P32F2WFL69M" class="btn-cta-p">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M0 0h11.5v11.5H0V0zm12.5 0H24v11.5H12.5V0zM0 12.5h11.5V24H0V12.5zm12.5 0H24V24H12.5V12.5z" />
+        </svg>
+        Microsoft Store で入手
+      </a>
+      <a href="https://github.com/kurouna/elecxzy/releases" class="btn-cta-s">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.08-.74.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.3 3.47.99.1-.77.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.65.24 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z" />
+        </svg>
+        GitHub Releases
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-logo">elec<em>xzy</em></span>
+    <div class="footer-links">
+      <a href="tutorial.html">ドキュメント</a>
+      <a href="https://github.com/kurouna/elecxzy">GitHub</a>
+      <a href="https://github.com/kurouna/elecxzy/releases">Releases</a>
+      <a href="https://zenn.dev/kurouna">Zenn</a>
+      <a href="https://x.com/elecxzy">X (Twitter)</a>
+    </div>
+    <span class="footer-copy">© 2026 kurouna — MIT License</span>
+    <div style="width:100%; text-align:center; margin-top:24px; font-size:11px; color:var(--text-3); font-family:var(--mono); opacity:0.6;">
+      ✨ Portions of this page were generated with AI assistance.
+    </div>
+  </footer>
+
+  <div class="lightbox-overlay" id="lightbox">
+    <div class="lightbox-close">✕</div>
+    <img src="" alt="Enlarged screenshot" class="lightbox-content">
+  </div>
+
+  <script>
+    document.querySelectorAll('.ss-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const p = tab.dataset.panel;
+        document.querySelectorAll('.ss-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.ss-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(p).classList.add('active');
+      });
+    });
+    const obs = new IntersectionObserver(e => { e.forEach(el => { if (el.isIntersecting) el.target.classList.add('in'); }); }, { threshold: 0.08 });
+    document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+
+    // Lightbox
+    const lb = document.getElementById('lightbox');
+    const lbImg = lb.querySelector('img');
+    document.querySelectorAll('.feat-big-img img, .ss-item img').forEach(img => {
+      img.addEventListener('click', () => {
+        lbImg.src = img.src;
+        lb.classList.add('active');
+      });
+    });
+    lb.addEventListener('click', () => lb.classList.remove('active'));
+  </script>
+</body>
+
+</html>
