@@ -430,7 +430,7 @@ footer{
               <tr><td><kbd>M-q</kbd></td><td class="desc">段落を折り返し幅で整形（fill-paragraph）</td></tr>
               <tr><td><kbd>M-x auto-fill-mode</kbd></td><td class="desc">自動改行モードを切り替え</td></tr>
               <tr><td><kbd>M-/</kbd></td><td class="desc">動的単語補完（dabbrev-expand）</td></tr>
-              <tr><td><kbd>C-c d</kbd></td><td class="desc">現在行を複製</td></tr>
+              <tr><td><kbd>C-c l</kbd></td><td class="desc">現在行を複製</td></tr>
               <tr><td><kbd>M-^</kbd></td><td class="desc">現在行を次行と結合（CJK間はスペース不要）</td></tr>
               <tr><td><kbd>Insert</kbd></td><td class="desc">上書きモード（Overwrite Mode）の切り替え</td></tr>
               <tr><td><kbd>C-\</kbd></td><td class="desc">IME 無効化 / トグル</td></tr>
@@ -456,7 +456,7 @@ footer{
                 <tr><td><kbd>C-x 3</kbd></td><td class="desc">左右分割</td></tr>
                 <tr><td><kbd>C-x 1</kbd></td><td class="desc">このウィンドウのみ残す</td></tr>
                 <tr><td><kbd>C-x 0</kbd></td><td class="desc">このウィンドウを閉じる</td></tr>
-                <tr><td><kbd>C-x o</kbd></td><td class="desc">次のウィンドウへ移動</td></tr>
+                <tr><td><kbd>C-x o</kbd> / <kbd>M-o</kbd></td><td class="desc">次のウィンドウへ移動</td></tr>
                 <tr><td><kbd>C-x ^</kbd> / <kbd>C-x }</kbd></td><td class="desc">縦 / 横に拡大</td></tr>
                 <tr><td><kbd>C-x +</kbd></td><td class="desc">サイズを均等化</td></tr>
               </tbody>
@@ -555,7 +555,7 @@ footer{
       </div>
       <div class="two-col">
         <div class="card">
-          <div class="card-hd"><span class="cd" style="background:var(--blue-hi)"></span>ファイラ — C-x d</div>
+          <div class="card-hd"><span class="cd" style="background:var(--blue-hi)"></span>ファイラ — C-x d / C-c d</div>
           <div class="card-body"><p>ファイルエクスプローラ。<kbd>l</kbd>/<kbd>Right</kbd> でプレビュー。<kbd>r</kbd> でドライブルートへ。</p></div>
         </div>
         <div class="card">
@@ -575,8 +575,12 @@ footer{
           <div class="card-body"><p>最近開いたファイルを一覧。<kbd>Space</kbd> でプレビュー。パス表示付き。</p></div>
         </div>
         <div class="card">
-          <div class="card-hd"><span class="cd" style="background:#34d399"></span>ワークスペース — C-.</div>
+          <div class="card-hd"><span class="cd" style="background:#34d399"></span>ワークスペース — C-c w / C-,</div>
           <div class="card-body"><p>複数フォルダをまとめて管理。<code style="font-family:var(--mono);font-size:11px;">.code-workspace</code> 形式のファイルに対応しています。</p></div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><span class="cd" style="background:#94a3b8"></span>設定 — C-c s / C-.</div>
+          <div class="card-body"><p>フォント・テーマ・行番号などのエディタ設定を視覚的に管理。<kbd>C-g</kbd> / <kbd>Esc</kbd> で保存して閉じます。</p></div>
         </div>
       </div>
     </div>
@@ -676,7 +680,7 @@ footer{
               <tr><td><kbd>M-x set-tab-width</kbd></td><td class="desc">タブ幅を変更</td></tr>
               <tr><td><kbd>M-x set-wrap-column</kbd></td><td class="desc">M-q の折り返し幅（デフォルト: 70）</td></tr>
               <tr><td><kbd>M-x set-line-terminator</kbd></td><td class="desc">改行コードを設定（CRLF/LF/CR）</td></tr>
-              <tr><td><kbd>C-,</kbd> または <kbd>M-x open-config</kbd></td><td class="desc">設定サイドバーを開く（GUI）</td></tr>
+              <tr><td><kbd>C-c s</kbd> / <kbd>C-.</kbd> または <kbd>M-x open-config</kbd></td><td class="desc">設定サイドバーを開く（GUI）</td></tr>
             </tbody>
           </table>
         </div>
@@ -767,7 +771,7 @@ footer{
             <tbody>
               <tr><td><kbd>C-x 2</kbd> / <kbd>C-x 3</kbd></td><td class="desc">ウィンドウ 上下 / 左右分割</td></tr>
               <tr><td><kbd>C-x 1</kbd></td><td class="desc">このウィンドウのみ残す</td></tr>
-              <tr><td><kbd>C-x o</kbd></td><td class="desc">次のウィンドウへ移動</td></tr>
+              <tr><td><kbd>C-x o</kbd> / <kbd>M-o</kbd></td><td class="desc">次のウィンドウへ移動</td></tr>
               <tr><td><kbd>C-x k</kbd></td><td class="desc">バッファを閉じる</td></tr>
               <tr><td><kbd>C-c v</kbd></td><td class="desc">Markdown / HTML プレビュー</td></tr>
               <tr><td><kbd>C-x SPC</kbd></td><td class="desc">矩形マークモード</td></tr>
@@ -815,7 +819,7 @@ footer{
                 <tr><td><kbd>C-x C-c</kbd></td><td class="desc">アプリケーションを終了します</td></tr>
                 <tr><td><kbd>M-x show-config</kbd></td><td class="desc">設定ファイル(config.json)を開きます</td></tr>
                 <tr><td><kbd>M-x show-color-config</kbd></td><td class="desc">カラー設定ファイル(color-config.json)を開きます</td></tr>
-                <tr><td><kbd>C-x d</kbd></td><td class="desc">ファイラサイドバーを開きます</td></tr>
+                <tr><td><kbd>C-x d</kbd> / <kbd>C-c d</kbd></td><td class="desc">ファイラサイドバーを開きます</td></tr>
                 <tr><td><kbd>C-c c</kbd></td><td class="desc">最近使ったファイルサイドバーを開きます</td></tr>
                 <tr><td><kbd>M-x recentf-open-files</kbd></td><td class="desc">最近開いたファイルの一覧を表示します</td></tr>
               </tbody>
@@ -894,7 +898,7 @@ footer{
                 <tr><td><kbd>M-^</kbd></td><td class="desc">現在の行を次の行と結合します（CJK文字間以外はスペースを挿入）</td></tr>
                 <tr><td><kbd>M-x just-one-space</kbd></td><td class="desc">カーソル前後の空白（半角/タブ）を削除し、スペースを1つ（`C-u n` で `n` 個）挿入します</td></tr>
                 <tr><td><kbd>C-c SPC</kbd></td><td class="desc">カーソル前後の空白（半角/タブ/全角）を削除し、半角スペースを1つ挿入します</td></tr>
-                <tr><td><kbd>C-c d</kbd></td><td class="desc">現在の行を次の行に複製します（キルリングは変更しません）</td></tr>
+                <tr><td><kbd>C-c l</kbd></td><td class="desc">現在の行を次の行に複製します（キルリングは変更しません）</td></tr>
                 <tr><td><kbd>C-/</kbd> / <kbd>C-_</kbd></td><td class="desc">直前の操作を取り消します</td></tr>
                 <tr><td><kbd>M-_</kbd></td><td class="desc">取り消した操作をやり直します</td></tr>
                 <tr><td><kbd>M-/</kbd></td><td class="desc">動的な単語補完 (dabbrev) を実行します</td></tr>
@@ -1010,7 +1014,7 @@ footer{
                 <tr><td><kbd>C-x 3</kbd></td><td class="desc">ウィンドウを左右に分割します</td></tr>
                 <tr><td><kbd>C-x 0</kbd></td><td class="desc">現在のウィンドウを閉じます</td></tr>
                 <tr><td><kbd>C-x 1</kbd></td><td class="desc">このウィンドウのみ残します</td></tr>
-                <tr><td><kbd>C-x o</kbd></td><td class="desc">他のウィンドウに移動します</td></tr>
+                <tr><td><kbd>C-x o</kbd> / <kbd>M-o</kbd></td><td class="desc">他のウィンドウに移動します</td></tr>
                 <tr><td><kbd>C-x ^</kbd></td><td class="desc">ウィンドウを垂直方向に拡大します</td></tr>
                 <tr><td><kbd>C-x -</kbd></td><td class="desc">ウィンドウを垂直方向に縮小します</td></tr>
                 <tr><td><kbd>C-x }</kbd></td><td class="desc">ウィンドウを水平方向に拡大します</td></tr>
@@ -1035,7 +1039,7 @@ footer{
             <table class="cmd-table">
               <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
               <tbody>
-                <tr><td><kbd>C-x d</kbd></td><td class="desc">ファイラサイドバーを開閉します</td></tr>
+                <tr><td><kbd>C-x d</kbd> / <kbd>C-c d</kbd></td><td class="desc">ファイラサイドバーを開閉します</td></tr>
                 <tr><td><kbd>Enter</kbd> / <kbd>Click</kbd> / <kbd>f</kbd></td><td class="desc">ファイルを開きます</td></tr>
                 <tr><td><kbd>C-n</kbd> / <kbd>j</kbd> / <kbd>n</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
                 <tr><td><kbd>C-p</kbd> / <kbd>k</kbd> / <kbd>p</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
@@ -1069,7 +1073,7 @@ footer{
             <table class="cmd-table">
               <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
               <tbody>
-                <tr><td><kbd>C-c w</kbd> / <kbd>C-.</kbd></td><td class="desc">ワークスペースサイドバーを開閉します</td></tr>
+                <tr><td><kbd>C-c w</kbd> / <kbd>C-,</kbd></td><td class="desc">ワークスペースサイドバーを開閉します</td></tr>
                 <tr><td><kbd>M-x open-workspace</kbd></td><td class="desc">VS Code形式のワークスペースファイルを開きます</td></tr>
                 <tr><td><kbd>M-x save-workspace</kbd></td><td class="desc">ワークスペースを上書き保存します</td></tr>
                 <tr><td><kbd>M-x save-workspace-as</kbd></td><td class="desc">ワークスペースを名前を付けて保存します</td></tr>
@@ -1272,7 +1276,7 @@ footer{
                 <tr><td><kbd>M-x cyber-theme</kbd></td><td class="desc">カラーテーマをサイバーモードに設定します（要再起動）</td></tr>
                 <tr><td><kbd>M-x cute-theme</kbd></td><td class="desc">カラーテーマをキュートモードに設定します（要再起動）</td></tr>
                 <tr><td><kbd>M-x default-theme</kbd></td><td class="desc">カラーテーマをデフォルトに戻します（要再起動）</td></tr>
-                <tr><td><kbd>M-x open-config</kbd></td><td class="desc">設定サイドバーを開きます</td></tr>
+                <tr><td><kbd>C-c s</kbd> / <kbd>C-.</kbd></td><td class="desc">設定サイドバーを開きます</td></tr>
                 <tr><td><kbd>C-g</kbd> / <kbd>C-q</kbd> / <kbd>Esc</kbd></td><td class="desc">設定を保存して閉じます</td></tr>
                 <tr><td><kbd>Right Click</kbd> (Backdrop)</td><td class="desc">背景の右クリックで閉じます</td></tr>
                 <tr><td><kbd>M-x auto-save</kbd></td><td class="desc">オートセーブを切り替えます</td></tr>
