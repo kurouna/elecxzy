@@ -1442,7 +1442,7 @@
           <div class="fg-icon">🗂</div>
           <h3>ワークスペース</h3>
           <p>複数フォルダをまとめて管理します。<code style="font-family:var(--mono);font-size:11px;">.code-workspace</code>
-            形式のファイルに対応しており、<code style="font-family:var(--mono);font-size:11px;">C-.</code> で開閉します。</p>
+            形式のファイルに対応しており、<code style="font-family:var(--mono);font-size:11px;">C-c w</code> / <code style="font-family:var(--mono);font-size:11px;">C-,</code> で開閉します。</p>
         </div>
       </div>
     </div>
@@ -1756,7 +1756,7 @@
               <div class="kb-keys"><kbd>C-c r</kbd></div><span class="kb-desc">レジスタ サイドバー</span>
             </div>
             <div class="kb-row">
-              <div class="kb-keys"><kbd>C-.</kbd></div><span class="kb-desc">ワークスペース開閉</span>
+              <div class="kb-keys"><kbd>C-c w</kbd> / <kbd>C-,</kbd></div><span class="kb-desc">ワークスペース開閉</span>
             </div>
             <div class="kb-row">
               <div class="kb-keys"><kbd>C-c c</kbd></div><span class="kb-desc">最近使ったファイル</span>
@@ -1813,21 +1813,20 @@
           </div>
         </div>
         <div class="mcb-body" id="mcp-body-index"><span style="color:var(--text-3);">{</span>
-          <span class="tk">"mcpServers"</span>: <span style="color:var(--text-3);">{</span>
-          <span class="tk">"elecxzy"</span>: <span style="color:var(--text-3);">{</span>
-          <span class="tk">"command"</span>:
-          <span class="ts">"C:\\...\\elecxzy.exe"</span>,
-          <span class="tk">"args"</span>: [
-          <span class="ts">"C:\\...\\app.asar"</span>
-          ],
-          <span class="tk">"env"</span>: {
-          <span class="tk">"ELECXZY_MCP_MODE"</span>: <span class="tv">"true"</span>,
-          <span class="tk">"ELECTRON_RUN_AS_NODE"</span>: <span class="tv">"1"</span>
-          }
-          }
-          }
-          <span style="color:var(--text-3);">}</span>
-        </div>
+  <span class="tk">"mcpServers"</span>: <span style="color:var(--text-3);">{</span>
+    <span class="tk">"elecxzy"</span>: <span style="color:var(--text-3);">{</span>
+      <span class="tk">"command"</span>:
+        <span class="ts">"C:\\...\\elecxzy.exe"</span>,
+      <span class="tk">"args"</span>: [
+        <span class="ts">"C:\\...\\app.asar"</span>
+      ],
+      <span class="tk">"env"</span>: {
+        <span class="tk">"ELECXZY_MCP_MODE"</span>: <span class="tv">"true"</span>,
+        <span class="tk">"ELECTRON_RUN_AS_NODE"</span>: <span class="tv">"1"</span>
+      }
+    }
+  }
+<span style="color:var(--text-3);">}</span></div>
       </div>
       <div class="mcp-note">
         💡 <kbd>M-x mcp-start</kbd> でサーバーを起動、<kbd>C-c m</kbd> / <kbd>M-x mcp-toggle</kbd>

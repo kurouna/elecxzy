@@ -26,7 +26,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-x C-c` | `quit` | Exit the application | アプリケーションを終了します |
 | `M-x show-config` | `show-config` | Open the configuration file | 設定ファイル(config.json)を開きます |
 | `M-x show-color-config` | `show-color-config` | Open the color configuration file | カラー設定ファイル(color-config.json)を開きます |
-| `C-x d` | `toggle-sidebar` | Open the Filer Sidebar | ファイラサイドバーを開きます |
+| `C-x d` / `C-c d` | `toggle-sidebar` | Open the Filer Sidebar | ファイラサイドバーを開きます |
 | `C-c c` | `browse-recent-files` | Open the Recent Files Sidebar | 最近使ったファイルサイドバーを開きます |
 | `M-x recentf-open-files` | `recentf-open-files` | List recently opened files | 最近開いたファイルの一覧を表示します |
 
@@ -85,7 +85,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-^` | `join-line` | Join current line with the next one | 現在の行を次の行と結合します（CJK文字間以外はスペースを挿入） |
 | `M-x just-one-space` | `just-one-space` | Delete all but one space around point (Supports `C-u n`) | カーソル前後の空白（半角/タブ）を削除し、スペースを1つ（`C-u n` で `n` 個）挿入します |
 | `C-c SPC` | `just-one-space-extended` | Delete all but one space around point, including full-width | カーソル前後の空白（半角/タブ/全角）を削除し、半角スペースを1つ挿入します |
-| `C-c d` | `duplicate-line` | Duplicate current line below (does not affect kill ring) | 現在の行を次の行に複製します（キルリングは変更しません） |
+| `C-c l` | `duplicate-line` | Duplicate current line below (does not affect kill ring) | 現在の行を次の行に複製します（キルリングは変更しません） |
 | `C-/` / `C-_` | `undo` | Undo the last action | 直前の操作を取り消します |
 | `M-_` | `redo` | Redo the last undone action | 取り消した操作をやり直します |
 | `M-/` | `dabbrev-expand` | Dynamic word completion | 動的な単語補完 (dabbrev) を実行します |
@@ -151,7 +151,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-x 3` | `split-window-right` | Split window vertically | ウィンドウを左右に分割します |
 | `C-x 0` | `delete-window` | Close the current window | 現在のウィンドウを閉じます |
 | `C-x 1` | `delete-other-windows` | Close all other windows | 他のウィンドウを閉じます |
-| `C-x o` | `other-window` | Switch focus to another window | 他のウィンドウに移動します |
+| `C-x o` / `M-o` | `other-window` | Switch focus to another window | 他のウィンドウに移動します |
 | `C-x ^` | `enlarge-window` | Enlarge window vertically | ウィンドウを垂直方向に拡大します |
 | `C-x -` | `shrink-window` | Shrink window vertically | ウィンドウを垂直方向に縮小します |
 | `C-x }` | `enlarge-window-horizontally` | Enlarge window horizontally | ウィンドウを水平方向に拡大します |
@@ -166,7 +166,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 ## Filer Operations (ファイラ操作)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `C-x d` | `toggle-sidebar` | Toggle Filer Sidebar | ファイラサイドバーを開閉します |
+| `C-x d` / `C-c d` | `toggle-sidebar` | Toggle Filer Sidebar | ファイラサイドバーを開閉します |
 | `Enter` / `Click` / `f` | (Sidebar Open) | Open file | ファイルを開きます |
 | `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
 | `C-p` / `k` / `p` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
@@ -190,7 +190,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 ## Workspace Operations (ワークスペース操作)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `C-c w` / `C-.` | `toggle-workspace-sidebar` | Toggle Workspace Sidebar | ワークスペースサイドバーを開閉します |
+| `C-c w` / `C-,` | `toggle-workspace-sidebar` | Toggle Workspace Sidebar | ワークスペースサイドバーを開閉します |
 | `M-x open-workspace` | `open-workspace` | Open a VS Code .code-workspace file | VS Code形式のワークスペースファイルを開きます |
 | `M-x save-workspace` | `save-workspace` | Save current workspace | ワークスペースを上書き保存します |
 | `M-x save-workspace-as` | `save-workspace-as` | Save workspace as... | ワークスペースを名前を付けて保存します |
@@ -275,6 +275,23 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
 | `C-g` / `C-q` / `q` / `b` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 
+## Undo History Sidebar Operations (Undo 履歴サイドバー操作)
+| Command / コマンド | ID | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `C-c u` | `browse-undo-history` | Open Undo History Sidebar | Undo 履歴サイドバーを開閉します |
+| `Enter` / `f` | (Sidebar Open) | Undo to the selected entry (inclusive) & Close | 選択した項目までまとめて Undo して閉じます（その項目自体も Undo されます） |
+| `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
+| `C-p` / `k` / `p` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
+| `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロールします |
+| `M-v` | (Sidebar Open) | Scroll up one page | 1ページ分上にスクロールします |
+| `M-<` | (Sidebar Open) | Jump to the beginning of the list | リストの先頭に移動します |
+| `M->` | (Sidebar Open) | Jump to the end of the list | リストの末尾に移動します |
+| `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
+| `C-g` / `C-q` / `q` / `b` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
+
+> **Note:** Multiple undos performed via the sidebar are merged into a single redo transaction, so a single `C-/` (or `M-_`) restores everything in one step (Office-style behavior).
+> **補足:** サイドバー経由でまとめて Undo した操作は 1 つの Redo トランザクションに統合されるため、`C-/`（または `M-_`）の Redo 1 回で一括復元できます（Word/Excel と同様の挙動）。
+
 ## Preview & Web (プレビュー・Web)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
@@ -324,7 +341,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x cyber-theme` | `cyber-theme` | Set color theme to Cyber Mode (Requires restart) | カラーテーマをサイバーモードに設定します（要再起動） |
 | `M-x cute-theme` | `cute-theme` | Set color theme to Cute Mode (Requires restart) | カラーテーマをキュートモードに設定します（要再起動） |
 | `M-x default-theme` | `default-theme` | Set color theme to default (Requires restart) | カラーテーマをデフォルトに戻します（要再起動） |
-| `M-x open-config` | `open-config` | Open the Settings Sidebar | 設定サイドバーを開きます |
+| `C-c s` / `C-.` | `open-config` | Open the Settings Sidebar | 設定サイドバーを開きます |
 | `C-g` / `C-q` / `Esc` | (Settings Open) | Save & Close sidebar | 設定を保存して閉じます |
 | `Right Click` (Backdrop) | (Settings Open) | Save & Close sidebar | 背景の右クリックで閉じます |
 | `M-x auto-save` | `auto-save` | Toggle auto-save status | オートセーブを切り替えます |
