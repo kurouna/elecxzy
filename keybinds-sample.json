@@ -1,0 +1,22 @@
+{
+    "\\C-s": "save-buffer",
+    "\\C-o": "find-file",
+    "\\C-p": "print-buffer",
+    "\\C-z": "undo",
+    "\\C-y": "redo",
+    "\\C-v": "yank",
+    "\\C-a": "mark-whole-buffer",
+    "\\C-f": "isearch-forward",
+    "\\C-h": "query-replace",
+
+    "\\C-End": "end-of-buffer",
+    "\\C-Home": "beginning-of-buffer",
+
+    "C-x C-r": "mark-whole-buffer",
+
+    "\\C-_": "",
+    "\\C-/": "",
+
+    "\\C-x": "kill-region",
+    "\\C-c": "kill-ring-save",
+}
