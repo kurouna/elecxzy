@@ -76,6 +76,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-c` | `capitalize-word` | Capitalize first letter of word | 単語の先頭を大文字にします |
 | `M-backspace` | `backward-kill-word` | Kill word backward | 前の単語をキルします |
 | `M-q` | `fill-paragraph` | Fill paragraph matching wrap column | 段落を折り返し幅に合わせて整形(ハードラップ)します |
+| `M-Q` | `unfill-paragraph` | Unfill paragraph (join into a single line) | ハードラップされた段落を1行に連結します（M-qの逆） |
 | `M-x auto-fill-mode` | `auto-fill-mode` | Toggle auto-fill-mode | 自動改行モード (Auto Fill Mode) を切り替えます |
 | `Insert` / `M-x toggle-overwrite-mode` | `toggle-overwrite-mode` | Toggle overwrite-mode | 上書きモード (Overwrite Mode) を切り替えます |
 | `C-o` | `open-line` | Insert a newline after cursor | カーソル位置に改行を挿入します |
@@ -91,6 +92,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-/` | `dabbrev-expand` | Dynamic word completion | 動的な単語補完 (dabbrev) を実行します |
 | `C-SPC` | `set-mark-command` | Set mark at current position | 現在位置にマークをセットします |
 | `C-u C-SPC` | `set-mark-command` | Pop mark from mark ring (with argument) | マークリングから位置を復元してジャンプします |
+| `Shift + arrow` | - | Start or extend selection toward the arrow direction. Note: selection is NOT cleared by pressing a plain (unshifted) arrow afterwards — use `C-g` or `C-SPC C-SPC` to deactivate the region explicitly. | Shift + 矢印キーで選択を開始・拡張します。一般的なエディタと異なり、選択中に Shift なしの矢印キーを押しても選択は解除されません。明示的に解除するには `C-g` または `C-SPC C-SPC` を使用してください。 |
 | `C-x C-x` | `exchange-point-and-mark` | Swap cursor and mark positions | カーソルとマークの位置を入れ替えます |
 | `C-x h` | `mark-whole-buffer` | Mark the whole buffer | バッファ全体（全文）を選択します |
 | `C-=` | `expand-region` | Expand region incrementally | 選択範囲を段階的に拡大します |
@@ -157,6 +159,13 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-x }` | `enlarge-window-horizontally` | Enlarge window horizontally | ウィンドウを水平方向に拡大します |
 | `C-x {` | `shrink-window-horizontally` | Shrink window horizontally | ウィンドウを水平方向に縮小します |
 | `C-x +` | `balance-windows` | Balance all window sizes | すべてのウィンドウのサイズを均等にします |
+| `C-x w t` | `window-layout-transpose` | Transpose layout: swap row/column orientation throughout the tree | レイアウトを転置：すべての分割の縦横を入れ替えます|
+| `C-x w f` | `window-layout-flip-leftright` | Mirror horizontal splits left ↔ right  | 左右に並んだ分割を反転します|
+| `C-x w v` | `window-layout-flip-topdown` | Mirror vertical splits top ↔ bottom | 上下に並んだ分割を反転します|
+| `C-x w r Right` | `window-layout-rotate-clockwise` | Rotate the entire window layout 90° clockwise | ウィンドウレイアウト全体を時計回りに 90° 回転します|
+| `C-x w r Left` | `window-layout-rotate-anticlockwise` | Rotate the entire window layout 90° counter-clockwise | ウィンドウレイアウト全体を反時計回りに 90° 回転します|
+| `C-x w o Right` | `rotate-windows` | Cyclically rotate buffer contents through panes forward in tree-order; the active pane follows its buffer | バッファ内容をペイン間で前向きに循環シフトします。アクティブペインは自分のバッファを追って移動します|
+| `C-x w o Left` | `rotate-windows-back` | Same as above but backward through tree-order| 同上、ただし後ろ向きに循環シフトします|
 | `C-x b` | `switch-to-buffer` | Switch to another buffer | バッファを切り替えます（補完候補あり） |
 | `C-x C-b` | `list-buffers` | Show a list of all open buffers | バッファ一覧を表示します |
 | `C-x k` | `kill-buffer` | Close the current buffer | バッファを閉じます |
@@ -423,9 +432,14 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 ## MCP (AI Integration / AI 連携)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `M-x mcp-start` | `mcp-start` | Start the internal MCP server | 内蔵 MCP サーバーを起動します |
+| `M-x mcp-start` | `mcp-start` | Start the internal MCP server. Aborts and shows an echo-line message if `mcpAllowedDirectories` is empty or contains a non-existent path. | 内蔵 MCP サーバーを起動します。`mcpAllowedDirectories` が未設定、または存在しないパスを含む場合は起動を中断し、エコーラインに案内を表示します |
 | `M-x mcp-stop` | `mcp-stop` | Stop the internal MCP server | 内蔵 MCP サーバーを停止します |
 | `C-c m` / `M-x mcp-toggle` | `mcp-toggle` | Toggle the internal MCP server | 内蔵 MCP サーバーの起動・停止を切り替えます |
+
+> [!NOTE]
+> The `save_file` MCP tool refuses any target path that is not located under one of the directories listed in `mcpAllowedDirectories` (config.json / Settings → MCP). You must add at least one allowed root before starting the MCP server.
+>
+> MCP の `save_file` ツールは、`mcpAllowedDirectories`（config.json / 設定サイドバー → MCP）に登録されたいずれかのディレクトリ配下のパスにしか保存できません。MCP サーバを起動する前に、許可ディレクトリを最低 1 件追加してください。
 
 ## Prefix Arguments (プレフィックス引数)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
@@ -441,5 +455,5 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 ## Experimental (実験的)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `M-x navigate-url` | `navigate-url` | Open a URL in a preview buffer | 指定したURLをバッファ内で表示します |
+| `M-x navigate-url` | `navigate-url` | Open a URL in a preview buffer. Only `https://` and loopback `http://` (`localhost` / `127.0.0.1` / `[::1]`) are accepted; other schemes (`http://` to remote hosts, `javascript:`, `file:`, `data:`, etc.) are refused with an echo-line message. | 指定したURLをバッファ内で表示します。許可されるのは `https://` とループバック `http://`（`localhost` / `127.0.0.1` / `[::1]`）のみで、それ以外（外部ホストへの `http://`・`javascript:`・`file:`・`data:` 等）は拒否され、エコーラインに案内が表示されます |
 | `M-x shell` | `shell` | Run an interactive shell (cmd.exe) | 対話的なシェル(cmd.exe)を実行します |

@@ -1725,6 +1725,18 @@
               <div class="kb-keys"><kbd>C-x o</kbd></div><span class="kb-desc">次のウィンドウへ移動</span>
             </div>
             <div class="kb-row">
+              <div class="kb-keys"><kbd>C-x w t</kbd></div><span class="kb-desc">レイアウト転置（縦↔横）</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-x w r</kbd> <kbd>→</kbd><span style="color:var(--text-3);font-size:11px;">/</span><kbd>←</kbd></div><span class="kb-desc">レイアウト 90° 回転</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-x w f</kbd><span style="color:var(--text-3);font-size:11px;">/</span><kbd>C-x w v</kbd></div><span class="kb-desc">左右 / 上下反転</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-x w o</kbd> <kbd>→</kbd><span style="color:var(--text-3);font-size:11px;">/</span><kbd>←</kbd></div><span class="kb-desc">バッファ循環シフト</span>
+            </div>
+            <div class="kb-row">
               <div class="kb-keys"><kbd>C-x b</kbd></div><span class="kb-desc">バッファ切り替え</span>
             </div>
             <div class="kb-row">
@@ -1773,6 +1785,51 @@
       </div>
     </div>
   </section>
+
+  <div class="divider"></div>
+
+  <!-- FEAT BIG: Custom Keybindings -->
+  <div class="feat-big fi rev" id="custom-keybinds">
+    <div>
+      <div class="feat-tag">Customization</div>
+      <h2 class="section-h">キーバインドを<br>あなた好みに。</h2>
+      <p class="section-p" style="max-width:100%;">
+        既定キーマップを <code>keybinds.json</code> で再ビルドなしに上書き・削除できます。<br><br>
+        Emacs 互換の記法で <code>\C-</code> が <kbd>Ctrl</kbd>、<code>\M-</code> が <kbd>Alt</kbd>、スペース区切りでキーシーケンス（<code>"C-x C-f"</code>）を表現します。値を空文字 <code>""</code> にすると当該バインドを削除できます。<br><br>
+        ファイルが無ければ既定動作のまま起動。JSON の構文エラーや未登録コマンドはエコーラインに 1 度だけ集約表示され、起動・編集が止まることはありません。
+      </p>
+      <a href="tutorial.html#custom-keybinds"
+        style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:13px;color:var(--blue-hi);">設定方法を見る
+        →</a>
+    </div>
+    <div>
+      <div class="mcp-code-block">
+        <div class="mcb-header">
+          <span class="mcb-file">keybinds.json</span>
+          <button class="copy-btn" data-target="kb-body-index">コピー</button>
+          <div class="win-controls" style="height:100%;">
+            <div class="win-btn" style="width:36px;"><svg width="10" height="10" viewBox="0 0 12 12">
+                <path d="M0,5.5h12v1H0z" fill="currentColor" />
+              </svg></div>
+            <div class="win-btn" style="width:36px;"><svg width="10" height="10" viewBox="0 0 12 12">
+                <path d="M1,1h10v10H1V1z M2,2v8h8V2H2z" fill="currentColor" />
+              </svg></div>
+            <div class="win-btn close" style="width:36px;"><svg width="10" height="10" viewBox="0 0 12 12">
+                <path d="M1,2l1,-1l4,4l4,-4l1,1l-4,4l4,4l-1,1l-4,-4l-4,4l-1,-1l4,-4Z" fill="currentColor" />
+              </svg></div>
+          </div>
+        </div>
+        <div class="mcb-body" id="kb-body-index"><span style="color:var(--text-3);">{</span>
+  <span class="tk">"\\C-s"</span>: <span class="ts">"save-buffer"</span>,
+  <span class="tk">"C-x C-r"</span>: <span class="ts">"mark-whole-buffer"</span>,
+  <span class="tk">"\\C-_"</span>: <span class="ts">""</span>
+<span style="color:var(--text-3);">}</span></div>
+      </div>
+      <div class="mcp-note">
+        💡 <kbd>M-x show-keybinds-config</kbd> で <code>keybinds.json</code> を開けます。ファイルが無ければ <code>{}</code> で自動生成されますが、既存ファイルは JSON が壊れていても上書きしません。
+      </div>
+    </div>
+  </div>
 
   <div class="divider"></div>
 
@@ -1831,6 +1888,9 @@
       <div class="mcp-note">
         💡 <kbd>M-x mcp-start</kbd> でサーバーを起動、<kbd>C-c m</kbd> / <kbd>M-x mcp-toggle</kbd>
         で起動/停止を切り替えます。設定後はAIがバッファの内容をリアルタイムで参照できます。
+      </div>
+      <div class="mcp-note">
+        🔒 起動前に <kbd>設定サイドバー → MCP</kbd> の <strong>Allowed Save Directories</strong>（または <code>config.json</code> の <code>mcpAllowedDirectories</code>）に保存を許可するディレクトリを 1 件以上登録してください。MCP の <code>save_file</code> ツールは登録されたディレクトリ配下にしか書き込めず、リストが空または存在しないパスを含む場合 <kbd>M-x mcp-start</kbd> は起動を中断します。
       </div>
     </div>
   </div>

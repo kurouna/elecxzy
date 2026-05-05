@@ -285,6 +285,7 @@ footer{
   <a href="#macro" class="sb-link"><span class="sb-num">8</span>簡易的なカーソルベースマクロ</a>
   <a href="#themes" class="sb-link"><span class="sb-num">9</span>テーマ・カスタマイズ</a>
   <a href="#vfx" class="sb-link"><span class="sb-num">10</span>カーソル VFX</a>
+  <a href="#custom-keybinds" class="sb-link"><span class="sb-num">11</span>キーバインドのカスタマイズ</a>
       <div class="sb-section">リファレンス</div>
   <a href="#ref-quickref" class="sb-link"><span class="sb-num">—</span>よく使うキー早見表</a>
   <a href="#ref-help" class="sb-link"><span class="sb-num">—</span>ヘルプ・情報</a>
@@ -459,6 +460,10 @@ footer{
                 <tr><td><kbd>C-x o</kbd> / <kbd>M-o</kbd></td><td class="desc">次のウィンドウへ移動</td></tr>
                 <tr><td><kbd>C-x ^</kbd> / <kbd>C-x }</kbd></td><td class="desc">縦 / 横に拡大</td></tr>
                 <tr><td><kbd>C-x +</kbd></td><td class="desc">サイズを均等化</td></tr>
+                <tr><td><kbd>C-x w t</kbd></td><td class="desc">レイアウト転置（全分割の縦↔横を入れ替え）</td></tr>
+                <tr><td><kbd>C-x w r</kbd> <kbd>→</kbd> / <kbd>←</kbd></td><td class="desc">レイアウト 90° 回転（時計回り / 反時計回り）</td></tr>
+                <tr><td><kbd>C-x w f</kbd> / <kbd>C-x w v</kbd></td><td class="desc">レイアウト左右反転 / 上下反転</td></tr>
+                <tr><td><kbd>C-x w o</kbd> <kbd>→</kbd> / <kbd>←</kbd></td><td class="desc">バッファ循環シフト（前進 / 後退）</td></tr>
               </tbody>
             </table>
           </div>
@@ -619,6 +624,7 @@ footer{
 <span style="color:var(--text-3);">}</span></div>
       </div>
       <div class="note warn"><span>⚠️</span><span><code style="font-family:var(--mono);font-size:11px;">[ユーザー名]</code> を実際のWindowsユーザー名に置き換えてください。Microsoft Store版と GitHub版でインストールパスが異なる場合があります。</span></div>
+      <div class="note warn"><span>🔒</span><span><strong>起動前に保存許可ディレクトリの登録が必要です。</strong> <kbd>設定サイドバー → MCP</kbd> の <strong>Allowed Save Directories</strong>（または <code style="font-family:var(--mono);font-size:11px;">config.json</code> の <code style="font-family:var(--mono);font-size:11px;">mcpAllowedDirectories</code>）に書き込みを許可するディレクトリを 1 件以上追加してください。MCP の <code style="font-family:var(--mono);font-size:11px;">save_file</code> ツールは登録されたディレクトリ配下にしか保存できず、リストが空あるいは存在しないパスを含む場合は <kbd>M-x mcp-start</kbd> が起動を中断し、エコーラインに案内が表示されます。</span></div>
       <div class="card">
         <div class="card-hd">起動コマンド</div>
         <div class="card-body"><p>設定後、elecxzy を起動してから <kbd>M-x mcp-start</kbd> または <kbd>C-c m</kbd> でMCPサーバーを開始します。</p></div>
@@ -741,6 +747,64 @@ footer{
       </div>
     </div>
 
+    <!-- 11: Custom Keybindings -->
+    <div class="step-section" id="custom-keybinds">
+      <div class="step-header">
+        <div class="step-num">11</div>
+        <div class="step-header-text"><h2>キーバインドのカスタマイズ</h2><p><code style="font-family:var(--mono);font-size:13px;">keybinds.json</code> で既定キーマップを上書き・削除する</p></div>
+      </div>
+      <div class="note info"><span>⌨️</span><span><code style="font-family:var(--mono);font-size:11px;">config.json</code> と同じユーザデータフォルダに <code style="font-family:var(--mono);font-size:11px;">keybinds.json</code> を置くと、再ビルドなしに既定キーバインドを上書きできます。<kbd>M-x show-keybinds-config</kbd> でいつでもファイルを開けます（無ければ <code style="font-family:var(--mono);font-size:11px;">{}</code> で自動生成。既存ファイルは JSON が壊れていても上書きしません）。</span></div>
+
+      <div class="card">
+        <div class="card-hd">記法</div>
+        <div class="card-body" style="padding:0;">
+          <table class="cmd-table">
+            <thead><tr><th>記法</th><th>意味</th></tr></thead>
+            <tbody>
+              <tr><td><code style="font-family:var(--mono);font-size:12px;">\C-</code> / <code style="font-family:var(--mono);font-size:12px;">C-</code></td><td class="desc"><kbd>Ctrl</kbd> 修飾子（Emacs と同様）</td></tr>
+              <tr><td><code style="font-family:var(--mono);font-size:12px;">\M-</code> / <code style="font-family:var(--mono);font-size:12px;">M-</code></td><td class="desc"><kbd>Alt</kbd> 修飾子</td></tr>
+              <tr><td><code style="font-family:var(--mono);font-size:12px;">"C-x C-f"</code></td><td class="desc">スペース区切りでキーシーケンス（連続スペースは自動正規化）</td></tr>
+              <tr><td><code style="font-family:var(--mono);font-size:12px;">"\\C-n": ""</code></td><td class="desc">値が空文字なら当該バインドを削除（押しても何もしない）</td></tr>
+              <tr><td><code style="font-family:var(--mono);font-size:12px;">"Tab"</code> / <code style="font-family:var(--mono);font-size:12px;">"End"</code> など</td><td class="desc">特殊キーは内部表記そのままで指定可能（<code style="font-family:var(--mono);font-size:12px;">Space</code>, <code style="font-family:var(--mono);font-size:12px;">Backspace</code>, <code style="font-family:var(--mono);font-size:12px;">ArrowUp</code> 等）</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hd" style="padding-right:0;">
+          <span>keybinds.json</span>
+          <button class="copy-btn" data-target="kb-body-tutorial">コピー</button>
+          <div class="win-controls">
+            <div class="win-btn"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M0,5.5h12v1H0z" fill="currentColor"/></svg></div>
+            <div class="win-btn"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M1,1h10v10H1V1z M2,2v8h8V2H2z" fill="currentColor"/></svg></div>
+            <div class="win-btn close"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M1,2l1,-1l4,4l4,-4l1,1l-4,4l4,4l-1,1l-4,-4l-4,4l-1,-1l4,-4Z" fill="currentColor"/></svg></div>
+          </div>
+        </div>
+        <div class="code-block" id="kb-body-tutorial" style="margin:0;border:none;border-top:1px solid var(--border);border-radius:0 0 8px 8px;"><span style="color:var(--text-3);">{</span>
+  <span class="tk">"\\C-s"</span>: <span class="ts">"save-buffer"</span>,
+  <span class="tk">"\\C-z"</span>: <span class="ts">"undo"</span>,
+  <span class="tk">"\\C-y"</span>: <span class="ts">"redo"</span>,
+  <span class="tk">"C-x C-r"</span>: <span class="ts">"mark-whole-buffer"</span>,
+  <span class="tk">"\\C-_"</span>: <span class="ts">""</span>
+<span style="color:var(--text-3);">}</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-hd">挙動の要点</div>
+        <div class="card-body">
+          <ul style="margin:0;padding-left:20px;line-height:1.9;">
+            <li>ファイルが無ければ既定キーマップのまま起動。エラー表示も出ません。</li>
+            <li>JSON 構文エラー、未登録コマンド ID、解析できないキー記法はエコーラインに 1 度だけまとめて表示され、編集や起動が止まることはありません。</li>
+            <li>既存の prefix（例 <kbd>C-x</kbd>）を leaf で上書きすると、配下の子バインド（<kbd>C-x C-s</kbd> など）は押下不能になります（仕様）。逆方向（leaf を新しいキーシーケンスで覆う）も同様に置換されます。</li>
+            <li>コマンド ID 一覧は <a href="#reference">全コマンドリファレンス</a> で確認できます（<code style="font-family:var(--mono);font-size:11px;">M-x</code> の補完候補と同じです）。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note ok"><span>💡</span><span>上の例では、<kbd>C-s</kbd> が「インクリメンタル検索」ではなく「保存」になります（メモ帳的な操作系）。<kbd>C-x C-r</kbd> は「読み取り専用で開く」が「全選択」に置き換わります。<kbd>C-_</kbd> は押しても何も起きなくなります（<kbd>C-/</kbd> 側の Undo は残ります）。</span></div>
+    </div>
+
     <!-- REFERENCE -->
             <div class="ref-header" id="reference">
       <p>Command Reference</p>
@@ -772,6 +836,7 @@ footer{
               <tr><td><kbd>C-x 2</kbd> / <kbd>C-x 3</kbd></td><td class="desc">ウィンドウ 上下 / 左右分割</td></tr>
               <tr><td><kbd>C-x 1</kbd></td><td class="desc">このウィンドウのみ残す</td></tr>
               <tr><td><kbd>C-x o</kbd> / <kbd>M-o</kbd></td><td class="desc">次のウィンドウへ移動</td></tr>
+              <tr><td><kbd>C-x w t</kbd> / <kbd>C-x w r</kbd> <kbd>→</kbd></td><td class="desc">レイアウト転置 / 90° 回転</td></tr>
               <tr><td><kbd>C-x k</kbd></td><td class="desc">バッファを閉じる</td></tr>
               <tr><td><kbd>C-c v</kbd></td><td class="desc">Markdown / HTML プレビュー</td></tr>
               <tr><td><kbd>C-x SPC</kbd></td><td class="desc">矩形マークモード</td></tr>
@@ -1020,6 +1085,13 @@ footer{
                 <tr><td><kbd>C-x }</kbd></td><td class="desc">ウィンドウを水平方向に拡大します</td></tr>
                 <tr><td><kbd>C-x {</kbd></td><td class="desc">ウィンドウを水平方向に縮小します</td></tr>
                 <tr><td><kbd>C-x +</kbd></td><td class="desc">すべてのウィンドウのサイズを均等にします</td></tr>
+                <tr><td><kbd>C-x w t</kbd></td><td class="desc">レイアウトを転置：すべての分割の縦横を入れ替えます（対角線で鏡像）</td></tr>
+                <tr><td><kbd>C-x w r</kbd> <kbd>→</kbd></td><td class="desc">レイアウト全体を時計回りに 90° 回転します</td></tr>
+                <tr><td><kbd>C-x w r</kbd> <kbd>←</kbd></td><td class="desc">レイアウト全体を反時計回りに 90° 回転します</td></tr>
+                <tr><td><kbd>C-x w f</kbd></td><td class="desc">左右に並んだ分割を反転します</td></tr>
+                <tr><td><kbd>C-x w v</kbd></td><td class="desc">上下に並んだ分割を反転します</td></tr>
+                <tr><td><kbd>C-x w o</kbd> <kbd>→</kbd></td><td class="desc">バッファ内容をペイン間で前向きに循環シフトします（アクティブも追従）</td></tr>
+                <tr><td><kbd>C-x w o</kbd> <kbd>←</kbd></td><td class="desc">同上、ただし後ろ向きに循環シフトします</td></tr>
                 <tr><td><kbd>C-x b</kbd></td><td class="desc">バッファを切り替えます（補完候補あり）</td></tr>
                 <tr><td><kbd>C-x C-b</kbd></td><td class="desc">バッファ一覧を表示します</td></tr>
                 <tr><td><kbd>C-x k</kbd></td><td class="desc">バッファを閉じます</td></tr>
@@ -1347,7 +1419,7 @@ footer{
             <table class="cmd-table">
               <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
               <tbody>
-                <tr><td><kbd>M-x mcp-start</kbd></td><td class="desc">内蔵 MCP サーバーを起動します</td></tr>
+                <tr><td><kbd>M-x mcp-start</kbd></td><td class="desc">内蔵 MCP サーバーを起動します。<code style="font-family:var(--mono);font-size:11px;">mcpAllowedDirectories</code> が未設定または存在しないパスを含む場合は起動を中断し、エコーラインに案内を表示します</td></tr>
                 <tr><td><kbd>M-x mcp-stop</kbd></td><td class="desc">内蔵 MCP サーバーを停止します</td></tr>
                 <tr><td><kbd>C-c m</kbd> / <kbd>M-x mcp-toggle</kbd></td><td class="desc">内蔵 MCP サーバーの起動・停止を切り替えます</td></tr>
               </tbody>
@@ -1395,7 +1467,7 @@ footer{
             <table class="cmd-table">
               <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
               <tbody>
-                <tr><td><kbd>M-x navigate-url</kbd></td><td class="desc">指定したURLをバッファ内で表示します</td></tr>
+                <tr><td><kbd>M-x navigate-url</kbd></td><td class="desc">指定したURLをバッファ内で表示します。許可されるのは <code style="font-family:var(--mono);font-size:11px;">https://</code> とループバック <code style="font-family:var(--mono);font-size:11px;">http://</code>（<code style="font-family:var(--mono);font-size:11px;">localhost</code> / <code style="font-family:var(--mono);font-size:11px;">127.0.0.1</code> / <code style="font-family:var(--mono);font-size:11px;">[::1]</code>）のみで、それ以外は拒否されます</td></tr>
                 <tr><td><kbd>M-x shell</kbd></td><td class="desc">対話的なシェル(cmd.exe)を実行します</td></tr>
               </tbody>
             </table>
