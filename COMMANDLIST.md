@@ -23,6 +23,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-x M-w` | `write-file-dialog` | Save buffer using OS dialog | OSダイアログを使用して保存します |
 | `C-x i` | `insert-file` | Insert a file at cursor | カーソル位置にファイルを挿入します |
 | `C-x C-q` | `read-only-mode` | Toggle read-only mode | 書き込み禁止状態を切り替えます |
+| `C-x x g` / `M-x revert-buffer` | `revert-buffer` | Revert current buffer from disk | 現在のバッファをディスクの内容で再読込します（C-_ で revert 前へ戻せます） |
 | `C-x C-c` | `quit` | Exit the application | アプリケーションを終了します |
 | `M-x show-config` | `show-config` | Open the configuration file | 設定ファイル(config.json)を開きます |
 | `M-x show-color-config` | `show-color-config` | Open the color configuration file | カラー設定ファイル(color-config.json)を開きます |
@@ -65,7 +66,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-k` | `kill-line` | Kill from cursor to end of line (Supports `C-u n`) | 行末までキルします（`C-u n` で回数指定が可能） |
 | `C-w` | `kill-region` | Kill the selected region | 選択範囲をキルします |
 | `M-w` | `kill-ring-save` | Copy the selected region (or current line) to kill ring | 選択範囲（または現在行）をコピーします |
-| `C-y` | `yank` | Paste from the kill ring (Supports `C-u n` for repeat) | キルリングから貼り付け（ヤンク）します（`C-u n` で回数指定が可能） |
+| `C-y` | `yank` | Paste from the kill ring (Supports `C-u n` for repeat, max 1000) | キルリングから貼り付け（ヤンク）します（`C-u n` で回数指定が可能、最大 1000 回） |
 | `M-y` | `yank-pop` | Cycle through previous kills | キルリングを遡って貼り付けます |
 | `M-x kill-whole-line` | `kill-whole-line` | Kill the whole line (including newline) | 行全体（改行を含む）をキルします |
 | `M-d` | `kill-word` | Kill word forward | 次の単語をキルします |
@@ -341,6 +342,30 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x svg-mode` | `svg-mode` | Switch to SVG mode | SVGモードに切り替えます |
 | `M-x yaml-mode` | `yaml-mode` | Switch to YAML mode | YAMLモードに切り替えます |
 | `M-x bash-mode` | `bash-mode` | Switch to Bash/Shell mode | Bash/Shellモードに切り替えます |
+| `M-x apache-mode` | `apache-mode` | Switch to Apache config mode | Apache設定モードに切り替えます |
+| `M-x bat-mode` | `bat-mode` | Switch to DOS/Batch mode | DOS/Batchモードに切り替えます |
+| `M-x cmake-mode` | `cmake-mode` | Switch to CMake mode | CMakeモードに切り替えます |
+| `M-x conf-mode` | `conf-mode` | Switch to INI/config mode | INI/設定ファイルモードに切り替えます |
+| `M-x diff-mode` | `diff-mode` | Switch to Diff/Patch mode | Diff/Patchモードに切り替えます |
+| `M-x dockerfile-mode` | `dockerfile-mode` | Switch to Dockerfile mode | Dockerfileモードに切り替えます |
+| `M-x emacs-lisp-mode` | `emacs-lisp-mode` | Switch to Emacs Lisp mode | Emacs Lispモードに切り替えます |
+| `M-x fsharp-mode` | `fsharp-mode` | Switch to F# mode | F#モードに切り替えます |
+| `M-x graphql-mode` | `graphql-mode` | Switch to GraphQL mode | GraphQLモードに切り替えます |
+| `M-x haskell-mode` | `haskell-mode` | Switch to Haskell mode | Haskellモードに切り替えます |
+| `M-x ini-mode` | `ini-mode` | Switch to INI mode | INIモードに切り替えます |
+| `M-x latex-mode` | `latex-mode` | Switch to LaTeX mode | LaTeXモードに切り替えます |
+| `M-x less-mode` | `less-mode` | Switch to Less mode | Lessモードに切り替えます |
+| `M-x lisp-mode` | `lisp-mode` | Switch to Common Lisp mode | Common Lispモードに切り替えます |
+| `M-x makefile-mode` | `makefile-mode` | Switch to Makefile mode | Makefileモードに切り替えます |
+| `M-x nginx-mode` | `nginx-mode` | Switch to Nginx mode | Nginxモードに切り替えます |
+| `M-x objc-mode` | `objc-mode` | Switch to Objective-C mode | Objective-Cモードに切り替えます |
+| `M-x powershell-mode` | `powershell-mode` | Switch to PowerShell mode | PowerShellモードに切り替えます |
+| `M-x properties-mode` | `properties-mode` | Switch to Java Properties mode | Java Propertiesモードに切り替えます |
+| `M-x protobuf-mode` | `protobuf-mode` | Switch to Protocol Buffers mode | Protocol Buffersモードに切り替えます |
+| `M-x r-mode` | `r-mode` | Switch to R mode | Rモードに切り替えます |
+| `M-x sass-mode` | `sass-mode` | Switch to Sass mode | Sassモードに切り替えます |
+| `M-x scss-mode` | `scss-mode` | Switch to SCSS mode | SCSSモードに切り替えます |
+| `M-x vim-mode` | `vim-mode` | Switch to Vim script mode | Vim scriptモードに切り替えます |
 
 ## Settings (設定)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
@@ -355,6 +380,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `Right Click` (Backdrop) | (Settings Open) | Save & Close sidebar | 背景の右クリックで閉じます |
 | `M-x auto-save` | `auto-save` | Toggle auto-save status | オートセーブを切り替えます |
 | `M-x get-auto-fill-mode` | `get-auto-fill-mode` | Show auto-fill mode status | 自動改行モードの状態を表示します |
+| `M-x get-auto-revert-clean` | `get-auto-revert-clean` | Show auto-revert (clean) status | clean バッファの自動 revert 状態を表示します |
 | `M-x get-auto-save` | `get-auto-save` | Show auto-save status | オートセーブの状態を表示します |
 | `M-x get-auto-save-interval` | `get-auto-save-interval` | Show auto-save interval | オートセーブの間隔を表示します |
 | `M-x get-case-sensitive-search` | `get-case-sensitive-search` | Get case sensitive search status | 検索の大文字小文字区別の状態を表示します |
@@ -376,6 +402,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x get-tab-width` | `get-tab-width` | Get current tab width | タブ幅を表示します |
 | `M-x get-wrap-column` | `get-wrap-column` | Get current wrap column | 現在の折り返し幅を表示します |
 | `M-x set-auto-fill-mode` | `set-auto-fill-mode` | Toggle auto-fill mode (on/off) | 自動改行モードを有効/無効にします |
+| `M-x set-auto-revert-clean` | `set-auto-revert-clean` | Set auto-revert for clean buffers (on/off) | clean バッファの自動 revert を有効/無効にします |
 | `M-x set-auto-save` | `set-auto-save` | Toggle auto-save (yes/no) | オートセーブを有効/無効にします |
 | `M-x set-auto-save-interval` | `set-auto-save-interval` | Set auto-save interval (min) | オートセーブの間隔(分)を設定します |
 | `M-x set-case-sensitive-search` | `set-case-sensitive-search` | Set case sensitive search (on/off) | 検索の大文字小文字区別を設定します |

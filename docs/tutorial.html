@@ -881,6 +881,7 @@ footer{
                 <tr><td><kbd>C-x M-w</kbd></td><td class="desc">OSダイアログを使用して保存します</td></tr>
                 <tr><td><kbd>C-x i</kbd></td><td class="desc">カーソル位置にファイルを挿入します</td></tr>
                 <tr><td><kbd>C-x C-q</kbd></td><td class="desc">書き込み禁止状態を切り替えます</td></tr>
+                <tr><td><kbd>C-x x g</kbd> / <kbd>M-x revert-buffer</kbd></td><td class="desc">現在のバッファをディスクの内容で再読込します（C-_ で revert 前へ戻せます）</td></tr>
                 <tr><td><kbd>C-x C-c</kbd></td><td class="desc">アプリケーションを終了します</td></tr>
                 <tr><td><kbd>M-x show-config</kbd></td><td class="desc">設定ファイル(config.json)を開きます</td></tr>
                 <tr><td><kbd>M-x show-color-config</kbd></td><td class="desc">カラー設定ファイル(color-config.json)を開きます</td></tr>
@@ -1329,6 +1330,30 @@ footer{
                 <tr><td><kbd>M-x svg-mode</kbd></td><td class="desc">SVGモードに切り替えます</td></tr>
                 <tr><td><kbd>M-x yaml-mode</kbd></td><td class="desc">YAMLモードに切り替えます</td></tr>
                 <tr><td><kbd>M-x bash-mode</kbd></td><td class="desc">Bash/Shellモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x apache-mode</kbd></td><td class="desc">Apache設定モードに切り替えます</td></tr>
+                <tr><td><kbd>M-x bat-mode</kbd></td><td class="desc">DOS/Batchモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x cmake-mode</kbd></td><td class="desc">CMakeモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x conf-mode</kbd></td><td class="desc">INI/設定ファイルモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x diff-mode</kbd></td><td class="desc">Diff/Patchモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x dockerfile-mode</kbd></td><td class="desc">Dockerfileモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x emacs-lisp-mode</kbd></td><td class="desc">Emacs Lispモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x fsharp-mode</kbd></td><td class="desc">F#モードに切り替えます</td></tr>
+                <tr><td><kbd>M-x graphql-mode</kbd></td><td class="desc">GraphQLモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x haskell-mode</kbd></td><td class="desc">Haskellモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x ini-mode</kbd></td><td class="desc">INIモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x latex-mode</kbd></td><td class="desc">LaTeXモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x less-mode</kbd></td><td class="desc">Lessモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x lisp-mode</kbd></td><td class="desc">Common Lispモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x makefile-mode</kbd></td><td class="desc">Makefileモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x nginx-mode</kbd></td><td class="desc">Nginxモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x objc-mode</kbd></td><td class="desc">Objective-Cモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x powershell-mode</kbd></td><td class="desc">PowerShellモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x properties-mode</kbd></td><td class="desc">Java Propertiesモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x protobuf-mode</kbd></td><td class="desc">Protocol Buffersモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x r-mode</kbd></td><td class="desc">Rモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x sass-mode</kbd></td><td class="desc">Sassモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x scss-mode</kbd></td><td class="desc">SCSSモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x vim-mode</kbd></td><td class="desc">Vim scriptモードに切り替えます</td></tr>
               </tbody>
             </table>
           </div>
@@ -1353,6 +1378,7 @@ footer{
                 <tr><td><kbd>Right Click</kbd> (Backdrop)</td><td class="desc">背景の右クリックで閉じます</td></tr>
                 <tr><td><kbd>M-x auto-save</kbd></td><td class="desc">オートセーブを切り替えます</td></tr>
                 <tr><td><kbd>M-x get-auto-fill-mode</kbd></td><td class="desc">自動改行モードの状態を表示します</td></tr>
+                <tr><td><kbd>M-x get-auto-revert-clean</kbd></td><td class="desc">clean バッファの自動 revert 状態を表示します</td></tr>
                 <tr><td><kbd>M-x get-auto-save</kbd></td><td class="desc">オートセーブの状態を表示します</td></tr>
                 <tr><td><kbd>M-x get-auto-save-interval</kbd></td><td class="desc">オートセーブの間隔を表示します</td></tr>
                 <tr><td><kbd>M-x get-case-sensitive-search</kbd></td><td class="desc">検索の大文字小文字区別の状態を表示します</td></tr>
@@ -1374,6 +1400,7 @@ footer{
                 <tr><td><kbd>M-x get-tab-width</kbd></td><td class="desc">タブ幅を表示します</td></tr>
                 <tr><td><kbd>M-x get-wrap-column</kbd></td><td class="desc">現在の折り返し幅を表示します</td></tr>
                 <tr><td><kbd>M-x set-auto-fill-mode</kbd></td><td class="desc">自動改行モードを有効/無効にします</td></tr>
+                <tr><td><kbd>M-x set-auto-revert-clean</kbd></td><td class="desc">clean バッファの自動 revert を有効/無効にします</td></tr>
                 <tr><td><kbd>M-x set-auto-save</kbd></td><td class="desc">オートセーブを有効/無効にします</td></tr>
                 <tr><td><kbd>M-x set-auto-save-interval</kbd></td><td class="desc">オートセーブの間隔(分)を設定します</td></tr>
                 <tr><td><kbd>M-x set-case-sensitive-search</kbd></td><td class="desc">検索の大文字小文字区別を設定します</td></tr>
