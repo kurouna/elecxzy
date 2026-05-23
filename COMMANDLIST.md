@@ -30,6 +30,9 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-x d` / `C-c d` | `toggle-sidebar` | Open the Filer Sidebar | ファイラサイドバーを開きます |
 | `C-c c` | `browse-recent-files` | Open the Recent Files Sidebar | 最近使ったファイルサイドバーを開きます |
 | `M-x recentf-open-files` | `recentf-open-files` | List recently opened files | 最近開いたファイルの一覧を表示します |
+| `C-c b` / `C-x r l` / `M-x bookmark-bmenu-list` / `M-x browse-bookmarks` | `bookmark-bmenu-list` / `browse-bookmarks` | Open the Bookmark Sidebar (Emacs compatible) | ブックマーク・サイドバーを開きます (Emacs 互換) |
+| `M-x bookmark-toggle` | `bookmark-toggle` | Toggle bookmark for the current file | 現在開いているファイルのブックマーク (ピン止め) をトグルします |
+| `C-x r m` / `M-x bookmark-set` | `bookmark-set` | Bookmark the current file. If already bookmarked, prints a message (Emacs compatible) | 現在開いているファイルをブックマークします。既にブックマーク済みの場合はミニバッファに通知します (Emacs 互換) |
 
 ## Navigation (カーソル移動)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
@@ -129,7 +132,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-x r s` | `copy-to-register` | Copy region to register | 選択範囲をレジスタに保存します |
 | `C-x r i` | `insert-register` | Insert contents of register | レジスタの内容を挿入します |
 | `C-x r SPC` | `point-to-register` | Store current position in register | 現在のカーソル位置をレジスタに保存します |
-| `C-x r j` | `jump-to-register` | Jump to position stored in register | レジスタに保存された位置へジャンプします |
+| `C-x r j` | `jump-to-register` | Jump to position / restore layout stored in register | レジスタに保存された位置へジャンプ、またはウィンドウレイアウトを復元します |
+| `C-x r w` | `window-configuration-to-register` | Save current window layout to register | 現在のウィンドウレイアウトをレジスタに保存します |
 
 ## Rectangle Operations (矩形操作)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
@@ -194,6 +198,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-<` | (Sidebar Open) | Jump to the beginning of the list | 階層の先頭に移動します |
 | `M->` | (Sidebar Open) | Jump to the end of the list | 階層の末尾に移動します |
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
+| `m` | (Sidebar Open, file row) | Toggle bookmark for the focused file | フォーカス中のファイルをブックマーク (ピン止め) します／解除します（ディレクトリ行では無視されます）|
 | `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 | `M-x set-current-directory` | `set-current-directory` | Change root to a specific directory | 指定したディレクトリをルートに設定します |
 
@@ -223,6 +228,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-<` | (Sidebar Open) | Jump to the beginning of the list | リストの先頭に移動します |
 | `M->` | (Sidebar Open) | Jump to the end of the list | リストの末尾に移動します |
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
+| `m` | (Sidebar Open, file row) | Toggle bookmark for the focused file | フォーカス中のファイルをブックマーク (ピン止め) します／解除します（ディレクトリ行・root では無視されます）|
 | `Q` | (Sidebar Open) | Close workspace | ワークスペースを閉じます |
 | `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 
@@ -233,12 +239,31 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-c c` | `browse-recent-files` | Open Recent Files Sidebar | 最近使ったファイル表示を開閉します |
 | `Enter` / `f` | (Sidebar Open) | Open file | ファイルを開きます |
 | `Space` / `Tab` / `C-f` / `l` / `Right` | (Sidebar Open) | Preview file | ファイルをプレビュー（閉じない）します |
+| `m` | (Sidebar Open) | Toggle bookmark for the focused file | フォーカス中のファイルをブックマーク (ピン止め) します／解除します |
 | `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
 | `C-p` / `k` / `p` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
 | `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロールします |
 | `M-v` | (Sidebar Open) | Scroll up one page | 1ページ分上にスクロールします |
 | `M-<` | (Sidebar Open) | Jump to the beginning of the list | 履歴の先頭に移動します |
 | `M->` | (Sidebar Open) | Jump to the end of the list | 履歴の末尾に移動します |
+| `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
+| `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
+
+## Bookmark Sidebar Operations (ブックマーク・サイドバー操作)
+| Command / コマンド | ID | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `C-c b` / `C-x r l` / `M-x bookmark-bmenu-list` / `M-x browse-bookmarks` | `bookmark-bmenu-list` / `browse-bookmarks` | Open Bookmark Sidebar (Emacs compatible) | ブックマーク・サイドバーを開閉します (Emacs 互換) |
+| `C-x r m` / `M-x bookmark-set` | `bookmark-set` | Bookmark the current file (no-op + echo if already bookmarked, Emacs compatible) | 現在開いているファイルをブックマークします (既に登録済みならミニバッファ通知のみ、Emacs 互換) |
+| `M-x bookmark-toggle` | `bookmark-toggle` | Toggle bookmark for the current file | 現在開いているファイルをブックマーク (ピン止め) します／解除します |
+| `Enter` / `f` | (Sidebar Open) | Open file | ファイルを開きます (`.code-workspace` はワークスペースとして開きます) |
+| `Space` / `Tab` / `C-f` / `l` / `Right` | (Sidebar Open) | Preview file | ファイルをプレビュー（閉じない）します |
+| `m` | (Sidebar Open) | Remove bookmark | フォーカス中のブックマークを解除します |
+| `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
+| `C-p` / `k` / `p` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
+| `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロールします |
+| `M-v` | (Sidebar Open) | Scroll up one page | 1ページ分上にスクロールします |
+| `M-<` | (Sidebar Open) | Jump to the beginning of the list | 一覧の先頭に移動します |
+| `M->` | (Sidebar Open) | Jump to the end of the list | 一覧の末尾に移動します |
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
 | `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 
@@ -305,9 +330,10 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 ## Preview & Web (プレビュー・Web)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `C-c v` | `preview-dispatch` | Preview current buffer (Markdown/HTML) | 現在のバッファをプレビューします（Markdown/HTML） |
+| `C-c v` | `preview-dispatch` | Preview current buffer (Markdown/HTML/Text) | 現在のバッファをプレビューします（Markdown/HTML/Text） |
 | `M-x preview-html` | `preview-html` | Preview current HTML buffer | 現在のHTMLバッファをプレビューします |
 | `M-x preview-markdown` | `preview-markdown` | Preview current Markdown buffer | 現在のMarkdownバッファをプレビューします |
+| `M-x preview-text` | `preview-text` | Preview current text buffer with word-wrap at the window edge | 現在のテキストバッファをウィンドウ幅で折り返してプレビューします |
 | `C-c p` / `M-x print-buffer` | `print-buffer` | Print active buffer | 現在のバッファを印刷します |
 
 ## Major Modes (メジャーモード)
@@ -366,6 +392,24 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x sass-mode` | `sass-mode` | Switch to Sass mode | Sassモードに切り替えます |
 | `M-x scss-mode` | `scss-mode` | Switch to SCSS mode | SCSSモードに切り替えます |
 | `M-x vim-mode` | `vim-mode` | Switch to Vim script mode | Vim scriptモードに切り替えます |
+| `M-x adoc-mode` | `adoc-mode` | Switch to AsciiDoc mode | AsciiDocモードに切り替えます |
+| `M-x asciidoc-mode` | `asciidoc-mode` | Switch to AsciiDoc mode | AsciiDocモードに切り替えます |
+| `M-x clojure-mode` | `clojure-mode` | Switch to Clojure mode | Clojureモードに切り替えます |
+| `M-x coffee-mode` | `coffee-mode` | Switch to CoffeeScript mode | CoffeeScriptモードに切り替えます |
+| `M-x coffeescript-mode` | `coffeescript-mode` | Switch to CoffeeScript mode | CoffeeScriptモードに切り替えます |
+| `M-x crystal-mode` | `crystal-mode` | Switch to Crystal mode | Crystalモードに切り替えます |
+| `M-x elixir-mode` | `elixir-mode` | Switch to Elixir mode | Elixirモードに切り替えます |
+| `M-x erlang-mode` | `erlang-mode` | Switch to Erlang mode | Erlangモードに切り替えます |
+| `M-x glsl-mode` | `glsl-mode` | Switch to GLSL mode | GLSLモードに切り替えます |
+| `M-x groovy-mode` | `groovy-mode` | Switch to Groovy mode | Groovyモードに切り替えます |
+| `M-x julia-mode` | `julia-mode` | Switch to Julia mode | Juliaモードに切り替えます |
+| `M-x nim-mode` | `nim-mode` | Switch to Nim mode | Nimモードに切り替えます |
+| `M-x nix-mode` | `nix-mode` | Switch to Nix mode | Nixモードに切り替えます |
+| `M-x ocaml-mode` | `ocaml-mode` | Switch to OCaml mode | OCamlモードに切り替えます |
+| `M-x scala-mode` | `scala-mode` | Switch to Scala mode | Scalaモードに切り替えます |
+| `M-x tuareg-mode` | `tuareg-mode` | Switch to OCaml mode | OCamlモードに切り替えます |
+| `M-x verilog-mode` | `verilog-mode` | Switch to Verilog/SystemVerilog mode | Verilog/SystemVerilogモードに切り替えます |
+| `M-x vhdl-mode` | `vhdl-mode` | Switch to VHDL mode | VHDLモードに切り替えます |
 
 ## Settings (設定)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
@@ -374,7 +418,16 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x light-theme` | `light-theme` | Set color theme to Light Mode (Requires restart) | カラーテーマをライトモードに設定します（要再起動） |
 | `M-x cyber-theme` | `cyber-theme` | Set color theme to Cyber Mode (Requires restart) | カラーテーマをサイバーモードに設定します（要再起動） |
 | `M-x cute-theme` | `cute-theme` | Set color theme to Cute Mode (Requires restart) | カラーテーマをキュートモードに設定します（要再起動） |
+| `M-x tokyo-night-theme` | `tokyo-night-theme` | Set color theme to Tokyo Night (Requires restart) | カラーテーマを Tokyo Night に設定します（要再起動） |
+| `M-x rose-pine-dawn-theme` | `rose-pine-dawn-theme` | Set color theme to Rose Pine Dawn (Requires restart) | カラーテーマを Rose Pine Dawn に設定します（要再起動） |
+| `M-x gruvbox-theme` | `gruvbox-theme` | Set color theme to Gruvbox (Requires restart) | カラーテーマを Gruvbox に設定します（要再起動） |
+| `M-x nord-theme` | `nord-theme` | Set color theme to Nord (Requires restart) | カラーテーマを Nord に設定します（要再起動） |
+| `M-x forest-theme` | `forest-theme` | Set color theme to Forest (Requires restart) | カラーテーマを Forest に設定します（要再起動） |
 | `M-x default-theme` | `default-theme` | Set color theme to default (Requires restart) | カラーテーマをデフォルトに戻します（要再起動） |
+| `M-x font-lock-mode` | `font-lock-mode` | Toggle global syntax highlighting on/off | 全バッファのシンタックスハイライトを ON/OFF します |
+| `M-x global-font-lock-mode` | `global-font-lock-mode` | Toggle Font Lock Mode (Emacs alias) | font-lock-mode のエイリアス（Emacs 互換） |
+| `M-x set-font-lock-mode` | `set-font-lock-mode` | Set font lock mode (on/off) | Font Lock Mode を on/off で設定します |
+| `M-x get-font-lock-mode` | `get-font-lock-mode` | Show Font Lock Mode status | Font Lock Mode の状態を表示します |
 | `C-c s` / `C-.` | `open-config` | Open the Settings Sidebar | 設定サイドバーを開きます |
 | `C-g` / `C-q` / `Esc` | (Settings Open) | Save & Close sidebar | 設定を保存して閉じます |
 | `Right Click` (Backdrop) | (Settings Open) | Save & Close sidebar | 背景の右クリックで閉じます |
@@ -468,6 +521,21 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 >
 > MCP の `save_file` ツールは、`mcpAllowedDirectories`（config.json / 設定サイドバー → MCP）に登録されたいずれかのディレクトリ配下のパスにしか保存できません。MCP サーバを起動する前に、許可ディレクトリを最低 1 件追加してください。
 
+## Shell (シェル)
+| Command / コマンド | ID | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `M-x shell` | `shell` | Run an interactive shell (Emacs comint-mode style) | 対話的なシェル(Emacs comint-mode 風)を起動します |
+| `Enter` (in Shell) | `shell-send-input` | Send current input to the shell process | 現在の入力をシェルプロセスに送信します |
+| `C-a` (in Shell) | `shell-bol` | Move to the start of the input (after the prompt) | プロンプト直後 (入力開始位置) へ移動します |
+| `M-p` (in Shell) | `shell-previous-input` | Cycle backward through input history | 入力履歴を一つ前へ |
+| `M-n` (in Shell) | `shell-next-input` | Cycle forward through input history | 入力履歴を一つ後ろへ |
+| `C-c C-c` (in Shell) | `shell-interrupt` | Interrupt the running command (restart cmd.exe) | 実行中のコマンドを中断します (cmd.exe を再起動) |
+
+> [!NOTE]
+> The shell buffer (`*shell*`) follows Emacs comint-mode conventions: a per-buffer process mark protects the prompt and scrollback from edits, `Enter` sends from the process mark to the end of the buffer, and input history persists for the lifetime of the buffer. On Windows, `cmd.exe` is launched with `/Q` to suppress command echo.
+>
+> シェルバッファ (`*shell*`) は Emacs comint-mode 流の方式で動作します。バッファごとのプロセスマークがプロンプトとスクロールバックを編集から保護し、`Enter` はプロセスマークからバッファ末尾までを送信、入力履歴はバッファ生存中保持されます。Windows では `cmd.exe` を `/Q` 起動してコマンドエコーを抑制しています。
+
 ## Prefix Arguments (プレフィックス引数)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
@@ -483,4 +551,3 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `M-x navigate-url` | `navigate-url` | Open a URL in a preview buffer. Only `https://` and loopback `http://` (`localhost` / `127.0.0.1` / `[::1]`) are accepted; other schemes (`http://` to remote hosts, `javascript:`, `file:`, `data:`, etc.) are refused with an echo-line message. | 指定したURLをバッファ内で表示します。許可されるのは `https://` とループバック `http://`（`localhost` / `127.0.0.1` / `[::1]`）のみで、それ以外（外部ホストへの `http://`・`javascript:`・`file:`・`data:` 等）は拒否され、エコーラインに案内が表示されます |
-| `M-x shell` | `shell` | Run an interactive shell (cmd.exe) | 対話的なシェル(cmd.exe)を実行します |

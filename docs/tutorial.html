@@ -300,6 +300,7 @@ footer{
   <a href="#ref-filer" class="sb-link"><span class="sb-num">—</span>ファイラ</a>
   <a href="#ref-workspace" class="sb-link"><span class="sb-num">—</span>ワークスペース</a>
   <a href="#ref-recentfiles" class="sb-link"><span class="sb-num">—</span>最近使ったファイル</a>
+  <a href="#ref-bookmark" class="sb-link"><span class="sb-num">—</span>ブックマーク</a>
   <a href="#ref-outline" class="sb-link"><span class="sb-num">—</span>アウトライン</a>
   <a href="#ref-killring-sb" class="sb-link"><span class="sb-num">—</span>キルリング</a>
   <a href="#ref-register-sidebar" class="sb-link"><span class="sb-num">—</span>レジスタ サイドバー</a>
@@ -307,6 +308,7 @@ footer{
   <a href="#ref-mode" class="sb-link"><span class="sb-num">—</span>メジャーモード</a>
   <a href="#ref-settings" class="sb-link"><span class="sb-num">—</span>設定</a>
   <a href="#ref-mcp" class="sb-link"><span class="sb-num">—</span>AI Integration / AI 連携</a>
+  <a href="#ref-shell" class="sb-link"><span class="sb-num">—</span>シェル</a>
   <a href="#ref-prefix" class="sb-link"><span class="sb-num">—</span>プレフィックス引数</a>
   <a href="#ref-advanced" class="sb-link"><span class="sb-num">—</span>その他</a>
   <a href="#ref-experimental" class="sb-link"><span class="sb-num">—</span>実験的</a>
@@ -577,7 +579,11 @@ footer{
         </div>
         <div class="card">
           <div class="card-hd"><span class="cd" style="background:#f87171"></span>最近使ったファイル — C-c c</div>
-          <div class="card-body"><p>最近開いたファイルを一覧。<kbd>Space</kbd> でプレビュー。パス表示付き。</p></div>
+          <div class="card-body"><p>最近開いたファイルを一覧。<kbd>Space</kbd> でプレビュー。パス表示付き。<kbd>m</kbd> でブックマーク (ピン止め) のトグル。</p></div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><span class="cd" style="background:#fbbf24"></span>ブックマーク — C-c b / C-x r l</div>
+          <div class="card-body"><p>ピン止めしたファイルを長期保存。最近使ったファイル / ファイラ / ワークスペース上で <kbd>m</kbd> を押すと追加、ブックマーク サイドバー内 <kbd>m</kbd> で解除。<kbd>C-x r m</kbd> (<code>bookmark-set</code>) で現在のファイルを追加、<kbd>M-x bookmark-toggle</kbd> でトグル。キーバインドは Emacs <code>bookmark.el</code> 互換。</p></div>
         </div>
         <div class="card">
           <div class="card-hd"><span class="cd" style="background:#34d399"></span>ワークスペース — C-c w / C-,</div>
@@ -670,6 +676,11 @@ footer{
               <tr><td><kbd>M-x light-theme</kbd></td><td class="desc">Light — ライトテーマ</td></tr>
               <tr><td><kbd>M-x cyber-theme</kbd></td><td class="desc">Cyber — ネオン/近未来スタイル</td></tr>
               <tr><td><kbd>M-x cute-theme</kbd></td><td class="desc">Cute — パステル/マカロン</td></tr>
+              <tr><td><kbd>M-x tokyo-night-theme</kbd></td><td class="desc">Tokyo Night — Storm バリアントの濃紺ダーク・ネオンシアンアクセント</td></tr>
+              <tr><td><kbd>M-x rose-pine-dawn-theme</kbd></td><td class="desc">Rose Pine Dawn — 紙のような温かいライト</td></tr>
+              <tr><td><kbd>M-x gruvbox-theme</kbd></td><td class="desc">Gruvbox — レトロ暖色ダーク</td></tr>
+              <tr><td><kbd>M-x nord-theme</kbd></td><td class="desc">Nord — 北極の雪原ライト・フロストブルーアクセント</td></tr>
+              <tr><td><kbd>M-x forest-theme</kbd></td><td class="desc">Forest — 深い森のグリーンダーク</td></tr>
             </tbody>
           </table>
         </div>
@@ -766,6 +777,7 @@ footer{
               <tr><td><code style="font-family:var(--mono);font-size:12px;">"C-x C-f"</code></td><td class="desc">スペース区切りでキーシーケンス（連続スペースは自動正規化）</td></tr>
               <tr><td><code style="font-family:var(--mono);font-size:12px;">"\\C-n": ""</code></td><td class="desc">値が空文字なら当該バインドを削除（押しても何もしない）</td></tr>
               <tr><td><code style="font-family:var(--mono);font-size:12px;">"Tab"</code> / <code style="font-family:var(--mono);font-size:12px;">"End"</code> など</td><td class="desc">特殊キーは内部表記そのままで指定可能（<code style="font-family:var(--mono);font-size:12px;">Space</code>, <code style="font-family:var(--mono);font-size:12px;">Backspace</code>, <code style="font-family:var(--mono);font-size:12px;">ArrowUp</code> 等）</td></tr>
+              <tr><td><code style="font-family:var(--mono);font-size:12px;">"F5"</code> / <code style="font-family:var(--mono);font-size:12px;">"C-F12"</code> など</td><td class="desc">ファンクションキー <code style="font-family:var(--mono);font-size:12px;">F1</code>〜<code style="font-family:var(--mono);font-size:12px;">F12</code>。修飾子と組み合わせる場合は <code style="font-family:var(--mono);font-size:12px;">C-</code> / <code style="font-family:var(--mono);font-size:12px;">M-</code> を先に書く（<code style="font-family:var(--mono);font-size:12px;">F12-C</code> のような後置は不可）。未割当なら <kbd>F11</kbd> 全画面の Electron 既定が温存されます</td></tr>
             </tbody>
           </table>
         </div>
@@ -838,7 +850,7 @@ footer{
               <tr><td><kbd>C-x o</kbd> / <kbd>M-o</kbd></td><td class="desc">次のウィンドウへ移動</td></tr>
               <tr><td><kbd>C-x w t</kbd> / <kbd>C-x w r</kbd> <kbd>→</kbd></td><td class="desc">レイアウト転置 / 90° 回転</td></tr>
               <tr><td><kbd>C-x k</kbd></td><td class="desc">バッファを閉じる</td></tr>
-              <tr><td><kbd>C-c v</kbd></td><td class="desc">Markdown / HTML プレビュー</td></tr>
+              <tr><td><kbd>C-c v</kbd></td><td class="desc">Markdown / HTML / テキスト プレビュー</td></tr>
               <tr><td><kbd>C-x SPC</kbd></td><td class="desc">矩形マークモード</td></tr>
               <tr><td><kbd>C-c m</kbd></td><td class="desc">MCP サーバー 起動/停止</td></tr>
               <tr><td><kbd>M-x</kbd></td><td class="desc">コマンド実行（補完付き）</td></tr>
@@ -1025,7 +1037,8 @@ footer{
                 <tr><td><kbd>C-x r s</kbd></td><td class="desc">選択範囲をレジスタに保存します</td></tr>
                 <tr><td><kbd>C-x r i</kbd></td><td class="desc">レジスタの内容を挿入します</td></tr>
                 <tr><td><kbd>C-x r SPC</kbd></td><td class="desc">現在のカーソル位置をレジスタに保存します</td></tr>
-                <tr><td><kbd>C-x r j</kbd></td><td class="desc">レジスタに保存された位置へジャンプします</td></tr>
+                <tr><td><kbd>C-x r j</kbd></td><td class="desc">レジスタに保存された位置へジャンプ、またはウィンドウレイアウトを復元します</td></tr>
+                <tr><td><kbd>C-x r w</kbd></td><td class="desc">現在のウィンドウレイアウトをレジスタに保存します</td></tr>
               </tbody>
             </table>
           </div>
@@ -1125,6 +1138,7 @@ footer{
                 <tr><td><kbd>c</kbd></td><td class="desc">選択中のフォルダ内に新しい空ファイルを作成します</td></tr>
                 <tr><td><kbd>C</kbd> (Shift+<kbd>c</kbd>)</td><td class="desc">選択中のフォルダ内に新しいフォルダを作成します</td></tr>
                 <tr><td><kbd>R</kbd> (Shift+<kbd>r</kbd>)</td><td class="desc">選択中のファイル・フォルダの名前を変更します（ミニバッファに現在の名前が表示されます）</td></tr>
+                <tr><td><kbd>m</kbd></td><td class="desc">フォーカス中のファイルをブックマーク (ピン止め) します／解除します（ディレクトリ行では無視されます）</td></tr>
                 <tr><td><kbd>C-v</kbd></td><td class="desc">1ページ分下にスクロールします</td></tr>
                 <tr><td><kbd>M-v</kbd></td><td class="desc">1ページ分上にスクロールします</td></tr>
                 <tr><td><kbd>M-<</kbd></td><td class="desc">階層の先頭に移動します</td></tr>
@@ -1164,6 +1178,7 @@ footer{
                 <tr><td><kbd>c</kbd></td><td class="desc">選択中のフォルダ内に新しい空ファイルを作成します</td></tr>
                 <tr><td><kbd>C</kbd> (Shift+<kbd>c</kbd>)</td><td class="desc">選択中のフォルダ内に新しいフォルダを作成します</td></tr>
                 <tr><td><kbd>R</kbd> (Shift+<kbd>r</kbd>)</td><td class="desc">選択中のファイル・フォルダの名前を変更します（ミニバッファに現在の名前が表示されます）</td></tr>
+                <tr><td><kbd>m</kbd></td><td class="desc">フォーカス中のファイルをブックマーク (ピン止め) します／解除します（ディレクトリ行・root では無視されます）</td></tr>
                 <tr><td><kbd>C-v</kbd></td><td class="desc">1ページ分下にスクロールします</td></tr>
                 <tr><td><kbd>M-v</kbd></td><td class="desc">1ページ分上にスクロールします</td></tr>
                 <tr><td><kbd>M-<</kbd></td><td class="desc">リストの先頭に移動します</td></tr>
@@ -1188,12 +1203,41 @@ footer{
                 <tr><td><kbd>C-c c</kbd></td><td class="desc">最近使ったファイル表示を開閉します</td></tr>
                 <tr><td><kbd>Enter</kbd> / <kbd>f</kbd></td><td class="desc">ファイルを開きます</td></tr>
                 <tr><td><kbd>Space</kbd> / <kbd>Tab</kbd> / <kbd>C-f</kbd> / <kbd>l</kbd> / <kbd>Right</kbd></td><td class="desc">ファイルをプレビュー（閉じない）します</td></tr>
+                <tr><td><kbd>m</kbd></td><td class="desc">フォーカス中のファイルをブックマーク (ピン止め) します／解除します</td></tr>
                 <tr><td><kbd>C-n</kbd> / <kbd>j</kbd> / <kbd>n</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
                 <tr><td><kbd>C-p</kbd> / <kbd>k</kbd> / <kbd>p</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
                 <tr><td><kbd>C-v</kbd></td><td class="desc">1ページ分下にスクロールします</td></tr>
                 <tr><td><kbd>M-v</kbd></td><td class="desc">1ページ分上にスクロールします</td></tr>
                 <tr><td><kbd>M-<</kbd></td><td class="desc">履歴の先頭に移動します</td></tr>
                 <tr><td><kbd>M-></kbd></td><td class="desc">履歴の末尾に移動します</td></tr>
+                <tr><td><kbd>C-l</kbd></td><td class="desc">フォーカス項目が中心になるよう画面を再配置します</td></tr>
+                <tr><td><kbd>C-g</kbd> / <kbd>C-q</kbd> / <kbd>q</kbd> / <kbd>Esc</kbd></td><td class="desc">サイドバーを閉じます</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="step-section" id="ref-bookmark">
+      <div class="cmd-group">
+        <div class="cmd-group-title">Bookmark Sidebar Operations（ブックマーク・サイドバー操作）</div>
+        <div class="card">
+          <div class="card-body" style="padding:0;">
+            <table class="cmd-table">
+              <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
+              <tbody>
+                <tr><td><kbd>C-c b</kbd> / <kbd>C-x r l</kbd> / <kbd>M-x bookmark-bmenu-list</kbd> / <kbd>M-x browse-bookmarks</kbd></td><td class="desc">ブックマーク・サイドバーを開閉します (Emacs 互換)</td></tr>
+                <tr><td><kbd>C-x r m</kbd> / <kbd>M-x bookmark-set</kbd></td><td class="desc">現在開いているファイルをブックマークします（既に登録済みならミニバッファに通知のみ、Emacs 互換）</td></tr>
+                <tr><td><kbd>M-x bookmark-toggle</kbd></td><td class="desc">現在開いているファイルをブックマーク (ピン止め) します／解除します</td></tr>
+                <tr><td><kbd>Enter</kbd> / <kbd>f</kbd></td><td class="desc">ファイルを開きます（<code>.code-workspace</code> はワークスペースとして開きます）</td></tr>
+                <tr><td><kbd>Space</kbd> / <kbd>Tab</kbd> / <kbd>C-f</kbd> / <kbd>l</kbd> / <kbd>Right</kbd></td><td class="desc">ファイルをプレビュー（閉じない）します</td></tr>
+                <tr><td><kbd>m</kbd></td><td class="desc">フォーカス中のブックマークを解除します</td></tr>
+                <tr><td><kbd>C-n</kbd> / <kbd>j</kbd> / <kbd>n</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
+                <tr><td><kbd>C-p</kbd> / <kbd>k</kbd> / <kbd>p</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
+                <tr><td><kbd>C-v</kbd></td><td class="desc">1ページ分下にスクロールします</td></tr>
+                <tr><td><kbd>M-v</kbd></td><td class="desc">1ページ分上にスクロールします</td></tr>
+                <tr><td><kbd>M-<</kbd></td><td class="desc">一覧の先頭に移動します</td></tr>
+                <tr><td><kbd>M-></kbd></td><td class="desc">一覧の末尾に移動します</td></tr>
                 <tr><td><kbd>C-l</kbd></td><td class="desc">フォーカス項目が中心になるよう画面を再配置します</td></tr>
                 <tr><td><kbd>C-g</kbd> / <kbd>C-q</kbd> / <kbd>q</kbd> / <kbd>Esc</kbd></td><td class="desc">サイドバーを閉じます</td></tr>
               </tbody>
@@ -1283,9 +1327,10 @@ footer{
             <table class="cmd-table">
               <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
               <tbody>
-                <tr><td><kbd>C-c v</kbd></td><td class="desc">現在のバッファをプレビューします（Markdown/HTML）</td></tr>
+                <tr><td><kbd>C-c v</kbd></td><td class="desc">現在のバッファをプレビューします（Markdown/HTML/Text）</td></tr>
                 <tr><td><kbd>M-x preview-html</kbd></td><td class="desc">現在のHTMLバッファをプレビューします</td></tr>
                 <tr><td><kbd>M-x preview-markdown</kbd></td><td class="desc">現在のMarkdownバッファをプレビューします</td></tr>
+                <tr><td><kbd>M-x preview-text</kbd></td><td class="desc">現在のテキストバッファをウィンドウ幅で折り返してプレビューします</td></tr>
                 <tr><td><kbd>C-c p</kbd> / <kbd>M-x print-buffer</kbd></td><td class="desc">現在のバッファを印刷します</td></tr>
               </tbody>
             </table>
@@ -1354,6 +1399,24 @@ footer{
                 <tr><td><kbd>M-x sass-mode</kbd></td><td class="desc">Sassモードに切り替えます</td></tr>
                 <tr><td><kbd>M-x scss-mode</kbd></td><td class="desc">SCSSモードに切り替えます</td></tr>
                 <tr><td><kbd>M-x vim-mode</kbd></td><td class="desc">Vim scriptモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x adoc-mode</kbd></td><td class="desc">AsciiDocモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x asciidoc-mode</kbd></td><td class="desc">AsciiDocモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x clojure-mode</kbd></td><td class="desc">Clojureモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x coffee-mode</kbd></td><td class="desc">CoffeeScriptモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x coffeescript-mode</kbd></td><td class="desc">CoffeeScriptモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x crystal-mode</kbd></td><td class="desc">Crystalモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x elixir-mode</kbd></td><td class="desc">Elixirモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x erlang-mode</kbd></td><td class="desc">Erlangモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x glsl-mode</kbd></td><td class="desc">GLSLモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x groovy-mode</kbd></td><td class="desc">Groovyモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x julia-mode</kbd></td><td class="desc">Juliaモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x nim-mode</kbd></td><td class="desc">Nimモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x nix-mode</kbd></td><td class="desc">Nixモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x ocaml-mode</kbd></td><td class="desc">OCamlモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x scala-mode</kbd></td><td class="desc">Scalaモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x tuareg-mode</kbd></td><td class="desc">OCamlモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x verilog-mode</kbd></td><td class="desc">Verilog/SystemVerilogモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x vhdl-mode</kbd></td><td class="desc">VHDLモードに切り替えます</td></tr>
               </tbody>
             </table>
           </div>
@@ -1372,7 +1435,16 @@ footer{
                 <tr><td><kbd>M-x light-theme</kbd></td><td class="desc">カラーテーマをライトモードに設定します（要再起動）</td></tr>
                 <tr><td><kbd>M-x cyber-theme</kbd></td><td class="desc">カラーテーマをサイバーモードに設定します（要再起動）</td></tr>
                 <tr><td><kbd>M-x cute-theme</kbd></td><td class="desc">カラーテーマをキュートモードに設定します（要再起動）</td></tr>
+                <tr><td><kbd>M-x tokyo-night-theme</kbd></td><td class="desc">カラーテーマを Tokyo Night に設定します（要再起動）</td></tr>
+                <tr><td><kbd>M-x rose-pine-dawn-theme</kbd></td><td class="desc">カラーテーマを Rose Pine Dawn に設定します（要再起動）</td></tr>
+                <tr><td><kbd>M-x gruvbox-theme</kbd></td><td class="desc">カラーテーマを Gruvbox に設定します（要再起動）</td></tr>
+                <tr><td><kbd>M-x nord-theme</kbd></td><td class="desc">カラーテーマを Nord に設定します（要再起動）</td></tr>
+                <tr><td><kbd>M-x forest-theme</kbd></td><td class="desc">カラーテーマを Forest に設定します（要再起動）</td></tr>
                 <tr><td><kbd>M-x default-theme</kbd></td><td class="desc">カラーテーマをデフォルトに戻します（要再起動）</td></tr>
+                <tr><td><kbd>M-x font-lock-mode</kbd></td><td class="desc">全バッファのシンタックスハイライトを ON/OFF します</td></tr>
+                <tr><td><kbd>M-x global-font-lock-mode</kbd></td><td class="desc">font-lock-mode のエイリアス（Emacs 互換）</td></tr>
+                <tr><td><kbd>M-x set-font-lock-mode</kbd></td><td class="desc">Font Lock Mode を on/off で設定します</td></tr>
+                <tr><td><kbd>M-x get-font-lock-mode</kbd></td><td class="desc">Font Lock Mode の状態を表示します</td></tr>
                 <tr><td><kbd>C-c s</kbd> / <kbd>C-.</kbd></td><td class="desc">設定サイドバーを開きます</td></tr>
                 <tr><td><kbd>C-g</kbd> / <kbd>C-q</kbd> / <kbd>Esc</kbd></td><td class="desc">設定を保存して閉じます</td></tr>
                 <tr><td><kbd>Right Click</kbd> (Backdrop)</td><td class="desc">背景の右クリックで閉じます</td></tr>
@@ -1455,6 +1527,30 @@ footer{
         </div>
       </div>
     </div>
+    <div class="step-section" id="ref-shell">
+      <div class="cmd-group">
+        <div class="cmd-group-title">Shell（シェル）</div>
+        <div class="card">
+          <div class="card-body" style="padding:0;">
+            <table class="cmd-table">
+              <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
+              <tbody>
+                <tr><td><kbd>M-x shell</kbd></td><td class="desc">対話的なシェル(Emacs comint-mode 風)を起動します。バッファ名は <code style="font-family:var(--mono);font-size:11px;">*shell*</code></td></tr>
+                <tr><td><kbd>Enter</kbd>（シェル中）</td><td class="desc">現在の入力をシェルプロセスに送信します</td></tr>
+                <tr><td><kbd>C-a</kbd>（シェル中）</td><td class="desc">入力開始位置 (プロンプト直後) へ移動。2 度押下で行頭へ</td></tr>
+                <tr><td><kbd>M-p</kbd>（シェル中）</td><td class="desc">入力履歴を一つ前へ (バッファごとに最大 200 件)</td></tr>
+                <tr><td><kbd>M-n</kbd>（シェル中）</td><td class="desc">入力履歴を一つ後ろへ。末尾を超えると元のドラフト入力に戻ります</td></tr>
+                <tr><td><kbd>C-c C-c</kbd>（シェル中）</td><td class="desc">実行中のコマンドを中断します (cmd.exe を再起動)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="note info" style="margin-top:8px;">
+          <span>💡</span>
+          <span>シェルバッファはバッファごとのプロセスマークでプロンプトとスクロールバックを編集から保護します。<kbd>Enter</kbd> はプロセスマークからバッファ末尾までを送信し、入力履歴はバッファ生存中保持されます。Windows では <code style="font-family:var(--mono);font-size:11px;">cmd.exe /Q</code> 起動でコマンドエコーを抑制しています。</span>
+        </div>
+      </div>
+    </div>
     <div class="step-section" id="ref-prefix">
       <div class="cmd-group">
         <div class="cmd-group-title">Prefix Arguments（プレフィックス引数）</div>
@@ -1495,7 +1591,6 @@ footer{
               <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
               <tbody>
                 <tr><td><kbd>M-x navigate-url</kbd></td><td class="desc">指定したURLをバッファ内で表示します。許可されるのは <code style="font-family:var(--mono);font-size:11px;">https://</code> とループバック <code style="font-family:var(--mono);font-size:11px;">http://</code>（<code style="font-family:var(--mono);font-size:11px;">localhost</code> / <code style="font-family:var(--mono);font-size:11px;">127.0.0.1</code> / <code style="font-family:var(--mono);font-size:11px;">[::1]</code>）のみで、それ以外は拒否されます</td></tr>
-                <tr><td><kbd>M-x shell</kbd></td><td class="desc">対話的なシェル(cmd.exe)を実行します</td></tr>
               </tbody>
             </table>
           </div>

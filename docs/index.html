@@ -1412,7 +1412,7 @@
           <div class="fg-icon">💾</div>
           <h3>レジスタ サイドバー</h3>
           <p><code style="font-family:var(--mono);font-size:11px;">C-c r</code>
-            で保存したテキストや位置を一覧表示します。視覚的に選択して利用可能です。内容は永続保存されます。</p>
+            で保存したテキスト、位置、ウィンドウレイアウトを一覧表示します。視覚的に選択して利用可能です。内容は永続保存されます。</p>
         </div>
         <div class="fg-item">
           <div class="fg-icon">🎨</div>
@@ -1435,8 +1435,8 @@
         <div class="fg-item">
           <div class="fg-icon">👁</div>
           <h3>ライブプレビュー</h3>
-          <p>MarkdownとHTMLをリアルタイムプレビューします。<code style="font-family:var(--mono);font-size:11px;">C-c v</code>
-            でモードに応じたプレビューを自動起動し、スクロールも同期します。</p>
+          <p>Markdown / HTML / プレーンテキストをリアルタイムプレビューします。<code style="font-family:var(--mono);font-size:11px;">C-c v</code>
+            でモードに応じたプレビューを自動起動し、スクロールも同期します。テキストはウィンドウ幅で折り返して表示されます。</p>
         </div>
         <div class="fg-item">
           <div class="fg-icon">🗂</div>
@@ -1608,13 +1608,13 @@
         </div>
         <div class="theme-card">
           <div class="theme-preview" style="background:#090912;">
-            <div class="theme-titlebar" style="background:#050510;"></div>
+            <div class="theme-titlebar" style="background:#2D0052;"></div>
             <div class="theme-editor">
               <div class="theme-line" style="background:#FF007F;width:55%;box-shadow:0 0 4px #FF007F66;"></div>
               <div class="theme-line" style="background:#00FFD1;width:75%;box-shadow:0 0 4px #00FFD166;"></div>
               <div class="theme-line" style="background:#ffff00;width:42%;box-shadow:0 0 4px #ffff0066;"></div>
             </div>
-            <div class="theme-modeline" style="background:#FF007F;"></div>
+            <div class="theme-modeline" style="background:#FCEE0A;"></div>
             <div class="theme-minibuffer" style="background:#000000;"></div>
           </div>
           <div class="theme-info">
@@ -1636,6 +1636,91 @@
           <div class="theme-info">
             <div class="theme-name">Cute</div>
             <div class="theme-cmd">M-x cute-theme</div>
+          </div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-preview" style="background:#24283b;">
+            <div class="theme-titlebar" style="background:#24283b;"></div>
+            <div class="theme-editor">
+              <div class="theme-line" style="background:#bb9af7;width:55%"></div>
+              <div class="theme-line" style="background:#9ece6a;width:75%"></div>
+              <div class="theme-line" style="background:#e0af68;width:42%"></div>
+            </div>
+            <div class="theme-modeline" style="background:#7dcfff;"></div>
+            <div class="theme-minibuffer" style="background:#1f2335;"></div>
+          </div>
+          <div class="theme-info">
+            <div class="theme-name">Tokyo Night</div>
+            <div class="theme-cmd">M-x tokyo-night-theme</div>
+          </div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-preview" style="background:#faf4ed;">
+            <div class="theme-titlebar" style="background:#f2e9e1;"></div>
+            <div class="theme-editor">
+              <div class="theme-line" style="background:#b4637a;width:55%"></div>
+              <div class="theme-line" style="background:#56949f;width:75%"></div>
+              <div class="theme-line" style="background:#d7827e;width:42%"></div>
+            </div>
+            <div class="theme-modeline" style="background:#b4637a;"></div>
+            <div class="theme-minibuffer" style="background:#fffaf3;"></div>
+          </div>
+          <div class="theme-info">
+            <div class="theme-name">Rose Pine Dawn</div>
+            <div class="theme-cmd">M-x rose-pine-dawn-theme</div>
+          </div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-preview" style="background:#282828;">
+            <div class="theme-titlebar" style="background:#282828;"></div>
+            <div class="theme-editor">
+              <div class="theme-line" style="background:#fe8019;width:55%"></div>
+              <div class="theme-line" style="background:#b8bb26;width:75%"></div>
+              <div class="theme-line" style="background:#fabd2f;width:42%"></div>
+            </div>
+            <div class="theme-modeline" style="background:#fe8019;"></div>
+            <div class="theme-minibuffer" style="background:#1d2021;"></div>
+          </div>
+          <div class="theme-info">
+            <div class="theme-name">Gruvbox</div>
+            <div class="theme-cmd">M-x gruvbox-theme</div>
+          </div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-preview" style="background:#E5E9F0;">
+            <div class="theme-titlebar" style="background:#D8DEE9;"></div>
+            <div class="theme-editor">
+              <div class="theme-line" style="background:#5E81AC;width:55%"></div>
+              <div class="theme-line" style="background:#A3BE8C;width:75%"></div>
+              <div class="theme-line" style="background:#BF616A;width:42%"></div>
+            </div>
+            <div class="theme-modeline" style="background:#5E81AC;"></div>
+            <div class="theme-minibuffer" style="background:#D8DEE9;"></div>
+          </div>
+          <div class="theme-info">
+            <div class="theme-name">Nord</div>
+            <div class="theme-cmd">M-x nord-theme</div>
+          </div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-preview" style="background:#2d353b;">
+            <div class="theme-titlebar" style="background:#272e33;"></div>
+            <div class="theme-editor">
+              <div class="theme-line" style="background:#a7c080;width:55%"></div>
+              <div class="theme-line" style="background:#7fbbb3;width:75%"></div>
+              <div class="theme-line" style="background:#dbbc7f;width:42%"></div>
+            </div>
+            <div class="theme-modeline" style="background:#a7c080;"></div>
+            <div class="theme-minibuffer" style="background:#272e33;"></div>
+          </div>
+          <div class="theme-info">
+            <div class="theme-name">Forest</div>
+            <div class="theme-cmd">M-x forest-theme</div>
           </div>
         </div>
       </div>
@@ -1774,7 +1859,13 @@
               <div class="kb-keys"><kbd>C-c c</kbd></div><span class="kb-desc">最近使ったファイル</span>
             </div>
             <div class="kb-row">
-              <div class="kb-keys"><kbd>C-c v</kbd></div><span class="kb-desc">プレビュー（Markdown/HTML）</span>
+              <div class="kb-keys"><kbd>C-c b</kbd> / <kbd>C-x r l</kbd></div><span class="kb-desc">ブックマーク サイドバー (Emacs bookmark-bmenu-list 互換)</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-x r m</kbd></div><span class="kb-desc">ブックマーク設定 (Emacs bookmark-set 互換)</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-c v</kbd></div><span class="kb-desc">プレビュー（Markdown/HTML/Text）</span>
             </div>
             <div class="kb-row">
               <div class="kb-keys"><kbd>C-c 1〜9</kbd></div><span class="kb-desc">カーソル VFX</span>
