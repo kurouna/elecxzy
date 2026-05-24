@@ -35,6 +35,10 @@
       line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      /* 日本語の禁則処理: 句点孤立・文末「す。」のような不格好な折り返しを抑制 */
+      line-break: strict;
+      word-break: auto-phrase;
+      text-wrap: pretty;
     }
 
     a {
@@ -1265,9 +1269,9 @@
   <!-- HERO -->
   <section>
     <div class="hero fi">
-      <div class="hero-badge"><span class="dot"></span>emacs-Inspired & Modern Web UX</div>
-      <h1>emacs ライクな操作 ×<br>Electron 実装 ×<br><span class="hl">MCP サーバー内蔵</span>。</h1>
-      <p class="hero-sub">Lisp も設定ファイルも不要、Windows で動く emacs ライクエディタ。<br>内蔵 MCP サーバーで AI クライアントから直接編集できます。</p>
+      <div class="hero-badge"><span class="dot"></span>emacs-inspired & Modern Web UX</div>
+      <h1>Lisp 不要の emacs ライクな<br><span class="hl">テキストエディタ</span>。</h1>
+      <p class="hero-sub">Windows で動く、300+ の emacs ライクなコマンドを標準搭載。<br>Web ベースの UI により、快適なキーボード編集体験を提供。<br>さらに MCP サーバーも内蔵し、AI クライアントとの直接連携にも対応。</p>
       <a href="https://apps.microsoft.com/detail/9P32F2WFL69M" class="hero-dl">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
           <path d="M0 0h11.5v11.5H0V0zm12.5 0H24v11.5H12.5V0zM0 12.5h11.5V24H0V12.5zm12.5 0H24V24H12.5V12.5z" />
@@ -1328,7 +1332,7 @@
   <!-- FEAT BIG 0: emacs Keybinds -->
   <div class="feat-big fi" id="features">
     <div>
-      <div class="feat-tag">emacs-Inspired Experience</div>
+      <div class="feat-tag">emacs-inspired Experience</div>
       <h2 class="section-h">emacs ライクなキーバインドを、<br>設定不要で。</h2>
       <p class="section-p" style="max-width:100%;">
         C-f/b/n/p による基本移動、Kill Ring、マークセット、ウィンドウ分割など、emacs の操作体系を 300+ のキーバインドで提供します。設定ファイルは不要で、インストール直後から利用できます。<br><br>
