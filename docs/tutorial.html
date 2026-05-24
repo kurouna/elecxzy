@@ -29,7 +29,7 @@ img{display:block;max-width:100%;}
   --border-hi: rgba(255,255,255,0.14);
   --text:      #e2e8f0;
   --text-2:    #94a3b8;
-  --text-3:    #475569;
+  --text-3:    #64748b;
   --blue:      #3b82f6;
   --blue-hi:   #60a5fa;
   --blue-dim:  rgba(59,130,246,0.12);
@@ -60,7 +60,7 @@ img{display:block;max-width:100%;}
 .sb-back{font-size:12px;color:var(--text-3);transition:color .15s;}
 .sb-back:hover{color:var(--text-2);}
 .sb-section{
-  padding:16px 20px 4px;font-size:10px;font-weight:500;
+  padding:16px 20px 4px;font-size:11px;font-weight:500;
   letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);
 }
 .sb-link{
@@ -70,7 +70,33 @@ img{display:block;max-width:100%;}
 }
 .sb-link:hover{color:var(--text-2);}
 .sb-link.active{color:#fff;border-left-color:var(--blue-hi);background:var(--blue-dim);}
-.sb-num{font-family:var(--mono);font-size:10px;color:var(--text-3);width:16px;text-align:center;flex-shrink:0;}
+.sb-num{font-family:var(--mono);font-size:11px;color:var(--text-3);width:16px;text-align:center;flex-shrink:0;}
+
+/* Pinned quickref — promoted out of references */
+.sb-link.sb-pin{
+  margin:10px 12px 4px;padding:9px 12px;
+  border:1px solid var(--border);border-left:2px solid var(--blue-hi);
+  border-radius:6px;background:var(--blue-dim);color:#fff;
+  font-weight:500;
+}
+.sb-link.sb-pin:hover{background:rgba(80,140,255,.18);}
+.sb-link.sb-pin .sb-pin-icon{font-size:12px;color:var(--blue-hi);margin-right:2px;}
+
+/* Collapsible reference section */
+.sb-details{margin-top:4px;}
+.sb-details > summary{
+  list-style:none;cursor:pointer;
+  padding:16px 20px 4px;font-size:11px;font-weight:500;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);
+  display:flex;align-items:center;justify-content:space-between;
+  user-select:none;transition:color .15s;
+}
+.sb-details > summary::-webkit-details-marker{display:none;}
+.sb-details > summary:hover{color:var(--text-2);}
+.sb-details > summary .sb-caret{
+  font-size:9px;color:var(--text-3);transition:transform .2s;
+}
+.sb-details[open] > summary .sb-caret{transform:rotate(90deg);}
 
 /* ── Main ── */
 .main{margin-left:var(--sidebar);}
@@ -103,7 +129,7 @@ img{display:block;max-width:100%;}
   border:1px solid var(--border);background:var(--bg-1);margin-bottom:48px;
 }
 .doc-hero-tag{
-  font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;
   text-transform:uppercase;color:var(--blue-hi);margin-bottom:10px;
 }
 .doc-hero h1{
@@ -148,7 +174,7 @@ img{display:block;max-width:100%;}
 /* ── Table ── */
 .cmd-table{width:100%;border-collapse:collapse;}
 .cmd-table th{
-  text-align:left;padding:8px 12px;font-size:10px;font-weight:500;
+  text-align:left;padding:8px 12px;font-size:11px;font-weight:500;
   letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);
   background:var(--bg-3);border-bottom:1px solid var(--border);
 }
@@ -204,11 +230,11 @@ kbd{
 
 /* ── Ref ── */
 .ref-header{padding:20px 0 12px;border-top:2px solid var(--border);margin-top:32px;margin-bottom:24px;}
-.ref-header p{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-hi);margin-bottom:6px;}
+.ref-header p{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-hi);margin-bottom:6px;}
 .ref-header h2{font-size:22px;font-weight:600;color:#fff;letter-spacing:-0.02em;}
 .cmd-group{margin-bottom:28px;}
 .cmd-group-title{
-  font-size:10px;font-weight:600;letter-spacing:.1em;
+  font-size:11px;font-weight:600;letter-spacing:.1em;
   text-transform:uppercase;color:var(--blue-hi);margin-bottom:8px;
 }
 
@@ -286,32 +312,34 @@ footer{
   <a href="#themes" class="sb-link"><span class="sb-num">9</span>テーマ・カスタマイズ</a>
   <a href="#vfx" class="sb-link"><span class="sb-num">10</span>カーソル VFX</a>
   <a href="#custom-keybinds" class="sb-link"><span class="sb-num">11</span>キーバインドのカスタマイズ</a>
-      <div class="sb-section">リファレンス</div>
-  <a href="#ref-quickref" class="sb-link"><span class="sb-num">—</span>よく使うキー早見表</a>
-  <a href="#ref-help" class="sb-link"><span class="sb-num">—</span>ヘルプ・情報</a>
-  <a href="#ref-file" class="sb-link"><span class="sb-num">—</span>ファイル</a>
-  <a href="#ref-movement" class="sb-link"><span class="sb-num">—</span>カーソル移動</a>
-  <a href="#ref-edit" class="sb-link"><span class="sb-num">—</span>編集</a>
-  <a href="#ref-macro" class="sb-link"><span class="sb-num">—</span>簡易的なカーソルベースマクロ</a>
-  <a href="#ref-register" class="sb-link"><span class="sb-num">—</span>レジスタ</a>
-  <a href="#ref-rectangle" class="sb-link"><span class="sb-num">—</span>矩形</a>
-  <a href="#ref-search" class="sb-link"><span class="sb-num">—</span>検索</a>
-  <a href="#ref-window" class="sb-link"><span class="sb-num">—</span>ウィンドウ・バッファ</a>
-  <a href="#ref-filer" class="sb-link"><span class="sb-num">—</span>ファイラ</a>
-  <a href="#ref-workspace" class="sb-link"><span class="sb-num">—</span>ワークスペース</a>
-  <a href="#ref-recentfiles" class="sb-link"><span class="sb-num">—</span>最近使ったファイル</a>
-  <a href="#ref-bookmark" class="sb-link"><span class="sb-num">—</span>ブックマーク</a>
-  <a href="#ref-outline" class="sb-link"><span class="sb-num">—</span>アウトライン</a>
-  <a href="#ref-killring-sb" class="sb-link"><span class="sb-num">—</span>キルリング</a>
-  <a href="#ref-register-sidebar" class="sb-link"><span class="sb-num">—</span>レジスタ サイドバー</a>
-  <a href="#ref-preview" class="sb-link"><span class="sb-num">—</span>プレビュー・Web</a>
-  <a href="#ref-mode" class="sb-link"><span class="sb-num">—</span>メジャーモード</a>
-  <a href="#ref-settings" class="sb-link"><span class="sb-num">—</span>設定</a>
-  <a href="#ref-mcp" class="sb-link"><span class="sb-num">—</span>AI Integration / AI 連携</a>
-  <a href="#ref-shell" class="sb-link"><span class="sb-num">—</span>シェル</a>
-  <a href="#ref-prefix" class="sb-link"><span class="sb-num">—</span>プレフィックス引数</a>
-  <a href="#ref-advanced" class="sb-link"><span class="sb-num">—</span>その他</a>
-  <a href="#ref-experimental" class="sb-link"><span class="sb-num">—</span>実験的</a>
+  <a href="#ref-quickref" class="sb-link sb-pin"><span class="sb-pin-icon">★</span>よく使うキー早見表</a>
+  <details class="sb-details" id="sb-ref-details">
+    <summary><span>全コマンドリファレンス</span><span class="sb-caret">▸</span></summary>
+    <a href="#ref-help" class="sb-link"><span class="sb-num">—</span>ヘルプ・情報</a>
+    <a href="#ref-file" class="sb-link"><span class="sb-num">—</span>ファイル</a>
+    <a href="#ref-movement" class="sb-link"><span class="sb-num">—</span>カーソル移動</a>
+    <a href="#ref-edit" class="sb-link"><span class="sb-num">—</span>編集</a>
+    <a href="#ref-macro" class="sb-link"><span class="sb-num">—</span>簡易的なカーソルベースマクロ</a>
+    <a href="#ref-register" class="sb-link"><span class="sb-num">—</span>レジスタ</a>
+    <a href="#ref-rectangle" class="sb-link"><span class="sb-num">—</span>矩形</a>
+    <a href="#ref-search" class="sb-link"><span class="sb-num">—</span>検索</a>
+    <a href="#ref-window" class="sb-link"><span class="sb-num">—</span>ウィンドウ・バッファ</a>
+    <a href="#ref-filer" class="sb-link"><span class="sb-num">—</span>ファイラ</a>
+    <a href="#ref-workspace" class="sb-link"><span class="sb-num">—</span>ワークスペース</a>
+    <a href="#ref-recentfiles" class="sb-link"><span class="sb-num">—</span>最近使ったファイル</a>
+    <a href="#ref-bookmark" class="sb-link"><span class="sb-num">—</span>ブックマーク</a>
+    <a href="#ref-outline" class="sb-link"><span class="sb-num">—</span>アウトライン</a>
+    <a href="#ref-killring-sb" class="sb-link"><span class="sb-num">—</span>キルリング</a>
+    <a href="#ref-register-sidebar" class="sb-link"><span class="sb-num">—</span>レジスタ サイドバー</a>
+    <a href="#ref-preview" class="sb-link"><span class="sb-num">—</span>プレビュー・Web</a>
+    <a href="#ref-mode" class="sb-link"><span class="sb-num">—</span>メジャーモード</a>
+    <a href="#ref-settings" class="sb-link"><span class="sb-num">—</span>設定</a>
+    <a href="#ref-mcp" class="sb-link"><span class="sb-num">—</span>AI Integration / AI 連携</a>
+    <a href="#ref-shell" class="sb-link"><span class="sb-num">—</span>シェル</a>
+    <a href="#ref-prefix" class="sb-link"><span class="sb-num">—</span>プレフィックス引数</a>
+    <a href="#ref-advanced" class="sb-link"><span class="sb-num">—</span>その他</a>
+    <a href="#ref-experimental" class="sb-link"><span class="sb-num">—</span>実験的</a>
+  </details>
   <a href="#faq" class="sb-link"><span class="sb-num">—</span>FAQ</a>
 </nav>
 
@@ -1657,6 +1685,28 @@ function updateActive() {
 }
 window.addEventListener('scroll', updateActive, {passive: true});
 updateActive();
+
+// ── Auto-open the collapsible reference section when active ──
+// (Triggered on load if URL hash points inside, or while the user scrolls
+//  into one of its anchors.)
+const refDetails = document.getElementById('sb-ref-details');
+if (refDetails) {
+  const refIds = new Set(
+    [...refDetails.querySelectorAll('a.sb-link[href^="#"]')]
+      .map(a => a.getAttribute('href').slice(1))
+  );
+  const openIfInRef = () => {
+    const active = document.querySelector('.sb-link.active[href^="#"]');
+    const id = active ? active.getAttribute('href').slice(1) : '';
+    if (refIds.has(id) && !refDetails.open) refDetails.open = true;
+  };
+  // initial hash routing
+  const hashId = location.hash.replace(/^#/, '');
+  if (refIds.has(hashId)) refDetails.open = true;
+  // and follow scroll
+  window.addEventListener('scroll', openIfInRef, {passive: true});
+  openIfInRef();
+}
 
 // ── Hamburger menu ──
 const sbToggle  = document.getElementById('sb-toggle');

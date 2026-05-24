@@ -57,7 +57,7 @@
       --border-hi: rgba(255, 255, 255, 0.14);
       --text: #e2e8f0;
       --text-2: #94a3b8;
-      --text-3: #475569;
+      --text-3: #64748b;
       --blue: #3b82f6;
       --blue-hi: #60a5fa;
       --blue-dim: rgba(59, 130, 246, 0.12);
@@ -1204,8 +1204,8 @@
   <section>
     <div class="hero fi">
       <div class="hero-badge"><span class="dot"></span>Emacs-Inspired & Modern Web UX</div>
-      <h1>ウェブ技術で進化する<br>Electronベースの<br><span class="hl">次世代エディタ</span>。</h1>
-      <p class="hero-sub">Electronとモダンなウェブ技術を基盤に構築。<br>Emacsの直感的な操作体系を設定不要で今すぐ体験。</p>
+      <h1>Emacs ライクな操作 ×<br>Electron 実装 ×<br><span class="hl">MCP サーバー内蔵</span>。</h1>
+      <p class="hero-sub">Lisp も設定ファイルも不要、Windows 向けの Emacs ライクなテキストエディタ。<br>300+ キーバインドを標準搭載し、MCP 経由で AI クライアントがバッファを直接読み書きできます。</p>
       <a href="https://apps.microsoft.com/detail/9P32F2WFL69M" class="hero-dl">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
           <path d="M0 0h11.5v11.5H0V0zm12.5 0H24v11.5H12.5V0zM0 12.5h11.5V24H0V12.5zm12.5 0H24V24H12.5V12.5z" />
@@ -1230,8 +1230,8 @@
         <div class="stat-label">スクリプトエンジン不要<br>インストール即使える</div>
       </div>
       <div class="stat">
-        <div class="stat-num"><em>40</em>+</div>
-        <div class="stat-label">バージョン<br>毎日リリースで進化中</div>
+        <div class="stat-num"><em>100</em>+</div>
+        <div class="stat-label">バージョン<br>ほぼ毎日リリース継続中</div>
       </div>
       <div class="stat">
         <div class="stat-num"><em>300</em>+</div>
@@ -1246,10 +1246,10 @@
   <div class="feat-big fi" id="features">
     <div>
       <div class="feat-tag">Emacs-Inspired Experience</div>
-      <h2 class="section-h">手に馴染んだキーバインドを、<br>そのまま最新の環境へ。</h2>
+      <h2 class="section-h">Emacs ライクなキーバインドを、<br>設定不要で。</h2>
       <p class="section-p" style="max-width:100%;">
-        C-f/b/n/p による基本移動から、Kill Ring、マークセット、ウィンドウ分割まで。長年培われてきた直感的な操作体系を、設定不要でそのまま利用できます。<br><br>
-        ブラウザ世代の技術スタックにより、高速なレスポンスと高い拡張性を両立しました。
+        C-f/b/n/p による基本移動、Kill Ring、マークセット、ウィンドウ分割など、Emacs の操作体系を 300+ のキーバインドで提供します。設定ファイルは不要で、インストール直後から利用できます。<br><br>
+        実装は Electron + TypeScript。Lisp スクリプトに依存せず、必要な機能を組み込みで実装しています。
       </p>
       <div style="display:flex;gap:24px;flex-wrap:wrap;">
         <a href="#keybinds"
@@ -1309,7 +1309,7 @@
       <h2 class="section-h">Avy ジャンプで高速移動。</h2>
       <p class="section-p" style="max-width:100%;">
         <kbd>C-'</kbd> に続けて文字を入力し、画面内の任意の場所へ数ストロークでジャンプ。視覚的なラベルにより、マウスを使わず正確な移動が可能です。<br><br>
-        また、インクリメンタル検索（<kbd>C-s</kbd> / <kbd>C-r</kbd>）の実行中にも <kbd>C-'</kbd> を押すことで、検索結果を対象とした Avy ジャンプへシームレスに移行できます。
+        また、インクリメンタル検索（<kbd>C-s</kbd> / <kbd>C-r</kbd>）の実行中にも <kbd>C-'</kbd> を押すことで、検索結果を対象とした Avy ジャンプへそのまま移行できます。
       </p>
     </div>
     <div class="feat-big-img">
@@ -1454,7 +1454,7 @@
   <section class="section" id="screenshots">
     <div class="section-inner fi">
       <p class="tag">Screenshots</p>
-      <h2 class="section-h">洗練されたデザインと、<br>機能的なインターフェース。</h2>
+      <h2 class="section-h">テーマとサイドバーの<br>スクリーンショット。</h2>
       <div class="ss-tabs">
         <div class="ss-tab active" data-panel="p1">Dark</div>
         <div class="ss-tab" data-panel="p2">Cyber</div>
@@ -1500,7 +1500,7 @@
     <div class="section-inner fi">
       <p class="tag">Visual Effects</p>
       <h2 class="section-h">カーソル VFX</h2>
-      <p class="section-p">タイピングを彩る9種類の視覚効果。<kbd>C-c 1〜9</kbd> で瞬時に切り替え可能です。</p>
+      <p class="section-p">タイピングを彩る9種類の視覚効果。<kbd>C-c 1〜9</kbd> で瞬時に切り替え可能です。<kbd>C-c 0</kbd> で OFF にもできます。</p>
       <div class="vfx-grid-idx">
         <div class="vfx-item-idx">
           <div class="vfx-preview" data-vfx="1"></div>
