@@ -56,7 +56,7 @@ img{display:block;max-width:100%;}
   position:sticky;top:0;background:#080808;z-index:1;
 }
 .sb-logo{font-family:var(--mono);font-size:15px;color:#fff;}
-.sb-logo em{color:var(--blue-hi);font-style:normal;}
+.sb-logo em{color:inherit;font-style:normal;}
 .sb-back{font-size:12px;color:var(--text-3);transition:color .15s;}
 .sb-back:hover{color:var(--text-2);}
 .sb-section{
@@ -219,7 +219,7 @@ footer{
   flex-wrap:wrap;gap:12px;margin-top:48px;
 }
 .footer-logo{font-family:var(--mono);font-size:13px;color:var(--text-3);}
-.footer-logo em{color:var(--blue-hi);font-style:normal;}
+.footer-logo em{color:inherit;font-style:normal;}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:12px;color:var(--text-3);transition:color .15s;}
 .footer-links a:hover{color:var(--text-2);}
@@ -1109,6 +1109,7 @@ footer{
                 <tr><td><kbd>C-x b</kbd></td><td class="desc">バッファを切り替えます（補完候補あり）</td></tr>
                 <tr><td><kbd>C-x C-b</kbd></td><td class="desc">バッファ一覧を表示します</td></tr>
                 <tr><td><kbd>C-x k</kbd></td><td class="desc">バッファを閉じます</td></tr>
+                <tr><td><kbd>M-x scratch-buffer</kbd></td><td class="desc"><code>*scratch*</code> バッファに切り替えます（存在しなければ新規作成）</td></tr>
                 <tr><td><kbd>f</kbd> (in Buffer List)</td><td class="desc">カーソル位置のバッファに切り替えます（バッファ一覧にて）</td></tr>
                 <tr><td><kbd>q</kbd> (in Buffer List)</td><td class="desc">バッファ一覧を閉じます</td></tr>
               </tbody>
