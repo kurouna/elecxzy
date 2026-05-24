@@ -72,15 +72,16 @@ img{display:block;max-width:100%;}
 .sb-link.active{color:#fff;border-left-color:var(--blue-hi);background:var(--blue-dim);}
 .sb-num{font-family:var(--mono);font-size:11px;color:var(--text-3);width:16px;text-align:center;flex-shrink:0;}
 
-/* Pinned quickref — promoted out of references */
+/* Pinned quickref — promoted out of references, top of sidebar */
 .sb-link.sb-pin{
-  margin:10px 12px 4px;padding:9px 12px;
-  border:1px solid var(--border);border-left:2px solid var(--blue-hi);
+  margin:14px 12px 6px;padding:10px 12px;
+  border:1px solid rgba(96,165,250,.4);border-left:3px solid var(--blue-hi);
   border-radius:6px;background:var(--blue-dim);color:#fff;
-  font-weight:500;
+  font-weight:500;font-size:13px;
 }
-.sb-link.sb-pin:hover{background:rgba(80,140,255,.18);}
-.sb-link.sb-pin .sb-pin-icon{font-size:12px;color:var(--blue-hi);margin-right:2px;}
+.sb-link.sb-pin:hover{background:rgba(96,165,250,.22);border-color:rgba(96,165,250,.6);}
+.sb-link.sb-pin.active{background:rgba(96,165,250,.28);}
+.sb-link.sb-pin .sb-pin-icon{font-size:13px;color:var(--blue-hi);margin-right:4px;}
 
 /* Collapsible reference section */
 .sb-details{margin-top:4px;}
@@ -298,6 +299,7 @@ footer{
     <a href="index.html" class="sb-logo">elec<em>xzy</em></a>
     <a href="index.html" class="sb-back">← トップ</a>
   </div>
+  <a href="#ref-quickref" class="sb-link sb-pin"><span class="sb-pin-icon">★</span>よく使うキー早見表</a>
   <div class="sb-section">はじめに</div>
   <a href="#intro" class="sb-link active"><span class="sb-num">—</span>概要</a>
   <div class="sb-section">チュートリアル</div>
@@ -312,7 +314,6 @@ footer{
   <a href="#themes" class="sb-link"><span class="sb-num">9</span>テーマ・カスタマイズ</a>
   <a href="#vfx" class="sb-link"><span class="sb-num">10</span>カーソル VFX</a>
   <a href="#custom-keybinds" class="sb-link"><span class="sb-num">11</span>キーバインドのカスタマイズ</a>
-  <a href="#ref-quickref" class="sb-link sb-pin"><span class="sb-pin-icon">★</span>よく使うキー早見表</a>
   <details class="sb-details" id="sb-ref-details">
     <summary><span>全コマンドリファレンス</span><span class="sb-caret">▸</span></summary>
     <a href="#ref-help" class="sb-link"><span class="sb-num">—</span>ヘルプ・情報</a>
@@ -365,7 +366,7 @@ footer{
     <div class="doc-hero" id="intro">
       <p class="doc-hero-tag">Documentation</p>
       <h1>elecxzy の使い方</h1>
-      <p>インストールから日常使い、MCP設定まで。Lisp不要のEmacsライク体験をここで学べます。</p>
+      <p>インストールから日常使い、MCP設定まで。Lisp不要のemacsライク体験をここで学べます。</p>
       <div class="doc-chips">
         <span class="chip">Windows 10/11</span>
         <span class="chip">日本語対応</span>
@@ -405,7 +406,7 @@ footer{
     <div class="step-section" id="basics">
       <div class="step-header">
         <div class="step-num">2</div>
-        <div class="step-header-text"><h2>基本操作・キルリング</h2><p>カーソル移動と Emacsライクな中核概念「キルリング」</p></div>
+        <div class="step-header-text"><h2>基本操作・キルリング</h2><p>カーソル移動と emacsライクな中核概念「キルリング」</p></div>
       </div>
       <div class="card">
         <div class="card-hd"><span class="cd" style="background:var(--blue-hi)"></span>カーソル移動</div>
@@ -586,7 +587,7 @@ footer{
     <div class="step-section" id="sidebars">
       <div class="step-header">
         <div class="step-num">6</div>
-        <div class="step-header-text"><h2>サイドバー機能</h2><p>Emacsライクな操作を視覚化するサイドバースイート</p></div>
+        <div class="step-header-text"><h2>サイドバー機能</h2><p>emacsライクな操作を視覚化するサイドバースイート</p></div>
       </div>
       <div class="two-col">
         <div class="card">
@@ -611,7 +612,7 @@ footer{
         </div>
         <div class="card">
           <div class="card-hd"><span class="cd" style="background:#fbbf24"></span>ブックマーク — C-c b / C-x r l</div>
-          <div class="card-body"><p>ピン止めしたファイルを長期保存。最近使ったファイル / ファイラ / ワークスペース上で <kbd>m</kbd> を押すと追加、ブックマーク サイドバー内 <kbd>m</kbd> で解除。<kbd>C-x r m</kbd> (<code>bookmark-set</code>) で現在のファイルを追加、<kbd>M-x bookmark-toggle</kbd> でトグル。キーバインドは Emacs <code>bookmark.el</code> 互換。</p></div>
+          <div class="card-body"><p>ピン止めしたファイルを長期保存。最近使ったファイル / ファイラ / ワークスペース上で <kbd>m</kbd> を押すと追加、ブックマーク サイドバー内 <kbd>m</kbd> で解除。<kbd>C-x r m</kbd> (<code>bookmark-set</code>) で現在のファイルを追加、<kbd>M-x bookmark-toggle</kbd> でトグル。キーバインドは emacs <code>bookmark.el</code> 互換。</p></div>
         </div>
         <div class="card">
           <div class="card-hd"><span class="cd" style="background:#34d399"></span>ワークスペース — C-c w / C-,</div>
@@ -800,7 +801,7 @@ footer{
           <table class="cmd-table">
             <thead><tr><th>記法</th><th>意味</th></tr></thead>
             <tbody>
-              <tr><td><code style="font-family:var(--mono);font-size:12px;">\C-</code> / <code style="font-family:var(--mono);font-size:12px;">C-</code></td><td class="desc"><kbd>Ctrl</kbd> 修飾子（Emacs と同様）</td></tr>
+              <tr><td><code style="font-family:var(--mono);font-size:12px;">\C-</code> / <code style="font-family:var(--mono);font-size:12px;">C-</code></td><td class="desc"><kbd>Ctrl</kbd> 修飾子（emacs と同様）</td></tr>
               <tr><td><code style="font-family:var(--mono);font-size:12px;">\M-</code> / <code style="font-family:var(--mono);font-size:12px;">M-</code></td><td class="desc"><kbd>Alt</kbd> 修飾子</td></tr>
               <tr><td><code style="font-family:var(--mono);font-size:12px;">"C-x C-f"</code></td><td class="desc">スペース区切りでキーシーケンス（連続スペースは自動正規化）</td></tr>
               <tr><td><code style="font-family:var(--mono);font-size:12px;">"\\C-n": ""</code></td><td class="desc">値が空文字なら当該バインドを削除（押しても何もしない）</td></tr>
@@ -1255,8 +1256,8 @@ footer{
             <table class="cmd-table">
               <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
               <tbody>
-                <tr><td><kbd>C-c b</kbd> / <kbd>C-x r l</kbd> / <kbd>M-x bookmark-bmenu-list</kbd> / <kbd>M-x browse-bookmarks</kbd></td><td class="desc">ブックマーク・サイドバーを開閉します (Emacs 互換)</td></tr>
-                <tr><td><kbd>C-x r m</kbd> / <kbd>M-x bookmark-set</kbd></td><td class="desc">現在開いているファイルをブックマークします（既に登録済みならミニバッファに通知のみ、Emacs 互換）</td></tr>
+                <tr><td><kbd>C-c b</kbd> / <kbd>C-x r l</kbd> / <kbd>M-x bookmark-bmenu-list</kbd> / <kbd>M-x browse-bookmarks</kbd></td><td class="desc">ブックマーク・サイドバーを開閉します (emacs 互換)</td></tr>
+                <tr><td><kbd>C-x r m</kbd> / <kbd>M-x bookmark-set</kbd></td><td class="desc">現在開いているファイルをブックマークします（既に登録済みならミニバッファに通知のみ、emacs 互換）</td></tr>
                 <tr><td><kbd>M-x bookmark-toggle</kbd></td><td class="desc">現在開いているファイルをブックマーク (ピン止め) します／解除します</td></tr>
                 <tr><td><kbd>Enter</kbd> / <kbd>f</kbd></td><td class="desc">ファイルを開きます（<code>.code-workspace</code> はワークスペースとして開きます）</td></tr>
                 <tr><td><kbd>Space</kbd> / <kbd>Tab</kbd> / <kbd>C-f</kbd> / <kbd>l</kbd> / <kbd>Right</kbd></td><td class="desc">ファイルをプレビュー（閉じない）します</td></tr>
@@ -1410,7 +1411,7 @@ footer{
                 <tr><td><kbd>M-x conf-mode</kbd></td><td class="desc">INI/設定ファイルモードに切り替えます</td></tr>
                 <tr><td><kbd>M-x diff-mode</kbd></td><td class="desc">Diff/Patchモードに切り替えます</td></tr>
                 <tr><td><kbd>M-x dockerfile-mode</kbd></td><td class="desc">Dockerfileモードに切り替えます</td></tr>
-                <tr><td><kbd>M-x emacs-lisp-mode</kbd></td><td class="desc">Emacs Lispモードに切り替えます</td></tr>
+                <tr><td><kbd>M-x emacs-lisp-mode</kbd></td><td class="desc">emacs Lispモードに切り替えます</td></tr>
                 <tr><td><kbd>M-x fsharp-mode</kbd></td><td class="desc">F#モードに切り替えます</td></tr>
                 <tr><td><kbd>M-x graphql-mode</kbd></td><td class="desc">GraphQLモードに切り替えます</td></tr>
                 <tr><td><kbd>M-x haskell-mode</kbd></td><td class="desc">Haskellモードに切り替えます</td></tr>
@@ -1471,7 +1472,7 @@ footer{
                 <tr><td><kbd>M-x forest-theme</kbd></td><td class="desc">カラーテーマを Forest に設定します（要再起動）</td></tr>
                 <tr><td><kbd>M-x default-theme</kbd></td><td class="desc">カラーテーマをデフォルトに戻します（要再起動）</td></tr>
                 <tr><td><kbd>M-x font-lock-mode</kbd></td><td class="desc">全バッファのシンタックスハイライトを ON/OFF します</td></tr>
-                <tr><td><kbd>M-x global-font-lock-mode</kbd></td><td class="desc">font-lock-mode のエイリアス（Emacs 互換）</td></tr>
+                <tr><td><kbd>M-x global-font-lock-mode</kbd></td><td class="desc">font-lock-mode のエイリアス（emacs 互換）</td></tr>
                 <tr><td><kbd>M-x set-font-lock-mode</kbd></td><td class="desc">Font Lock Mode を on/off で設定します</td></tr>
                 <tr><td><kbd>M-x get-font-lock-mode</kbd></td><td class="desc">Font Lock Mode の状態を表示します</td></tr>
                 <tr><td><kbd>C-c s</kbd> / <kbd>C-.</kbd></td><td class="desc">設定サイドバーを開きます</td></tr>
@@ -1564,7 +1565,7 @@ footer{
             <table class="cmd-table">
               <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
               <tbody>
-                <tr><td><kbd>M-x shell</kbd></td><td class="desc">対話的なシェル(Emacs comint-mode 風)を起動します。バッファ名は <code style="font-family:var(--mono);font-size:11px;">*shell*</code></td></tr>
+                <tr><td><kbd>M-x shell</kbd></td><td class="desc">対話的なシェル(emacs comint-mode 風)を起動します。バッファ名は <code style="font-family:var(--mono);font-size:11px;">*shell*</code></td></tr>
                 <tr><td><kbd>Enter</kbd>（シェル中）</td><td class="desc">現在の入力をシェルプロセスに送信します</td></tr>
                 <tr><td><kbd>C-a</kbd>（シェル中）</td><td class="desc">入力開始位置 (プロンプト直後) へ移動。2 度押下で行頭へ</td></tr>
                 <tr><td><kbd>M-p</kbd>（シェル中）</td><td class="desc">入力履歴を一つ前へ (バッファごとに最大 200 件)</td></tr>

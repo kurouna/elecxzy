@@ -7,7 +7,7 @@
   <title>elecxzy — emacs-like Editor with Modern Web UX & MCP Server</title>
   <meta name="description" content="Lispなしでemacsライクな操作を。内蔵MCPサーバーでAIと繋がるモダンなテキストエディタ。Windows向け、無料。">
   <meta property="og:title" content="elecxzy — emacs-like Editor">
-  <meta property="og:description" content="LispなしでEmacsライクな操作を。内蔵MCPサーバーでAIと繋がるモダンなテキストエディタ。">
+  <meta property="og:description" content="Lispなしでemacsライクな操作を。内蔵MCPサーバーでAIと繋がるモダンなテキストエディタ。">
   <meta property="og:image" content="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot1.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
@@ -239,7 +239,7 @@
       display: block;
       font-size: 12px;
       color: var(--text-3);
-      margin-bottom: 56px;
+      margin-bottom: 20px;
     }
 
     .hero-dl-sub a {
@@ -248,6 +248,68 @@
 
     .hero-dl-sub a:hover {
       text-decoration: underline;
+    }
+
+    /* Share buttons — X / Hatena / Copy link */
+    .hero-share {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 56px;
+    }
+    .hero-share-label {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-right: 4px;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-1);
+      color: var(--text-2);
+      cursor: pointer;
+      transition: all .15s;
+      padding: 0;
+    }
+    .share-btn:hover {
+      background: var(--bg-2);
+      color: #fff;
+      border-color: var(--border-hi);
+    }
+    .share-btn.copied {
+      color: var(--green);
+      border-color: var(--green);
+    }
+    .share-btn-text {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .share-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      padding: 10px 20px;
+      background: var(--bg-3);
+      border: 1px solid var(--border-hi);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all .25s;
+      z-index: 1000;
+    }
+    .share-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
 
     .hero-ss-wrap {
@@ -1203,9 +1265,9 @@
   <!-- HERO -->
   <section>
     <div class="hero fi">
-      <div class="hero-badge"><span class="dot"></span>Emacs-Inspired & Modern Web UX</div>
-      <h1>Emacs ライクな操作 ×<br>Electron 実装 ×<br><span class="hl">MCP サーバー内蔵</span>。</h1>
-      <p class="hero-sub">Lisp も設定ファイルも不要、Windows 向けの Emacs ライクなテキストエディタ。<br>300+ キーバインドを標準搭載し、MCP 経由で AI クライアントがバッファを直接読み書きできます。</p>
+      <div class="hero-badge"><span class="dot"></span>emacs-Inspired & Modern Web UX</div>
+      <h1>emacs ライクな操作 ×<br>Electron 実装 ×<br><span class="hl">MCP サーバー内蔵</span>。</h1>
+      <p class="hero-sub">Lisp も設定ファイルも不要、Windows で動く emacs ライクエディタ。<br>内蔵 MCP サーバーで AI クライアントから直接編集できます。</p>
       <a href="https://apps.microsoft.com/detail/9P32F2WFL69M" class="hero-dl">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
           <path d="M0 0h11.5v11.5H0V0zm12.5 0H24v11.5H12.5V0zM0 12.5h11.5V24H0V12.5zm12.5 0H24V24H12.5V12.5z" />
@@ -1215,6 +1277,27 @@
       <span class="hero-dl-sub">Microsoft Store から自動更新付きで入手 &nbsp;·&nbsp; または <a
           href="https://github.com/kurouna/elecxzy/releases">GitHub Releases</a>
         から直接ダウンロード</span>
+      <div class="hero-share">
+        <span class="hero-share-label">シェア:</span>
+        <a class="share-btn" id="share-x" target="_blank" rel="noopener" aria-label="X (Twitter) でシェア" title="X (Twitter) でシェア">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a class="share-btn" id="share-bluesky" target="_blank" rel="noopener" aria-label="Bluesky でシェア" title="Bluesky でシェア">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M5.42 3.36C8.07 5.36 10.93 9.41 12 11.58c1.07-2.17 3.93-6.22 6.58-8.22C20.5 1.92 23.6.83 23.6 4.38c0 .71-.41 5.95-.64 6.8-.83 2.96-3.85 3.71-6.53 3.26 4.69.8 5.88 3.44 3.31 6.09-4.9 5.02-7.04-1.26-7.59-2.87-.1-.3-.15-.43-.15-.32 0-.11-.05.02-.15.32-.55 1.61-2.69 7.89-7.59 2.87-2.58-2.65-1.38-5.29 3.31-6.09-2.68.46-5.7-.29-6.53-3.26C.81 10.33.4 5.09.4 4.38.4.83 3.5 1.92 5.42 3.36z"/>
+          </svg>
+        </a>
+        <a class="share-btn share-btn-text" id="share-hatena" target="_blank" rel="noopener" aria-label="はてなブックマークに追加" title="はてなブックマークに追加">B!</a>
+        <button type="button" class="share-btn" id="share-copy" aria-label="リンクをコピー" title="リンクをコピー">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+          </svg>
+        </button>
+      </div>
+      <div id="share-toast" class="share-toast" role="status" aria-live="polite">リンクをコピーしました</div>
       <div class="hero-ss-wrap">
         <video src="https://github.com/user-attachments/assets/ea817cb4-85c9-4225-9425-5c61915823ab" autoplay loop muted
           playsinline></video>
@@ -1227,7 +1310,7 @@
     <div class="stats fi">
       <div class="stat">
         <div class="stat-num"><em>0</em> Lisp</div>
-        <div class="stat-label">スクリプトエンジン不要<br>インストール即使える</div>
+        <div class="stat-label">スクリプト言語 完全フリー<br>設定ファイル不要・即起動</div>
       </div>
       <div class="stat">
         <div class="stat-num"><em>100</em>+</div>
@@ -1235,20 +1318,20 @@
       </div>
       <div class="stat">
         <div class="stat-num"><em>300</em>+</div>
-        <div class="stat-label">Emacs キーバインド<br>手に馴染んだ操作を即実行</div>
+        <div class="stat-label">emacs キーバインド<br>手に馴染んだ操作を即実行</div>
       </div>
     </div>
   </div>
 
   <div class="divider" style="margin:80px 0;"></div>
 
-  <!-- FEAT BIG 0: Emacs Keybinds -->
+  <!-- FEAT BIG 0: emacs Keybinds -->
   <div class="feat-big fi" id="features">
     <div>
-      <div class="feat-tag">Emacs-Inspired Experience</div>
-      <h2 class="section-h">Emacs ライクなキーバインドを、<br>設定不要で。</h2>
+      <div class="feat-tag">emacs-Inspired Experience</div>
+      <h2 class="section-h">emacs ライクなキーバインドを、<br>設定不要で。</h2>
       <p class="section-p" style="max-width:100%;">
-        C-f/b/n/p による基本移動、Kill Ring、マークセット、ウィンドウ分割など、Emacs の操作体系を 300+ のキーバインドで提供します。設定ファイルは不要で、インストール直後から利用できます。<br><br>
+        C-f/b/n/p による基本移動、Kill Ring、マークセット、ウィンドウ分割など、emacs の操作体系を 300+ のキーバインドで提供します。設定ファイルは不要で、インストール直後から利用できます。<br><br>
         実装は Electron + TypeScript。Lisp スクリプトに依存せず、必要な機能を組み込みで実装しています。
       </p>
       <div style="display:flex;gap:24px;flex-wrap:wrap;">
@@ -1261,7 +1344,7 @@
       </div>
     </div>
     <div class="feat-big-img">
-      <img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot4.png" alt="Emacs キーバインド"
+      <img src="https://github.com/kurouna/elecxzy/raw/main/assets/screenshot/screenshot4.png" alt="emacs キーバインド"
         loading="lazy">
     </div>
   </div>
@@ -1367,11 +1450,11 @@
     <div class="section-inner fi">
       <p class="tag">All Features</p>
       <h2 class="section-h">主な機能</h2>
-      <p class="section-p">Emacsライクな操作体系を継承しつつ、現代の開発体験に合わせた機能セットです。</p>
+      <p class="section-p">emacsライクな操作体系を継承しつつ、現代の開発体験に合わせた機能セットです。</p>
       <div class="features-grid">
         <div class="fg-item">
           <div class="fg-icon">⌨</div>
-          <h3>Emacsライク キーバインド</h3>
+          <h3>emacsライク キーバインド</h3>
           <p>C-f/b/n/p の基本移動からKill Ring、ウィンドウ分割まで対応しています。<code
               style="font-family:var(--mono);font-size:11px;">M-x</code> で全コマンドをインクリメンタル補完付きで実行できます。</p>
         </div>
@@ -1734,7 +1817,7 @@
     <div class="section-inner fi">
       <p class="tag">Key Bindings</p>
       <h2 class="section-h">よく使うキーバインド</h2>
-      <p class="section-p" style="margin-bottom:0;">Emacsライクな操作体系。主要コマンドの早見表です。</p>
+      <p class="section-p" style="margin-bottom:0;">emacsライクな操作体系。主要コマンドの早見表です。</p>
 
       <div class="kb-section">
         <div class="kb-cols">
@@ -1859,10 +1942,10 @@
               <div class="kb-keys"><kbd>C-c c</kbd></div><span class="kb-desc">最近使ったファイル</span>
             </div>
             <div class="kb-row">
-              <div class="kb-keys"><kbd>C-c b</kbd> / <kbd>C-x r l</kbd></div><span class="kb-desc">ブックマーク サイドバー (Emacs bookmark-bmenu-list 互換)</span>
+              <div class="kb-keys"><kbd>C-c b</kbd> / <kbd>C-x r l</kbd></div><span class="kb-desc">ブックマーク サイドバー (emacs bookmark-bmenu-list 互換)</span>
             </div>
             <div class="kb-row">
-              <div class="kb-keys"><kbd>C-x r m</kbd></div><span class="kb-desc">ブックマーク設定 (Emacs bookmark-set 互換)</span>
+              <div class="kb-keys"><kbd>C-x r m</kbd></div><span class="kb-desc">ブックマーク設定 (emacs bookmark-set 互換)</span>
             </div>
             <div class="kb-row">
               <div class="kb-keys"><kbd>C-c v</kbd></div><span class="kb-desc">プレビュー（Markdown/HTML/Text）</span>
@@ -1886,7 +1969,7 @@
       <h2 class="section-h">キーバインドを<br>あなた好みに。</h2>
       <p class="section-p" style="max-width:100%;">
         既定キーマップを <code>keybinds.json</code> で再ビルドなしに上書き・削除できます。<br><br>
-        Emacs 互換の記法で <code>\C-</code> が <kbd>Ctrl</kbd>、<code>\M-</code> が <kbd>Alt</kbd>、スペース区切りでキーシーケンス（<code>"C-x C-f"</code>）を表現します。値を空文字 <code>""</code> にすると当該バインドを削除できます。<br><br>
+        emacs 互換の記法で <code>\C-</code> が <kbd>Ctrl</kbd>、<code>\M-</code> が <kbd>Alt</kbd>、スペース区切りでキーシーケンス（<code>"C-x C-f"</code>）を表現します。値を空文字 <code>""</code> にすると当該バインドを削除できます。<br><br>
         ファイルが無ければ既定動作のまま起動。JSON の構文エラーや未登録コマンドはエコーラインに 1 度だけ集約表示され、起動・編集が止まることはありません。
       </p>
       <a href="tutorial.html#custom-keybinds"
@@ -2027,7 +2110,7 @@
 
   <section class="cta fi">
     <h2>今すぐ無料で試す。</h2>
-    <p>インストール後すぐ使える。設定不要。Emacsライクな編集体験を今日から。</p>
+    <p>インストール後すぐ使える。設定不要。emacsライクな編集体験を今日から。</p>
     <div class="cta-btns">
       <a href="https://apps.microsoft.com/detail/9P32F2WFL69M" class="btn-cta-p">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -2103,6 +2186,36 @@
       });
     });
     lb.addEventListener('click', () => lb.classList.remove('active'));
+
+    // Share buttons — set hrefs from current page URL (works for any host),
+    // handle copy-link with Web Share API fallback on mobile.
+    (function setupShare() {
+      const url = location.href;
+      const text = 'elecxzy — emacs ライクな操作 × Electron 実装 × MCP サーバー内蔵。Windows で動く軽量テキストエディタ。';
+      const xBtn = document.getElementById('share-x');
+      const blueskyBtn = document.getElementById('share-bluesky');
+      const hatenaBtn = document.getElementById('share-hatena');
+      const copyBtn = document.getElementById('share-copy');
+      const toast = document.getElementById('share-toast');
+      if (xBtn) xBtn.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url);
+      // Bluesky の compose intent は text パラメータに本文と URL を空白区切りで含める
+      if (blueskyBtn) blueskyBtn.href = 'https://bsky.app/intent/compose?text=' + encodeURIComponent(text + ' ' + url);
+      if (hatenaBtn) hatenaBtn.href = 'https://b.hatena.ne.jp/entry/' + url.replace(/^https?:\/\//, '');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', async () => {
+          // Web Share API on mobile / supported browsers
+          if (navigator.share && /Mobi|Android/i.test(navigator.userAgent)) {
+            try { await navigator.share({ title: document.title, text, url }); return; } catch (_) { /* fall through to copy */ }
+          }
+          try {
+            await navigator.clipboard.writeText(url);
+            copyBtn.classList.add('copied');
+            if (toast) { toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 1800); }
+            setTimeout(() => copyBtn.classList.remove('copied'), 1800);
+          } catch (_) { /* clipboard blocked — silent */ }
+        });
+      }
+    })();
   </script>
 </body>
 
