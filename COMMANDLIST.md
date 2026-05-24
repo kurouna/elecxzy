@@ -11,6 +11,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x command-list` | `command-list` | Show this command list | コマンド一覧を表示します |
 | `M-x license` | `license` | Show license information | ライセンス情報を表示します |
 | `M-x version` | `version` | Show version information | バージョン情報を表示します |
+| `M-x elecxzy-uptime` | `elecxzy-uptime` | Show uptime since this elecxzy instance was started (Emacs `emacs-uptime` compatible) | この elecxzy 起動からの経過時間を表示します (Emacs `emacs-uptime` 互換) |
 
 ## File Operations (ファイル操作)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
@@ -174,6 +175,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-x b` | `switch-to-buffer` | Switch to another buffer | バッファを切り替えます（補完候補あり） |
 | `C-x C-b` | `list-buffers` | Show a list of all open buffers | バッファ一覧を表示します |
 | `C-x k` | `kill-buffer` | Close the current buffer | バッファを閉じます |
+| (M-x only) | `scratch-buffer` | Switch to `*scratch*`, creating it if it does not exist | `*scratch*` バッファに切り替えます（存在しなければ新規作成） |
 | `f` (in Buffer List) | `buffer-menu-execute` | Switch to the buffer under cursor | カーソル位置のバッファに切り替えます（バッファ一覧にて） |
 | `q` (in Buffer List) | `keyboard-quit` | Quit buffer list | バッファ一覧を閉じます |
 
@@ -428,6 +430,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x global-font-lock-mode` | `global-font-lock-mode` | Toggle Font Lock Mode (Emacs alias) | font-lock-mode のエイリアス（Emacs 互換） |
 | `M-x set-font-lock-mode` | `set-font-lock-mode` | Set font lock mode (on/off) | Font Lock Mode を on/off で設定します |
 | `M-x get-font-lock-mode` | `get-font-lock-mode` | Show Font Lock Mode status | Font Lock Mode の状態を表示します |
+| `M-x set-close-to-tray` | `set-close-to-tray` | Set Run in Background (on/off) — close to system tray  | Run in Background を on/off で設定します（ウィンドウを閉じるとトレイへ常駐） |
+| `M-x get-close-to-tray` | `get-close-to-tray` | Show Run in Background status | Run in Background の状態を表示します |
 | `C-c s` / `C-.` | `open-config` | Open the Settings Sidebar | 設定サイドバーを開きます |
 | `C-g` / `C-q` / `Esc` | (Settings Open) | Save & Close sidebar | 設定を保存して閉じます |
 | `Right Click` (Backdrop) | (Settings Open) | Save & Close sidebar | 背景の右クリックで閉じます |

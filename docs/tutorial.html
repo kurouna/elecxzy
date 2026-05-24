@@ -638,7 +638,7 @@ footer{
         </div>
         <div class="card">
           <div class="card-hd"><span class="cd" style="background:#94a3b8"></span>設定 — C-c s / C-.</div>
-          <div class="card-body"><p>フォント・テーマ・行番号などのエディタ設定を視覚的に管理。<kbd>C-g</kbd> / <kbd>Esc</kbd> で保存して閉じます。</p></div>
+          <div class="card-body"><p>フォント・テーマ・行番号・アプリ動作 (Run in Background) などのエディタ設定を視覚的に管理。<kbd>C-g</kbd> / <kbd>Esc</kbd> で保存して閉じます。</p></div>
         </div>
       </div>
     </div>
@@ -918,6 +918,7 @@ footer{
                 <tr><td><kbd>M-x command-list</kbd></td><td class="desc">コマンド一覧を表示します</td></tr>
                 <tr><td><kbd>M-x license</kbd></td><td class="desc">ライセンス情報を表示します</td></tr>
                 <tr><td><kbd>M-x version</kbd></td><td class="desc">バージョン情報を表示します</td></tr>
+                <tr><td><kbd>M-x elecxzy-uptime</kbd></td><td class="desc">この elecxzy 起動からの経過時間を表示します（Emacs <code>emacs-uptime</code> 互換）</td></tr>
               </tbody>
             </table>
           </div>
@@ -1493,6 +1494,8 @@ footer{
                 <tr><td><kbd>M-x global-font-lock-mode</kbd></td><td class="desc">font-lock-mode のエイリアス（emacs 互換）</td></tr>
                 <tr><td><kbd>M-x set-font-lock-mode</kbd></td><td class="desc">Font Lock Mode を on/off で設定します</td></tr>
                 <tr><td><kbd>M-x get-font-lock-mode</kbd></td><td class="desc">Font Lock Mode の状態を表示します</td></tr>
+                <tr><td><kbd>M-x set-close-to-tray</kbd></td><td class="desc">Run in Background を on/off で設定します（ウィンドウを閉じるとトレイへ常駐／Windows 限定）</td></tr>
+                <tr><td><kbd>M-x get-close-to-tray</kbd></td><td class="desc">Run in Background の状態を表示します</td></tr>
                 <tr><td><kbd>C-c s</kbd> / <kbd>C-.</kbd></td><td class="desc">設定サイドバーを開きます</td></tr>
                 <tr><td><kbd>C-g</kbd> / <kbd>C-q</kbd> / <kbd>Esc</kbd></td><td class="desc">設定を保存して閉じます</td></tr>
                 <tr><td><kbd>Right Click</kbd> (Backdrop)</td><td class="desc">背景の右クリックで閉じます</td></tr>
