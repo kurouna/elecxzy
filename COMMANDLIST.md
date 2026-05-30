@@ -329,6 +329,17 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 > **Note:** Multiple undos performed via the sidebar are merged into a single redo transaction, so a single `C-/` (or `M-_`) restores everything in one step (Office-style behavior).
 > **補足:** サイドバー経由でまとめて Undo した操作は 1 つの Redo トランザクションに統合されるため、`C-/`（または `M-_`）の Redo 1 回で一括復元できます（Word/Excel と同様の挙動）。
 
+## Playback History (履歴プレイバック)
+| Command / コマンド | ID | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `M-x playback-history` | `playback-history` | Animate the current buffer's edit history. Rewinds to the oldest state and then redoes step-by-step back to the current state. Press any key or click to abort (jumps directly to the latest state). | 現在のバッファの編集履歴をアニメーション再生します。先頭まで一気に Undo してから、現在地まで段階的に Redo します。任意のキー入力やクリックで中断（最新状態に即座に復帰）。 |
+| `C-u M-x playback-history` | `playback-history` | Faster playback (10ms interval) | 高速再生（10ms 間隔） |
+| `C-u C-u M-x playback-history` | `playback-history` | Fastest playback (1ms interval; browser may clamp to ~4ms) | 超高速再生（1ms 間隔。ブラウザの仕様で実効値は約 4ms 以上） |
+| `C-u <n> M-x playback-history` | `playback-history` | Playback with explicit `<n>` ms interval (max 1000ms) | `<n>` ミリ秒間隔で再生（上限 1000ms） |
+
+> **Note:** Playback engages a read-only guard on the target buffer for the duration of the animation, so auto-save, MCP writes, and external drag-and-drop cannot corrupt intermediate states. The buffer always returns to its original state on completion or abort.
+> **補足:** プレイバック中はバッファに読み取り専用ガードがかかり、オートセーブ、MCP からの書き込み、外部ファイルのドラッグ&ドロップ等が中間状態に干渉しないよう保護されます。完了時／中断時のいずれも、バッファは必ず開始時の状態に復帰します。
+
 ## Preview & Web (プレビュー・Web)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
@@ -430,6 +441,16 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x global-font-lock-mode` | `global-font-lock-mode` | Toggle Font Lock Mode (Emacs alias) | font-lock-mode のエイリアス（Emacs 互換） |
 | `M-x set-font-lock-mode` | `set-font-lock-mode` | Set font lock mode (on/off) | Font Lock Mode を on/off で設定します |
 | `M-x get-font-lock-mode` | `get-font-lock-mode` | Show Font Lock Mode status | Font Lock Mode の状態を表示します |
+| `M-x show-paren-mode` | `show-paren-mode` | Toggle matching bracket highlight (Emacs `show-paren-mode` compatible) | カーソル隣の括弧と対応括弧のハイライトを ON/OFF します（Emacs `show-paren-mode` 互換） |
+| `M-x set-show-paren-mode` | `set-show-paren-mode` | Set show paren mode (on/off) | Show Paren Mode を on/off で設定します |
+| `M-x get-show-paren-mode` | `get-show-paren-mode` | Show Show Paren Mode status | Show Paren Mode の状態を表示します |
+| `M-x hl-line-mode` | `hl-line-mode` | Toggle current line highlight (Emacs `hl-line-mode` compatible) | カーソル行のハイライトを ON/OFF します（Emacs `hl-line-mode` 互換） |
+| `M-x global-hl-line-mode` | `global-hl-line-mode` | Toggle current line highlight (Emacs alias for hl-line-mode) | hl-line-mode のエイリアス（Emacs 互換） |
+| `M-x set-hl-line-mode` | `set-hl-line-mode` | Set highlight current line (on/off) | カーソル行のハイライトを on/off で設定します |
+| `M-x get-hl-line-mode` | `get-hl-line-mode` | Show Highlight Current Line status | カーソル行ハイライトの状態を表示します |
+| `M-x split-window-prefer-longest` | `split-window-prefer-longest` | Toggle Auto Window Prefer Longest Edge (Emacs 31.1 compat) | 自動分割で長辺方向を優先するかを ON/OFF します（Emacs 31.1 互換） |
+| `M-x set-split-window-prefer-longest` | `set-split-window-prefer-longest` | Set Auto Window Prefer Longest Edge (on/off) | 自動分割の長辺方向優先を on/off で設定します |
+| `M-x get-split-window-prefer-longest` | `get-split-window-prefer-longest` | Show Auto Window Prefer Longest Edge status | 自動分割の長辺方向優先の状態を表示します |
 | `M-x set-close-to-tray` | `set-close-to-tray` | Set Run in Background (on/off) — close to system tray  | Run in Background を on/off で設定します（ウィンドウを閉じるとトレイへ常駐） |
 | `M-x get-close-to-tray` | `get-close-to-tray` | Show Run in Background status | Run in Background の状態を表示します |
 | `C-c s` / `C-.` | `open-config` | Open the Settings Sidebar | 設定サイドバーを開きます |

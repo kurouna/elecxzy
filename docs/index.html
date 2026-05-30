@@ -1497,6 +1497,14 @@
               style="font-family:var(--mono);font-size:11px;">C-u 10 C-x e</code> で10回繰り返すことも可能です。</p>
         </div>
         <div class="fg-item">
+          <div class="fg-icon">⏯</div>
+          <h3>履歴プレイバック</h3>
+          <p><code style="font-family:var(--mono);font-size:11px;">M-x playback-history</code>
+            で現在のバッファの編集履歴をアニメーション再生します。先頭まで一気に Undo した後、現在の状態まで段階的に Redo します。<code
+              style="font-family:var(--mono);font-size:11px;">C-u</code> で 10ms、<code
+              style="font-family:var(--mono);font-size:11px;">C-u C-u</code> で 1ms 間隔。任意キー入力やクリックで中断可能。再生中はバッファに読み取り専用ガードがかかり、オートセーブ等がディスクに干渉しません。</p>
+        </div>
+        <div class="fg-item">
           <div class="fg-icon">📋</div>
           <h3>Kill Ring サイドバー</h3>
           <p><code style="font-family:var(--mono);font-size:11px;">C-c y</code> でKill

@@ -472,6 +472,7 @@ footer{
             <thead><tr><th>キー</th><th>動作</th></tr></thead>
             <tbody>
               <tr><td><kbd>C-/</kbd></td><td class="desc">Undo</td></tr>
+              <tr><td><kbd>M-x playback-history</kbd></td><td class="desc">編集履歴をアニメーション再生（先頭まで Undo → 現在地まで段階的に Redo）。<kbd>C-u</kbd> で 10ms、<kbd>C-u C-u</kbd> で 1ms 間隔、任意キー/クリックで中断</td></tr>
               <tr><td><kbd>C-d</kbd></td><td class="desc">カーソル位置の1文字を削除</td></tr>
               <tr><td><kbd>M-d</kbd></td><td class="desc">次の単語をキルする</td></tr>
               <tr><td><kbd>M-Backspace</kbd></td><td class="desc">前の単語をキルする</td></tr>
@@ -1494,6 +1495,16 @@ footer{
                 <tr><td><kbd>M-x global-font-lock-mode</kbd></td><td class="desc">font-lock-mode のエイリアス（emacs 互換）</td></tr>
                 <tr><td><kbd>M-x set-font-lock-mode</kbd></td><td class="desc">Font Lock Mode を on/off で設定します</td></tr>
                 <tr><td><kbd>M-x get-font-lock-mode</kbd></td><td class="desc">Font Lock Mode の状態を表示します</td></tr>
+                <tr><td><kbd>M-x show-paren-mode</kbd></td><td class="desc">カーソル隣の括弧と対応括弧のハイライトを ON/OFF します（emacs <code>show-paren-mode</code> 互換、デフォルト ON）</td></tr>
+                <tr><td><kbd>M-x set-show-paren-mode</kbd></td><td class="desc">Show Paren Mode を on/off で設定します</td></tr>
+                <tr><td><kbd>M-x get-show-paren-mode</kbd></td><td class="desc">Show Paren Mode の状態を表示します</td></tr>
+                <tr><td><kbd>M-x hl-line-mode</kbd></td><td class="desc">カーソル行のハイライトを ON/OFF します（emacs <code>hl-line-mode</code> 互換、デフォルト OFF）</td></tr>
+                <tr><td><kbd>M-x global-hl-line-mode</kbd></td><td class="desc">hl-line-mode のエイリアス（emacs 互換）</td></tr>
+                <tr><td><kbd>M-x set-hl-line-mode</kbd></td><td class="desc">カーソル行のハイライトを on/off で設定します</td></tr>
+                <tr><td><kbd>M-x get-hl-line-mode</kbd></td><td class="desc">カーソル行ハイライトの状態を表示します</td></tr>
+                <tr><td><kbd>M-x split-window-prefer-longest</kbd></td><td class="desc">自動分割で長辺方向を優先するかを ON/OFF します（Emacs 31.1 互換）</td></tr>
+                <tr><td><kbd>M-x set-split-window-prefer-longest</kbd></td><td class="desc">自動分割の長辺方向優先を on/off で設定します</td></tr>
+                <tr><td><kbd>M-x get-split-window-prefer-longest</kbd></td><td class="desc">自動分割の長辺方向優先の状態を表示します</td></tr>
                 <tr><td><kbd>M-x set-close-to-tray</kbd></td><td class="desc">Run in Background を on/off で設定します（ウィンドウを閉じるとトレイへ常駐／Windows 限定）</td></tr>
                 <tr><td><kbd>M-x get-close-to-tray</kbd></td><td class="desc">Run in Background の状態を表示します</td></tr>
                 <tr><td><kbd>C-c s</kbd> / <kbd>C-.</kbd></td><td class="desc">設定サイドバーを開きます</td></tr>
