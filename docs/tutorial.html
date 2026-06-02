@@ -1189,6 +1189,7 @@ footer{
                 <tr><td><kbd>C</kbd> (Shift+<kbd>c</kbd>)</td><td class="desc">選択中のフォルダ内に新しいフォルダを作成します</td></tr>
                 <tr><td><kbd>R</kbd> (Shift+<kbd>r</kbd>)</td><td class="desc">選択中のファイル・フォルダの名前を変更します（ミニバッファに現在の名前が表示されます）</td></tr>
                 <tr><td><kbd>m</kbd></td><td class="desc">フォーカス中のファイルをブックマーク (ピン止め) します／解除します（ディレクトリ行では無視されます）</td></tr>
+                <tr><td><kbd>e</kbd></td><td class="desc">フォーカス中のファイル／フォルダの場所をエクスプローラ（ファイルマネージャ）で表示します（ドライブ一覧では無視されます）</td></tr>
                 <tr><td><kbd>C-v</kbd></td><td class="desc">1ページ分下にスクロールします</td></tr>
                 <tr><td><kbd>M-v</kbd></td><td class="desc">1ページ分上にスクロールします</td></tr>
                 <tr><td><kbd>M-<</kbd></td><td class="desc">階層の先頭に移動します</td></tr>
@@ -1229,6 +1230,7 @@ footer{
                 <tr><td><kbd>C</kbd> (Shift+<kbd>c</kbd>)</td><td class="desc">選択中のフォルダ内に新しいフォルダを作成します</td></tr>
                 <tr><td><kbd>R</kbd> (Shift+<kbd>r</kbd>)</td><td class="desc">選択中のファイル・フォルダの名前を変更します（ミニバッファに現在の名前が表示されます）</td></tr>
                 <tr><td><kbd>m</kbd></td><td class="desc">フォーカス中のファイルをブックマーク (ピン止め) します／解除します（ディレクトリ行・root では無視されます）</td></tr>
+                <tr><td><kbd>e</kbd></td><td class="desc">フォーカス中のファイル／フォルダ（root 含む）の場所をエクスプローラ（ファイルマネージャ）で表示します（missing 行では無視されます）</td></tr>
                 <tr><td><kbd>C-v</kbd></td><td class="desc">1ページ分下にスクロールします</td></tr>
                 <tr><td><kbd>M-v</kbd></td><td class="desc">1ページ分上にスクロールします</td></tr>
                 <tr><td><kbd>M-<</kbd></td><td class="desc">リストの先頭に移動します</td></tr>
@@ -1254,6 +1256,7 @@ footer{
                 <tr><td><kbd>Enter</kbd> / <kbd>f</kbd></td><td class="desc">ファイルを開きます</td></tr>
                 <tr><td><kbd>Space</kbd> / <kbd>Tab</kbd> / <kbd>C-f</kbd> / <kbd>l</kbd> / <kbd>Right</kbd></td><td class="desc">ファイルをプレビュー（閉じない）します</td></tr>
                 <tr><td><kbd>m</kbd></td><td class="desc">フォーカス中のファイルをブックマーク (ピン止め) します／解除します</td></tr>
+                <tr><td><kbd>e</kbd></td><td class="desc">フォーカス中のファイルの場所をエクスプローラ（ファイルマネージャ）で表示します</td></tr>
                 <tr><td><kbd>C-n</kbd> / <kbd>j</kbd> / <kbd>n</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
                 <tr><td><kbd>C-p</kbd> / <kbd>k</kbd> / <kbd>p</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
                 <tr><td><kbd>C-v</kbd></td><td class="desc">1ページ分下にスクロールします</td></tr>
@@ -1282,6 +1285,7 @@ footer{
                 <tr><td><kbd>Enter</kbd> / <kbd>f</kbd></td><td class="desc">ファイルを開きます（<code>.code-workspace</code> はワークスペースとして開きます）</td></tr>
                 <tr><td><kbd>Space</kbd> / <kbd>Tab</kbd> / <kbd>C-f</kbd> / <kbd>l</kbd> / <kbd>Right</kbd></td><td class="desc">ファイルをプレビュー（閉じない）します</td></tr>
                 <tr><td><kbd>m</kbd></td><td class="desc">フォーカス中のブックマークを解除します</td></tr>
+                <tr><td><kbd>e</kbd></td><td class="desc">フォーカス中のファイルの場所をエクスプローラ（ファイルマネージャ）で表示します</td></tr>
                 <tr><td><kbd>C-n</kbd> / <kbd>j</kbd> / <kbd>n</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
                 <tr><td><kbd>C-p</kbd> / <kbd>k</kbd> / <kbd>p</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
                 <tr><td><kbd>C-v</kbd></td><td class="desc">1ページ分下にスクロールします</td></tr>
@@ -1481,16 +1485,16 @@ footer{
             <table class="cmd-table">
               <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
               <tbody>
-                <tr><td><kbd>M-x dark-theme</kbd></td><td class="desc">カラーテーマをダークモードに設定します（要再起動）</td></tr>
-                <tr><td><kbd>M-x light-theme</kbd></td><td class="desc">カラーテーマをライトモードに設定します（要再起動）</td></tr>
-                <tr><td><kbd>M-x cyber-theme</kbd></td><td class="desc">カラーテーマをサイバーモードに設定します（要再起動）</td></tr>
-                <tr><td><kbd>M-x cute-theme</kbd></td><td class="desc">カラーテーマをキュートモードに設定します（要再起動）</td></tr>
-                <tr><td><kbd>M-x tokyo-night-theme</kbd></td><td class="desc">カラーテーマを Tokyo Night に設定します（要再起動）</td></tr>
-                <tr><td><kbd>M-x rose-pine-dawn-theme</kbd></td><td class="desc">カラーテーマを Rose Pine Dawn に設定します（要再起動）</td></tr>
-                <tr><td><kbd>M-x gruvbox-theme</kbd></td><td class="desc">カラーテーマを Gruvbox に設定します（要再起動）</td></tr>
-                <tr><td><kbd>M-x nord-theme</kbd></td><td class="desc">カラーテーマを Nord に設定します（要再起動）</td></tr>
-                <tr><td><kbd>M-x forest-theme</kbd></td><td class="desc">カラーテーマを Forest に設定します（要再起動）</td></tr>
-                <tr><td><kbd>M-x default-theme</kbd></td><td class="desc">カラーテーマをデフォルトに戻します（要再起動）</td></tr>
+                <tr><td><kbd>M-x dark-theme</kbd></td><td class="desc">カラーテーマをダークモードに設定します</td></tr>
+                <tr><td><kbd>M-x light-theme</kbd></td><td class="desc">カラーテーマをライトモードに設定します</td></tr>
+                <tr><td><kbd>M-x cyber-theme</kbd></td><td class="desc">カラーテーマをサイバーモードに設定します</td></tr>
+                <tr><td><kbd>M-x cute-theme</kbd></td><td class="desc">カラーテーマをキュートモードに設定します</td></tr>
+                <tr><td><kbd>M-x tokyo-night-theme</kbd></td><td class="desc">カラーテーマを Tokyo Night に設定します</td></tr>
+                <tr><td><kbd>M-x rose-pine-dawn-theme</kbd></td><td class="desc">カラーテーマを Rose Pine Dawn に設定します</td></tr>
+                <tr><td><kbd>M-x gruvbox-theme</kbd></td><td class="desc">カラーテーマを Gruvbox に設定します</td></tr>
+                <tr><td><kbd>M-x nord-theme</kbd></td><td class="desc">カラーテーマを Nord に設定します</td></tr>
+                <tr><td><kbd>M-x forest-theme</kbd></td><td class="desc">カラーテーマを Forest に設定します</td></tr>
+                <tr><td><kbd>M-x default-theme</kbd></td><td class="desc">カラーテーマをデフォルトに戻します</td></tr>
                 <tr><td><kbd>M-x font-lock-mode</kbd></td><td class="desc">全バッファのシンタックスハイライトを ON/OFF します</td></tr>
                 <tr><td><kbd>M-x global-font-lock-mode</kbd></td><td class="desc">font-lock-mode のエイリアス（emacs 互換）</td></tr>
                 <tr><td><kbd>M-x set-font-lock-mode</kbd></td><td class="desc">Font Lock Mode を on/off で設定します</td></tr>
@@ -1551,7 +1555,7 @@ footer{
                 <tr><td><kbd>M-x set-line-terminator</kbd></td><td class="desc">改行コードを設定します</td></tr>
                 <tr><td><kbd>M-x set-max-undo-limit</kbd></td><td class="desc">最大Undo回数を設定します</td></tr>
                 <tr><td><kbd>M-x set-show-ime-indicator</kbd></td><td class="desc">IMEインジケータの表示状態（ON/OFF/自動）を設定します</td></tr>
-                <tr><td><kbd>M-x set-cursor-vfx</kbd></td><td class="desc">カーソルVFXの種類（OFF/Light Particle/Cyber Trace/Prismatic Nova/Arcane Sigil/Inferno Flame/Phantom Merge/Rubber Slime/Quantum Tunnel/Kawaii Shower）を選択します</td></tr>
+                <tr><td><kbd>M-x set-cursor-vfx</kbd></td><td class="desc">カーソルVFXの種類（OFF/Light Particle/Cyber Trace/Prismatic Nova/Arcane Sigil/Inferno Flame/Phantom Merge/Rubber Slime/Quantum Tunnel/Kawaii Shower/Elenyan）を選択します。<kbd>C-u N</kbd> を付けると Elenyan 選択時に猫の種類（1=子猫、2=黒猫、3=白猫）を選べます</td></tr>
                 <tr><td><kbd>C-c 0</kbd></td><td class="desc">カーソルVFXをオフにします</td></tr>
                 <tr><td><kbd>C-c 1</kbd></td><td class="desc">カーソルVFXを Light Particle に設定します</td></tr>
                 <tr><td><kbd>C-c 2</kbd></td><td class="desc">カーソルVFXを Cyber Trace に設定します</td></tr>

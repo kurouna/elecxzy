@@ -201,6 +201,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M->` | (Sidebar Open) | Jump to the end of the list | 階層の末尾に移動します |
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
 | `m` | (Sidebar Open, file row) | Toggle bookmark for the focused file | フォーカス中のファイルをブックマーク (ピン止め) します／解除します（ディレクトリ行では無視されます）|
+| `e` | (Sidebar Open) | Reveal location in file manager (Explorer/Finder) | フォーカス中のファイル／フォルダの場所をエクスプローラ（ファイルマネージャ）で表示します（ドライブ一覧では無視されます） |
 | `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 | `M-x set-current-directory` | `set-current-directory` | Change root to a specific directory | 指定したディレクトリをルートに設定します |
 
@@ -231,6 +232,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M->` | (Sidebar Open) | Jump to the end of the list | リストの末尾に移動します |
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
 | `m` | (Sidebar Open, file row) | Toggle bookmark for the focused file | フォーカス中のファイルをブックマーク (ピン止め) します／解除します（ディレクトリ行・root では無視されます）|
+| `e` | (Sidebar Open) | Reveal location in file manager (Explorer/Finder) | フォーカス中のファイル／フォルダ（root 含む）の場所をエクスプローラ（ファイルマネージャ）で表示します（missing 行では無視されます） |
 | `Q` | (Sidebar Open) | Close workspace | ワークスペースを閉じます |
 | `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 
@@ -242,6 +244,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `Enter` / `f` | (Sidebar Open) | Open file | ファイルを開きます |
 | `Space` / `Tab` / `C-f` / `l` / `Right` | (Sidebar Open) | Preview file | ファイルをプレビュー（閉じない）します |
 | `m` | (Sidebar Open) | Toggle bookmark for the focused file | フォーカス中のファイルをブックマーク (ピン止め) します／解除します |
+| `e` | (Sidebar Open) | Reveal location in file manager (Explorer/Finder) | フォーカス中のファイルの場所をエクスプローラ（ファイルマネージャ）で表示します |
 | `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
 | `C-p` / `k` / `p` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
 | `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロールします |
@@ -260,6 +263,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `Enter` / `f` | (Sidebar Open) | Open file | ファイルを開きます (`.code-workspace` はワークスペースとして開きます) |
 | `Space` / `Tab` / `C-f` / `l` / `Right` | (Sidebar Open) | Preview file | ファイルをプレビュー（閉じない）します |
 | `m` | (Sidebar Open) | Remove bookmark | フォーカス中のブックマークを解除します |
+| `e` | (Sidebar Open) | Reveal location in file manager (Explorer/Finder) | フォーカス中のファイルの場所をエクスプローラ（ファイルマネージャ）で表示します |
 | `C-n` / `j` / `n` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
 | `C-p` / `k` / `p` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
 | `C-v` | (Sidebar Open) | Scroll down one page | 1ページ分下にスクロールします |
@@ -427,16 +431,16 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 ## Settings (設定)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `M-x dark-theme` | `dark-theme` | Set color theme to Dark Mode (Requires restart) | カラーテーマをダークモードに設定します（要再起動） |
-| `M-x light-theme` | `light-theme` | Set color theme to Light Mode (Requires restart) | カラーテーマをライトモードに設定します（要再起動） |
-| `M-x cyber-theme` | `cyber-theme` | Set color theme to Cyber Mode (Requires restart) | カラーテーマをサイバーモードに設定します（要再起動） |
-| `M-x cute-theme` | `cute-theme` | Set color theme to Cute Mode (Requires restart) | カラーテーマをキュートモードに設定します（要再起動） |
-| `M-x tokyo-night-theme` | `tokyo-night-theme` | Set color theme to Tokyo Night (Requires restart) | カラーテーマを Tokyo Night に設定します（要再起動） |
-| `M-x rose-pine-dawn-theme` | `rose-pine-dawn-theme` | Set color theme to Rose Pine Dawn (Requires restart) | カラーテーマを Rose Pine Dawn に設定します（要再起動） |
-| `M-x gruvbox-theme` | `gruvbox-theme` | Set color theme to Gruvbox (Requires restart) | カラーテーマを Gruvbox に設定します（要再起動） |
-| `M-x nord-theme` | `nord-theme` | Set color theme to Nord (Requires restart) | カラーテーマを Nord に設定します（要再起動） |
-| `M-x forest-theme` | `forest-theme` | Set color theme to Forest (Requires restart) | カラーテーマを Forest に設定します（要再起動） |
-| `M-x default-theme` | `default-theme` | Set color theme to default (Requires restart) | カラーテーマをデフォルトに戻します（要再起動） |
+| `M-x dark-theme` | `dark-theme` | Set color theme to Dark Mode | カラーテーマをダークモードに設定します |
+| `M-x light-theme` | `light-theme` | Set color theme to Light Mode | カラーテーマをライトモードに設定します |
+| `M-x cyber-theme` | `cyber-theme` | Set color theme to Cyber Mode | カラーテーマをサイバーモードに設定します |
+| `M-x cute-theme` | `cute-theme` | Set color theme to Cute Mode | カラーテーマをキュートモードに設定します |
+| `M-x tokyo-night-theme` | `tokyo-night-theme` | Set color theme to Tokyo Night | カラーテーマを Tokyo Night に設定します |
+| `M-x rose-pine-dawn-theme` | `rose-pine-dawn-theme` | Set color theme to Rose Pine Dawn | カラーテーマを Rose Pine Dawn に設定します |
+| `M-x gruvbox-theme` | `gruvbox-theme` | Set color theme to Gruvbox | カラーテーマを Gruvbox に設定します |
+| `M-x nord-theme` | `nord-theme` | Set color theme to Nord | カラーテーマを Nord に設定します |
+| `M-x forest-theme` | `forest-theme` | Set color theme to Forest | カラーテーマを Forest に設定します |
+| `M-x default-theme` | `default-theme` | Set color theme to default | カラーテーマをデフォルトに戻します |
 | `M-x font-lock-mode` | `font-lock-mode` | Toggle global syntax highlighting on/off | 全バッファのシンタックスハイライトを ON/OFF します |
 | `M-x global-font-lock-mode` | `global-font-lock-mode` | Toggle Font Lock Mode (Emacs alias) | font-lock-mode のエイリアス（Emacs 互換） |
 | `M-x set-font-lock-mode` | `set-font-lock-mode` | Set font lock mode (on/off) | Font Lock Mode を on/off で設定します |
@@ -497,7 +501,7 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x set-line-terminator` | `set-line-terminator` | Set line terminator (CRLF/LF/CR) | 改行コードを設定します |
 | `M-x set-max-undo-limit` | `set-max-undo-limit` | Set the maximum number of undo operations | 最大Undo回数を設定します |
 | `M-x set-show-ime-indicator` | `set-show-ime-indicator` | Set IME indicator visibility (on/off/auto) | IMEインジケータの表示状態（ON/OFF/自動）を設定します |
-| `M-x set-cursor-vfx` | `set-cursor-vfx` | Select cursor VFX style (off/Light Particle/Cyber Trace/Prismatic Nova/Arcane Sigil/Inferno Flame/Phantom Merge/Rubber Slime/Quantum Tunnel/Kawaii Shower) | カーソルVFXの種類（OFF/Light Particle/Cyber Trace/Prismatic Nova/Arcane Sigil/Inferno Flame/Phantom Merge/Rubber Slime/Quantum Tunnel/Kawaii Shower）を選択します |
+| `M-x set-cursor-vfx` | `set-cursor-vfx` | Select cursor VFX style (off/Light Particle/Cyber Trace/Prismatic Nova/Arcane Sigil/Inferno Flame/Phantom Merge/Rubber Slime/Quantum Tunnel/Kawaii Shower/Elenyan). With `C-u N`, picks the Elenyan cat when Elenyan is selected (1=kitten, 2=black, 3=white). | カーソルVFXの種類（OFF/Light Particle/Cyber Trace/Prismatic Nova/Arcane Sigil/Inferno Flame/Phantom Merge/Rubber Slime/Quantum Tunnel/Kawaii Shower/Elenyan）を選択します。`C-u N` を付けると Elenyan 選択時に猫の種類（1=子猫、2=黒猫、3=白猫）を選べます |
 | `C-c 0` | `set-cursor-vfx-off` | Set cursor VFX to Off | カーソルVFXをオフにします |
 | `C-c 1` | `set-cursor-vfx-light-particle` | Set cursor VFX to Light Particle | カーソルVFXを Light Particle に設定します |
 | `C-c 2` | `set-cursor-vfx-cyber-trace` | Set cursor VFX to Cyber Trace | カーソルVFXを Cyber Trace に設定します |
