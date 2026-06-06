@@ -88,6 +88,9 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-j` | `newline-and-indent` | Newline and indent | 改行してインデントを維持します |
 | `C-t` | `transpose-chars` | Swap characters around cursor | 文字を入れ替えます |
 | `M-t` | `transpose-words` | Swap words around cursor | 単語を入れ替えます |
+| `C-x C-t` | `transpose-lines` | Swap the current line with the previous one | 現在の行を前の行と入れ替えます |
+| `M-x transpose-sentences` | `transpose-sentences` | Swap the current sentence with the previous one | 現在の文を前の文と入れ替えます |
+| `M-x transpose-paragraphs` | `transpose-paragraphs` | Swap the current paragraph with the previous one | 現在の段落を前の段落と入れ替えます |
 | `M-^` | `join-line` | Join current line with the next one | 現在の行を次の行と結合します（CJK文字間以外はスペースを挿入） |
 | `M-x just-one-space` | `just-one-space` | Delete all but one space around point (Supports `C-u n`) | カーソル前後の空白（半角/タブ）を削除し、スペースを1つ（`C-u n` で `n` 個）挿入します |
 | `C-c SPC` | `just-one-space-extended` | Delete all but one space around point, including full-width | カーソル前後の空白（半角/タブ/全角）を削除し、半角スペースを1つ挿入します |
