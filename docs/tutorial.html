@@ -347,6 +347,7 @@ footer{
     <a href="#ref-workspace" class="sb-link"><span class="sb-num">—</span>ワークスペース</a>
     <a href="#ref-recentfiles" class="sb-link"><span class="sb-num">—</span>最近使ったファイル</a>
     <a href="#ref-bookmark" class="sb-link"><span class="sb-num">—</span>ブックマーク</a>
+    <a href="#ref-git" class="sb-link"><span class="sb-num">—</span>Git サイドバー</a>
     <a href="#ref-outline" class="sb-link"><span class="sb-num">—</span>アウトライン</a>
     <a href="#ref-killring-sb" class="sb-link"><span class="sb-num">—</span>キルリング</a>
     <a href="#ref-register-sidebar" class="sb-link"><span class="sb-num">—</span>レジスタ サイドバー</a>
@@ -638,6 +639,10 @@ footer{
         <div class="card">
           <div class="card-hd"><span class="cd" style="background:#34d399"></span>ワークスペース — C-c w / C-,</div>
           <div class="card-body"><p>複数フォルダをまとめて管理。<code style="font-family:var(--mono);font-size:11px;">.code-workspace</code> 形式のファイルに対応しています。</p></div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><span class="cd" style="background:#4ade80"></span>Git — C-c g</div>
+          <div class="card-body"><p>開いているワークスペースの変更ファイルとコミット履歴を色付きレーングラフで表示。変更ファイルの <kbd>Enter</kbd> で差分を <code style="font-family:var(--mono);font-size:11px;">*git-diff*</code> バッファに表示し、内蔵欄から commit / push / pull、タグの作成・push までエディタ内で完結します。</p></div>
         </div>
         <div class="card">
           <div class="card-hd"><span class="cd" style="background:#94a3b8"></span>設定 — C-c s / C-.</div>
@@ -950,6 +955,7 @@ footer{
                 <tr><td><kbd>M-x show-color-config</kbd></td><td class="desc">カラー設定ファイル(color-config.json)を開きます</td></tr>
                 <tr><td><kbd>C-x d</kbd> / <kbd>C-c d</kbd></td><td class="desc">ファイラサイドバーを開きます</td></tr>
                 <tr><td><kbd>C-c c</kbd></td><td class="desc">最近使ったファイルサイドバーを開きます</td></tr>
+                <tr><td><kbd>C-c g</kbd></td><td class="desc">Git（ソース管理）サイドバーを開きます</td></tr>
                 <tr><td><kbd>M-x recentf-open-files</kbd></td><td class="desc">最近開いたファイルの一覧を表示します</td></tr>
               </tbody>
             </table>
@@ -1299,6 +1305,39 @@ footer{
                 <tr><td><kbd>M-></kbd></td><td class="desc">一覧の末尾に移動します</td></tr>
                 <tr><td><kbd>C-l</kbd></td><td class="desc">フォーカス項目が中心になるよう画面を再配置します</td></tr>
                 <tr><td><kbd>C-g</kbd> / <kbd>C-q</kbd> / <kbd>q</kbd> / <kbd>Esc</kbd></td><td class="desc">サイドバーを閉じます</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="step-section" id="ref-git">
+      <div class="cmd-group">
+        <div class="cmd-group-title">Git Sidebar Operations（Git サイドバー操作）</div>
+        <div class="card">
+          <div class="card-body" style="padding:0;">
+            <table class="cmd-table">
+              <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
+              <tbody>
+                <tr><td><kbd>C-c g</kbd> / <kbd>M-x toggle-git-sidebar</kbd></td><td class="desc">Git（ソース管理）サイドバーを開閉します</td></tr>
+                <tr><td><kbd>Space</kbd> / <kbd>Tab</kbd> / <kbd>l</kbd> / <kbd>Right</kbd></td><td class="desc">セクション・コミットを展開、またはフォーカス中ファイルの差分をプレビュー（前後数行のコンパクト表示）します</td></tr>
+                <tr><td><kbd>Enter</kbd> / <kbd>f</kbd></td><td class="desc">セクション・コミットを展開、またはフォーカス中ファイルの差分をファイル全体（全行を文脈として）表示します</td></tr>
+                <tr><td><kbd>C-b</kbd> / <kbd>h</kbd> / <kbd>b</kbd> / <kbd>Left</kbd></td><td class="desc">セクション・コミットを折り畳む / 親へ移動します</td></tr>
+                <tr><td><kbd>C-n</kbd> / <kbd>n</kbd> / <kbd>Down</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
+                <tr><td><kbd>C-p</kbd> / <kbd>p</kbd> / <kbd>Up</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
+                <tr><td><kbd>C-v</kbd> / <kbd>M-v</kbd></td><td class="desc">下／上にスクロールします</td></tr>
+                <tr><td><kbd>M-<</kbd> / <kbd>M-></kbd></td><td class="desc">先頭／末尾に移動します</td></tr>
+                <tr><td><kbd>c</kbd></td><td class="desc">コミットメッセージ入力欄にフォーカスします</td></tr>
+                <tr><td><kbd>Ctrl+Enter</kbd></td><td class="desc">（メッセージ欄で）全変更を一括コミットします（git add -A + commit）</td></tr>
+                <tr><td><kbd>Ctrl+Shift+Enter</kbd></td><td class="desc">（メッセージ欄で）全変更を一括コミットして push します（upstream 未設定のブランチは VS Code 同様 publish します）</td></tr>
+                <tr><td><kbd>C-y</kbd></td><td class="desc">（メッセージ欄で）ヤンク。クリップボード連携が有効ならクリップボード、無効ならキルリングから貼り付けます</td></tr>
+                <tr><td><kbd>P</kbd></td><td class="desc">リモートへ push します（upstream 未設定のブランチは VS Code 同様 push -u origin で publish。detached HEAD では publish 不可）</td></tr>
+                <tr><td><kbd>F</kbd></td><td class="desc">リモートから pull します（upstream 未設定のブランチでは無効）</td></tr>
+                <tr><td><kbd>R</kbd></td><td class="desc">フォーカス中の変更ファイルを破棄します（tracked は HEAD へ復元＝取り消し不可、未トラックはゴミ箱へ移動。y/n 確認あり）</td></tr>
+                <tr><td><kbd>t</kbd></td><td class="desc">メッセージ欄のテキストを名前にした軽量タグを HEAD に作成します</td></tr>
+                <tr><td><kbd>T</kbd></td><td class="desc">すべてのタグをリモートへ push します（git push --tags）</td></tr>
+                <tr><td><kbd>g</kbd></td><td class="desc">Git の状態と履歴を最新に再取得します</td></tr>
+                <tr><td><kbd>C-g</kbd> / <kbd>q</kbd> / <kbd>Esc</kbd></td><td class="desc">サイドバーを閉じます</td></tr>
               </tbody>
             </table>
           </div>

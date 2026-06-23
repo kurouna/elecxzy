@@ -1553,6 +1553,12 @@
           <p>複数フォルダをまとめて管理します。<code style="font-family:var(--mono);font-size:11px;">.code-workspace</code>
             形式のファイルに対応しており、<code style="font-family:var(--mono);font-size:11px;">C-c w</code> / <code style="font-family:var(--mono);font-size:11px;">C-,</code> で開閉します。</p>
         </div>
+        <div class="fg-item">
+          <div class="fg-icon">🌿</div>
+          <h3>Git サイドバー</h3>
+          <p>開いているワークスペースの変更ファイルとコミット履歴を色付きレーングラフで表示します。<code style="font-family:var(--mono);font-size:11px;">C-c g</code>
+            で開閉し、差分を <code style="font-family:var(--mono);font-size:11px;">*git-diff*</code> バッファに表示。内蔵欄から commit / push / pull、タグの作成・push までエディタ内で完結します。</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1966,6 +1972,9 @@
             </div>
             <div class="kb-row">
               <div class="kb-keys"><kbd>C-c c</kbd></div><span class="kb-desc">最近使ったファイル</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-c g</kbd></div><span class="kb-desc">Git サイドバー (ソース管理)</span>
             </div>
             <div class="kb-row">
               <div class="kb-keys"><kbd>C-c b</kbd> / <kbd>C-x r l</kbd></div><span class="kb-desc">ブックマーク サイドバー (emacs bookmark-bmenu-list 互換)</span>

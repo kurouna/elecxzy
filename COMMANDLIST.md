@@ -276,6 +276,29 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-l` | (Sidebar Open) | Recenter the focused item | フォーカス項目が中心になるよう画面を再配置します |
 | `C-g` / `C-q` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
 
+## Git Sidebar Operations (Git サイドバー操作)
+| Command / コマンド | ID | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `C-c g` | `toggle-git-sidebar` | Toggle Git (Source Control) Sidebar | Git（ソース管理）サイドバーを開閉します |
+| `Space` / `Tab` / `l` / `Right` | (Sidebar Open) | Expand section/commit, or preview the focused file's diff (compact, with a few lines of context) | セクション・コミットを展開、またはフォーカス中ファイルの差分をプレビュー（前後数行のコンパクト表示）します |
+| `Enter` / `f` | (Sidebar Open) | Expand section/commit, or open the focused file's full-file diff (whole file as context) | セクション・コミットを展開、またはフォーカス中ファイルの差分をファイル全体（全行を文脈として）表示します |
+| `C-b` / `h` / `b` / `Left` | (Sidebar Open) | Collapse section/commit / Move to parent | セクション・コミットを折り畳む / 親へ移動します |
+| `C-n` / `n` / `Down` | (Sidebar Open) | Move focus down | フォーカスを下に移動します |
+| `C-p` / `p` / `Up` | (Sidebar Open) | Move focus up | フォーカスを上に移動します |
+| `C-v` / `M-v` | (Sidebar Open) | Scroll down / up | 下／上にスクロールします |
+| `M-<` / `M->` | (Sidebar Open) | Jump to the beginning / end | 先頭／末尾に移動します |
+| `c` | (Sidebar Open) | Focus the commit message box | コミットメッセージ入力欄にフォーカスします |
+| `Ctrl+Enter` | (Commit box focused) | Commit all changes (`git add -A` + commit) | 全変更を一括コミットします（`git add -A` + commit） |
+| `Ctrl+Shift+Enter` | (Commit box focused) | Commit all changes and push (publishes a branch with no upstream, like VS Code) | 全変更を一括コミットして push します（upstream 未設定のブランチは VS Code 同様 publish します） |
+| `C-y` | (Commit box focused) | Yank (paste from clipboard if integration is on, else kill ring) | ヤンク（クリップボード連携が有効ならクリップボード、無効ならキルリングから貼り付け） |
+| `P` | (Sidebar Open) | Push to remote; publishes the branch (`push -u origin`) when it has no upstream, like VS Code (disabled on a detached HEAD) | リモートへ push します（upstream 未設定のブランチは VS Code 同様 `push -u origin` で publish。detached HEAD では無効） |
+| `F` | (Sidebar Open) | Pull from remote (disabled when the branch has no upstream) | リモートから pull します（upstream 未設定のブランチでは無効） |
+| `R` | (Sidebar Open, changed file) | Discard the focused file's changes: restore a tracked file to HEAD (cannot be undone), or move an untracked file to the trash; asks for y/n confirmation | フォーカス中の変更ファイルを破棄します（tracked は HEAD へ復元＝取り消し不可、未トラックはゴミ箱へ移動。y/n 確認あり） |
+| `t` | (Sidebar Open) | Create a lightweight tag at HEAD, named after the text in the message box | メッセージ欄のテキストを名前にした軽量タグを HEAD に作成します |
+| `T` | (Sidebar Open) | Push all tags to the remote (`git push --tags`) | すべてのタグをリモートへ push します（`git push --tags`） |
+| `g` | (Sidebar Open) | Reload git status & history | Git の状態と履歴を最新に再取得します |
+| `C-g` / `q` / `Esc` | (Sidebar Open) | Close sidebar | サイドバーを閉じます |
+
 ## Outline Operations (アウトライン操作)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
