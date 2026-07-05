@@ -564,6 +564,21 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `s` | Second (0-59) / 秒 (0-59) | 8 |
 | `a` | AM/PM | PM |
 
+## Plugins (プラグイン)
+Drop a TypeScript file in the `plugins` folder (next to `config.json`) that `export default`s an object `{ command, description, execute(input) }` to add your own `M-x` command. Plugins run in an isolated, network-blocked Web Worker. See README for the authoring guide.
+`config.json` と同じ場所の `plugins` フォルダに、`{ command, description, execute(input) }` を default export する TypeScript ファイルを置くと、独自の `M-x` コマンドを追加できます。プラグインは隔離され通信が遮断された Web Worker 内で実行されます。書き方は README を参照してください。
+
+| Command / コマンド | ID | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `M-x reload-plugins` | `reload-plugins` | Reload plugins from the plugins folder | plugins フォルダからプラグインを再読み込みします |
+| `M-x open-plugins-folder` | `open-plugins-folder` | Reveal the plugins folder in the OS file manager | plugins フォルダを OS のファイルマネージャで開きます |
+| `M-x enable-plugins` | `enable-plugins` | Enable the plugin system and (re)load plugins | プラグイン機構を有効化して (再)読み込みします |
+| `M-x disable-plugins` | `disable-plugins` | Disable the plugin system and unload plugins | プラグイン機構を無効化してアンロードします |
+| `M-x toggle-plugins` | `toggle-plugins` | Toggle the plugin system on/off | プラグイン機構の有効/無効を切り替えます |
+| `M-x get-enable-plugins` | `get-enable-plugins` | Show whether the plugin system is enabled | プラグイン機構が有効かどうかを表示します |
+| `M-x set-plugin-timeout` | `set-plugin-timeout` | Set the per-plugin execution timeout in seconds (1-60) | プラグイン実行のタイムアウト (秒、1〜60) を設定します |
+| `M-x get-plugin-timeout` | `get-plugin-timeout` | Show the current per-plugin execution timeout | 現在のプラグイン実行タイムアウト (秒) を表示します |
+
 ## MCP (AI Integration / AI 連携)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|

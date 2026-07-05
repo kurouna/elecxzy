@@ -872,6 +872,41 @@ footer{
       <div class="note ok"><span>💡</span><span>上の例では、<kbd>C-s</kbd> が「インクリメンタル検索」ではなく「保存」になります（メモ帳的な操作系）。<kbd>C-x C-r</kbd> は「読み取り専用で開く」が「全選択」に置き換わります。<kbd>C-_</kbd> は押しても何も起きなくなります（<kbd>C-/</kbd> 側の Undo は残ります）。</span></div>
     </div>
 
+    <!-- 12: Plugins -->
+    <div class="step-section" id="plugins">
+      <div class="step-header">
+        <div class="step-num">12</div>
+        <div class="step-header-text"><h2>プラグイン</h2><p>TypeScript で独自の <code style="font-family:var(--mono);font-size:13px;">M-x</code> コマンドを追加する</p></div>
+      </div>
+      <div class="note info"><span>🧩</span><span><code style="font-family:var(--mono);font-size:11px;">config.json</code> と同じユーザデータフォルダの <code style="font-family:var(--mono);font-size:11px;">plugins</code> フォルダ（<kbd>M-x open-plugins-folder</kbd> で開けます）に <code style="font-family:var(--mono);font-size:11px;">.ts</code> ファイルを置くと、新しい <code style="font-family:var(--mono);font-size:11px;">M-x</code> コマンドとして登録されます。初回起動時に型定義 <code style="font-family:var(--mono);font-size:11px;">elecxzy-plugin.d.ts</code> とサンプル <code style="font-family:var(--mono);font-size:11px;">hello-world.ts</code> が自動生成されます。</span></div>
+
+      <div class="card">
+        <div class="card-hd">プラグインの書き方</div>
+        <div class="card-body"><p>1 ファイルで <code style="font-family:var(--mono);font-size:11px;">{ command, description, execute(input) }</code> を default export します。<code style="font-family:var(--mono);font-size:11px;">execute</code> はアクティブなバッファのスナップショット（<code style="font-family:var(--mono);font-size:11px;">text</code> / <code style="font-family:var(--mono);font-size:11px;">cursor</code> / <code style="font-family:var(--mono);font-size:11px;">selection</code> / <code style="font-family:var(--mono);font-size:11px;">fileName</code> / <code style="font-family:var(--mono);font-size:11px;">language</code>）を受け取り、変更内容を返します。戻り値は、文字列（全文置換）、<code style="font-family:var(--mono);font-size:11px;">{ text, start?, length?, cursor?, select?, message? }</code>（範囲編集や <code style="font-family:var(--mono);font-size:11px;">[command] …</code> メッセージ）、<code style="font-family:var(--mono);font-size:11px;">{ message }</code>、<code style="font-family:var(--mono);font-size:11px;">null</code> のいずれかです。</p></div>
+      </div>
+
+      <div class="card">
+        <div class="card-hd">コマンド</div>
+        <div class="card-body" style="padding:0;">
+          <table class="cmd-table">
+            <thead><tr><th>コマンド</th><th>動作</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>M-x reload-plugins</kbd></td><td class="desc">plugins フォルダから再読み込み（ファイル編集後に実行）</td></tr>
+              <tr><td><kbd>M-x open-plugins-folder</kbd></td><td class="desc">plugins フォルダを OS のファイルマネージャで開く</td></tr>
+              <tr><td><kbd>M-x enable-plugins</kbd></td><td class="desc">プラグイン機構を有効化して読み込む</td></tr>
+              <tr><td><kbd>M-x disable-plugins</kbd></td><td class="desc">プラグイン機構を無効化してアンロード</td></tr>
+              <tr><td><kbd>M-x toggle-plugins</kbd></td><td class="desc">プラグイン機構の有効/無効を切り替え（<code style="font-family:var(--mono);font-size:11px;">enablePlugins</code>）</td></tr>
+              <tr><td><kbd>M-x get-enable-plugins</kbd></td><td class="desc">プラグイン機構が有効かどうかを表示</td></tr>
+              <tr><td><kbd>M-x set-plugin-timeout</kbd></td><td class="desc">1 実行あたりのタイムアウト秒を設定（1〜60、既定 5 秒。<code style="font-family:var(--mono);font-size:11px;">pluginTimeout</code>）</td></tr>
+              <tr><td><kbd>M-x get-plugin-timeout</kbd></td><td class="desc">現在の実効タイムアウト秒を表示</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="note ok"><span>🔒</span><span>プラグインは隔離された Web Worker で実行され、Node・DOM・ファイルシステムへのアクセスはなく、通信もアプリの CSP で遮断されます。タイムアウトを超えた実行は中断されるため、不具合のあるプラグインがエディタを固めることはありません。</span></div>
+    </div>
+
     <!-- REFERENCE -->
             <div class="ref-header" id="reference">
       <p>Command Reference</p>
