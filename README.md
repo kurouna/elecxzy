@@ -164,7 +164,7 @@ export default plugin
 
 `input` provides `text` (the whole buffer), `cursor`, `selection` (`{ start, length }` or `null`), `fileName`, and `language`. The return value can be a **string** (replace the whole buffer), an **object** `{ text, start?, length?, cursor?, select?, message? }` (a ranged edit — `start`+`length` splice, both omitted = whole buffer — and/or a one-line message shown as `[command] …`), `{ message }` (message only), or `null` (do nothing). A plugin may also declare an optional `apiVersion: 1`; plugins declaring a newer API version than this build supports are skipped at load.
 
-Plugins run in an isolated Web Worker: no Node, no DOM, no filesystem access, and the network is blocked by the app's Content-Security-Policy. A run that exceeds the timeout (`M-x set-plugin-timeout` or `pluginTimeout` in `config.json`; 1–60 seconds, default 5) is aborted, so a buggy plugin can never freeze the editor. Turn the whole system on/off with `M-x toggle-plugins` (or `enablePlugins` in `config.json`), and reload after editing files with `M-x reload-plugins`.
+Plugins run in an isolated Web Worker: no Node, no DOM, no filesystem access, and the network is blocked by the app's Content-Security-Policy. A run that exceeds the timeout (`M-x set-plugin-timeout` or `pluginTimeout` in `config.json`; 1–60 seconds, default 5) is aborted, so a buggy plugin can never freeze the editor. Turn the whole system on/off with `M-x toggle-plugins` (or `enablePlugins` in `config.json`), and reload after editing files with `M-x reload-plugins`. When a plugin does not load or behaves unexpectedly, `M-x debug-plugins` reloads everything and opens a read-only `*Plugin Report*` buffer with the per-file outcome — including full compile errors that do not fit in the echo line.
 
 ### Tech Stack
 
@@ -332,7 +332,7 @@ export default plugin
 
 `input` には `text` (バッファ全文)、`cursor`、`selection` (`{ start, length }` または `null`)、`fileName`、`language` が渡されます。戻り値は、**文字列** (全文を置換)、**オブジェクト** `{ text, start?, length?, cursor?, select?, message? }` (範囲編集 — `start`+`length` で splice、両方省略で全文 — や `[command] …` 形式の 1 行メッセージ)、`{ message }` (メッセージのみ)、`null` (何もしない) のいずれかです。また、任意で `apiVersion: 1` を宣言できます。本ビルドが対応するより新しい API バージョンを宣言したプラグインは、読み込み時にスキップされます。
 
-プラグインは隔離された Web Worker で実行され、Node・DOM・ファイルシステムへのアクセスはなく、通信もアプリの Content-Security-Policy で遮断されます。タイムアウト (`M-x set-plugin-timeout` または `config.json` の `pluginTimeout`。1〜60 秒、既定 5 秒) を超えた実行は中断されるため、不具合のあるプラグインがエディタを固めることはありません。機構全体の有効/無効は `M-x toggle-plugins` (または `config.json` の `enablePlugins`) で切り替え、ファイル編集後は `M-x reload-plugins` で再読み込みします。
+プラグインは隔離された Web Worker で実行され、Node・DOM・ファイルシステムへのアクセスはなく、通信もアプリの Content-Security-Policy で遮断されます。タイムアウト (`M-x set-plugin-timeout` または `config.json` の `pluginTimeout`。1〜60 秒、既定 5 秒) を超えた実行は中断されるため、不具合のあるプラグインがエディタを固めることはありません。機構全体の有効/無効は `M-x toggle-plugins` (または `config.json` の `enablePlugins`) で切り替え、ファイル編集後は `M-x reload-plugins` で再読み込みします。プラグインが読み込まれない・動きがおかしいときは、`M-x debug-plugins` で全体を再読み込みし、ファイルごとの読み込み結果 (エコー行に収まらないコンパイルエラーの全文を含む) を読み取り専用の `*Plugin Report*` バッファで確認できます。
 
 ### 技術スタック
 
@@ -367,6 +367,10 @@ A: This behavior is due to conflicting legacy bitmap data within these older fon
 
 A: Yes, you can delete them safely. elecxzy uses an atomic-save pattern (write to a temp file, then rename) to prevent file corruption on crashes, and these temp files are normally cleaned up automatically. If one remains, it usually means antivirus software or a cloud-sync tool (e.g., OneDrive, Dropbox, Google Drive) briefly locked the temp file and the rename step failed — your original file is unaffected, but the temp file got stranded. If this happens often, add the folder you edit in to the exclusion list of your antivirus or cloud-sync tool.
 
+**Q: The Microsoft Store version feels slow and uses more memory than the installer version.**
+
+A: The Microsoft Store build is packaged as an MSIX/appx app, which Windows runs inside a virtualized container. This layer adds overhead that can increase memory usage and make the editor feel sluggish — this is a characteristic of the packaging format rather than a bug in elecxzy. If it becomes noticeable, open Windows **Settings → Apps → Installed apps → elecxzy → ⋯ → Advanced options** and click **Reset**. Clearing the app's accumulated state often lowers memory usage and makes operation smoother again. Note that Reset clears the app's local data, so custom settings may return to their defaults — if you have customized `config.json`, `color-config.json`, or `keybinds.json`, back them up first. If you do not need the Store version specifically, the standalone installer (NSIS `.exe`) build avoids this overhead entirely.
+
 ### 日本語
 
 **Q: 右端で折り返し表示はできないのですか？**
@@ -384,6 +388,10 @@ A: 古いフォントに内蔵されているビットマップ仕様と、Canva
 **Q: 編集フォルダに `.<filename>.tmp-*` というファイルが残っています。削除しても問題ありませんか？**
 
 A: 削除して問題ありません。elecxzy はクラッシュ時のファイル破損を防ぐため、アトミック保存方式（一時ファイルに書き込んでからリネーム）で保存しており、これらの一時ファイルは通常自動的に削除されます。残っている場合は、ウイルス対策ソフトやクラウド同期ソフト（OneDrive、Dropbox、Google Drive など）が一時ファイルを瞬間的にロックし、リネーム手順が失敗したことが原因です（元のファイルには影響ありません）。頻繁に発生する場合は、編集対象のフォルダをウイルス対策ソフトやクラウド同期ソフトの除外設定に追加してください。
+
+**Q: Microsoft Store 版が、インストーラ版に比べて動作が重く、メモリ使用量も多いです。**
+
+A: Microsoft Store 版は MSIX/appx 形式でパッケージ化されており、Windows はこれを仮想化されたコンテナ内で実行します。この仕組みによるオーバーヘッドでメモリ使用量が増え、動作が重く感じられることがあります（elecxzy 側の不具合ではなく、パッケージ形式に由来する挙動です）。気になる場合は、Windows の **[設定] → [アプリ] → [インストールされているアプリ] → [elecxzy] → [⋯] → [詳細オプション]** から **[リセット]** を実行してください。蓄積されたアプリの状態が消去され、メモリ使用量が減って動作が軽くなることがあります。なお、リセットはアプリのローカルデータを消去するため、カスタマイズした設定が初期状態に戻る場合があります。`config.json`・`color-config.json`・`keybinds.json` を編集している場合は、事前にバックアップしておくことをおすすめします。特に Store 版である必要がなければ、この種のオーバーヘッドがない単体インストーラ（NSIS `.exe`）版のご利用もご検討ください。
 
 ---
 
