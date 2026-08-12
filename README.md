@@ -41,10 +41,11 @@ Automatic updates are provided via the Microsoft Store. For the latest developme
 ### Key Features
 
 * **Emacs Keybindings:** Core operations including cursor movement (`C-f`, `C-b`, `C-n`, `C-p`), recursive window splitting (`C-x 2`, `C-x 3`), window resizing (`C-x ^`, `C-x }`), animated window-layout reshaping (`C-x w t` to transpose, `C-x w f` / `C-x w v` to flip, `C-x w r <Right>` / `<Left>` to rotate the layout 90°, `C-x w o <Right>` / `<Left>` to cycle buffers across panes), and kill ring management (`C-w`, `M-w`, `C-y`, `M-y`).
-* **Search & Replacement:** Incremental search (`C-s`), interactive replacement (`M-%`), and cross-file search across directories (`M-x grep`) powered by background OS processes (`findstr` / `grep`).
+* **Search & Replacement:** Incremental search (`C-s`), interactive replacement (`M-%`), match listing for the current buffer (`M-s o`), live line narrowing with in-place preview (`M-s l`), and cross-file search across directories (`M-x grep`) powered by background OS processes (`findstr` / `grep`).
 * **Completion System:** `dabbrev-expand` (`M-/`) for buffer-local word completion, extracting multi-byte characters and preserving undo chain integrity.
 * **Live Preview:** Preview modes for Markdown, HTML, and plain text (with word-wrap at the window edge for text), featuring one-way scroll synchronization that tracking the source buffer's position.
 * **Window & Buffer Management:** Provides seamless buffer switching (`C-x b`) and a dedicated buffer list (`C-x C-b`). In addition to standard minibuffer prompts, it provides commands to utilize OS-native file and save dialogs (`C-x M-f`, `C-x M-w`).
+* **File Tabs (xyzzy-style):** An optional tab bar at the top of the window listing all open buffers (off by default). Click a tab to switch the active pane's buffer, middle-click (or the `×` button) to close, and drag a tab horizontally to reorder, with unsaved/read-only indicators. When tabs overflow the window width, scroll buttons appear at both ends (hold to scroll continuously) and the always-available tab-list button on the right opens a dropdown of all tabs, so every tab stays reachable. While the tab bar is shown, `C-Tab` / `C-S-Tab` cycle through tabs in tab order. Toggle it via the Settings Sidebar ("Show File Tabs") or `M-x show-file-tabs` / `hide-file-tabs` / `toggle-file-tabs`.
 * **Sidebar File Explorer (Filer):** A dedicated file manager (`C-x d` / `C-c d`) displayed on the window's left side. Provides fast file previewing (`l` / `Right`), and directory traversal (`r`, `u`) including support for Windows system drives.
 * **Sidebar Utility Suite:** Multiple dedicated sidebars displayed on the window's right side to assist editing:
   * **Workspace Sidebar** (`C-c w`, `C-,` or `M-x toggle-workspace-sidebar`): Manage multiple folders in a dedicated workspace, seamlessly opening and saving `.code-workspace` files compatible with VS Code.
@@ -61,7 +62,7 @@ Automatic updates are provided via the Microsoft Store. For the latest developme
 * **Major Modes:** Automatic language detection and syntax highlighting for major languages based on file extensions.
 * **Minibuffer Completion:** Interactive completion for `M-x` commands, files, and directories within the minibuffer.
 * **Non-text File Import:** Automatically extract and import plain text from PDF, Word documents (**`.docx`**), and Excel (**`.xlsx`**) files. Excel documents are parsed with sheet headers and data formatted in a clean TSV (Tab-Separated Values) layout. **Note:** Imported files are opened in **Read-only mode** to prevent overwriting the original binary data. Use 'Save As' (`C-x C-w` or `C-x M-w`) to save the extracted text to a new file. A **50MB size limit** applies to these formats to ensure system stability.
-* **File Operations & Encoding:** Includes periodic auto-saving, a recent files list (`M-x recentf-open-files`), automatic UTF-8 promotion, and native buffer printing (`M-x print-buffer`).
+* **File Operations & Encoding:** Includes periodic auto-saving, a recent files list (`M-x recentf-open-files`), automatic UTF-8 promotion, BOM-preserving UTF-8 (`utf-8-bom`), and native buffer printing (`M-x print-buffer`).
 * **Text Formatting (Fill Paragraph):** `M-q` (`fill-paragraph`) command to reformat and hard-wrap paragraphs based on a configurable width (`set-wrap-column`), optimizing layout for both Japanese and English text.
 * **Persistent Registers:** Store and recall text, cursor positions, or **window layouts** across sessions using Emacs-style registers. Commands include `C-x r s` (copy to register), `C-x r i` (insert), `C-x r SPC` (save point), `C-x r j` (jump / restore layout), and `C-x r w` (save window layout). All data is persisted in browser local storage. Supports special 'rectangle' type storage when in rectangle mark mode.
 * **Rectangle Editing:** Enhanced rectangle support for mass-editing columns. Enter rectangle mark mode with `C-x SPC`, and perform operations like `C-x r k` (kill), `M-x kill-ring-save` (copy), and `C-y` (yank). The editor intelligently detects rectangular data in the kill ring and registers.
@@ -76,7 +77,7 @@ Automatic updates are provided via the Microsoft Store. For the latest developme
 * **Customizable Color Themes:** Personalize your workspace with 10 built-in themes (balanced 5 light / 5 dark) — **"Dark"** / **"Light"** (Catppuccin), **"Cyber"** (Neon/Futuristic), **"Cute"** (Pastel/Macaron), **"Tokyo Night"** (Storm Navy + Neon Cyan), **"Rose Pine Dawn"** (Warm Paper), **"Gruvbox"** (Retro Warm), **"Nord"** (Arctic Snow Light), **"Forest"** (Everforest Green), and **"Default"** — switchable via `M-x <theme-name>-theme`.
 * **MCP Server Integration**: Functions as a Model Context Protocol (MCP) server, allowing AI assistants (Google Antigravity, Claude Desktop/Code, etc.) to read/edit buffers and control the editor directly via the **`ELECXZY_MCP_MODE`** environment variable.
 * **TypeScript Plugins:** Add your own `M-x` commands by dropping a `.ts` file into the `plugins` folder next to `config.json`. A plugin default-exports `{ command, description, execute(input) }` and runs in an isolated, network-blocked Web Worker with a configurable timeout (`M-x set-plugin-timeout`). See the **Plugins** section below.
-* **Custom Keybindings (`keybinds.json`)**: Override or remove default keybindings without rebuilding. Drop a `keybinds.json` next to `config.json` (open it any time with `M-x show-keybinds-config`); Emacs-style notation is supported (`\C-` = Ctrl, `\M-` = Alt, space-separated tokens form a key sequence like `"C-x C-f"`), and an empty string value removes a binding. Function keys `F1`–`F12` can also be bound (e.g. `"F5": "revert-buffer"`, `"C-F12": "save-buffer"`); when unbound, the Electron default `F11` full-screen toggle is preserved. Parsing or validation problems are reported once in the echo line and never crash editing. Example:
+* **Custom Keybindings (`keybinds.json`)**: Override or remove default keybindings without rebuilding. Drop a `keybinds.json` next to `config.json` (open it any time with `M-x show-keybinds-config`); Emacs-style notation is supported (`\C-` = Ctrl, `\M-` = Alt, `\S-` = Shift for named keys like `"C-S-Tab"`; for single characters write the shifted character itself or a capital letter instead; space-separated tokens form a key sequence like `"C-x C-f"`), and an empty string value removes a binding. Function keys `F1`–`F12` can also be bound (e.g. `"F5": "revert-buffer"`, `"C-F12": "save-buffer"`); when unbound, the Electron default `F11` full-screen toggle is preserved. Parsing or validation problems are reported once in the echo line and never crash editing. Example:
   ```json
   {
       "\\C-s": "save-buffer",
@@ -139,7 +140,7 @@ Add the following to your `claude_desktop_config.json` or the relevant configura
 
 ### Plugins
 
-`elecxzy` supports small, sandboxed TypeScript plugins. Drop a `.ts` file into the `plugins` folder (in the same user-data folder as `config.json`; open it with `M-x open-plugins-folder`) and it registers a new `M-x` command. On first run the folder is created with a type-definition file (`elecxzy-plugin.d.ts`) and a `hello-world.ts` sample.
+`elecxzy` supports small, sandboxed TypeScript plugins. The plugin system is **disabled by default** — opt in with `M-x enable-plugins` (or `enablePlugins` in `config.json`). Once enabled, drop a `.ts` file into the `plugins` folder (in the same user-data folder as `config.json`; open it with `M-x open-plugins-folder`) and it registers a new `M-x` command. The first time plugins load, the folder is created with a type-definition file (`elecxzy-plugin.d.ts`) and a `hello-world.ts` sample.
 
 A plugin is a single file that default-exports `{ command, description, execute(input) }`. `execute` receives a snapshot of the active buffer and returns how to change it — for example, an upcase command:
 
@@ -208,10 +209,11 @@ Microsoft Store版は、自動更新が提供されます。最新の開発版�
 ### 主な機能
 
 * **Emacs互換の操作体系**: 基本的なカーソル移動（`C-n`, `C-a`等）、再帰的なウィンドウの分割と比率変更（`C-x 2`, `C-x ^`等）、ウィンドウレイアウトのアニメーション付き再構成（`C-x w t` で転置、`C-x w f` / `C-x w v` で左右・上下反転、`C-x w r <Right>` / `<Left>` でレイアウト 90° 回転、`C-x w o <Right>` / `<Left>` でペイン間バッファ循環シフト）、キルリングの管理（`C-w`, `M-w`, `C-y`, `M-y`）をサポート。
-* **検索・置換機能**: インクリメンタル検索（`C-s`）、対話的置換（`M-%`）、およびバックグラウンドのOSプロセス（Windowsでは `findstr`、他環境では `grep`）を用いたディレクトリ内テキスト検索（`M-x grep`）。
+* **検索・置換機能**: インクリメンタル検索（`C-s`）、対話的置換（`M-%`）、バッファ内の一致行一覧（`M-s o`）、行のライブ絞り込みとプレビュー付きジャンプ（`M-s l`）、およびバックグラウンドのOSプロセス（Windowsでは `findstr`、他環境では `grep`）を用いたディレクトリ内テキスト検索（`M-x grep`）。
 * **動的単語補完**: バッファ近傍の文字列から推測する `dabbrev-expand` (`M-/`)。日本語などのマルチバイト文字の抽出に対応し、Undo履歴管理との連携を維持します。
 * **リアルタイムプレビュー**: Markdown / HTML / プレーンテキストの編集内容を反映するプレビューモード（テキストはウィンドウ幅で折り返して表示）。ソースバッファのスクロールに連動してプレビュー側もスクロールする片方向スクロール同期を備えています。
 * **ウィンドウ・バッファ管理**: バッファの切り替え (`C-x b`) や専用のバッファリスト機能 (`C-x C-b`) を備えるほか、ミニバッファによるファイル操作に加えて、OSネイティブのファイル選択・保存ダイアログ (`C-x M-f`, `C-x M-w`) もサポートします。
+* **ファイルタブ (xyzzy 風)**: 開いている全バッファを画面上部にタブ表示するオプション機能（デフォルトは非表示）。タブのクリックでアクティブペインのバッファを切り替え、中クリック（または `×` ボタン）で閉じ、ドラッグ＆ドロップで並び替えができ、未保存・読み取り専用のインジケータも表示します。タブがウィンドウ幅を超えた場合は両端にスクロールボタンが現れ（押しっぱなしで連続スクロール）、右端に常設の全タブ一覧ボタンからドロップダウンですべてのタブに到達できます。タブ表示中は `C-Tab` / `C-S-Tab` でタブ順に巡回できます。設定サイドバーの「Show File Tabs」、または `M-x show-file-tabs` / `hide-file-tabs` / `toggle-file-tabs` で表示を切り替えられます。
 * **サイドバー型ファイラ機能**: ウィンドウ左側に表示されるファイルエクスプローラ (`C-x d` / `C-c d`)。素早くファイルの中身を確認できるプレビュー機能 (`l` / `Right`) や、Windows環境のシステムドライブにも対応したディレクトリナビゲーション (`r`, `u`) を備えています。
 * **右サイドバー機能群:** ウィンドウ右側に表示される、編集を効率化するための各種専用サイドバーを搭載：
   * **ワークスペース・サイドバー** (`C-c w`, `C-,` または `M-x toggle-workspace-sidebar`): 複数のフォルダをまとめて管理。VS Code互換の `.code-workspace` ファイルの読み書きに対応しています。
@@ -228,7 +230,7 @@ Microsoft Store版は、自動更新が提供されます。最新の開発版�
 * **メジャーモード**: ファイルの拡張子判定に基づくシンタックスハイライト。
 * **ミニバッファ補完**: `M-x` 時のコマンドのほか、ファイルパスやディレクトリパスの補完機能を搭載。
 * **ドキュメント・インポーター**: PDF、Word (**`.docx`**)、Excel (**`.xlsx`**) 形式のファイルを、プレーンテキストとして自動的に抽出・インポートして開くことが可能です。Excel は各シートが TSV 形式で読み込まれます。**注意:** 元のバイナリファイルを破壊しないよう、インポートされたバッファは自動的に**「読み取り専用（Read-only）」**として開かれます（安定性確保のため、**50MBまでのサイズ制限**があります）。抽出したテキストを保存する場合は `Save As` (`C-x C-w`または`C-x M-w`) を使用してください。
-* **ファイル・エンコーディング管理**: オートセーブ、最近開いたファイルの履歴 (`M-x recentf-open-files`)、自動UTF-8昇格、および印刷機能 (`M-x print-buffer`) に対応。
+* **ファイル・エンコーディング管理**: オートセーブ、最近開いたファイルの履歴 (`M-x recentf-open-files`)、自動UTF-8昇格、BOM付きUTF-8の保持 (`utf-8-bom`)、および印刷機能 (`M-x print-buffer`) に対応。
 * **段落整形機能 (`M-q`)**: 指定した桁数でテキストをハードラップし、段落を美しく再整形する `fill-paragraph` 機能を搭載。
 * **永続化レジスタ機能**: テキスト、カーソル位置、**ウィンドウレイアウト**を一時的に記憶（レジスタ）し、必要な時に呼び出せます。保存内容はローカルストレージへ永続化されます。対応コマンド: `C-x r s` (コピー), `C-x r i` (挿入), `C-x r SPC` (点保存), `C-x r j` (ジャンプ / レイアウト復元), `C-x r w` (ウィンドウレイアウト保存)。矩形選択モード中であれば矩形データとしても保存可能です。
 * **矩形編集機能**: 縦方向にテキストを操作する矩形編集を正式にサポート。`C-x SPC` で矩形マークモードに入り、`C-x r k` (切り取り) やヤンク (C-y) が可能です。キルリングやレジスタに保存された矩形データは、貼り付け時に自動的に判別・展開されます。
@@ -243,7 +245,7 @@ Microsoft Store版は、自動更新が提供されます。最新の開発版�
 * **カスタマイズ可能なカラーテーマ:** 10 種類の内蔵テーマ (ライト 5 / ダーク 5 のバランス構成) で作業空間をパーソナライズできます。**"Dark"** / **"Light"** (Catppuccin)、**"Cyber"** (ネオン/近未来)、**"Cute"** (パステル/マカロン)、**"Tokyo Night"** (Storm 濃紺 + ネオンシアン)、**"Rose Pine Dawn"** (温かい紙)、**"Gruvbox"** (レトロ暖色)、**"Nord"** (北極の雪原ライト)、**"Forest"** (Everforest グリーン)、**"Default"** を `M-x <テーマ名>-theme` で切り替え可能です。
 * **MCP サーバー統合**: Model Context Protocol (MCP) サーバーとして動作可能。環境変数 **`ELECXZY_MCP_MODE`** を **`true`** に指定して起動することで、AI アシスタント（Google Antigravity, Claude Desktop/Code 等）から直接バッファの読み書きやエディタ操作が行えます。
 * **TypeScript プラグイン:** `config.json` と同じフォルダの `plugins` フォルダに `.ts` ファイルを置くだけで、独自の `M-x` コマンドを追加できます。プラグインは `{ command, description, execute(input) }` を default export し、隔離され通信が遮断された Web Worker 内でタイムアウト付き (`M-x set-plugin-timeout`) で実行されます。詳細は下記「プラグイン」を参照。
-* **キーバインドのカスタマイズ (`keybinds.json`)**: 再ビルドなしに既定キーマップを上書き・削除できます。`config.json` と同じユーザデータフォルダに `keybinds.json` を置くだけ（`M-x show-keybinds-config` でいつでも開けます）。記法は Emacs 互換で、`\C-` が `Ctrl`、`\M-` が `Alt`、スペース区切りでキーシーケンス（`"C-x C-f"`）を表現できます。値を空文字 `""` にするとそのバインドを削除します。ファンクションキー `F1`〜`F12` も割り当て可能です（例: `"F5": "revert-buffer"`、`"C-F12": "save-buffer"`）。未割当のままなら Electron 既定の `F11` 全画面トグルはそのまま動作します。JSON の構文エラーや未登録コマンド ID などはエコーラインに 1 度だけまとめて表示され、起動・編集を止めることはありません。例:
+* **キーバインドのカスタマイズ (`keybinds.json`)**: 再ビルドなしに既定キーマップを上書き・削除できます。`config.json` と同じユーザデータフォルダに `keybinds.json` を置くだけ（`M-x show-keybinds-config` でいつでも開けます）。記法は Emacs 互換で、`\C-` が `Ctrl`、`\M-` が `Alt`、`\S-` が `Shift`（`"C-S-Tab"` のような特殊キー用。単一文字は Shift 後の文字か大文字をそのまま書きます）、スペース区切りでキーシーケンス（`"C-x C-f"`）を表現できます。値を空文字 `""` にするとそのバインドを削除します。ファンクションキー `F1`〜`F12` も割り当て可能です（例: `"F5": "revert-buffer"`、`"C-F12": "save-buffer"`）。未割当のままなら Electron 既定の `F11` 全画面トグルはそのまま動作します。JSON の構文エラーや未登録コマンド ID などはエコーラインに 1 度だけまとめて表示され、起動・編集を止めることはありません。例:
   ```json
   {
       "\\C-s": "save-buffer",
@@ -307,7 +309,7 @@ Microsoft Store版は、自動更新が提供されます。最新の開発版�
 
 ### プラグイン
 
-`elecxzy` は小さくサンドボックス化された TypeScript プラグインに対応しています。`config.json` と同じユーザデータフォルダ内の `plugins` フォルダ (`M-x open-plugins-folder` で開けます) に `.ts` ファイルを置くと、新しい `M-x` コマンドとして登録されます。初回起動時に、型定義ファイル (`elecxzy-plugin.d.ts`) とサンプル (`hello-world.ts`) が自動生成されます。
+`elecxzy` は小さくサンドボックス化された TypeScript プラグインに対応しています。プラグイン機構は**既定で無効**です — `M-x enable-plugins` (または `config.json` の `enablePlugins`) でオプトインしてください。有効化後、`config.json` と同じユーザデータフォルダ内の `plugins` フォルダ (`M-x open-plugins-folder` で開けます) に `.ts` ファイルを置くと、新しい `M-x` コマンドとして登録されます。初回のプラグイン読み込み時に、型定義ファイル (`elecxzy-plugin.d.ts`) とサンプル (`hello-world.ts`) が自動生成されます。
 
 プラグインは `{ command, description, execute(input) }` を default export する単一ファイルです。`execute` はアクティブなバッファのスナップショットを受け取り、どう変更するかを返します。例えば大文字化コマンドなら:
 

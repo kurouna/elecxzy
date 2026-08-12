@@ -153,7 +153,9 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-s` | `isearch-forward` | Incremental search forward (Supports `C-'` to trigger Avy jump) | 前方インクリメンタル検索を開始します (`C-'` で Avy ジャンプへ移行可能) |
 | `C-r` | `isearch-backward` | Incremental search backward (Supports `C-'` to trigger Avy jump) | 後方インクリメンタル検索を開始します (`C-'` で Avy ジャンプへ移行可能) |
 | `M-%` | `query-replace` | Interactive search and replace | 対話的な文字列置換（y/n/!/q）を実行します |
-| `M-x grep` | `grep` | Run grep to search files in directory | ディレクトリ内の複数ファイルをまたいで文字列検索（Grep）を行います |
+| `M-s o` | `occur` | List every line in the current buffer matching a string into an `*Occur*` buffer (`Enter` jumps to the line under the cursor) | 現在のバッファ内で一致する行を `*Occur*` バッファに一覧表示します（`Enter` でカーソル行に対応する行へジャンプ） |
+| `M-s l` | `consult-line` | Narrow the buffer's lines live in the minibuffer and jump (space-separated AND search, `C-n`/`C-p` to move with live preview, `Enter` to jump, `C-g` to return, `C-'` to hand off to Avy; shows up to 300 candidates at a time) | バッファの行をミニバッファでライブ絞り込みしてジャンプします（空白区切りの AND 検索、`C-n`/`C-p` で候補移動＝その場でプレビュー、`Enter` で確定、`C-g` で元の位置に復帰、`C-'` で Avy へ移行。候補表示は一度に最大 300 件） |
+| `M-x grep` | `grep` | Run grep to search files in directory (`Enter` jumps to the file and line under the cursor) | ディレクトリ内の複数ファイルをまたいで文字列検索（Grep）を行います（`Enter` でカーソル行に対応するファイル・行へジャンプ） |
 
 ## Windows & Buffers (ウィンドウ・バッファ)
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
@@ -178,6 +180,8 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `C-x b` | `switch-to-buffer` | Switch to another buffer | バッファを切り替えます（補完候補あり） |
 | `C-x C-b` | `list-buffers` | Show a list of all open buffers | バッファ一覧を表示します |
 | `C-x k` | `kill-buffer` | Close the current buffer | バッファを閉じます |
+| `C-Tab` | `next-tab` | Switch to the next tab in tab order (only while the file tab bar is shown) | タブ順で次のタブに切り替えます（ファイルタブ表示中のみ） |
+| `C-S-Tab` | `previous-tab` | Switch to the previous tab in tab order (only while the file tab bar is shown) | タブ順で前のタブに切り替えます（ファイルタブ表示中のみ） |
 | (M-x only) | `scratch-buffer` | Switch to `*scratch*`, creating it if it does not exist | `*scratch*` バッファに切り替えます（存在しなければ新規作成） |
 | `f` (in Buffer List) | `buffer-menu-execute` | Switch to the buffer under cursor | カーソル位置のバッファに切り替えます（バッファ一覧にて） |
 | `q` (in Buffer List) | `keyboard-quit` | Quit buffer list | バッファ一覧を閉じます |
@@ -515,6 +519,10 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `M-x set-auto-save-interval` | `set-auto-save-interval` | Set auto-save interval (min) | オートセーブの間隔(分)を設定します |
 | `M-x set-case-sensitive-search` | `set-case-sensitive-search` | Set case sensitive search (on/off) | 検索の大文字小文字区別を設定します |
 | `M-x display-datetime-mode` | `display-datetime-mode` | Toggle display of date and time in the modeline | 日時表示のON/OFFを切り替えます |
+| `M-x show-file-tabs` | `show-file-tabs` | Show the file tab bar at the top of the window | ファイルタブバーを画面上部に表示します |
+| `M-x hide-file-tabs` | `hide-file-tabs` | Hide the file tab bar | ファイルタブバーを非表示にします |
+| `M-x toggle-file-tabs` | `toggle-file-tabs` | Toggle the file tab bar on/off | ファイルタブバーの表示/非表示を切り替えます |
+| `M-x get-show-file-tabs` | `get-show-file-tabs` | Show whether the file tab bar is visible | ファイルタブバーが表示中かどうかを表示します |
 | `M-x set-display-datetime-format` | `set-display-datetime-format` | Set the format for date and time display | 日時表示のフォーマットを設定します |
 | `M-x set-clipboard-integration` | `set-clipboard-integration` | Set OS clipboard integration (on/off) | OSクリップボード連携の有効・無効を設定します |
 | `M-x set-current-directory` | `set-current-directory` | Change current working directory | カレントディレクトリを変更します |
@@ -565,13 +573,14 @@ This guide covers the key commands for **elecxzy** by category. To run most of t
 | `a` | AM/PM | PM |
 
 ## Plugins (プラグイン)
-Drop a TypeScript file in the `plugins` folder (next to `config.json`) that `export default`s an object `{ command, description, execute(input) }` to add your own `M-x` command. Plugins run in an isolated, network-blocked Web Worker. See README for the authoring guide.
-`config.json` と同じ場所の `plugins` フォルダに、`{ command, description, execute(input) }` を default export する TypeScript ファイルを置くと、独自の `M-x` コマンドを追加できます。プラグインは隔離され通信が遮断された Web Worker 内で実行されます。書き方は README を参照してください。
+Drop a TypeScript file in the `plugins` folder (next to `config.json`) that `export default`s an object `{ command, description, execute(input) }` to add your own `M-x` command. Plugins run in an isolated, network-blocked Web Worker. The plugin system is disabled by default — enable it with `M-x enable-plugins`. See README for the authoring guide.
+`config.json` と同じ場所の `plugins` フォルダに、`{ command, description, execute(input) }` を default export する TypeScript ファイルを置くと、独自の `M-x` コマンドを追加できます。プラグインは隔離され通信が遮断された Web Worker 内で実行されます。プラグイン機構は既定で無効です — `M-x enable-plugins` で有効化してください。書き方は README を参照してください。
 
 | Command / コマンド | ID | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
 | `M-x reload-plugins` | `reload-plugins` | Reload plugins from the plugins folder | plugins フォルダからプラグインを再読み込みします |
-| `M-x open-plugins-folder` | `open-plugins-folder` | Reveal the plugins folder in the OS file manager | plugins フォルダを OS のファイルマネージャで開きます |
+| `M-x debug-plugins` | `debug-plugins` | Reload plugins and show a per-file load report in a read-only buffer | プラグインを再読み込みし、ファイルごとの読み込み結果を読み取り専用バッファに表示します |
+| `M-x open-plugins-folder` | `open-plugins-folder` | Open the plugins folder in the OS file manager | plugins フォルダを OS のファイルマネージャで開きます |
 | `M-x enable-plugins` | `enable-plugins` | Enable the plugin system and (re)load plugins | プラグイン機構を有効化して (再)読み込みします |
 | `M-x disable-plugins` | `disable-plugins` | Disable the plugin system and unload plugins | プラグイン機構を無効化してアンロードします |
 | `M-x toggle-plugins` | `toggle-plugins` | Toggle the plugin system on/off | プラグイン機構の有効/無効を切り替えます |

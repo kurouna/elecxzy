@@ -1409,7 +1409,7 @@
       <h2 class="section-h">Avy ジャンプで高速移動。</h2>
       <p class="section-p" style="max-width:100%;">
         <kbd>C-'</kbd> に続けて文字を入力し、画面内の任意の場所へ数ストロークでジャンプ。視覚的なラベルにより、マウスを使わず正確な移動が可能です。<br><br>
-        また、インクリメンタル検索（<kbd>C-s</kbd> / <kbd>C-r</kbd>）の実行中にも <kbd>C-'</kbd> を押すことで、検索結果を対象とした Avy ジャンプへそのまま移行できます。
+        また、インクリメンタル検索（<kbd>C-s</kbd> / <kbd>C-r</kbd>）や行の絞り込み（<kbd>M-s l</kbd>）の実行中にも <kbd>C-'</kbd> を押すことで、検索結果を対象とした Avy ジャンプへそのまま移行できます。
       </p>
     </div>
     <div class="feat-big-img">
@@ -1538,7 +1538,9 @@
           <div class="fg-icon">🔍</div>
           <h3>検索・置換</h3>
           <p>インクリメンタル検索（<code style="font-family:var(--mono);font-size:11px;">C-s/r</code>）、対話的置換（<code
-              style="font-family:var(--mono);font-size:11px;">M-%</code>）、ディレクトリ横断grep（<code
+              style="font-family:var(--mono);font-size:11px;">M-%</code>）、一致行の一覧（<code
+              style="font-family:var(--mono);font-size:11px;">M-s o</code>）、行のライブ絞り込み（<code
+              style="font-family:var(--mono);font-size:11px;">M-s l</code>）、ディレクトリ横断grep（<code
               style="font-family:var(--mono);font-size:11px;">M-x grep</code>）に対応しています。</p>
         </div>
         <div class="fg-item">
@@ -1560,9 +1562,15 @@
             で開閉し、差分を <code style="font-family:var(--mono);font-size:11px;">*git-diff*</code> バッファに表示。内蔵欄から commit / push / pull、タグの作成・push までエディタ内で完結します。</p>
         </div>
         <div class="fg-item">
+          <div class="fg-icon">📑</div>
+          <h3>ファイルタブ（xyzzy 風）</h3>
+          <p>開いている全バッファを画面上部にタブ表示します（既定では非表示）。クリックでアクティブペインのバッファを切り替え、中クリックで閉じ、ドラッグで並び替えできます。あふれた場合はスクロールボタンと全タブ一覧ドロップダウンで選択可能。未保存・読み取り専用のインジケータ付き。<code
+              style="font-family:var(--mono);font-size:11px;">M-x toggle-file-tabs</code> または設定サイドバーの「Show File Tabs」で切り替えできます。</p>
+        </div>
+        <div class="fg-item">
           <div class="fg-icon">🧩</div>
           <h3>TypeScript プラグイン</h3>
-          <p><code style="font-family:var(--mono);font-size:11px;">plugins</code> フォルダに <code style="font-family:var(--mono);font-size:11px;">.ts</code> を置くだけで独自の <code style="font-family:var(--mono);font-size:11px;">M-x</code> コマンドを追加。隔離され通信が遮断された Web Worker 内でタイムアウト付き実行され、<code style="font-family:var(--mono);font-size:11px;">M-x reload-plugins</code> で再読み込みできます。</p>
+          <p><code style="font-family:var(--mono);font-size:11px;">plugins</code> フォルダに <code style="font-family:var(--mono);font-size:11px;">.ts</code> を置くだけで独自の <code style="font-family:var(--mono);font-size:11px;">M-x</code> コマンドを追加。隔離され通信が遮断された Web Worker 内でタイムアウト付き実行され、<code style="font-family:var(--mono);font-size:11px;">M-x reload-plugins</code> で再読み込みできます。既定では無効（<code style="font-family:var(--mono);font-size:11px;">M-x enable-plugins</code> で有効化）。</p>
         </div>
       </div>
     </div>
@@ -1945,6 +1953,9 @@
               <div class="kb-keys"><kbd>C-x b</kbd></div><span class="kb-desc">バッファ切り替え</span>
             </div>
             <div class="kb-row">
+              <div class="kb-keys"><kbd>C-Tab</kbd><span style="color:var(--text-3);font-size:11px;">/</span><kbd>C-S-Tab</kbd></div><span class="kb-desc">タブ順で次 / 前へ（タブ表示中のみ）</span>
+            </div>
+            <div class="kb-row">
               <div class="kb-keys"><kbd>C-x C-s</kbd></div><span class="kb-desc">保存</span>
             </div>
             <div class="kb-row">
@@ -2009,7 +2020,7 @@
       <h2 class="section-h">キーバインドを<br>あなた好みに。</h2>
       <p class="section-p" style="max-width:100%;">
         既定キーマップを <code>keybinds.json</code> で再ビルドなしに上書き・削除できます。<br><br>
-        emacs 互換の記法で <code>\C-</code> が <kbd>Ctrl</kbd>、<code>\M-</code> が <kbd>Alt</kbd>、スペース区切りでキーシーケンス（<code>"C-x C-f"</code>）を表現します。値を空文字 <code>""</code> にすると当該バインドを削除できます。<br><br>
+        emacs 互換の記法で <code>\C-</code> が <kbd>Ctrl</kbd>、<code>\M-</code> が <kbd>Alt</kbd>、<code>\S-</code> が <kbd>Shift</kbd>（<code>"C-S-Tab"</code> のような特殊キー用）、スペース区切りでキーシーケンス（<code>"C-x C-f"</code>）を表現します。値を空文字 <code>""</code> にすると当該バインドを削除できます。<br><br>
         ファイルが無ければ既定動作のまま起動。JSON の構文エラーや未登録コマンドはエコーラインに 1 度だけ集約表示され、起動・編集が止まることはありません。
       </p>
       <a href="tutorial.html#custom-keybinds"

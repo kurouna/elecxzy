@@ -533,6 +533,7 @@ footer{
                 <tr><td><kbd>C-x b</kbd></td><td class="desc">バッファ切り替え</td></tr>
                 <tr><td><kbd>C-x C-b</kbd></td><td class="desc">バッファ一覧</td></tr>
                 <tr><td><kbd>C-x k</kbd></td><td class="desc">バッファを閉じる</td></tr>
+                <tr><td><kbd>C-Tab</kbd> / <kbd>C-S-Tab</kbd></td><td class="desc">タブ順で次/前のタブに切り替え（ファイルタブ表示中のみ）</td></tr>
               </tbody>
             </table>
           </div>
@@ -574,7 +575,9 @@ footer{
               <tr><td><kbd>M-%</kbd></td><td class="desc">対話的置換 — y/n/!/q で1件ずつ確認</td></tr>
               <tr><td><kbd>M-x replace-string</kbd></td><td class="desc">カーソル以降を一括置換</td></tr>
               <tr><td><kbd>M-x replace-string-buffer</kbd></td><td class="desc">バッファ全体を一括置換</td></tr>
-              <tr><td><kbd>M-x grep</kbd></td><td class="desc">ディレクトリ内の複数ファイルを横断検索</td></tr>
+              <tr><td><kbd>M-s o</kbd></td><td class="desc">バッファ内の一致行を <code>*Occur*</code> に一覧表示（<kbd>Enter</kbd> で該当行へジャンプ）</td></tr>
+              <tr><td><kbd>M-s l</kbd></td><td class="desc">行をミニバッファでライブ絞り込み（<kbd>C-n</kbd>/<kbd>C-p</kbd> の移動に合わせて本文をプレビュー、<kbd>Enter</kbd> でジャンプ、<kbd>C-g</kbd> で元の位置へ復帰）</td></tr>
+              <tr><td><kbd>M-x grep</kbd></td><td class="desc">ディレクトリ内の複数ファイルを横断検索（<kbd>Enter</kbd> で該当ファイル・行へジャンプ）</td></tr>
             </tbody>
           </table>
         </div>
@@ -829,6 +832,7 @@ footer{
             <tbody>
               <tr><td><code style="font-family:var(--mono);font-size:12px;">\C-</code> / <code style="font-family:var(--mono);font-size:12px;">C-</code></td><td class="desc"><kbd>Ctrl</kbd> 修飾子（emacs と同様）</td></tr>
               <tr><td><code style="font-family:var(--mono);font-size:12px;">\M-</code> / <code style="font-family:var(--mono);font-size:12px;">M-</code></td><td class="desc"><kbd>Alt</kbd> 修飾子</td></tr>
+              <tr><td><code style="font-family:var(--mono);font-size:12px;">\S-</code> / <code style="font-family:var(--mono);font-size:12px;">S-</code></td><td class="desc"><kbd>Shift</kbd> 修飾子（<code style="font-family:var(--mono);font-size:12px;">"C-S-Tab"</code> のような特殊キー用。単一文字は Shift 後の文字か大文字をそのまま書きます: <code style="font-family:var(--mono);font-size:12px;">"M-Q"</code>, <code style="font-family:var(--mono);font-size:12px;">"C-!"</code>）</td></tr>
               <tr><td><code style="font-family:var(--mono);font-size:12px;">"C-x C-f"</code></td><td class="desc">スペース区切りでキーシーケンス（連続スペースは自動正規化）</td></tr>
               <tr><td><code style="font-family:var(--mono);font-size:12px;">"\\C-n": ""</code></td><td class="desc">値が空文字なら当該バインドを削除（押しても何もしない）</td></tr>
               <tr><td><code style="font-family:var(--mono);font-size:12px;">"Tab"</code> / <code style="font-family:var(--mono);font-size:12px;">"End"</code> など</td><td class="desc">特殊キーは内部表記そのままで指定可能（<code style="font-family:var(--mono);font-size:12px;">Space</code>, <code style="font-family:var(--mono);font-size:12px;">Backspace</code>, <code style="font-family:var(--mono);font-size:12px;">ArrowUp</code> 等）</td></tr>
@@ -878,7 +882,7 @@ footer{
         <div class="step-num">12</div>
         <div class="step-header-text"><h2>プラグイン</h2><p>TypeScript で独自の <code style="font-family:var(--mono);font-size:13px;">M-x</code> コマンドを追加する</p></div>
       </div>
-      <div class="note info"><span>🧩</span><span><code style="font-family:var(--mono);font-size:11px;">config.json</code> と同じユーザデータフォルダの <code style="font-family:var(--mono);font-size:11px;">plugins</code> フォルダ（<kbd>M-x open-plugins-folder</kbd> で開けます）に <code style="font-family:var(--mono);font-size:11px;">.ts</code> ファイルを置くと、新しい <code style="font-family:var(--mono);font-size:11px;">M-x</code> コマンドとして登録されます。初回起動時に型定義 <code style="font-family:var(--mono);font-size:11px;">elecxzy-plugin.d.ts</code> とサンプル <code style="font-family:var(--mono);font-size:11px;">hello-world.ts</code> が自動生成されます。</span></div>
+      <div class="note info"><span>🧩</span><span>プラグイン機構は既定で無効です（<kbd>M-x enable-plugins</kbd> で有効化）。有効化後、<code style="font-family:var(--mono);font-size:11px;">config.json</code> と同じユーザデータフォルダの <code style="font-family:var(--mono);font-size:11px;">plugins</code> フォルダ（<kbd>M-x open-plugins-folder</kbd> で開けます）に <code style="font-family:var(--mono);font-size:11px;">.ts</code> ファイルを置くと、新しい <code style="font-family:var(--mono);font-size:11px;">M-x</code> コマンドとして登録されます。初回のプラグイン読み込み時に型定義 <code style="font-family:var(--mono);font-size:11px;">elecxzy-plugin.d.ts</code> とサンプル <code style="font-family:var(--mono);font-size:11px;">hello-world.ts</code> が自動生成されます。</span></div>
 
       <div class="card">
         <div class="card-hd">プラグインの書き方</div>
@@ -892,6 +896,7 @@ footer{
             <thead><tr><th>コマンド</th><th>動作</th></tr></thead>
             <tbody>
               <tr><td><kbd>M-x reload-plugins</kbd></td><td class="desc">plugins フォルダから再読み込み（ファイル編集後に実行）</td></tr>
+              <tr><td><kbd>M-x debug-plugins</kbd></td><td class="desc">再読み込みしてファイルごとの読み込み結果（エラー全文つき）を読み取り専用バッファに表示</td></tr>
               <tr><td><kbd>M-x open-plugins-folder</kbd></td><td class="desc">plugins フォルダを OS のファイルマネージャで開く</td></tr>
               <tr><td><kbd>M-x enable-plugins</kbd></td><td class="desc">プラグイン機構を有効化して読み込む</td></tr>
               <tr><td><kbd>M-x disable-plugins</kbd></td><td class="desc">プラグイン機構を無効化してアンロード</td></tr>
@@ -928,6 +933,8 @@ footer{
               <tr><td><kbd>M-%</kbd></td><td class="desc">対話的置換</td></tr>
               <tr><td><kbd>C-'</kbd></td><td class="desc">Avy ジャンプ（ラベルで即移動）</td></tr>
               <tr><td><kbd>C-;</kbd></td><td class="desc">行展開ポップアップ</td></tr>
+              <tr><td><kbd>M-s o</kbd></td><td class="desc">バッファ内の一致行を一覧</td></tr>
+              <tr><td><kbd>M-s l</kbd></td><td class="desc">行のライブ絞り込み＋プレビュージャンプ</td></tr>
               <tr><td><kbd>M-x grep</kbd></td><td class="desc">ディレクトリ横断検索</td></tr>
             </tbody>
           </table>
@@ -1169,7 +1176,9 @@ footer{
                 <tr><td><kbd>C-s</kbd></td><td class="desc">前方インクリメンタル検索を開始します (`C-'` で Avy ジャンプへ移行可能)</td></tr>
                 <tr><td><kbd>C-r</kbd></td><td class="desc">後方インクリメンタル検索を開始します (`C-'` で Avy ジャンプへ移行可能)</td></tr>
                 <tr><td><kbd>M-%</kbd></td><td class="desc">対話的な文字列置換（y/n/!/q）を実行します</td></tr>
-                <tr><td><kbd>M-x grep</kbd></td><td class="desc">ディレクトリ内の複数ファイルをまたいで文字列検索（Grep）を行います</td></tr>
+                <tr><td><kbd>M-s o</kbd></td><td class="desc">現在のバッファ内で一致する行を <code>*Occur*</code> バッファに一覧表示します（<kbd>Enter</kbd> でカーソル行に対応する行へジャンプ）</td></tr>
+                <tr><td><kbd>M-s l</kbd></td><td class="desc">バッファの行をミニバッファでライブ絞り込みしてジャンプします（空白区切りの AND 検索。<kbd>C-n</kbd>/<kbd>C-p</kbd> で候補を移動するたびに本文をプレビュー、<kbd>Enter</kbd> で確定、<kbd>C-g</kbd> で元の位置へ復帰、<kbd>C-'</kbd> で Avy へ移行。候補表示は一度に最大 300 件）</td></tr>
+                <tr><td><kbd>M-x grep</kbd></td><td class="desc">ディレクトリ内の複数ファイルをまたいで文字列検索（Grep）を行います（<kbd>Enter</kbd> でカーソル行に対応するファイル・行へジャンプ）</td></tr>
               </tbody>
             </table>
           </div>
@@ -1204,6 +1213,7 @@ footer{
                 <tr><td><kbd>C-x b</kbd></td><td class="desc">バッファを切り替えます（補完候補あり）</td></tr>
                 <tr><td><kbd>C-x C-b</kbd></td><td class="desc">バッファ一覧を表示します</td></tr>
                 <tr><td><kbd>C-x k</kbd></td><td class="desc">バッファを閉じます</td></tr>
+                <tr><td><kbd>C-Tab</kbd> / <kbd>C-S-Tab</kbd></td><td class="desc">タブ順で次/前のタブに切り替えます（ファイルタブ表示中のみ）</td></tr>
                 <tr><td><kbd>M-x scratch-buffer</kbd></td><td class="desc"><code>*scratch*</code> バッファに切り替えます（存在しなければ新規作成）</td></tr>
                 <tr><td><kbd>f</kbd> (in Buffer List)</td><td class="desc">カーソル位置のバッファに切り替えます（バッファ一覧にて）</td></tr>
                 <tr><td><kbd>q</kbd> (in Buffer List)</td><td class="desc">バッファ一覧を閉じます</td></tr>
@@ -1622,12 +1632,16 @@ footer{
                 <tr><td><kbd>M-x set-auto-save-interval</kbd></td><td class="desc">オートセーブの間隔(分)を設定します</td></tr>
                 <tr><td><kbd>M-x set-case-sensitive-search</kbd></td><td class="desc">検索の大文字小文字区別を設定します</td></tr>
                 <tr><td><kbd>M-x display-datetime-mode</kbd></td><td class="desc">日時表示のON/OFFを切り替えます</td></tr>
+                <tr><td><kbd>M-x show-file-tabs</kbd></td><td class="desc">ファイルタブバーを画面上部に表示します</td></tr>
+                <tr><td><kbd>M-x hide-file-tabs</kbd></td><td class="desc">ファイルタブバーを非表示にします</td></tr>
+                <tr><td><kbd>M-x toggle-file-tabs</kbd></td><td class="desc">ファイルタブバーの表示/非表示を切り替えます</td></tr>
+                <tr><td><kbd>M-x get-show-file-tabs</kbd></td><td class="desc">ファイルタブバーが表示中かどうかを表示します</td></tr>
                 <tr><td><kbd>M-x set-display-datetime-format</kbd></td><td class="desc">日時表示のフォーマットを設定します</td></tr>
                 <tr><td><kbd>M-x set-clipboard-integration</kbd></td><td class="desc">OSクリップボード連携の有効・無効を設定します</td></tr>
                 <tr><td><kbd>M-x set-current-directory</kbd></td><td class="desc">カレントディレクトリを変更します</td></tr>
                 <tr><td><kbd>M-x set-kill-ring-max</kbd></td><td class="desc">キルリングの最大保持件数を設定します</td></tr>
                 <tr><td><kbd>M-x set-default-font</kbd></td><td class="desc">デフォルトのフォントを設定します</td></tr>
-                <tr><td><kbd>M-x set-encoding</kbd></td><td class="desc">保存時のエンコーディングを設定します</td></tr>
+                <tr><td><kbd>M-x set-encoding</kbd></td><td class="desc">保存時のエンコーディングを設定します（<code>utf-8-bom</code> 対応）</td></tr>
                 <tr><td><kbd>M-x set-font</kbd></td><td class="desc">バッファ固有のフォントを設定します</td></tr>
                 <tr><td><kbd>M-x set-font-size</kbd></td><td class="desc">フォントサイズを設定します</td></tr>
                 <tr><td><kbd>M-x set-line-number-mode</kbd></td><td class="desc">行番号の表示状態を設定します</td></tr>
