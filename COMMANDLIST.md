@@ -209,7 +209,7 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
 | `M-x` | `indent-buffer` | Re-indent the whole buffer, with the same language limits as `indent-region` | バッファ全体を再インデントします。対象言語の条件は `indent-region` と同じです |
 | `C-x TAB` | `indent-rigidly` | Indent rigidly (interactive) | 選択範囲を左右にスライド（シフト）させます |
 | `M-;` | `comment-dwim` | Comment / uncomment region | 選択範囲のコメント状態を切り替えます |
-| `C-x C-;` | `comment-line` | Comment / uncomment whole lines and move to the next one, so repeating it works through a block (`C-u n` for `n` lines, negative to go upwards). With a selection, the selected lines are toggled and the cursor stays put | 行全体のコメント状態を切り替え、次の行へ移動します（連打でブロックを処理できます。`C-u n` で n 行、負の値で上方向）。選択範囲があるときは、その行を切り替えるだけでカーソルは動きません |
+| `C-x C-;` | `comment-line` | Comment / uncomment whole lines and move to the next one, so repeating it works through a block (`C-u n` for `n` lines, negative to go upwards). With a selection, every line the selection touches is toggled — including the line it ends on, unlike `M-;` — and the cursor is not moved | 行全体のコメント状態を切り替え、次の行へ移動します（連打でブロックを処理できます。`C-u n` で n 行、負の値で上方向）。選択範囲があるときは、選択が掛かった行をすべて切り替え（`M-;` と違い、選択が終わる行も含みます）、カーソルは動かしません |
 | `M-x` | `comment-region` | Comment lines in region | 選択範囲をコメント化します |
 | `M-x` | `uncomment-region` | Uncomment lines in region | 選択範囲のコメントを解除します |
 
