@@ -1547,7 +1547,7 @@
           <div class="fg-icon">👁</div>
           <h3>ライブプレビュー</h3>
           <p>Markdown / HTML / プレーンテキストをリアルタイムプレビューします。<code style="font-family:var(--mono);font-size:11px;">C-c v</code>
-            でモードに応じたプレビューを自動起動し、スクロールも同期します。テキストはウィンドウ幅で折り返して表示されます。</p>
+            でモードに応じたプレビューを自動起動し、スクロールも同期します。テキストはウィンドウ幅で折り返して表示されます。Markdown は表・タスクリスト・脚注を描画し、目次のリンクから見出しへ飛べます。</p>
         </div>
         <div class="fg-item">
           <div class="fg-icon">🗂</div>
@@ -1820,7 +1820,7 @@
 
         <div class="theme-card">
           <div class="theme-preview" style="background:#E5E9F0;">
-            <div class="theme-titlebar" style="background:#D8DEE9;"></div>
+            <div class="theme-titlebar" style="background:#5E81AC;"></div>
             <div class="theme-editor">
               <div class="theme-line" style="background:#5E81AC;width:55%"></div>
               <div class="theme-line" style="background:#A3BE8C;width:75%"></div>
@@ -1849,6 +1849,40 @@
           <div class="theme-info">
             <div class="theme-name">Forest</div>
             <div class="theme-cmd">M-x forest-theme</div>
+          </div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-preview" style="background:#21262D;">
+            <div class="theme-titlebar" style="background:#37404E;"></div>
+            <div class="theme-editor">
+              <div class="theme-line" style="background:#D5DBE2;width:55%"></div>
+              <div class="theme-line" style="background:#8FA3BE;width:75%"></div>
+              <div class="theme-line" style="background:#4A525C;width:42%"></div>
+            </div>
+            <div class="theme-modeline" style="background:#37404E;"></div>
+            <div class="theme-minibuffer" style="background:#1B1F24;"></div>
+          </div>
+          <div class="theme-info">
+            <div class="theme-name">Slate Dark</div>
+            <div class="theme-cmd">M-x slate-dark-theme</div>
+          </div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-preview" style="background:#F8FAFC;">
+            <div class="theme-titlebar" style="background:#43566D;"></div>
+            <div class="theme-editor">
+              <div class="theme-line" style="background:#212830;width:55%"></div>
+              <div class="theme-line" style="background:#5B6B80;width:75%"></div>
+              <div class="theme-line" style="background:#97A3B0;width:42%"></div>
+            </div>
+            <div class="theme-modeline" style="background:#43566D;"></div>
+            <div class="theme-minibuffer" style="background:#EDF1F5;"></div>
+          </div>
+          <div class="theme-info">
+            <div class="theme-name">Slate Light</div>
+            <div class="theme-cmd">M-x slate-light-theme</div>
           </div>
         </div>
       </div>
@@ -1948,6 +1982,9 @@
             </div>
             <div class="kb-row">
               <div class="kb-keys"><kbd>C-x w o</kbd> <kbd>→</kbd><span style="color:var(--text-3);font-size:11px;">/</span><kbd>←</kbd></div><span class="kb-desc">バッファ循環シフト</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-c</kbd> <kbd>←</kbd><span style="color:var(--text-3);font-size:11px;">/</span><kbd>→</kbd></div><span class="kb-desc">ウィンドウ構成を戻す / やり直す</span>
             </div>
             <div class="kb-row">
               <div class="kb-keys"><kbd>C-x b</kbd></div><span class="kb-desc">バッファ切り替え</span>
