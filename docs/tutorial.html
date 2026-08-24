@@ -758,7 +758,7 @@ footer{
               <tr><td><kbd>M-x set-font-size</kbd></td><td class="desc">フォントサイズを変更</td></tr>
               <tr><td><kbd>Ctrl+Wheel</kbd></td><td class="desc">マウスホイールでフォントサイズを拡大/縮小</td></tr>
               <tr><td><kbd>M-x set-tab-width</kbd></td><td class="desc">タブ幅を変更</td></tr>
-              <tr><td><kbd>M-x set-wrap-column</kbd></td><td class="desc">M-q の折り返し幅（デフォルト: 70）</td></tr>
+              <tr><td><kbd>C-x f</kbd> または <kbd>M-x set-wrap-column</kbd></td><td class="desc">M-q の折り返し幅（デフォルト: 70）。<kbd>C-u C-x f</kbd> は現在の桁、<kbd>C-u n C-x f</kbd> は n を設定</td></tr>
               <tr><td><kbd>M-x set-line-terminator</kbd></td><td class="desc">改行コードを設定（CRLF/LF/CR）</td></tr>
               <tr><td><kbd>C-c s</kbd> / <kbd>C-.</kbd> または <kbd>M-x open-config</kbd></td><td class="desc">設定サイドバーを開く（GUI）</td></tr>
             </tbody>
@@ -1034,6 +1034,7 @@ footer{
                 <tr><td><kbd>M-></kbd></td><td class="desc">バッファの末尾に移動します</td></tr>
                 <tr><td><kbd>C-v</kbd></td><td class="desc">1ページ分下にスクロールします</td></tr>
                 <tr><td><kbd>M-v</kbd></td><td class="desc">1ページ分上にスクロールします</td></tr>
+                <tr><td><kbd>C-M-v</kbd> / <kbd>C-M-V</kbd></td><td class="desc">フォーカスを移さずに隣のペインを下 / 上へスクロールします（<kbd>C-u n</kbd> で n 行、負の前置引数で逆方向）</td></tr>
                 <tr><td><kbd>C-l</kbd></td><td class="desc">カーソル位置が中心になるよう画面を再配置します</td></tr>
                 <tr><td><kbd>C-u 0 C-l</kbd></td><td class="desc">カーソル行を画面の一番上に配置します</td></tr>
                 <tr><td><kbd>C-u -1 C-l</kbd></td><td class="desc">カーソル行を画面の一番下に配置します</td></tr>
@@ -1080,6 +1081,7 @@ footer{
                 <tr><td><kbd>C-o</kbd></td><td class="desc">カーソル位置に改行を挿入します</td></tr>
                 <tr><td><kbd>C-x C-o</kbd></td><td class="desc">カーソル周辺の空行を1行だけ残します。単独の空行なら削除し、中身のある行では直後に続く空行を削除します</td></tr>
                 <tr><td><kbd>C-j</kbd></td><td class="desc">改行してインデントを維持します</td></tr>
+                <tr><td><kbd>C-q</kbd></td><td class="desc">次に押したキーをそのまま文字として挿入します（<kbd>C-q Tab</kbd> で本物のタブ文字。<kbd>Tab</kbd> 単体はスペースを挿入します）</td></tr>
                 <tr><td><kbd>C-t</kbd></td><td class="desc">文字を入れ替えます</td></tr>
                 <tr><td><kbd>M-t</kbd></td><td class="desc">単語を入れ替えます</td></tr>
                 <tr><td><kbd>C-x C-t</kbd></td><td class="desc">現在の行を前の行と入れ替えます</td></tr>
@@ -1217,6 +1219,8 @@ footer{
                 <tr><td><kbd>C-x 0</kbd></td><td class="desc">現在のウィンドウを閉じます</td></tr>
                 <tr><td><kbd>C-x 1</kbd></td><td class="desc">このウィンドウのみ残します</td></tr>
                 <tr><td><kbd>C-x o</kbd> / <kbd>M-o</kbd></td><td class="desc">他のウィンドウに移動します</td></tr>
+                <tr><td><kbd>C-x 4 f</kbd> / <kbd>C-x 4 b</kbd></td><td class="desc">ファイル / バッファを隣のウィンドウで開きます（ウィンドウが1つしか無ければ分割します）</td></tr>
+                <tr><td><kbd>C-x 4 0</kbd></td><td class="desc">現在のウィンドウを閉じ、表示していたバッファも削除します</td></tr>
                 <tr><td><kbd>C-x ^</kbd></td><td class="desc">ウィンドウを垂直方向に拡大します</td></tr>
                 <tr><td><kbd>C-x -</kbd></td><td class="desc">ウィンドウを垂直方向に縮小します</td></tr>
                 <tr><td><kbd>C-x }</kbd></td><td class="desc">ウィンドウを水平方向に拡大します</td></tr>
@@ -1637,7 +1641,7 @@ footer{
                 <tr><td><kbd>M-x electric-pair-mode</kbd></td><td class="desc">開き括弧やクォートを入力したとき閉じ文字を自動で挿入するか（選択範囲があればそれを囲む）を ON/OFF します（デフォルト OFF）</td></tr>
                 <tr><td><kbd>M-x set-electric-pair-mode</kbd></td><td class="desc">Electric Pair Mode を on/off で設定します</td></tr>
                 <tr><td><kbd>M-x get-electric-pair-mode</kbd></td><td class="desc">Electric Pair Mode の状態を表示します</td></tr>
-                <tr><td><kbd>M-x electric-indent-mode</kbd></td><td class="desc">Enter で改行したとき新しい行を自動で字下げするか（括弧の数え方は <code>indent-region</code> と同じ）を ON/OFF します（デフォルト OFF）</td></tr>
+                <tr><td><kbd>M-x electric-indent-mode</kbd></td><td class="desc">Enter で改行したとき新しい行を自動で字下げするか（括弧の数え方は <code>indent-region</code> と同じ。Python・YAML では行末が <code>:</code> の行の次を 1 段深くします）を ON/OFF します（デフォルト OFF）</td></tr>
                 <tr><td><kbd>M-x set-electric-indent-mode</kbd></td><td class="desc">Electric Indent Mode を on/off で設定します</td></tr>
                 <tr><td><kbd>M-x get-electric-indent-mode</kbd></td><td class="desc">Electric Indent Mode の状態を表示します</td></tr>
                 <tr><td><kbd>M-x set-close-to-tray</kbd></td><td class="desc">Run in Background を on/off で設定します（ウィンドウを閉じるとトレイへ常駐／Windows 限定）</td></tr>
@@ -1704,7 +1708,7 @@ footer{
                 <tr><td><kbd>M-x set-macro-vfx</kbd></td><td class="desc">マクロ実行時の視覚効果（VFX）の有効・無効を設定します</td></tr>
                 <tr><td><kbd>M-x set-smooth-cursor</kbd></td><td class="desc">ヒュンヒュンカーソル（滑らかな移動）の有効・無効を設定します</td></tr>
                 <tr><td><kbd>M-x set-tab-width</kbd></td><td class="desc">タブ幅を設定します</td></tr>
-                <tr><td><kbd>M-x set-wrap-column</kbd></td><td class="desc">折り返し幅を設定します</td></tr>
+                <tr><td><kbd>C-x f</kbd> / <kbd>M-x set-wrap-column</kbd></td><td class="desc">折り返し幅を設定します（<kbd>C-u</kbd> で現在の桁、<kbd>C-u n</kbd> で n）</td></tr>
               </tbody>
             </table>
           </div>
@@ -1736,6 +1740,15 @@ footer{
             <table class="cmd-table">
               <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
               <tbody>
+                <tr><td><kbd>M-x claude-cli</kbd></td><td class="desc">指示文と選択範囲を Claude Code に渡し、答えを <code style="font-family:var(--mono);font-size:11px;">*Claude Output*</code> に表示します（<kbd>C-u</kbd> で選択範囲を答えで置き換え）</td></tr>
+                <tr><td><kbd>M-x antigravity-cli</kbd></td><td class="desc">同じ操作を Antigravity で行います。<kbd>M-x agy-cli</kbd> は別名です</td></tr>
+                <tr><td><kbd>Enter</kbd>（指示文が空のとき）</td><td class="desc">選択範囲そのものをプロンプトとして送ります。やってほしいことが本文に書かれているときに便利です</td></tr>
+                <tr><td><kbd>C-g</kbd>（実行中）</td><td class="desc">AI CLI の実行を中断します。実行中はエコーラインに経過秒数が出ます</td></tr>
+                <tr><td><kbd>M-x set-ai-cli-timeout</kbd></td><td class="desc">AI CLI のタイムアウト（秒、既定 300・最大 3600）を設定します</td></tr>
+                <tr><td><kbd>M-x set-ai-cli-confirm-chars</kbd></td><td class="desc">送信前に確認する選択範囲の文字数（既定 20000、0 で確認しない）を設定します</td></tr>
+                <tr><td><kbd>M-!</kbd></td><td class="desc">シェルコマンドを1回実行します。短い出力はエコーライン、長い出力は <code style="font-family:var(--mono);font-size:11px;">*Shell Command Output*</code> に表示します（<kbd>C-u M-!</kbd> でカーソル位置に挿入）</td></tr>
+                <tr><td><kbd>M-|</kbd></td><td class="desc">選択範囲を標準入力としてシェルコマンドを実行します（<kbd>C-u M-|</kbd> で選択範囲を出力で置き換え）</td></tr>
+                <tr><td><kbd>M-x set-shell-command-timeout</kbd></td><td class="desc"><kbd>M-!</kbd> / <kbd>M-|</kbd> のタイムアウト（秒、既定 60・最大 3600）を設定します</td></tr>
                 <tr><td><kbd>M-x shell</kbd></td><td class="desc">対話的なシェル(emacs comint-mode 風)を起動します。バッファ名は <code style="font-family:var(--mono);font-size:11px;">*shell*</code></td></tr>
                 <tr><td><kbd>Enter</kbd>（シェル中）</td><td class="desc">現在の入力をシェルプロセスに送信します</td></tr>
                 <tr><td><kbd>C-a</kbd>（シェル中）</td><td class="desc">入力開始位置 (プロンプト直後) へ移動。2 度押下で行頭へ</td></tr>

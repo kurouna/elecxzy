@@ -73,6 +73,7 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
 - [Integrations / 連携](#integrations--連携)
     - [Plugins / プラグイン](#plugins--プラグイン)
     - [MCP (AI Integration / AI 連携)](#mcp-ai-integration--ai-連携)
+    - [AI CLI](#ai-cli)
     - [Shell / シェル](#shell--シェル)
 
 ## Basics / 基本
@@ -182,6 +183,7 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
 | `M-u` | `upcase-word` | Uppercase from cursor to end of word | 単語を大文字にします |
 | `M-l` | `downcase-word` | Lowercase from cursor to end of word | 単語を小文字にします |
 | `M-c` | `capitalize-word` | Capitalize first letter of word | 単語の先頭を大文字にします |
+| `C-q` | `quoted-insert` | Insert the next key as a literal character, so `C-q Tab` types a real tab (`Tab` on its own inserts spaces) | 次に押したキーをそのまま文字として挿入します。`C-q Tab` で本物のタブ文字を入力できます（`Tab` 単体はスペースを挿入します） |
 | `C-t` | `transpose-chars` | Swap characters around cursor | 文字を入れ替えます |
 | `M-t` | `transpose-words` | Swap words around cursor | 単語を入れ替えます |
 | `C-x C-t` | `transpose-lines` | Swap the current line with the previous one | 現在の行を前の行と入れ替えます |
@@ -218,6 +220,7 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
 |:---|:---|:---|:---|
 | `M-q` | `fill-paragraph` | Fill paragraph matching wrap column | 段落を折り返し幅に合わせて整形(ハードラップ)します |
 | `M-Q` | `unfill-paragraph` | Unfill paragraph (join into a single line) | ハードラップされた段落を1行に連結します（M-qの逆） |
+| `C-x f` | `set-wrap-column` | Set the wrap column (`C-u` uses the current column, `C-u n` uses n) | 折り返し桁を設定します (`C-u` は現在の桁、`C-u n` は n) |
 | `M-x` | `auto-fill-mode` | Toggle auto-fill-mode | 自動改行モード (Auto Fill Mode) を切り替えます |
 
 ### Replace & Count / 置換とカウント
@@ -309,6 +312,8 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
 |:---|:---|:---|:---|
 | `C-v` | `scroll-up-command` | Scroll down one page | 1ページ分下にスクロールします |
 | `M-v` | `scroll-down-command` | Scroll up one page | 1ページ分上にスクロールします |
+| `C-M-v` | `scroll-other-window` | Scroll the other pane down one page without leaving the current one (`C-u n` for `n` lines, negative to scroll the other way) | フォーカスを移さずに隣のペインを1ページ分下にスクロールします（`C-u n` で n 行、負の値で逆方向） |
+| `C-M-V` | `scroll-other-window-down` | Same as `C-M-v` but scrolls the other pane up | `C-M-v` と同じですが、隣のペインを上にスクロールします |
 | `C-l` | `recenter` | Recenter the cursor (center of window) | カーソル位置が中心になるよう画面を再配置します |
 | `C-u 0 C-l` | `recenter` | Scroll so cursor is at the top of the window | カーソル行を画面の一番上に配置します |
 | `C-u -1 C-l` | `recenter` | Scroll so cursor is at the bottom of the window | カーソル行を画面の一番下に配置します |
@@ -343,6 +348,9 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
 | `C-x 0` | `delete-window` | Close the current window | 現在のウィンドウを閉じます |
 | `C-x 1` | `delete-other-windows` | Close all other windows | 他のウィンドウを閉じます |
 | `C-x o` / `M-o` | `other-window` | Switch focus to another window | 他のウィンドウに移動します |
+| `C-x 4 f` | `find-file-other-window` | Open a file in the other window, splitting when there is only one | ファイルを隣のウィンドウで開きます（1つしか無ければ分割します） |
+| `C-x 4 b` | `switch-to-buffer-other-window` | Show a buffer in the other window, splitting when there is only one | バッファを隣のウィンドウで表示します（1つしか無ければ分割します） |
+| `C-x 4 0` | `kill-buffer-and-window` | Close the current window and kill the buffer it was showing | 現在のウィンドウを閉じ、表示していたバッファも削除します |
 | `C-x ^` | `enlarge-window` | Enlarge window vertically | ウィンドウを垂直方向に拡大します |
 | `C-x -` | `shrink-window` | Shrink window vertically | ウィンドウを垂直方向に縮小します |
 | `C-x }` | `enlarge-window-horizontally` | Enlarge window horizontally | ウィンドウを水平方向に拡大します |
@@ -644,7 +652,7 @@ A major mode decides how the buffer is syntax-highlighted and outlined. It is ch
 |:---|:---|:---|:---|
 | Auto Fill Mode | `auto-fill-mode` / `set-auto-fill-mode` / `get-auto-fill-mode` | Automatic line break at the wrap column while typing | 入力中に折り返し幅で自動改行するかどうか |
 | Electric Pair Mode | `electric-pair-mode` / `set-electric-pair-mode` / `get-electric-pair-mode` | Typing an opening bracket or quote inserts its closing partner, and wraps the region when one is selected (off by default) | 開き括弧やクォートの入力で閉じ文字を自動挿入する（選択範囲があればそれを囲む。デフォルト OFF） |
-| Electric Indent Mode | `electric-indent-mode` / `set-electric-indent-mode` / `get-electric-indent-mode` | Enter indents the new line, counting brackets with the same rule as `indent-region` (off by default) | Enter で改行したとき新しい行を自動で字下げする（括弧の数え方は `indent-region` と同じ。デフォルト OFF） |
+| Electric Indent Mode | `electric-indent-mode` / `set-electric-indent-mode` / `get-electric-indent-mode` | Enter indents the new line, counting brackets with the same rule as `indent-region`; in Python and YAML a line ending in `:` goes one step deeper (off by default) | Enter で改行したとき新しい行を自動で字下げする（括弧の数え方は `indent-region` と同じ。Python・YAML では行末が `:` の行の次を 1 段深くする。デフォルト OFF） |
 | Kill Region DWIM | `kill-region-dwim` / `set-kill-region-dwim` / `get-kill-region-dwim` | `C-w` without a region kills the previous word (Emacs 31.1 compatible) | 選択範囲が無いときの `C-w` で直前の単語をキルする（Emacs 31.1 互換） |
 | Kill Ring Deindent Mode | `kill-ring-deindent-mode` / `set-kill-ring-deindent-mode` / `get-kill-ring-deindent-mode` | Killed or copied text is deindented by the column it starts at (Emacs 30.1 compatible) | キル・コピーしたテキストを開始桁ぶん浅くする（Emacs 30.1 互換） |
 | Completion Preview Mode | `completion-preview-mode` / `set-completion-preview-mode` / `get-completion-preview-mode` | Ghost suggestion after the cursor while typing, accepted with `Tab` (Emacs 30.1 compatible) | 入力中にカーソル直後へ補完候補をゴースト表示する（`Tab` で確定。Emacs 30.1 互換） |
@@ -742,9 +750,33 @@ Drop a TypeScript file in the `plugins` folder (next to `config.json`) that `exp
 >
 > MCP の `save_file` ツールは、`mcpAllowedDirectories`（config.json / 設定サイドバー → MCP）に登録されたいずれかのディレクトリ配下のパスにしか保存できません。MCP サーバを起動する前に、許可ディレクトリを最低 1 件追加してください。
 
+### AI CLI
+
+Send an instruction — and the region, when one is selected — to an external AI CLI and get the answer back. The instruction and the region both travel on standard input, so nothing from the buffer is ever placed on a command line. The answer opens in a read-only Markdown buffer in the other pane, or in the echo area when it is short. Requires the CLI to be installed and on PATH.
+
+指示文を、選択範囲があればそれも添えて、外部の AI CLI へ渡し、答えを受け取ります。指示文も選択範囲も標準入力で渡すため、バッファの内容がコマンドラインに乗ることはありません。答えは隣のペインの読み取り専用 Markdown バッファに開き、短ければエコーラインに表示します。対象の CLI が導入され PATH にあることが前提です。
+
+| Keys / キー | Command / コマンド | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `M-x` | `claude-cli` | Ask Claude Code about the region (`C-u` replaces the region with the answer) | 選択範囲について Claude Code に尋ねます (`C-u` で選択範囲を答えで置き換え) |
+| `M-x` | `antigravity-cli` | Ask Antigravity about the region; `agy-cli` is an alias | 選択範囲について Antigravity に尋ねます。`agy-cli` は別名です |
+| `M-x` | `set-ai-cli-timeout` | Set the AI CLI timeout in seconds (1-3600) | AI CLI のタイムアウト (秒、1〜3600) を設定します |
+| `M-x` | `get-ai-cli-timeout` | Show the current AI CLI timeout | 現在の AI CLI のタイムアウトを表示します |
+| `M-x` | `set-ai-cli-confirm-chars` | Set the region size above which sending is confirmed; 0 never asks | 送信前に確認する選択範囲の文字数を設定します。0 で確認しません |
+| `M-x` | `get-ai-cli-confirm-chars` | Show the region size above which sending is confirmed | 送信前に確認する文字数を表示します |
+
+> [!NOTE]
+> Leaving the instruction empty and pressing `Enter` sends the region itself as the prompt, which suits text that already says what it wants. While an AI CLI is running, the echo area shows the elapsed seconds, and `C-g` cancels the run. A region longer than `aiCliConfirmChars` (20000 by default) asks for confirmation first. The command line each CLI is launched with can be changed with `claudeCliCommand` and `antigravityCliCommand` (config.json / Settings → AI CLI).
+>
+> 指示文を空のまま `Enter` を押すと、選択範囲そのものをプロンプトとして送ります（やってほしいことが本文に書かれている場合に便利です）。AI CLI の実行中はエコーラインに経過秒数が出て、`C-g` で中断できます。`aiCliConfirmChars` (既定 20000) を超える選択範囲は、送信前に確認します。起動する行は `claudeCliCommand` と `antigravityCliCommand` (config.json / 設定サイドバー → AI CLI) で変更できます。
+
 ### Shell / シェル
 | Keys / キー | Command / コマンド | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
+| `M-!` | `shell-command` | Run a one-off shell command; short output goes to the echo area, longer output to `*Shell Command Output*` (`C-u` inserts it at point) | シェルコマンドを1回実行します。短い出力はエコーライン、長い出力は `*Shell Command Output*` に表示します (`C-u` でカーソル位置に挿入) |
+| `M-\|` | `shell-command-on-region` | Run a shell command with the region as its standard input (`C-u` replaces the region with the output) | 選択範囲を標準入力としてシェルコマンドを実行します (`C-u` で選択範囲を出力で置き換え) |
+| `M-x` | `set-shell-command-timeout` | Set the `M-!` / `M-\|` execution timeout in seconds (1-3600) | `M-!` / `M-\|` のタイムアウト (秒、1〜3600) を設定します |
+| `M-x` | `get-shell-command-timeout` | Show the current `M-!` / `M-\|` execution timeout | 現在の `M-!` / `M-\|` のタイムアウト (秒) を表示します |
 | `M-x` | `shell` | Run an interactive shell (Emacs comint-mode style) | 対話的なシェル(Emacs comint-mode 風)を起動します |
 
 Keys inside the `*shell*` buffer: / `*shell*` バッファ内で使えるキー:
@@ -758,5 +790,6 @@ Keys inside the `*shell*` buffer: / `*shell*` バッファ内で使えるキー:
 | `C-c C-c` | `shell-interrupt` | Interrupt the running command (restart cmd.exe) | 実行中のコマンドを中断します (cmd.exe を再起動) |
 
 > [!NOTE]
-> The shell buffer (`*shell*`) follows Emacs comint-mode conventions: a per-buffer process mark protects the prompt and scrollback from edits, `Enter` sends from the process mark to the end of the buffer, and input history persists for the lifetime of the buffer. On Windows, `cmd.exe` is launched with `/Q` to suppress command echo.
+> The shell buffer (`*shell*`) follows Emacs comint-mode conventions: a per-buffer process mark protects the prompt and scrollback from edits, `Enter` sends from the process mark to the end of the buffer, and input history persists for the lifetime of the buffer. On Windows, `cmd.exe` is launched with `/Q` to suppress command echo. Output is decoded by detecting whether it is UTF-8, so both modern CLIs and legacy console tools read correctly.
 >
+> `*shell*` バッファは Emacs comint-mode の作法に従います。バッファごとのプロセスマークがプロンプトと過去の出力を編集から保護し、`Enter` はプロセスマークからバッファ末尾までを送信します。入力履歴はバッファが生きている間だけ保持されます。Windows では `cmd.exe` を `/Q` 付きで起動してコマンドエコーを抑制しています。出力は UTF-8 かどうかを判定して復号するので、近年の CLI も従来のコンソール道具も正しく読めます。
