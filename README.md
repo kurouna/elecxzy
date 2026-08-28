@@ -103,13 +103,18 @@ Automatic updates are provided via the Microsoft Store. For the latest developme
   ```
 
 <p align="center">
-  <img src="./assets/screenshot/screenshot1.png" height="200" alt="elecxzy Screenshot">
-  <img src="./assets/screenshot/screenshot4.png" height="200" alt="elecxzy Screenshot">
-  <img src="./assets/screenshot/screenshot6.png" height="200" alt="elecxzy Screenshot">
-  <img src="./assets/screenshot/screenshot8.png" height="200" alt="elecxzy Screenshot">
-  <img src="./assets/screenshot/screenshot14.png" height="200" alt="elecxzy Screenshot">
-  <img src="./assets/screenshot/screenshot12.png" height="200" alt="elecxzy Screenshot">
-  <img src="./assets/screenshot/screenshot13.png" height="200" alt="elecxzy Screenshot">
+  <img src="./assets/screenshot/01-editor.png" height="170" alt="Editing with tabs and syntax highlighting (Rose Pine Dawn)">
+  <img src="./assets/screenshot/02-window-split.png" height="170" alt="Three panes: shell, Markdown preview and code (Tokyo Night)">
+  <img src="./assets/screenshot/15-workspace.png" height="170" alt="Workspace sidebar with two folders">
+  <img src="./assets/screenshot/05-command-palette.png" height="170" alt="M-x completion (Slate Light)">
+  <img src="./assets/screenshot/06-avy.png" height="170" alt="Avy jump labels (Forest)">
+  <img src="./assets/screenshot/04-consult-line.png" height="170" alt="consult-line narrowing the buffer (Gruvbox)">
+  <img src="./assets/screenshot/03-grep.png" height="170" alt="grep across files (Nord)">
+  <img src="./assets/screenshot/07-git-sidebar.png" height="170" alt="Git sidebar with history and changes (Slate Dark)">
+  <img src="./assets/screenshot/08-settings.png" height="170" alt="Settings sidebar (Light)">
+  <img src="./assets/screenshot/09-kill-ring.png" height="170" alt="Kill ring sidebar (Cyber)">
+  <img src="./assets/screenshot/10-web-preview.png" height="170" alt="Web preview beside the code">
+  <img src="./assets/screenshot/14-cursor-vfx.png" height="170" alt="Cursor VFX (Cute)">
 </p>
 
 ### MCP Server Integration
@@ -286,13 +291,18 @@ Microsoft Store版は、自動更新が提供されます。最新の開発版�
   ```
 
 <p align="center">
-  <img src="./assets/screenshot/screenshot1.png" height="200" alt="elecxzy Screenshot">
-  <img src="./assets/screenshot/screenshot2.png" height="200" alt="elecxzy Screenshot">
-  <img src="./assets/screenshot/screenshot6.png" height="200" alt="elecxzy Screenshot">
-  <img src="./assets/screenshot/screenshot8.png" height="200" alt="elecxzy Screenshot">
-  <img src="./assets/screenshot/screenshot14.png" height="200" alt="elecxzy Screenshot">
-  <img src="./assets/screenshot/screenshot12.png" height="200" alt="elecxzy Screenshot">
-  <img src="./assets/screenshot/screenshot13.png" height="200" alt="elecxzy Screenshot">
+  <img src="./assets/screenshot/01-editor.png" height="170" alt="Editing with tabs and syntax highlighting (Rose Pine Dawn)">
+  <img src="./assets/screenshot/02-window-split.png" height="170" alt="Three panes: shell, Markdown preview and code (Tokyo Night)">
+  <img src="./assets/screenshot/15-workspace.png" height="170" alt="Workspace sidebar with two folders">
+  <img src="./assets/screenshot/05-command-palette.png" height="170" alt="M-x completion (Slate Light)">
+  <img src="./assets/screenshot/06-avy.png" height="170" alt="Avy jump labels (Forest)">
+  <img src="./assets/screenshot/04-consult-line.png" height="170" alt="consult-line narrowing the buffer (Gruvbox)">
+  <img src="./assets/screenshot/03-grep.png" height="170" alt="grep across files (Nord)">
+  <img src="./assets/screenshot/07-git-sidebar.png" height="170" alt="Git sidebar with history and changes (Slate Dark)">
+  <img src="./assets/screenshot/08-settings.png" height="170" alt="Settings sidebar (Light)">
+  <img src="./assets/screenshot/09-kill-ring.png" height="170" alt="Kill ring sidebar (Cyber)">
+  <img src="./assets/screenshot/10-web-preview.png" height="170" alt="Web preview beside the code">
+  <img src="./assets/screenshot/14-cursor-vfx.png" height="170" alt="Cursor VFX (Cute)">
 </p>
 
 

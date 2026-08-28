@@ -792,4 +792,5 @@ Keys inside the `*shell*` buffer: / `*shell*` バッファ内で使えるキー:
 > [!NOTE]
 > The shell buffer (`*shell*`) follows Emacs comint-mode conventions: a per-buffer process mark protects the prompt and scrollback from edits, `Enter` sends from the process mark to the end of the buffer, and input history persists for the lifetime of the buffer. On Windows, `cmd.exe` is launched with `/Q` to suppress command echo. Output is decoded by detecting whether it is UTF-8, so both modern CLIs and legacy console tools read correctly.
 >
-> `*shell*` バッファは Emacs comint-mode の作法に従います。バッファごとのプロセスマークがプロンプトと過去の出力を編集から保護し、`Enter` はプロセスマークからバッファ末尾までを送信します。入力履歴はバッファが生きている間だけ保持されます。Windows では `cmd.exe` を `/Q` 付きで起動してコマンドエコーを抑制しています。出力は UTF-8 かどうかを判定して復号するので、近年の CLI も従来のコンソール道具も正しく読めます。
+> `*shell*` 
+バッファは Emacs comint-mode の作法に従います。バッファごとのプロセスマークがプロンプトと過去の出力を編集から保護し、`Enter` はプロセスマークからバッファ末尾までを送信します。入力履歴はバッファが生きている間だけ保持されます。Windows では `cmd.exe` を `/Q` 付きで起動してコマンドエコーを抑制しています。出力は UTF-8 かどうかを判定して復号するので、近年の CLI も従来のコンソール道具も正しく読めます。
