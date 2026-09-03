@@ -483,6 +483,7 @@ footer{
               <tr><td><kbd>M-x transpose-sentences</kbd> / <kbd>transpose-paragraphs</kbd></td><td class="desc">現在の文 / 段落を直前のものと入れ替え</td></tr>
               <tr><td><kbd>M-u</kbd> / <kbd>M-l</kbd> / <kbd>M-c</kbd></td><td class="desc">大文字 / 小文字 / 先頭大文字に変換</td></tr>
               <tr><td><kbd>M-q</kbd></td><td class="desc">段落を折り返し幅で整形（fill-paragraph）</td></tr>
+              <tr><td><kbd>M-x fill-paragraph-semlf</kbd></td><td class="desc">段落を 1 文 1 行に整形（セマンティック改行）</td></tr>
               <tr><td><kbd>M-x auto-fill-mode</kbd></td><td class="desc">自動改行モードを切り替え</td></tr>
               <tr><td><kbd>M-/</kbd></td><td class="desc">動的単語補完（dabbrev-expand）</td></tr>
               <tr><td><kbd>C-c l</kbd></td><td class="desc">選択範囲を複製（選択が無ければ現在行）</td></tr>
@@ -1422,7 +1423,7 @@ footer{
             <table class="cmd-table">
               <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
               <tbody>
-                <tr><td><kbd>C-c o</kbd></td><td class="desc">アウトライン表示を開閉します (50,000行まで)</td></tr>
+                <tr><td><kbd>C-c o</kbd></td><td class="desc">アウトライン表示を開閉します。Markdown / HTML は見出し、TypeScript / JavaScript / Python / Go / Rust / Java / Kotlin / Dart / C# / Swift / PHP / CSS / SCSS / Less は宣言を表示します (50,000行まで)</td></tr>
                 <tr><td><kbd>Enter</kbd> / <kbd>f</kbd></td><td class="desc">見出しへジャンプして閉じます</td></tr>
                 <tr><td><kbd>Space</kbd> / <kbd>Tab</kbd> / <kbd>C-f</kbd> / <kbd>l</kbd> / <kbd>Right</kbd></td><td class="desc">見出しを展開 / 子要素へ移動します</td></tr>
                 <tr><td><kbd>C-n</kbd> / <kbd>j</kbd> / <kbd>n</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
@@ -1740,8 +1741,10 @@ footer{
             <table class="cmd-table">
               <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
               <tbody>
-                <tr><td><kbd>M-x claude-cli</kbd></td><td class="desc">指示文と選択範囲を Claude Code に渡し、答えを <code style="font-family:var(--mono);font-size:11px;">*Claude Output*</code> に表示します（<kbd>C-u</kbd> で選択範囲を答えで置き換え）</td></tr>
-                <tr><td><kbd>M-x antigravity-cli</kbd></td><td class="desc">同じ操作を Antigravity で行います。<kbd>M-x agy-cli</kbd> は別名です</td></tr>
+                <tr><td><kbd>M-x claude-cli</kbd></td><td class="desc">指示文と選択範囲を Claude Code に渡し、答えを <code style="font-family:var(--mono);font-size:11px;">*Claude Output*</code> に表示します</td></tr>
+                <tr><td><kbd>M-x antigravity-cli</kbd></td><td class="desc">同じ操作を Antigravity で行い、答えを <code style="font-family:var(--mono);font-size:11px;">*Antigravity Output*</code> に表示します。<kbd>M-x agy-cli</kbd> は別名です</td></tr>
+                <tr><td><kbd>M-x codex-cli</kbd></td><td class="desc">同じ操作を Codex で行い、答えを <code style="font-family:var(--mono);font-size:11px;">*Codex Output*</code> に表示します。非対話モードの <code>codex exec</code> を使います</td></tr>
+                <tr><td><kbd>C-u M-x</kbd>（AI CLI のコマンド）</td><td class="desc">答えをバッファに入れ、選択範囲を置き換えます。「翻訳して」と指示すればその場が訳文になります</td></tr>
                 <tr><td><kbd>Enter</kbd>（指示文が空のとき）</td><td class="desc">選択範囲そのものをプロンプトとして送ります。やってほしいことが本文に書かれているときに便利です</td></tr>
                 <tr><td><kbd>C-g</kbd>（実行中）</td><td class="desc">AI CLI の実行を中断します。実行中はエコーラインに経過秒数が出ます</td></tr>
                 <tr><td><kbd>M-x set-ai-cli-timeout</kbd></td><td class="desc">AI CLI のタイムアウト（秒、既定 300・最大 3600）を設定します</td></tr>

@@ -220,6 +220,7 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
 |:---|:---|:---|:---|
 | `M-q` | `fill-paragraph` | Fill paragraph matching wrap column | 段落を折り返し幅に合わせて整形(ハードラップ)します |
 | `M-Q` | `unfill-paragraph` | Unfill paragraph (join into a single line) | ハードラップされた段落を1行に連結します（M-qの逆） |
+| `M-x` | `fill-paragraph-semlf` | Fill paragraph with semantic linefeeds: one sentence per line (long sentences still wrap at the wrap column) | 段落をセマンティック改行で整形します。1 文が 1 行になります（1 行に収まらない長い文は折り返し幅で折り返します）|
 | `C-x f` | `set-wrap-column` | Set the wrap column (`C-u` uses the current column, `C-u n` uses n) | 折り返し桁を設定します (`C-u` は現在の桁、`C-u n` は n) |
 | `M-x` | `auto-fill-mode` | Toggle auto-fill-mode | 自動改行モード (Auto Fill Mode) を切り替えます |
 
@@ -516,7 +517,7 @@ Keys inside the sidebar: / サイドバー内で使えるキー:
 ### Outline / アウトライン
 | Keys / キー | Command / コマンド | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `C-c o` | `outline-view` | Toggle the Outline Sidebar (parses up to 50,000 lines) | アウトライン・サイドバーを開閉します（50,000 行まで解析） |
+| `C-c o` | `outline-view` | Toggle the Outline Sidebar; shows headings in Markdown / HTML and declarations in TypeScript / JavaScript / Python / Go / Rust / Java / Kotlin / Dart / C# / Swift / PHP / CSS / SCSS / Less (parses up to 50,000 lines) | アウトライン・サイドバーを開閉します。Markdown / HTML は見出し、TypeScript / JavaScript / Python / Go / Rust / Java / Kotlin / Dart / C# / Swift / PHP / CSS / SCSS / Less は宣言を表示します（50,000 行まで解析） |
 
 Keys inside the sidebar: / サイドバー内で使えるキー:
 
@@ -758,17 +759,18 @@ Send an instruction — and the region, when one is selected — to an external 
 
 | Keys / キー | Command / コマンド | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `M-x` | `claude-cli` | Ask Claude Code about the region (`C-u` replaces the region with the answer) | 選択範囲について Claude Code に尋ねます (`C-u` で選択範囲を答えで置き換え) |
-| `M-x` | `antigravity-cli` | Ask Antigravity about the region; `agy-cli` is an alias | 選択範囲について Antigravity に尋ねます。`agy-cli` は別名です |
+| `M-x` | `claude-cli` | Ask Claude Code about the region | 選択範囲について Claude Code に尋ねます |
+| `M-x` | `antigravity-cli` | Ask Antigravity about the region (`agy-cli` is an alias) | 選択範囲について Antigravity に尋ねます (`agy-cli` は別名です) |
+| `M-x` | `codex-cli` | Ask Codex about the region (`codex exec`, its non-interactive mode) | 選択範囲について Codex に尋ねます (非対話モードの `codex exec` を使います) |
 | `M-x` | `set-ai-cli-timeout` | Set the AI CLI timeout in seconds (1-3600) | AI CLI のタイムアウト (秒、1〜3600) を設定します |
 | `M-x` | `get-ai-cli-timeout` | Show the current AI CLI timeout | 現在の AI CLI のタイムアウトを表示します |
 | `M-x` | `set-ai-cli-confirm-chars` | Set the region size above which sending is confirmed; 0 never asks | 送信前に確認する選択範囲の文字数を設定します。0 で確認しません |
 | `M-x` | `get-ai-cli-confirm-chars` | Show the region size above which sending is confirmed | 送信前に確認する文字数を表示します |
 
 > [!NOTE]
-> Leaving the instruction empty and pressing `Enter` sends the region itself as the prompt, which suits text that already says what it wants. While an AI CLI is running, the echo area shows the elapsed seconds, and `C-g` cancels the run. A region longer than `aiCliConfirmChars` (20000 by default) asks for confirmation first. The command line each CLI is launched with can be changed with `claudeCliCommand` and `antigravityCliCommand` (config.json / Settings → AI CLI).
+> `C-u` puts the answer into the buffer instead, replacing the region. Leaving the instruction empty and pressing `Enter` sends the region itself as the prompt, which suits text that already says what it wants. While an AI CLI is running, the echo area shows the elapsed seconds, and `C-g` cancels the run. A region longer than `aiCliConfirmChars` (20000 by default) asks for confirmation first. The command line each CLI is launched with can be changed with `claudeCliCommand`, `antigravityCliCommand` and `codexCliCommand` (config.json / Settings → AI CLI).
 >
-> 指示文を空のまま `Enter` を押すと、選択範囲そのものをプロンプトとして送ります（やってほしいことが本文に書かれている場合に便利です）。AI CLI の実行中はエコーラインに経過秒数が出て、`C-g` で中断できます。`aiCliConfirmChars` (既定 20000) を超える選択範囲は、送信前に確認します。起動する行は `claudeCliCommand` と `antigravityCliCommand` (config.json / 設定サイドバー → AI CLI) で変更できます。
+> `C-u` を付けると答えをバッファに入れ、選択範囲を置き換えます。指示文を空のまま `Enter` を押すと、選択範囲そのものをプロンプトとして送ります（やってほしいことが本文に書かれている場合に便利です）。AI CLI の実行中はエコーラインに経過秒数が出て、`C-g` で中断できます。`aiCliConfirmChars` (既定 20000) を超える選択範囲は、送信前に確認します。起動する行は `claudeCliCommand` / `antigravityCliCommand` / `codexCliCommand` (config.json / 設定サイドバー → AI CLI) で変更できます。
 
 ### Shell / シェル
 | Keys / キー | Command / コマンド | Description (English) | 説明 (日本語) |
