@@ -1127,6 +1127,40 @@ footer{
                 <tr><td><kbd>C-u C-u M-x delete-duplicate-lines</kbd></td><td class="desc">隣り合った重複だけを削除します（<code>uniq</code> 相当）</td></tr>
                 <tr><td><kbd>C-u C-u C-u M-x delete-duplicate-lines</kbd></td><td class="desc">空行は重複していても残します</td></tr>
                 <tr><td><kbd>M-x align-regexp</kbd></td><td class="desc">入力した正規表現の最初のマッチが同じ桁に来るよう、選択範囲の行を揃えます（<code>=</code>、<code>:</code>、<code>//</code> など）</td></tr>
+                <tr><td><kbd>C-x * q</kbd></td><td class="desc">ミニバッファで数式を尋ね、結果をエコー行に表示します（<kbd>C-u</kbd> を付けるとカーソル位置に挿入します）</td></tr>
+                <tr><td><kbd>C-x * e</kbd></td><td class="desc">選択した数式（無ければカーソル位置の数式）を計算結果に置き換えます。<kbd>C-u</kbd> を付けると数式を残して <code> = 結果</code> を追加します</td></tr>
+                <tr><td><kbd>C-x * s</kbd></td><td class="desc">選択範囲の数値をすべて合計します（矩形選択なら表の 1 列だけを合計できます）</td></tr>
+                <tr><td><kbd>C-x * a</kbd></td><td class="desc">選択範囲の数値の平均を表示します</td></tr>
+                <tr><td><kbd>C-x * m</kbd></td><td class="desc">選択範囲の数値の中央値を表示します</td></tr>
+                <tr><td><kbd>C-x * d</kbd></td><td class="desc">選択範囲の数値の標準偏差（標本）を表示します</td></tr>
+                <tr><td><kbd>C-x * t</kbd></td><td class="desc">件数・合計・平均・中央値・最小・最大・範囲・分散・標準偏差・四分位数を <code>*Calc Statistics*</code> にまとめて表示します</td></tr>
+                <tr><td><kbd>C-x * x</kbd></td><td class="desc">選択範囲の整数を 16 進表記（<code>0xFF</code>）に書き換えます</td></tr>
+                <tr><td><kbd>C-x * b</kbd></td><td class="desc">選択範囲の整数を 2 進表記（<code>0b1010</code>）に書き換えます</td></tr>
+                <tr><td><kbd>C-x * o</kbd></td><td class="desc">選択範囲の整数を 8 進表記（<code>0o17</code>）に書き換えます</td></tr>
+                <tr><td><kbd>C-x * n</kbd></td><td class="desc">選択範囲の整数を 10 進表記に書き換えます（<code>0x</code> / <code>0b</code> / <code>0o</code> も読みます）</td></tr>
+                <tr><td><kbd>M-x calc-percentage-region</kbd></td><td class="desc">各数値を合計に対する構成比（%）に書き換えます</td></tr>
+                <tr><td><kbd>M-x calc-difference-region</kbd></td><td class="desc">各数値を前の値との差（階差）に書き換えます</td></tr>
+                <tr><td><kbd>M-x calc-cumulative-region</kbd></td><td class="desc">各数値を累積和に書き換えます</td></tr>
+                <tr><td><kbd>M-x calc-round-region</kbd></td><td class="desc">各数値を丸めます（桁数は前置引数で指定）</td></tr>
+                <tr><td><kbd>M-x calc-scale-region</kbd></td><td class="desc">ミニバッファで尋ねた倍率を全数値に掛けます（式でも書けます）</td></tr>
+                <tr><td><kbd>M-x calc-tsubo-region</kbd></td><td class="desc">面積を平方メートルから坪に換算します（逆は <code>calc-square-meter-region</code>）</td></tr>
+                <tr><td><kbd>M-x calc-tax-included-region</kbd></td><td class="desc">消費税を加えます（既定 10%、前置引数で税率。逆は <code>calc-tax-excluded-region</code>）</td></tr>
+                <tr><td><kbd>M-x calc-withholding-region</kbd></td><td class="desc">各報酬額を源泉徴収税額（10.21% / 100 万円超の部分は 20.42%）に置き換えます</td></tr>
+                <tr><td><kbd>M-x calc-factorize-region</kbd></td><td class="desc">各整数を素因数分解（<code>2^3 * 3^2 * 5</code>）に書き換えます</td></tr>
+                <tr><td><kbd>M-x calc-fraction-region</kbd></td><td class="desc">各小数を、それに合う最も簡単な分数に書き換えます</td></tr>
+                <tr><td><kbd>M-x calc-return-region</kbd></td><td class="desc">価格の列から通算収益率と 1 期あたりの収益率を表示します</td></tr>
+                <tr><td><kbd>M-x calc-drawdown-region</kbd></td><td class="desc">最大ドローダウンと、その区間を表示します</td></tr>
+                <tr><td><kbd>M-x calc-loan-region</kbd></td><td class="desc">借入額・年利・年数を読み、毎月返済額と総返済額を表示します</td></tr>
+                <tr><td><kbd>M-x calc-gcd-region</kbd></td><td class="desc">選択範囲の整数の最大公約数を表示します（最小公倍数は <code>calc-lcm-region</code>）</td></tr>
+                <tr><td><kbd>M-x calc-sequence-region</kbd></td><td class="desc">数列が等差・等比・多項式のどれかを見立て、次の項を予測します</td></tr>
+                <tr><td><kbd>M-x calc-manuscript-region</kbd></td><td class="desc">文字数・400 字詰め原稿用紙の枚数・段落数・読了時間を表示します</td></tr>
+                <tr><td><kbd>M-x calc-exact-region</kbd></td><td class="desc">選択範囲の分数・小数を、浮動小数を通さずに厳密に合計します（<code>1/3</code> 3 つでちょうど <code>1</code>）</td></tr>
+                <tr><td><kbd>M-x calc-identify-region</kbd></td><td class="desc">先頭の小数に当てはまる閉じた形（<code>pi^2/6</code>、<code>phi</code> など）を探します</td></tr>
+                <tr><td><kbd>M-x calc-continued-fraction-region</kbd></td><td class="desc">先頭の数を連分数に展開し、最良の収束分数も表示します</td></tr>
+                <tr><td><kbd>M-x calc-number-theory-region</kbd></td><td class="desc">各整数の素因数分解・約数の個数と和・φ・μ を一覧します</td></tr>
+                <tr><td><kbd>M-x calc-bezout-region</kbd></td><td class="desc">2 数について <code>a x + b y = gcd</code> を解き、互いに素なら mod 逆元も表示します</td></tr>
+                <tr><td><kbd>M-x calc-binomial-region</kbd></td><td class="desc">2 数の二項係数を厳密に表示します（<code>C(100,50)</code> の 29 桁も丸めません）</td></tr>
+                <tr><td><kbd>M-x calc-mod-region</kbd></td><td class="desc">ミニバッファで尋ねた法で、各整数を最小非負剰余に書き換えます</td></tr>
                 <tr><td><kbd>C-\</kbd></td><td class="desc">IME（日本語入力）のON/OFFを切り替えます</td></tr>
               </tbody>
             </table>

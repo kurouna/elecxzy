@@ -32,6 +32,7 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
     - [Indent & Comment / インデントとコメント](#indent--comment--インデントとコメント)
     - [Fill & Wrap / 折り返しと整形](#fill--wrap--折り返しと整形)
     - [Replace & Count / 置換とカウント](#replace--count--置換とカウント)
+    - [Calculator / 電卓](#calculator--電卓)
     - [Undo & Redo / アンドゥ・リドゥ](#undo--redo--アンドゥ・リドゥ)
     - [Completion / 補完](#completion--補完)
     - [Registers / レジスタ](#registers--レジスタ)
@@ -236,6 +237,96 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
 | `M-x` | `count-words-buffer` | Count words, characters, and lines in buffer | バッファ全体の単語数、文字数、行数をカウントします |
 
 > Interactive search and replace is `query-replace` (`M-%`), listed under [Search & Replace](#search--replace--検索と置換). / 対話的な検索・置換は [Search & Replace](#search--replace--検索と置換) の `query-replace`（`M-%`）です。
+
+### Calculator / 電卓
+| Keys / キー | Command / コマンド | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `C-x * q` | `calc` | Ask for an expression in the minibuffer and show the result in the echo area | ミニバッファで数式を尋ね、結果をエコー行に表示します |
+| `C-u C-x * q` | `calc` | Insert the result at point (replacing the region if one is active) | 結果をカーソル位置に挿入します（選択範囲があれば置き換えます） |
+| `C-x * e` | `calc-eval-region` | Replace the selected expression, or the one at point, with its value | 選択した数式（無ければカーソル位置の数式）を計算結果に置き換えます |
+| `C-u C-x * e` | `calc-eval-region` | Keep the expression and append ` = result` after it | 数式を残したまま、後ろに ` = 結果` を追加します |
+| `C-x * s` | `calc-sum-region` | Add up every number in the region, with the count and the mean | 選択範囲の数値をすべて合計し、件数と平均も表示します |
+| `C-u C-x * s` | `calc-sum-region` | Insert the total at point as well | 合計をカーソル位置にも挿入します |
+| `C-x * a` | `calc-average-region` | Show the mean of the numbers in the region | 選択範囲の数値の平均を表示します |
+| `C-x * m` | `calc-median-region` | Show the median of the numbers in the region | 選択範囲の数値の中央値を表示します |
+| `C-x * d` | `calc-stddev-region` | Show the sample standard deviation of the numbers in the region | 選択範囲の数値の標準偏差（標本）を表示します |
+| `C-x * t` | `calc-stats-region` | Show a full summary in `*Calc Statistics*`: count, sum, mean, median, min, max, range, variance, standard deviation and quartiles | `*Calc Statistics*` に一覧を表示します（件数・合計・平均・中央値・最小・最大・範囲・分散・標準偏差・四分位数） |
+| `C-u C-x * t` | `calc-stats-region` | Insert the summary at point instead of opening the buffer | バッファを開かず、一覧をカーソル位置に挿入します |
+| `C-x * x` | `calc-hex-region` | Rewrite the whole numbers in the region as hexadecimal (`0xFF`) | 選択範囲の整数を 16 進表記（`0xFF`）に書き換えます |
+| `C-x * b` | `calc-binary-region` | Rewrite them as binary (`0b1010`) | 2 進表記（`0b1010`）に書き換えます |
+| `C-x * o` | `calc-octal-region` | Rewrite them as octal (`0o17`) | 8 進表記（`0o17`）に書き換えます |
+| `C-x * n` | `calc-decimal-region` | Rewrite them as plain decimal | 10 進表記に書き換えます |
+
+> The result of every calculator command except `calc-eval-region` also goes to the kill ring, so `C-y` pastes it. The previous answer is available as `ans` in the next expression. / `calc-eval-region` を除く各コマンドの結果はキルリングにも入るので `C-y` で貼れます。直前の答えは次の式で `ans` として参照できます。
+
+> The base conversions read `0x` / `0b` / `0o` as well, so hexadecimal to binary takes one step. Decimals, identifiers such as `utf8`, thousands separators and integers beyond 2^53 are left untouched, and the whole rewrite is a single undo step. / 基数変換は `0x` / `0b` / `0o` も読むので、16 進から 2 進も一度で通ります。小数・`utf8` のような識別子・3 桁区切り・2^53 を超える整数には触れません。書き換え全体は 1 回の undo で戻ります。
+
+> Every aggregate command takes a prefix argument to insert its value at point, and reads a rectangular selection as a single column of a table. / 集計コマンドはいずれも前置引数でカーソル位置に値を挿入でき、矩形選択なら表の 1 列として読みます。
+
+**Rewriting the numbers in the region / 選択範囲の数値を書き換える**
+
+| Keys / キー | Command / コマンド | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `M-x` | `calc-percentage-region` | Rewrite each number as its share of the total in percent | 各数値を合計に対する構成比（%）に書き換えます |
+| `M-x` | `calc-difference-region` | Rewrite each number as the change from the previous one (the first becomes 0) | 各数値を前の値との差に書き換えます（先頭は 0） |
+| `M-x` | `calc-cumulative-region` | Rewrite each number as a running total | 各数値を累積和に書き換えます |
+| `M-x` | `calc-normalize-region` | Rewrite each number as a z-score, centred on the mean | 各数値を z 得点（平均 0・標準偏差 1）に書き換えます |
+| `M-x` | `calc-round-region` | Round each number, taking the number of decimals from a prefix argument | 各数値を丸めます（桁数は前置引数で指定） |
+| `M-x` | `calc-scale-region` | Multiply every number by a factor asked for in the minibuffer (an expression is fine) | ミニバッファで尋ねた倍率を全数値に掛けます（式でも書けます） |
+| `M-x` | `calc-tsubo-region` | Convert areas from square metres to tsubo | 面積を平方メートルから坪に換算します |
+| `M-x` | `calc-square-meter-region` | Convert areas from tsubo to square metres | 面積を坪から平方メートルに換算します |
+| `M-x` | `calc-tax-included-region` | Add consumption tax, at 10% or the rate given as a prefix argument | 消費税を加えます（既定 10%、前置引数で税率を指定） |
+| `M-x` | `calc-tax-excluded-region` | Take consumption tax off, at 10% or the rate given as a prefix argument | 消費税を差し引きます（既定 10%、前置引数で税率を指定） |
+| `M-x` | `calc-withholding-region` | Replace each fee with the Japanese withholding tax due on it | 各報酬額を源泉徴収税額に置き換えます |
+| `M-x` | `calc-factorize-region` | Rewrite each whole number as a product of primes (`2^3 * 3^2 * 5`) | 各整数を素因数分解（`2^3 * 3^2 * 5`）に書き換えます |
+| `M-x` | `calc-fraction-region` | Rewrite each decimal as the simplest fraction that matches it | 各小数を、それに合う最も簡単な分数に書き換えます |
+
+> These rewrite the buffer, so they refuse a read-only buffer and a rectangular selection, and each rewrite is a single undo step. The number of values never changes, so a column stays lined up with its neighbours. / これらは本文を書き換えるため、読み取り専用バッファと矩形選択では実行しません。書き換えは 1 回の undo で戻り、数値の個数は変わらないので隣の列とずれません。
+
+**Analysis / 分析**
+
+| Keys / キー | Command / コマンド | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `M-x` | `calc-return-region` | Show the total and per-period return of a price series | 価格の列から通算収益率と 1 期あたりの収益率を表示します |
+| `M-x` | `calc-volatility-region` | Show the standard deviation of the returns of a price series | 価格の列の収益率の標準偏差（ボラティリティ）を表示します |
+| `M-x` | `calc-drawdown-region` | Show the deepest peak-to-trough fall and where it happened | 最大ドローダウン（山からの最大下落率）と、その区間を表示します |
+| `M-x` | `calc-loan-region` | Read a principal, an annual rate and a term, and show the monthly repayment | 借入額・年利（%）・年数を読み、毎月返済額と総返済額を表示します |
+| `M-x` | `calc-gcd-region` | Show the greatest common divisor of the selected whole numbers | 選択範囲の整数の最大公約数を表示します |
+| `M-x` | `calc-lcm-region` | Show the least common multiple of the selected whole numbers | 選択範囲の整数の最小公倍数を表示します |
+| `M-x` | `calc-sequence-region` | Guess whether the numbers are arithmetic, geometric or polynomial, and predict the next term | 数列が等差・等比・多項式のどれかを見立て、次の項を予測します |
+| `M-x` | `calc-manuscript-region` | Show the character count, manuscript sheets, paragraphs and reading time | 文字数・400 字詰め原稿用紙の枚数・段落数・読了時間を表示します |
+
+> These only read the region. Like the aggregates, they take a prefix argument to insert the value at point and understand a rectangular selection as one column. / これらは範囲を読むだけです。集計コマンドと同じく、前置引数で値をカーソル位置に挿入でき、矩形選択は 1 列として読みます。
+
+**For mathematicians / 数学向け**
+
+| Keys / キー | Command / コマンド | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `M-x` | `calc-exact-region` | Add up the selected fractions and decimals exactly, with no floating point at any step | 選択範囲の分数・小数を、浮動小数を一切通さずに厳密に合計します |
+| `M-x` | `calc-identify-region` | Look for a closed form matching the first selected decimal, such as `pi^2/6` or `phi` | 先頭の小数に当てはまる閉じた形（`pi^2/6`、`phi` など）を探します |
+| `M-x` | `calc-continued-fraction-region` | Expand the first selected number as a continued fraction, with its best convergent | 先頭の数を連分数に展開し、最良の収束分数も表示します |
+| `M-x` | `calc-number-theory-region` | List the factorization, divisor count and sum, totient and Moebius value of each whole number in `*Calc Number Theory*` | 各整数の素因数分解・約数の個数と和・オイラー φ・メビウス μ を `*Calc Number Theory*` に一覧します |
+| `M-x` | `calc-bezout-region` | Solve `a x + b y = gcd` for the two selected numbers, adding the modular inverse when they are coprime | 選択した 2 数について `a x + b y = gcd` を解きます（互いに素なら mod 逆元も表示） |
+| `M-x` | `calc-binomial-region` | Show the exact binomial coefficient of the two selected numbers, beyond what a double can hold | 選択した 2 数の二項係数を、double で表せない桁も含めて厳密に表示します |
+| `M-x` | `calc-mod-region` | Replace the selected whole numbers with their least non-negative residues for a modulus asked in the minibuffer | ミニバッファで尋ねた法で、各整数を最小非負剰余に書き換えます |
+
+> `calc-exact-region` reads `1/2` as one number, not as one divided by two, so `1/3` three times comes to exactly `1`. `calc-identify-region` stays silent when nothing matches rather than inventing a formula, and `calc-mod-region` gives `2` for -7 mod 3, not the `-1` that a machine remainder would. / `calc-exact-region` は `1/2` を 1 つの数として読むので、`1/3` を 3 つ足すとちょうど `1` になります。`calc-identify-region` は当てはまるものが無ければ式をひねり出さずに黙り、`calc-mod-region` は -7 mod 3 を（計算機の剰余が返す `-1` ではなく）`2` とします。
+
+**Expression syntax / 式の書き方**
+
+| | Description (English) | 説明 (日本語) |
+|:---|:---|:---|
+| `+ - * / % ^` | Arithmetic; `^` is exponentiation and is right-associative | 四則演算。`^` は冪乗（右結合）です |
+| `& \| << >> ~` | Bitwise operations on 32-bit integers (`xor` is a function) | 32 ビット整数のビット演算（排他的論理和は `xor` 関数） |
+| `!` | Factorial, written after the number | 階乗。数値の後ろに書きます |
+| `0xff` `0b1010` `0o17` | Hexadecimal, binary and octal literals; integer results show hex and binary too | 16 進・2 進・8 進リテラル。整数の結果には 16 進と 2 進も併記されます |
+| `sqrt` `abs` `round` `log` `sin` … | Functions; `round(x, n)` takes digits and `log(x, b)` takes a base | 関数。`round(x, n)` は桁数、`log(x, b)` は底を取れます |
+| `min` `max` `avg` `sum` `gcd` `lcm` `hypot` | Functions taking any number of arguments | 引数をいくつでも取れる関数 |
+| `rad` `deg` | Convert between degrees and radians for the trigonometric functions | 三角関数のための度とラジアンの変換 |
+| `pi` `e` `tau` `phi` `ans` | Constants, and the previous answer | 定数と、直前の答え |
+| `１＋２` `3×4` `12÷4` | Full-width digits and `× ÷ −` are accepted as typed | 全角数字や `× ÷ −` もそのまま使えます |
+
+> Expressions are parsed by elecxzy itself — nothing is passed to a JavaScript evaluator. / 数式は elecxzy 自身が解析します。JavaScript の評価系には一切渡していません。
 
 ### Undo & Redo / アンドゥ・リドゥ
 | Keys / キー | Command / コマンド | Description (English) | 説明 (日本語) |

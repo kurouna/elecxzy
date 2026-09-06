@@ -1557,6 +1557,14 @@
             を付ければ保存先をミニバッファで指定できます。</p>
         </div>
         <div class="fg-item">
+          <div class="fg-icon">🧮</div>
+          <h3>電卓</h3>
+          <p><code style="font-family:var(--mono);font-size:11px;">C-x * q</code>
+            でミニバッファに数式を打つと、エコー行に答えが出ます。<code style="font-family:var(--mono);font-size:11px;">C-x * e</code>
+            は文書中の数式をその場で計算結果に置き換え、<code style="font-family:var(--mono);font-size:11px;">C-x * s</code>
+            は選択範囲（矩形選択なら表の 1 列）の数値を合計し、平均・中央値・標準偏差や、四分位数まで含む一覧も出せます。<code style="font-family:var(--mono);font-size:11px;">C-x * x</code> などで選択範囲の整数を 16 進・2 進・8 進・10 進へ書き換えることもできます。ビット演算・階乗・16 進 / 2 進リテラル・三角関数に対応し、解析は elecxzy 自身が行います。</p>
+        </div>
+        <div class="fg-item">
           <div class="fg-icon">🗂</div>
           <h3>ワークスペース</h3>
           <p>複数フォルダをまとめて管理します。<code style="font-family:var(--mono);font-size:11px;">.code-workspace</code>
@@ -1977,6 +1985,19 @@
             </div>
             <div class="kb-row">
               <div class="kb-keys"><kbd>M-/</kbd></div><span class="kb-desc">動的単語補完</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-x * q</kbd></div><span class="kb-desc">電卓（ミニバッファ）</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-x * e</kbd><span
+                  style="color:var(--text-3);font-size:11px;">/</span><kbd>C-x * s</kbd></div><span class="kb-desc">数式を計算結果に /
+                範囲の合計</span>
+            </div>
+            <div class="kb-row">
+              <div class="kb-keys"><kbd>C-x * a</kbd><span
+                  style="color:var(--text-3);font-size:11px;">/</span><kbd>C-x * t</kbd></div><span class="kb-desc">範囲の平均 /
+                統計の一覧</span>
             </div>
           </div>
           <div class="kb-group">
