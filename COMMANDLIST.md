@@ -68,6 +68,7 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
     - [Display & Appearance / 表示と外観](#display--appearance--表示と外観)
     - [Editing Behavior / 編集動作](#editing-behavior--編集動作)
     - [Files & Saving / ファイルと保存](#files--saving--ファイルと保存)
+    - [PDF Export / PDF 出力](#pdf-export--pdf-出力)
     - [Cursor & Effects / カーソルと演出](#cursor--effects--カーソルと演出)
     - [DateTime Format Tokens / 日時フォーマットトークン](#datetime-format-tokens--日時フォーマットトークン)
 - [Integrations / 連携](#integrations--連携)
@@ -93,6 +94,7 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
 | `M-x` | `license` | Show license information | ライセンス情報を表示します |
 | `M-x` | `version` | Show version information | バージョン情報を表示します |
 | `M-x` | `elecxzy-uptime` | Show uptime since this elecxzy instance was started (Emacs `emacs-uptime` compatible) | この elecxzy 起動からの経過時間を表示します (Emacs `emacs-uptime` 互換) |
+| `M-h` | `apropos-command` | List commands whose name or description matches a string in an `*Apropos*` buffer (`Enter` runs the command on the cursor line) | コマンド名か説明が一致するコマンドを `*Apropos*` バッファに一覧表示します（`Enter` でカーソル行のコマンドを実行） |
 | `C-x =` | `what-cursor-position` | Show the character at point with its code point, and the position in the buffer | カーソル位置の文字とその文字コード、バッファ内の位置を表示します |
 
 ## Files / ファイル
@@ -605,6 +607,7 @@ A major mode decides how the buffer is syntax-highlighted and outlined. It is ch
 | `M-x` | `preview-markdown` | Preview current Markdown buffer | 現在のMarkdownバッファをプレビューします |
 | `M-x` | `preview-text` | Preview current text buffer with word-wrap at the window edge | 現在のテキストバッファをウィンドウ幅で折り返してプレビューします |
 | `C-c p` | `print-buffer` | Print active buffer | 現在のバッファを印刷します |
+| `M-x` | `export-buffer-to-pdf` | Save the active buffer as a PDF whose text stays selectable; with a prefix argument the destination is typed in the minibuffer instead of a save dialog | 現在のバッファを、文字を選択できる PDF として保存します。前置引数を付けると保存ダイアログではなくミニバッファで保存先を指定します |
 
 ### Web (Experimental / 実験的)
 | Keys / キー | Command / コマンド | Description (English) | 説明 (日本語) |
@@ -674,6 +677,15 @@ A major mode decides how the buffer is syntax-highlighted and outlined. It is ch
 | Current Directory | `set-current-directory` / `get-current-directory` | Working directory used by file prompts, grep and the Filer | ファイル入力・grep・ファイラが基準にするカレントディレクトリ |
 | OS Clipboard Integration | `set-clipboard-integration` / `get-clipboard-integration` | Whether kill and yank also use the OS clipboard | キル・ヤンクを OS のクリップボードと連携させるかどうか |
 | Run in Background | `set-close-to-tray` / `get-close-to-tray` | Closing the window keeps elecxzy resident in the system tray | ウィンドウを閉じてもトレイに常駐させるかどうか |
+
+### PDF Export / PDF 出力
+| Setting / 設定 | Commands / コマンド | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| PDF Page Size | `set-pdf-export-page-size` / `get-pdf-export-page-size` | Paper size used by `export-buffer-to-pdf` (A3/A4/A5/Letter/Legal/Tabloid) | `export-buffer-to-pdf` が使う用紙サイズ（A3/A4/A5/Letter/Legal/Tabloid） |
+| PDF Landscape | `toggle-pdf-export-landscape` / `set-pdf-export-landscape` / `get-pdf-export-landscape` | Whether the exported PDF uses landscape orientation | 書き出す PDF を横向きにするかどうか |
+| PDF Margin (mm) | `set-pdf-export-margin` / `get-pdf-export-margin` | Margin on all four sides of the exported PDF, in millimetres (0-50) | 書き出す PDF の四辺の余白（ミリメートル、0〜50） |
+| PDF Print Background | `toggle-pdf-export-print-background` / `set-pdf-export-print-background` / `get-pdf-export-print-background` | Whether background colours and images are drawn in the exported PDF | 背景色・背景画像を PDF に描くかどうか |
+| PDF Header & Footer | `toggle-pdf-export-header-footer` / `set-pdf-export-header-footer` / `get-pdf-export-header-footer` | Whether the exported PDF carries a file name header and a page number footer | ファイル名のヘッダとページ番号のフッタを付けるかどうか |
 
 ### Cursor & Effects / カーソルと演出
 | Setting / 設定 | Commands / コマンド | Description (English) | 説明 (日本語) |
