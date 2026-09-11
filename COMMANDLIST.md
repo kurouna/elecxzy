@@ -245,11 +245,18 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
 | `C-u C-x * q` | `calc` | Insert the result at point (replacing the region if one is active) | 結果をカーソル位置に挿入します（選択範囲があれば置き換えます） |
 | `C-x * e` | `calc-eval-region` | Replace the selected expression, or the one at point, with its value | 選択した数式（無ければカーソル位置の数式）を計算結果に置き換えます |
 | `C-u C-x * e` | `calc-eval-region` | Keep the expression and append ` = result` after it | 数式を残したまま、後ろに ` = 結果` を追加します |
+| `M-x` | `calc-random` | Ask for a range such as `1..100` and insert a random number, or that many numbers with a prefix argument | `1..100` のような範囲を尋ね、乱数を挿入します（前置引数を付けると、その個数だけ 1 行に 1 つずつ）|
 | `C-x * s` | `calc-sum-region` | Add up every number in the region, with the count and the mean | 選択範囲の数値をすべて合計し、件数と平均も表示します |
 | `C-u C-x * s` | `calc-sum-region` | Insert the total at point as well | 合計をカーソル位置にも挿入します |
 | `C-x * a` | `calc-average-region` | Show the mean of the numbers in the region | 選択範囲の数値の平均を表示します |
 | `C-x * m` | `calc-median-region` | Show the median of the numbers in the region | 選択範囲の数値の中央値を表示します |
 | `C-x * d` | `calc-stddev-region` | Show the sample standard deviation of the numbers in the region | 選択範囲の数値の標準偏差（標本）を表示します |
+| `M-x` | `calc-max-region` | Show the largest number in the region | 選択範囲の最大値を表示します |
+| `M-x` | `calc-min-region` | Show the smallest number in the region | 選択範囲の最小値を表示します |
+| `M-x` | `calc-count-region` | Show how many numbers the region contains | 選択範囲に数値がいくつあるかを表示します |
+| `M-x` | `calc-product-region` | Multiply the numbers in the region together | 選択範囲の数値をすべて掛け合わせます |
+| `M-x` | `calc-variance-region` | Show the sample variance of the numbers in the region | 選択範囲の数値の分散（標本）を表示します |
+| `M-x` | `calc-mode-region` | Show which number appears most often in the region | 選択範囲でいちばん多く出た数値を表示します |
 | `C-x * t` | `calc-stats-region` | Show a full summary in `*Calc Statistics*`: count, sum, mean, median, min, max, range, variance, standard deviation and quartiles | `*Calc Statistics*` に一覧を表示します（件数・合計・平均・中央値・最小・最大・範囲・分散・標準偏差・四分位数） |
 | `C-u C-x * t` | `calc-stats-region` | Insert the summary at point instead of opening the buffer | バッファを開かず、一覧をカーソル位置に挿入します |
 | `C-x * x` | `calc-hex-region` | Rewrite the whole numbers in the region as hexadecimal (`0xFF`) | 選択範囲の整数を 16 進表記（`0xFF`）に書き換えます |
@@ -257,11 +264,11 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
 | `C-x * o` | `calc-octal-region` | Rewrite them as octal (`0o17`) | 8 進表記（`0o17`）に書き換えます |
 | `C-x * n` | `calc-decimal-region` | Rewrite them as plain decimal | 10 進表記に書き換えます |
 
-> The result of every calculator command except `calc-eval-region` also goes to the kill ring, so `C-y` pastes it. The previous answer is available as `ans` in the next expression. / `calc-eval-region` を除く各コマンドの結果はキルリングにも入るので `C-y` で貼れます。直前の答えは次の式で `ans` として参照できます。
+> The result of every calculator command also goes to the kill ring, so `C-y` pastes it — except `calc-eval-region` and `calc-random`, whose answers land in the buffer already. The previous answer is available as `ans` in the next expression. / 各コマンドの結果はキルリングにも入るので `C-y` で貼れます（答えが最初からバッファに入る `calc-eval-region` と `calc-random` は除きます）。直前の答えは次の式で `ans` として参照できます。
 
 > The base conversions read `0x` / `0b` / `0o` as well, so hexadecimal to binary takes one step. Decimals, identifiers such as `utf8`, thousands separators and integers beyond 2^53 are left untouched, and the whole rewrite is a single undo step. / 基数変換は `0x` / `0b` / `0o` も読むので、16 進から 2 進も一度で通ります。小数・`utf8` のような識別子・3 桁区切り・2^53 を超える整数には触れません。書き換え全体は 1 回の undo で戻ります。
 
-> Every aggregate command takes a prefix argument to insert its value at point, and reads a rectangular selection as a single column of a table. / 集計コマンドはいずれも前置引数でカーソル位置に値を挿入でき、矩形選択なら表の 1 列として読みます。
+> The aggregates cover the basic spreadsheet functions — sum, average, median, max, min, count, product, variance, standard deviation and mode. Every one of them takes a prefix argument to insert its value at point, and reads a rectangular selection as a single column of a table. / 集計コマンドは、表計算の基本的な関数（合計・平均・中央値・最大・最小・個数・積・分散・標準偏差・最頻値）をひととおり備えています。いずれも前置引数でカーソル位置に値を挿入でき、矩形選択なら表の 1 列として読みます。
 
 **Rewriting the numbers in the region / 選択範囲の数値を書き換える**
 
@@ -275,8 +282,10 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
 | `M-x` | `calc-scale-region` | Multiply every number by a factor asked for in the minibuffer (an expression is fine) | ミニバッファで尋ねた倍率を全数値に掛けます（式でも書けます） |
 | `M-x` | `calc-tsubo-region` | Convert areas from square metres to tsubo | 面積を平方メートルから坪に換算します |
 | `M-x` | `calc-square-meter-region` | Convert areas from tsubo to square metres | 面積を坪から平方メートルに換算します |
-| `M-x` | `calc-tax-included-region` | Add consumption tax, at 10% or the rate given as a prefix argument | 消費税を加えます（既定 10%、前置引数で税率を指定） |
-| `M-x` | `calc-tax-excluded-region` | Take consumption tax off, at 10% or the rate given as a prefix argument | 消費税を差し引きます（既定 10%、前置引数で税率を指定） |
+| `M-x` | `calc-tax-included-region` | Add consumption tax at 10% | 消費税を加えます（既定 10%） |
+| `C-u 8 M-x` | `calc-tax-included-region` | Add consumption tax at the rate given as a prefix argument | 前置引数で与えた税率で加えます |
+| `C-u M-x` | `calc-tax-included-region` | Ask for the tax rate in the minibuffer | 税率をミニバッファで尋ねます |
+| `M-x` | `calc-tax-excluded-region` | Take consumption tax off at 10%; prefix arguments work as above | 消費税を差し引きます（既定 10%。前置引数は上と同じ） |
 | `M-x` | `calc-withholding-region` | Replace each fee with the Japanese withholding tax due on it | 各報酬額を源泉徴収税額に置き換えます |
 | `M-x` | `calc-factorize-region` | Rewrite each whole number as a product of primes (`2^3 * 3^2 * 5`) | 各整数を素因数分解（`2^3 * 3^2 * 5`）に書き換えます |
 | `M-x` | `calc-fraction-region` | Rewrite each decimal as the simplest fraction that matches it | 各小数を、それに合う最も簡単な分数に書き換えます |
@@ -323,8 +332,20 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
 | `sqrt` `abs` `round` `log` `sin` … | Functions; `round(x, n)` takes digits and `log(x, b)` takes a base | 関数。`round(x, n)` は桁数、`log(x, b)` は底を取れます |
 | `min` `max` `avg` `sum` `gcd` `lcm` `hypot` | Functions taking any number of arguments | 引数をいくつでも取れる関数 |
 | `rad` `deg` | Convert between degrees and radians for the trigonometric functions | 三角関数のための度とラジアンの変換 |
-| `pi` `e` `tau` `phi` `ans` | Constants, and the previous answer | 定数と、直前の答え |
+| `pi` `e` `tau` `phi` | Mathematical constants | 数学定数 |
+| `ans` | The previous answer | 直前の答え |
+| `percent` `permille` `bp` | Ratios — `0.01`, `0.001` and `0.0001` — so `1200*3.5*percent` is 42 and `25*bp` is 0.0025 | 割合。`0.01`・`0.001`・`0.0001` なので `1200*3.5*percent` は 42、`25*bp` は 0.0025 です |
+| `man` `oku` `cho` | 万 `1e4`, 億 `1e8` and 兆 `1e12`, so a statement can be typed as it is read | 万 `1e4`・億 `1e8`・兆 `1e12`。決算の数字を読んだまま打てます |
+| `k` `thousand` `million` `billion` `trillion` | The same scales in English, `1e3` through `1e12` | 同じ桁を英語で。`1e3` から `1e12` まで |
+| `kb` `mb` `gb` `tb` `kib` `mib` `gib` `tib` | Data sizes in bytes, decimal (`1e3` steps) and binary (`1024` steps) | データ量（バイト）。10 進（`1e3` 刻み）と 2 進（`1024` 刻み）の両方 |
+| `minute` `hour` `day` `week` | Spans of time in seconds; months and years vary in length and are deliberately absent | 時間（秒）。長さが一定でない月と年は、あえて置いていません |
+| `tsubo` | Square metres in one tsubo (`400/121`), the same ratio `calc-tsubo-region` uses | 1 坪の平方メートル（`400/121`）。`calc-tsubo-region` と同じ比です |
+| `3百万` `5千` `1,500万` `2.5億` | A magnitude written after the digits — 十 百 千 万 億 兆 — reads as part of the number, and the aggregate commands read it in the buffer too | 数字の後ろに付けた位（十・百・千・万・億・兆）も数値の一部として読みます。集計コマンドもバッファ上の同じ表記を拾います |
 | `１＋２` `3×4` `12÷4` | Full-width digits and `× ÷ −` are accepted as typed | 全角数字や `× ÷ −` もそのまま使えます |
+
+> Constants are limited to values that follow from their own definition. Rates that get revised — consumption tax, exchange rates — are left out, because a stale number frozen into the calculator would not look stale; `calc-tax-included-region` takes its rate as a prefix argument instead — `C-u 8` for 8%, or a bare `C-u` to be asked — and defaults to 10%. / 定数は定義から動かない値だけにしてあります。消費税率や為替レートのような改定される数は、電卓に焼き込むと古くなったことが画面から見えないため置いていません。`calc-tax-included-region` は税率を前置引数で受け取ります（8% なら `C-u 8`、数値なしの `C-u` なら尋ねます。既定は 10%）。
+
+> A magnitude only counts when digits come right before it, so the 千 in 千葉 and the 百 in 百貨店 stay prose. Full kanji numerals (三百万) are not read. / 位として読むのは直前に数字があるときだけなので、「千葉」の千や「百貨店」の百は地の文のままです。漢数字だけの表記（三百万）は読みません。
 
 > Expressions are parsed by elecxzy itself — nothing is passed to a JavaScript evaluator. / 数式は elecxzy 自身が解析します。JavaScript の評価系には一切渡していません。
 

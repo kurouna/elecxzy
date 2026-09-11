@@ -1128,11 +1128,18 @@ footer{
                 <tr><td><kbd>C-u C-u C-u M-x delete-duplicate-lines</kbd></td><td class="desc">空行は重複していても残します</td></tr>
                 <tr><td><kbd>M-x align-regexp</kbd></td><td class="desc">入力した正規表現の最初のマッチが同じ桁に来るよう、選択範囲の行を揃えます（<code>=</code>、<code>:</code>、<code>//</code> など）</td></tr>
                 <tr><td><kbd>C-x * q</kbd></td><td class="desc">ミニバッファで数式を尋ね、結果をエコー行に表示します（<kbd>C-u</kbd> を付けるとカーソル位置に挿入します）</td></tr>
+                <tr><td><kbd>C-x * q</kbd> の式</td><td class="desc">四則・<code>^</code>・ビット演算・階乗・16 進 / 2 進 / 8 進リテラル・<code>sqrt</code> などの関数に加え、定数 <code>pi</code> <code>e</code> <code>tau</code> <code>phi</code>、割合の <code>percent</code> <code>permille</code> <code>bp</code>、桁の <code>man</code> <code>oku</code> <code>cho</code> <code>k</code> <code>thousand</code> <code>million</code> <code>billion</code> <code>trillion</code>、データ量の <code>kb</code>〜<code>tb</code> と <code>kib</code>〜<code>tib</code>、秒で表す時間の <code>minute</code> <code>hour</code> <code>day</code> <code>week</code>、面積の <code>tsubo</code>、直前の答えの <code>ans</code> が使えます。<code>3百万</code> <code>5千</code> <code>1,500万</code> のように数字の後ろに位を付けた表記も 1 つの数値として読みます（位として読むのは直前に数字があるときだけなので、「千葉」の千は地の文のままです）</td></tr>
                 <tr><td><kbd>C-x * e</kbd></td><td class="desc">選択した数式（無ければカーソル位置の数式）を計算結果に置き換えます。<kbd>C-u</kbd> を付けると数式を残して <code> = 結果</code> を追加します</td></tr>
                 <tr><td><kbd>C-x * s</kbd></td><td class="desc">選択範囲の数値をすべて合計します（矩形選択なら表の 1 列だけを合計できます）</td></tr>
                 <tr><td><kbd>C-x * a</kbd></td><td class="desc">選択範囲の数値の平均を表示します</td></tr>
                 <tr><td><kbd>C-x * m</kbd></td><td class="desc">選択範囲の数値の中央値を表示します</td></tr>
                 <tr><td><kbd>C-x * d</kbd></td><td class="desc">選択範囲の数値の標準偏差（標本）を表示します</td></tr>
+                <tr><td><kbd>M-x calc-max-region</kbd></td><td class="desc">選択範囲の最大値を表示します（最小値は <code>calc-min-region</code>）</td></tr>
+                <tr><td><kbd>M-x calc-count-region</kbd></td><td class="desc">選択範囲に数値がいくつあるかを表示します</td></tr>
+                <tr><td><kbd>M-x calc-product-region</kbd></td><td class="desc">選択範囲の数値をすべて掛け合わせます</td></tr>
+                <tr><td><kbd>M-x calc-variance-region</kbd></td><td class="desc">選択範囲の数値の分散（標本）を表示します</td></tr>
+                <tr><td><kbd>M-x calc-mode-region</kbd></td><td class="desc">選択範囲でいちばん多く出た数値を表示します</td></tr>
+                <tr><td><kbd>M-x calc-random</kbd></td><td class="desc"><code>1..100</code> のような範囲を尋ね、乱数を挿入します（小数点を書けば実数、前置引数でその個数だけ 1 行に 1 つずつ）</td></tr>
                 <tr><td><kbd>C-x * t</kbd></td><td class="desc">件数・合計・平均・中央値・最小・最大・範囲・分散・標準偏差・四分位数を <code>*Calc Statistics*</code> にまとめて表示します</td></tr>
                 <tr><td><kbd>C-x * x</kbd></td><td class="desc">選択範囲の整数を 16 進表記（<code>0xFF</code>）に書き換えます</td></tr>
                 <tr><td><kbd>C-x * b</kbd></td><td class="desc">選択範囲の整数を 2 進表記（<code>0b1010</code>）に書き換えます</td></tr>
@@ -1144,7 +1151,7 @@ footer{
                 <tr><td><kbd>M-x calc-round-region</kbd></td><td class="desc">各数値を丸めます（桁数は前置引数で指定）</td></tr>
                 <tr><td><kbd>M-x calc-scale-region</kbd></td><td class="desc">ミニバッファで尋ねた倍率を全数値に掛けます（式でも書けます）</td></tr>
                 <tr><td><kbd>M-x calc-tsubo-region</kbd></td><td class="desc">面積を平方メートルから坪に換算します（逆は <code>calc-square-meter-region</code>）</td></tr>
-                <tr><td><kbd>M-x calc-tax-included-region</kbd></td><td class="desc">消費税を加えます（既定 10%、前置引数で税率。逆は <code>calc-tax-excluded-region</code>）</td></tr>
+                <tr><td><kbd>M-x calc-tax-included-region</kbd></td><td class="desc">消費税を加えます（既定 10%。<kbd>C-u 8</kbd> のように前置引数で税率を指定、数値なしの <kbd>C-u</kbd> ならミニバッファで尋ねます。逆は <code>calc-tax-excluded-region</code>）</td></tr>
                 <tr><td><kbd>M-x calc-withholding-region</kbd></td><td class="desc">各報酬額を源泉徴収税額（10.21% / 100 万円超の部分は 20.42%）に置き換えます</td></tr>
                 <tr><td><kbd>M-x calc-factorize-region</kbd></td><td class="desc">各整数を素因数分解（<code>2^3 * 3^2 * 5</code>）に書き換えます</td></tr>
                 <tr><td><kbd>M-x calc-fraction-region</kbd></td><td class="desc">各小数を、それに合う最も簡単な分数に書き換えます</td></tr>
