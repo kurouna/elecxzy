@@ -745,6 +745,9 @@ A major mode decides how the buffer is syntax-highlighted and outlined. It is ch
 | `forest-theme` | Set color theme to Forest | カラーテーマを Forest に設定します |
 | `slate-dark-theme` | Set color theme to Slate Dark | カラーテーマを Slate Dark に設定します |
 | `slate-light-theme` | Set color theme to Slate Light | カラーテーマを Slate Light に設定します |
+| `terminal-green-theme` | Set color theme to Terminal Green (green phosphor CRT console) | カラーテーマを Terminal Green（緑色蛍光体の CRT コンソール）に設定します |
+| `terminal-amber-theme` | Set color theme to Terminal Amber (amber phosphor CRT console) | カラーテーマを Terminal Amber（アンバー蛍光体の CRT コンソール）に設定します |
+| `terminal-white-theme` | Set color theme to Terminal White (white phosphor CRT console) | カラーテーマを Terminal White（白色蛍光体の CRT コンソール）に設定します |
 | `default-theme` | Set color theme to default | カラーテーマをデフォルトに戻します |
 
 ### Display & Appearance / 表示と外観
@@ -805,6 +808,7 @@ A major mode decides how the buffer is syntax-highlighted and outlined. It is ch
 | Cursor VFX | `set-cursor-vfx` / `get-cursor-vfx` | Visual effect that follows the cursor. `C-u N` picks the Elenyan cat when Elenyan is selected (1=kitten, 2=black, 3=white) | カーソルに追従する視覚効果。Elenyan 選択時は `C-u N` で猫の種類を選べます（1=子猫、2=黒猫、3=白猫） |
 | Macro VFX | `set-macro-vfx` / `get-macro-vfx` | Visual effect shown while a keyboard macro runs | マクロ実行中に表示する視覚効果 |
 | Smooth Cursor | `set-smooth-cursor` / `get-smooth-cursor` | Animated cursor movement between positions | カーソル移動を滑らかにアニメーションさせるかどうか |
+| CRT Screen Effect | `crt-effect-mode` / `set-crt-effect-mode` / `get-crt-effect-mode` | Cathode ray tube look over the whole window — scanlines, a vignette, and phosphor glow on dark themes. Turns itself on with the `terminal-*-theme` themes and off with any other theme | ウィンドウ全体にかけるブラウン管風の表示（走査線・四隅の落ち込み、暗い背景のテーマでは蛍光体のにじみも）。`terminal-*-theme` を選ぶと自動で ON、他のテーマを選ぶと自動で OFF になります |
 
 Each VFX style also has its own command and key: / 各スタイルには専用のコマンドとキーがあります:
 
