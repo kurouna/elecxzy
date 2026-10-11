@@ -636,15 +636,15 @@ footer{
         </div>
         <div class="card">
           <div class="card-hd"><span class="cd" style="background:#f87171"></span>最近使ったファイル — C-c c</div>
-          <div class="card-body"><p>最近開いたファイルを一覧。<kbd>Space</kbd> でプレビュー。パス表示付き。<kbd>m</kbd> でブックマーク (ピン止め) のトグル。</p></div>
+          <div class="card-body"><p>最近開いたファイルを一覧。<kbd>Space</kbd> でプレビュー。パス表示付き。<kbd>m</kbd> でブックマーク のトグル。</p></div>
         </div>
         <div class="card">
           <div class="card-hd"><span class="cd" style="background:#fbbf24"></span>ブックマーク — C-c b / C-x r l</div>
-          <div class="card-body"><p>ピン止めしたファイルを長期保存。最近使ったファイル / ファイラ / ワークスペース上で <kbd>m</kbd> を押すと追加、ブックマーク サイドバー内 <kbd>m</kbd> で解除。<kbd>C-x r m</kbd> (<code>bookmark-set</code>) で現在のファイルを追加、<kbd>M-x bookmark-toggle</kbd> でトグル。キーバインドは emacs <code>bookmark.el</code> 互換。</p></div>
+          <div class="card-body"><p>ブックマークしたファイルを長期保存。最近使ったファイル / ファイラ / ワークスペース上で <kbd>m</kbd> を押すと追加、ブックマーク サイドバー内 <kbd>m</kbd> で解除。<kbd>C-x r m</kbd> (<code>bookmark-set</code>) で現在のファイルを追加、<kbd>M-x bookmark-toggle</kbd> でトグル。キーバインドは emacs <code>bookmark.el</code> 互換。</p></div>
         </div>
         <div class="card">
           <div class="card-hd"><span class="cd" style="background:#34d399"></span>ワークスペース — C-c w / C-,</div>
-          <div class="card-body"><p>複数フォルダをまとめて管理。<code style="font-family:var(--mono);font-size:11px;">.code-workspace</code> 形式のファイルに対応しています。</p></div>
+          <div class="card-body"><p>複数フォルダをまとめて管理。<code style="font-family:var(--mono);font-size:11px;">.code-workspace</code> 形式のファイルに対応しています。<kbd>s</kbd> でピン留めすると、エディタの横に表示したまま両方を操作できます。</p></div>
         </div>
         <div class="card">
           <div class="card-hd"><span class="cd" style="background:#4ade80"></span>Git — C-c g</div>
@@ -1132,7 +1132,7 @@ footer{
                 <tr><td><kbd>C-u C-u C-u M-x delete-duplicate-lines</kbd></td><td class="desc">空行は重複していても残します</td></tr>
                 <tr><td><kbd>M-x align-regexp</kbd></td><td class="desc">入力した正規表現の最初のマッチが同じ桁に来るよう、選択範囲の行を揃えます（<code>=</code>、<code>:</code>、<code>//</code> など）</td></tr>
                 <tr><td><kbd>C-x * q</kbd></td><td class="desc">ミニバッファで数式を尋ね、結果をエコー行に表示します（<kbd>C-u</kbd> を付けるとカーソル位置に挿入します）</td></tr>
-                <tr><td><kbd>C-x * q</kbd> の式</td><td class="desc">四則・<code>^</code>・ビット演算・階乗・16 進 / 2 進 / 8 進リテラル・<code>sqrt</code> などの関数に加え、定数 <code>pi</code> <code>e</code> <code>tau</code> <code>phi</code>、割合の <code>percent</code> <code>permille</code> <code>bp</code>、桁の <code>man</code> <code>oku</code> <code>cho</code> <code>k</code> <code>thousand</code> <code>million</code> <code>billion</code> <code>trillion</code>、データ量の <code>kb</code>〜<code>tb</code> と <code>kib</code>〜<code>tib</code>、秒で表す時間の <code>minute</code> <code>hour</code> <code>day</code> <code>week</code>、面積の <code>tsubo</code>、直前の答えの <code>ans</code> が使えます。<code>3百万</code> <code>5千</code> <code>1,500万</code> のように数字の後ろに位を付けた表記も 1 つの数値として読みます（位として読むのは直前に数字があるときだけなので、「千葉」の千は地の文のままです）</td></tr>
+                <tr><td><kbd>C-x * q</kbd> の式</td><td class="desc">四則・<code>^</code>・ビット演算・階乗・16 進 / 2 進 / 8 進リテラル・<code>sqrt</code> などの関数に加え、定数 <code>pi</code> <code>e</code> <code>tau</code> <code>phi</code>、割合の <code>percent</code> <code>permille</code> <code>bp</code>、桁の <code>man</code> <code>oku</code> <code>cho</code> <code>k</code> <code>thousand</code> <code>million</code> <code>billion</code> <code>trillion</code>、データ量の <code>kb</code>〜<code>tb</code> と <code>kib</code>〜<code>tib</code>、秒で表す時間の <code>minute</code> <code>hour</code> <code>day</code> <code>week</code>、面積の <code>tsubo</code>、直前の答えの <code>ans</code> が使えます。<code>3百万</code> <code>5千</code> <code>1,500万</code> のように数字の後ろに位を付けた表記も 1 つの数値として読みます（位として読むのは直前に数字があるときだけなので、「千葉」の千は地の文のままです）。<code>1,000 + 2,310</code> のような 3 桁区切りも読みます（関数の括弧の中ではカンマは引数の区切りです）</td></tr>
                 <tr><td><kbd>C-x * e</kbd></td><td class="desc">選択した数式（無ければカーソル位置の数式）を計算結果に置き換えます。<kbd>C-u</kbd> を付けると数式を残して <code> = 結果</code> を追加します</td></tr>
                 <tr><td><kbd>C-x * s</kbd></td><td class="desc">選択範囲の数値をすべて合計します（矩形選択なら表の 1 列だけを合計できます）</td></tr>
                 <tr><td><kbd>C-x * a</kbd></td><td class="desc">選択範囲の数値の平均を表示します</td></tr>
@@ -1305,8 +1305,8 @@ footer{
               <tbody>
                 <tr><td><kbd>C-x d</kbd> / <kbd>C-c d</kbd></td><td class="desc">ファイラサイドバーを開閉します</td></tr>
                 <tr><td><kbd>Enter</kbd> / <kbd>Click</kbd> / <kbd>f</kbd></td><td class="desc">ファイルを開きます</td></tr>
-                <tr><td><kbd>C-n</kbd> / <kbd>j</kbd> / <kbd>n</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
-                <tr><td><kbd>C-p</kbd> / <kbd>k</kbd> / <kbd>p</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
+                <tr><td><kbd>C-n</kbd> / <kbd>j</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
+                <tr><td><kbd>C-p</kbd> / <kbd>k</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
                 <tr><td><kbd>Space</kbd> / <kbd>Tab</kbd> / <kbd>C-f</kbd> / <kbd>l</kbd> / <kbd>Right</kbd></td><td class="desc">フォルダを展開・子階層へ移動 / ファイルをプレビュー（閉じない）します</td></tr>
                 <tr><td><kbd>C-b</kbd> / <kbd>h</kbd> / <kbd>b</kbd> / <kbd>Left</kbd></td><td class="desc">フォルダを折り畳む / 親階層へ移動します</td></tr>
                 <tr><td><kbd>u</kbd></td><td class="desc">1つ上の親フォルダをルート階層に設定します</td></tr>
@@ -1316,7 +1316,7 @@ footer{
                 <tr><td><kbd>c</kbd></td><td class="desc">選択中のフォルダ内に新しい空ファイルを作成します</td></tr>
                 <tr><td><kbd>C</kbd> (Shift+<kbd>c</kbd>)</td><td class="desc">選択中のフォルダ内に新しいフォルダを作成します</td></tr>
                 <tr><td><kbd>R</kbd> (Shift+<kbd>r</kbd>)</td><td class="desc">選択中のファイル・フォルダの名前を変更します（ミニバッファに現在の名前が表示されます）</td></tr>
-                <tr><td><kbd>m</kbd></td><td class="desc">フォーカス中のファイルをブックマーク (ピン止め) します／解除します（ディレクトリ行では無視されます）</td></tr>
+                <tr><td><kbd>m</kbd></td><td class="desc">フォーカス中のファイルをブックマーク します／解除します（ディレクトリ行では無視されます）</td></tr>
                 <tr><td><kbd>e</kbd></td><td class="desc">フォーカス中のファイル／フォルダの場所をエクスプローラ（ファイルマネージャ）で表示します（ドライブ一覧では無視されます）</td></tr>
                 <tr><td><kbd>C-v</kbd></td><td class="desc">1ページ分下にスクロールします</td></tr>
                 <tr><td><kbd>M-v</kbd></td><td class="desc">1ページ分上にスクロールします</td></tr>
@@ -1339,7 +1339,8 @@ footer{
             <table class="cmd-table">
               <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
               <tbody>
-                <tr><td><kbd>C-c w</kbd> / <kbd>C-,</kbd></td><td class="desc">ワークスペースサイドバーを開閉します</td></tr>
+                <tr><td><kbd>C-c w</kbd> / <kbd>C-,</kbd></td><td class="desc">ワークスペースサイドバーを開閉します。ピン留め中はエディタとの間でキーボードを移します</td></tr>
+                <tr><td><kbd>s</kbd>（サイドバー内）</td><td class="desc">サイドバーをピン留め／解除します（エディタの横に表示したままにします。ピン留め中は右端のドラッグで幅を変更、ダブルクリックで 300px に戻ります）</td></tr>
                 <tr><td><kbd>M-x open-workspace</kbd></td><td class="desc">VS Code形式のワークスペースファイルを開きます</td></tr>
                 <tr><td><kbd>M-x save-workspace</kbd></td><td class="desc">ワークスペースを上書き保存します</td></tr>
                 <tr><td><kbd>M-x save-workspace-as</kbd></td><td class="desc">ワークスペースを名前を付けて保存します</td></tr>
@@ -1347,17 +1348,17 @@ footer{
                 <tr><td><kbd>M-x close-workspace</kbd></td><td class="desc">ワークスペースを閉じます</td></tr>
                 <tr><td><kbd>Drag & Drop Folder</kbd></td><td class="desc">フォルダをサイドバーにドロップして追加します</td></tr>
                 <tr><td><kbd>a</kbd></td><td class="desc">フォルダをワークスペースに追加します</td></tr>
-                <tr><td><kbd>Enter</kbd> / <kbd>Click</kbd> / <kbd>f</kbd></td><td class="desc">ファイルを開きます</td></tr>
+                <tr><td><kbd>Enter</kbd> / <kbd>Click</kbd> / <kbd>f</kbd></td><td class="desc">ファイルを開きます（ピン留め中はキーボードがエディタへ移ります）</td></tr>
                 <tr><td><kbd>Space</kbd> / <kbd>Tab</kbd> / <kbd>C-f</kbd> / <kbd>l</kbd> / <kbd>Right</kbd></td><td class="desc">フォルダを展開・子階層へ移動 / ファイルをプレビュー（閉じない）します</td></tr>
                 <tr><td><kbd>C-b</kbd> / <kbd>h</kbd> / <kbd>b</kbd> / <kbd>Left</kbd></td><td class="desc">フォルダを折り畳む / 親階層へ移動します</td></tr>
-                <tr><td><kbd>C-n</kbd> / <kbd>j</kbd> / <kbd>n</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
-                <tr><td><kbd>C-p</kbd> / <kbd>k</kbd> / <kbd>p</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
+                <tr><td><kbd>C-n</kbd> / <kbd>j</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
+                <tr><td><kbd>C-p</kbd> / <kbd>k</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
                 <tr><td><kbd>g</kbd></td><td class="desc">ツリー（ディレクトリ情報）を最新状態に再読み込みします</td></tr>
                 <tr><td><kbd>d</kbd></td><td class="desc">ルートフォルダをワークスペースから除去、または実ファイルをゴミ箱へ移動します</td></tr>
                 <tr><td><kbd>c</kbd></td><td class="desc">選択中のフォルダ内に新しい空ファイルを作成します</td></tr>
                 <tr><td><kbd>C</kbd> (Shift+<kbd>c</kbd>)</td><td class="desc">選択中のフォルダ内に新しいフォルダを作成します</td></tr>
                 <tr><td><kbd>R</kbd> (Shift+<kbd>r</kbd>)</td><td class="desc">選択中のファイル・フォルダの名前を変更します（ミニバッファに現在の名前が表示されます）</td></tr>
-                <tr><td><kbd>m</kbd></td><td class="desc">フォーカス中のファイルをブックマーク (ピン止め) します／解除します（ディレクトリ行・root では無視されます）</td></tr>
+                <tr><td><kbd>m</kbd></td><td class="desc">フォーカス中のファイルをブックマーク します／解除します（ディレクトリ行・root では無視されます）</td></tr>
                 <tr><td><kbd>e</kbd></td><td class="desc">フォーカス中のファイル／フォルダ（root 含む）の場所をエクスプローラ（ファイルマネージャ）で表示します（missing 行では無視されます）</td></tr>
                 <tr><td><kbd>C-v</kbd></td><td class="desc">1ページ分下にスクロールします</td></tr>
                 <tr><td><kbd>M-v</kbd></td><td class="desc">1ページ分上にスクロールします</td></tr>
@@ -1365,7 +1366,7 @@ footer{
                 <tr><td><kbd>M-></kbd></td><td class="desc">リストの末尾に移動します</td></tr>
                 <tr><td><kbd>C-l</kbd></td><td class="desc">フォーカス項目が中心になるよう画面を再配置します</td></tr>
                 <tr><td><kbd>Q</kbd></td><td class="desc">ワークスペースを閉じます</td></tr>
-                <tr><td><kbd>C-g</kbd> / <kbd>C-q</kbd> / <kbd>q</kbd> / <kbd>Esc</kbd></td><td class="desc">サイドバーを閉じます</td></tr>
+                <tr><td><kbd>C-g</kbd> / <kbd>C-q</kbd> / <kbd>q</kbd> / <kbd>Esc</kbd></td><td class="desc">サイドバーを閉じます（ピン留め中は閉じずにエディタへ戻ります）</td></tr>
               </tbody>
             </table>
           </div>
@@ -1383,10 +1384,10 @@ footer{
                 <tr><td><kbd>C-c c</kbd></td><td class="desc">最近使ったファイル表示を開閉します</td></tr>
                 <tr><td><kbd>Enter</kbd> / <kbd>f</kbd></td><td class="desc">ファイルを開きます</td></tr>
                 <tr><td><kbd>Space</kbd> / <kbd>Tab</kbd> / <kbd>C-f</kbd> / <kbd>l</kbd> / <kbd>Right</kbd></td><td class="desc">ファイルをプレビュー（閉じない）します</td></tr>
-                <tr><td><kbd>m</kbd></td><td class="desc">フォーカス中のファイルをブックマーク (ピン止め) します／解除します</td></tr>
+                <tr><td><kbd>m</kbd></td><td class="desc">フォーカス中のファイルをブックマーク します／解除します</td></tr>
                 <tr><td><kbd>e</kbd></td><td class="desc">フォーカス中のファイルの場所をエクスプローラ（ファイルマネージャ）で表示します</td></tr>
-                <tr><td><kbd>C-n</kbd> / <kbd>j</kbd> / <kbd>n</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
-                <tr><td><kbd>C-p</kbd> / <kbd>k</kbd> / <kbd>p</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
+                <tr><td><kbd>C-n</kbd> / <kbd>j</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
+                <tr><td><kbd>C-p</kbd> / <kbd>k</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
                 <tr><td><kbd>C-v</kbd></td><td class="desc">1ページ分下にスクロールします</td></tr>
                 <tr><td><kbd>M-v</kbd></td><td class="desc">1ページ分上にスクロールします</td></tr>
                 <tr><td><kbd>M-<</kbd></td><td class="desc">履歴の先頭に移動します</td></tr>
@@ -1409,13 +1410,13 @@ footer{
               <tbody>
                 <tr><td><kbd>C-c b</kbd> / <kbd>C-x r l</kbd> / <kbd>M-x bookmark-bmenu-list</kbd> / <kbd>M-x browse-bookmarks</kbd></td><td class="desc">ブックマーク・サイドバーを開閉します (emacs 互換)</td></tr>
                 <tr><td><kbd>C-x r m</kbd> / <kbd>M-x bookmark-set</kbd></td><td class="desc">現在開いているファイルをブックマークします（既に登録済みならミニバッファに通知のみ、emacs 互換）</td></tr>
-                <tr><td><kbd>M-x bookmark-toggle</kbd></td><td class="desc">現在開いているファイルをブックマーク (ピン止め) します／解除します</td></tr>
+                <tr><td><kbd>M-x bookmark-toggle</kbd></td><td class="desc">現在開いているファイルをブックマーク します／解除します</td></tr>
                 <tr><td><kbd>Enter</kbd> / <kbd>f</kbd></td><td class="desc">ファイルを開きます（<code>.code-workspace</code> はワークスペースとして開きます）</td></tr>
                 <tr><td><kbd>Space</kbd> / <kbd>Tab</kbd> / <kbd>C-f</kbd> / <kbd>l</kbd> / <kbd>Right</kbd></td><td class="desc">ファイルをプレビュー（閉じない）します</td></tr>
                 <tr><td><kbd>m</kbd></td><td class="desc">フォーカス中のブックマークを解除します</td></tr>
                 <tr><td><kbd>e</kbd></td><td class="desc">フォーカス中のファイルの場所をエクスプローラ（ファイルマネージャ）で表示します</td></tr>
-                <tr><td><kbd>C-n</kbd> / <kbd>j</kbd> / <kbd>n</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
-                <tr><td><kbd>C-p</kbd> / <kbd>k</kbd> / <kbd>p</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
+                <tr><td><kbd>C-n</kbd> / <kbd>j</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
+                <tr><td><kbd>C-p</kbd> / <kbd>k</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
                 <tr><td><kbd>C-v</kbd></td><td class="desc">1ページ分下にスクロールします</td></tr>
                 <tr><td><kbd>M-v</kbd></td><td class="desc">1ページ分上にスクロールします</td></tr>
                 <tr><td><kbd>M-<</kbd></td><td class="desc">一覧の先頭に移動します</td></tr>
@@ -1436,12 +1437,13 @@ footer{
             <table class="cmd-table">
               <thead><tr><th>キー / コマンド</th><th>動作</th></tr></thead>
               <tbody>
-                <tr><td><kbd>C-c g</kbd> / <kbd>M-x toggle-git-sidebar</kbd></td><td class="desc">Git（ソース管理）サイドバーを開閉します</td></tr>
+                <tr><td><kbd>C-c g</kbd> / <kbd>M-x toggle-git-sidebar</kbd></td><td class="desc">Git（ソース管理）サイドバーを開閉します。ピン留め中はエディタとの間でキーボードを移します</td></tr>
+                <tr><td><kbd>s</kbd>（サイドバー内）</td><td class="desc">サイドバーをピン留め／解除します（差分は隣のウィンドウに表示されます）</td></tr>
                 <tr><td><kbd>Space</kbd> / <kbd>Tab</kbd> / <kbd>l</kbd> / <kbd>Right</kbd></td><td class="desc">セクション・コミットを展開、またはフォーカス中ファイルの差分をプレビュー（前後数行のコンパクト表示）します</td></tr>
                 <tr><td><kbd>Enter</kbd> / <kbd>f</kbd></td><td class="desc">セクション・コミットを展開、またはフォーカス中ファイルの差分をファイル全体（全行を文脈として）表示します</td></tr>
                 <tr><td><kbd>C-b</kbd> / <kbd>h</kbd> / <kbd>b</kbd> / <kbd>Left</kbd></td><td class="desc">セクション・コミットを折り畳む / 親へ移動します</td></tr>
-                <tr><td><kbd>C-n</kbd> / <kbd>n</kbd> / <kbd>Down</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
-                <tr><td><kbd>C-p</kbd> / <kbd>p</kbd> / <kbd>Up</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
+                <tr><td><kbd>C-n</kbd> / <kbd>Down</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
+                <tr><td><kbd>C-p</kbd> / <kbd>Up</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
                 <tr><td><kbd>C-v</kbd> / <kbd>M-v</kbd></td><td class="desc">下／上にスクロールします</td></tr>
                 <tr><td><kbd>M-<</kbd> / <kbd>M-></kbd></td><td class="desc">先頭／末尾に移動します</td></tr>
                 <tr><td><kbd>c</kbd></td><td class="desc">コミットメッセージ入力欄にフォーカスします</td></tr>
@@ -1454,7 +1456,7 @@ footer{
                 <tr><td><kbd>t</kbd></td><td class="desc">メッセージ欄のテキストを名前にした軽量タグを HEAD に作成します</td></tr>
                 <tr><td><kbd>T</kbd></td><td class="desc">すべてのタグをリモートへ push します（git push --tags）</td></tr>
                 <tr><td><kbd>g</kbd></td><td class="desc">Git の状態と履歴を最新に再取得します</td></tr>
-                <tr><td><kbd>C-g</kbd> / <kbd>q</kbd> / <kbd>Esc</kbd></td><td class="desc">サイドバーを閉じます</td></tr>
+                <tr><td><kbd>C-g</kbd> / <kbd>q</kbd> / <kbd>Esc</kbd></td><td class="desc">サイドバーを閉じます（ピン留め中は閉じずにエディタへ戻ります）</td></tr>
               </tbody>
             </table>
           </div>
@@ -1472,8 +1474,8 @@ footer{
                 <tr><td><kbd>C-c o</kbd></td><td class="desc">アウトライン表示を開閉します。Markdown / HTML は見出し、TypeScript / JavaScript / Python / Go / Rust / Java / Kotlin / Dart / C# / Swift / PHP / CSS / SCSS / Less は宣言を表示します (50,000行まで)</td></tr>
                 <tr><td><kbd>Enter</kbd> / <kbd>f</kbd></td><td class="desc">見出しへジャンプして閉じます</td></tr>
                 <tr><td><kbd>Space</kbd> / <kbd>Tab</kbd> / <kbd>C-f</kbd> / <kbd>l</kbd> / <kbd>Right</kbd></td><td class="desc">見出しを展開 / 子要素へ移動します</td></tr>
-                <tr><td><kbd>C-n</kbd> / <kbd>j</kbd> / <kbd>n</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
-                <tr><td><kbd>C-p</kbd> / <kbd>k</kbd> / <kbd>p</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
+                <tr><td><kbd>C-n</kbd> / <kbd>j</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
+                <tr><td><kbd>C-p</kbd> / <kbd>k</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
                 <tr><td><kbd>C-v</kbd></td><td class="desc">1ページ分下にスクロールします</td></tr>
                 <tr><td><kbd>M-v</kbd></td><td class="desc">1ページ分上にスクロールします</td></tr>
                 <tr><td><kbd>M-<</kbd></td><td class="desc">リストの先頭に移動します</td></tr>
@@ -1496,8 +1498,8 @@ footer{
               <tbody>
                 <tr><td><kbd>C-c y</kbd></td><td class="desc">キルリング表示を開閉します</td></tr>
                 <tr><td><kbd>Enter</kbd> / <kbd>f</kbd></td><td class="desc">選択したテキストを挿入して閉じます</td></tr>
-                <tr><td><kbd>C-n</kbd> / <kbd>j</kbd> / <kbd>n</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
-                <tr><td><kbd>C-p</kbd> / <kbd>k</kbd> / <kbd>p</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
+                <tr><td><kbd>C-n</kbd> / <kbd>j</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
+                <tr><td><kbd>C-p</kbd> / <kbd>k</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
                 <tr><td><kbd>C-v</kbd></td><td class="desc">1ページ分下にスクロールします</td></tr>
                 <tr><td><kbd>M-v</kbd></td><td class="desc">1ページ分上にスクロールします</td></tr>
                 <tr><td><kbd>M-<</kbd></td><td class="desc">リストの先頭に移動します</td></tr>
@@ -1520,8 +1522,8 @@ footer{
               <tbody>
                 <tr><td><kbd>C-c r</kbd></td><td class="desc">レジスタ表示を開閉します</td></tr>
                 <tr><td><kbd>Enter</kbd> / <kbd>f</kbd></td><td class="desc">レジスタの内容へジャンプまたは挿入して閉じます</td></tr>
-                <tr><td><kbd>C-n</kbd> / <kbd>j</kbd> / <kbd>n</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
-                <tr><td><kbd>C-p</kbd> / <kbd>k</kbd> / <kbd>p</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
+                <tr><td><kbd>C-n</kbd> / <kbd>j</kbd></td><td class="desc">フォーカスを下に移動します</td></tr>
+                <tr><td><kbd>C-p</kbd> / <kbd>k</kbd></td><td class="desc">フォーカスを上に移動します</td></tr>
                 <tr><td><kbd>C-v</kbd></td><td class="desc">1ページ分下にスクロールします</td></tr>
                 <tr><td><kbd>M-v</kbd></td><td class="desc">1ページ分上にスクロールします</td></tr>
                 <tr><td><kbd>M-<</kbd></td><td class="desc">リストの先頭に移動します</td></tr>
@@ -1736,6 +1738,12 @@ footer{
                 <tr><td><kbd>M-x hide-file-tabs</kbd></td><td class="desc">ファイルタブバーを非表示にします</td></tr>
                 <tr><td><kbd>M-x toggle-file-tabs</kbd></td><td class="desc">ファイルタブバーの表示/非表示を切り替えます</td></tr>
                 <tr><td><kbd>M-x get-show-file-tabs</kbd></td><td class="desc">ファイルタブバーが表示中かどうかを表示します</td></tr>
+                <tr><td><kbd>M-x toggle-workspace-sidebar-pin</kbd></td><td class="desc">ワークスペースサイドバーのピン留め（エディタの横に表示したままにする）を切り替えます</td></tr>
+                <tr><td><kbd>M-x set-workspace-sidebar-pin</kbd></td><td class="desc">ワークスペースサイドバーをピン留めするかどうかを設定します</td></tr>
+                <tr><td><kbd>M-x get-workspace-sidebar-pin</kbd></td><td class="desc">ワークスペースサイドバーがピン留めされているかを表示します</td></tr>
+                <tr><td><kbd>M-x toggle-git-sidebar-pin</kbd></td><td class="desc">Git サイドバーのピン留め（エディタの横に表示したままにする）を切り替えます</td></tr>
+                <tr><td><kbd>M-x set-git-sidebar-pin</kbd></td><td class="desc">Git サイドバーをピン留めするかどうかを設定します</td></tr>
+                <tr><td><kbd>M-x get-git-sidebar-pin</kbd></td><td class="desc">Git サイドバーがピン留めされているかを表示します</td></tr>
                 <tr><td><kbd>M-x set-display-datetime-format</kbd></td><td class="desc">日時表示のフォーマットを設定します</td></tr>
                 <tr><td><kbd>M-x set-clipboard-integration</kbd></td><td class="desc">OSクリップボード連携の有効・無効を設定します</td></tr>
                 <tr><td><kbd>M-x set-current-directory</kbd></td><td class="desc">カレントディレクトリを変更します</td></tr>

@@ -131,7 +131,7 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
 | `M-x` | `recentf-open-files` | List recently opened files | 最近開いたファイルの一覧を表示します |
 | `C-c b` / `C-x r l` | `bookmark-bmenu-list` / `browse-bookmarks` | Open the Bookmark Sidebar (Emacs compatible) | ブックマーク・サイドバーを開きます (Emacs 互換) |
 | `C-x r m` | `bookmark-set` | Bookmark the current file. If already bookmarked, prints a message (Emacs compatible) | 現在開いているファイルをブックマークします。既にブックマーク済みの場合はミニバッファに通知します (Emacs 互換) |
-| `M-x` | `bookmark-toggle` | Toggle bookmark for the current file | 現在開いているファイルのブックマーク (ピン止め) をトグルします |
+| `M-x` | `bookmark-toggle` | Toggle bookmark for the current file | 現在開いているファイルのブックマーク をトグルします |
 
 > The keys available inside these sidebars are listed under [Sidebars](#sidebars--サイドバー). / これらのサイドバー内で使えるキーは [Sidebars](#sidebars--サイドバー) に記載しています。
 
@@ -340,6 +340,7 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
 | `kb` `mb` `gb` `tb` `kib` `mib` `gib` `tib` | Data sizes in bytes, decimal (`1e3` steps) and binary (`1024` steps) | データ量（バイト）。10 進（`1e3` 刻み）と 2 進（`1024` 刻み）の両方 |
 | `minute` `hour` `day` `week` | Spans of time in seconds; months and years vary in length and are deliberately absent | 時間（秒）。長さが一定でない月と年は、あえて置いていません |
 | `tsubo` | Square metres in one tsubo (`400/121`), the same ratio `calc-tsubo-region` uses | 1 坪の平方メートル（`400/121`）。`calc-tsubo-region` と同じ比です |
+| `1,000 + 2,310` | Thousands separators are read as part of the number, except inside a function's parentheses, where the comma separates arguments — `max(1,234)` is 234 | 3 桁区切りのカンマも数値の一部として読みます。ただし関数の括弧の中ではカンマは引数の区切りなので、`max(1,234)` は 234 です |
 | `3百万` `5千` `1,500万` `2.5億` | A magnitude written after the digits — 十 百 千 万 億 兆 — reads as part of the number, and the aggregate commands read it in the buffer too | 数字の後ろに付けた位（十・百・千・万・億・兆）も数値の一部として読みます。集計コマンドもバッファ上の同じ表記を拾います |
 | `１＋２` `3×4` `12÷4` | Full-width digits and `× ÷ −` are accepted as typed | 全角数字や `× ÷ −` もそのまま使えます |
 
@@ -509,8 +510,8 @@ Sidebars share one set of navigation keys. Each section below lists only the key
 ### Common Keys / 共通キー
 | Keys / キー | Action (English) | 操作 (日本語) |
 |:---|:---|:---|
-| `C-n` / `j` / `n` | Move focus down | フォーカスを下に移動します |
-| `C-p` / `k` / `p` | Move focus up | フォーカスを上に移動します |
+| `C-n` / `j` | Move focus down | フォーカスを下に移動します |
+| `C-p` / `k` | Move focus up | フォーカスを上に移動します |
 | `C-v` | Scroll down one page | 1ページ分下にスクロールします |
 | `M-v` | Scroll up one page | 1ページ分上にスクロールします |
 | `M-<` | Jump to the beginning of the list | 一覧の先頭に移動します |
@@ -521,8 +522,9 @@ Sidebars share one set of navigation keys. Each section below lists only the key
 Exceptions / 例外:
 
 - **Kill Ring, Registers, Undo History** — `b` also closes the sidebar. / `b` でも閉じられます。
-- **Git** — moves with `C-n` / `n` / `Down` and `C-p` / `p` / `Up` (no `j` / `k`), scrolls with `C-v` / `M-v`, jumps with `M-<` / `M->`, has no `C-l`, and closes with `C-g` / `q` / `Esc`. / 移動は `C-n` / `n` / `Down`、`C-p` / `p` / `Up`（`j` / `k` は非対応）、スクロールは `C-v` / `M-v`、先頭・末尾は `M-<` / `M->`、`C-l` は非対応、閉じるのは `C-g` / `q` / `Esc` です。
+- **Git** — moves with `C-n` / `Down` and `C-p` / `Up` (no `j` / `k`), scrolls with `C-v` / `M-v`, jumps with `M-<` / `M->`, has no `C-l`, and closes with `C-g` / `q` / `Esc`. / 移動は `C-n` / `Down`、`C-p` / `Up`（`j` / `k` は非対応）、スクロールは `C-v` / `M-v`、先頭・末尾は `M-<` / `M->`、`C-l` は非対応、閉じるのは `C-g` / `q` / `Esc` です。
 - **Settings** — closes with `C-g` / `C-q` / `Esc` or a right click on the backdrop. / 閉じるのは `C-g` / `C-q` / `Esc`、または背景の右クリックです。
+- **Pinned Workspace / Git** — a pinned sidebar stays open beside the editor, and both can be used. `C-g` / `q` / `Esc` return the keyboard to the editor instead of closing it; so does opening a file with `Enter` / `f` / a click in the Workspace. Clicking the editor or the sidebar moves the keyboard there, and a file opened from outside (file manager, drag & drop, menu) moves it to the editor. Keys the sidebar cannot use, such as `M-x` or `C-x C-s`, are reported in the echo area. Drag the right edge of a pinned sidebar to resize it (double-click resets it to 300px); the width is kept only while it stays pinned. / ピン留めしたサイドバーはエディタの横に表示されたままになり、両方を操作できます。`C-g` / `q` / `Esc` は閉じずにキーボードをエディタへ戻します（Workspace で `Enter` / `f` / クリックでファイルを開いたときも同様）。エディタやサイドバーをクリックするとキーボードはそちらへ移り、外部（エクスプローラ・ドラッグ＆ドロップ・メニュー）からファイルを開くとエディタへ移ります。`M-x` や `C-x C-s` などサイドバーで使えないキーは、エコー行でお知らせします。ピン留め中のサイドバーは右端をドラッグして幅を変えられ（ダブルクリックで 300px に戻る）、幅はピン留めしている間だけ保たれます。
 
 ### Filer / ファイラ
 | Keys / キー | Command / コマンド | Description (English) | 説明 (日本語) |
@@ -544,13 +546,13 @@ Keys inside the sidebar: / サイドバー内で使えるキー:
 | `c` | Create new file | 選択中のフォルダ内に新しい空ファイルを作成します |
 | `C` (Shift+`c`) | Create new folder | 選択中のフォルダ内に新しいフォルダを作成します |
 | `R` (Shift+`r`) | Rename selected file/folder | 選択中のファイル・フォルダの名前を変更します（ミニバッファに現在の名前が表示されます） |
-| `m` | Toggle bookmark for the focused file | フォーカス中のファイルをブックマーク (ピン止め) します／解除します（ディレクトリ行では無視されます） |
+| `m` | Toggle bookmark for the focused file | フォーカス中のファイルをブックマーク します／解除します（ディレクトリ行では無視されます） |
 | `e` | Reveal location in file manager (Explorer/Finder) | フォーカス中のファイル／フォルダの場所をエクスプローラ（ファイルマネージャ）で表示します（ドライブ一覧では無視されます） |
 
 ### Workspace / ワークスペース
 | Keys / キー | Command / コマンド | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `C-c w` / `C-,` | `toggle-workspace-sidebar` | Toggle Workspace Sidebar | ワークスペースサイドバーを開閉します |
+| `C-c w` / `C-,` | `toggle-workspace-sidebar` | Toggle Workspace Sidebar; when pinned, move the keyboard between it and the editor | ワークスペースサイドバーを開閉します。ピン留め中はエディタとの間でキーボードを移します |
 | `M-x` | `open-workspace` | Open a VS Code .code-workspace file | VS Code形式のワークスペースファイルを開きます |
 | `M-x` | `save-workspace` | Save current workspace | ワークスペースを上書き保存します |
 | `M-x` | `save-workspace-as` | Save workspace as... | ワークスペースを名前を付けて保存します |
@@ -571,7 +573,8 @@ Keys inside the sidebar: / サイドバー内で使えるキー:
 | `c` | Create new file | 選択中のフォルダ内に新しい空ファイルを作成します |
 | `C` (Shift+`c`) | Create new folder | 選択中のフォルダ内に新しいフォルダを作成します |
 | `R` (Shift+`r`) | Rename selected file/folder | 選択中のファイル・フォルダの名前を変更します（ミニバッファに現在の名前が表示されます） |
-| `m` | Toggle bookmark for the focused file | フォーカス中のファイルをブックマーク (ピン止め) します／解除します（ディレクトリ行・root では無視されます） |
+| `m` | Toggle bookmark for the focused file | フォーカス中のファイルをブックマーク します／解除します（ディレクトリ行・root では無視されます） |
+| `s` | Pin / unpin the sidebar (keeps it open beside the editor) | サイドバーをピン留め／解除します（エディタの横に表示したままにします） |
 | `e` | Reveal location in file manager (Explorer/Finder) | フォーカス中のファイル／フォルダ（root 含む）の場所をエクスプローラ（ファイルマネージャ）で表示します（missing 行では無視されます） |
 | `Q` | Close workspace | ワークスペースを閉じます |
 
@@ -586,7 +589,7 @@ Keys inside the sidebar: / サイドバー内で使えるキー:
 |:---|:---|:---|
 | `Enter` / `f` | Open file | ファイルを開きます |
 | `Space` / `Tab` / `C-f` / `l` / `Right` | Preview file | ファイルをプレビュー（閉じない）します |
-| `m` | Toggle bookmark for the focused file | フォーカス中のファイルをブックマーク (ピン止め) します／解除します |
+| `m` | Toggle bookmark for the focused file | フォーカス中のファイルをブックマーク します／解除します |
 | `e` | Reveal location in file manager (Explorer/Finder) | フォーカス中のファイルの場所をエクスプローラ（ファイルマネージャ）で表示します |
 
 ### Bookmarks / ブックマーク
@@ -594,7 +597,7 @@ Keys inside the sidebar: / サイドバー内で使えるキー:
 |:---|:---|:---|:---|
 | `C-c b` / `C-x r l` | `bookmark-bmenu-list` / `browse-bookmarks` | Open Bookmark Sidebar (Emacs compatible) | ブックマーク・サイドバーを開閉します (Emacs 互換) |
 | `C-x r m` | `bookmark-set` | Bookmark the current file (no-op + echo if already bookmarked, Emacs compatible) | 現在開いているファイルをブックマークします (既に登録済みならミニバッファ通知のみ、Emacs 互換) |
-| `M-x` | `bookmark-toggle` | Toggle bookmark for the current file | 現在開いているファイルをブックマーク (ピン止め) します／解除します |
+| `M-x` | `bookmark-toggle` | Toggle bookmark for the current file | 現在開いているファイルをブックマーク します／解除します |
 
 Keys inside the sidebar: / サイドバー内で使えるキー:
 
@@ -608,7 +611,7 @@ Keys inside the sidebar: / サイドバー内で使えるキー:
 ### Git
 | Keys / キー | Command / コマンド | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `C-c g` | `toggle-git-sidebar` | Toggle the Git (Source Control) Sidebar | Git（ソース管理）サイドバーを開閉します |
+| `C-c g` | `toggle-git-sidebar` | Toggle the Git (Source Control) Sidebar; when pinned, move the keyboard between it and the editor | Git（ソース管理）サイドバーを開閉します。ピン留め中はエディタとの間でキーボードを移します |
 
 Keys inside the sidebar: / サイドバー内で使えるキー:
 
@@ -627,6 +630,7 @@ Keys inside the sidebar: / サイドバー内で使えるキー:
 | `t` | Create a lightweight tag at HEAD, named after the text in the message box | メッセージ欄のテキストを名前にした軽量タグを HEAD に作成します |
 | `T` | Push all tags to the remote (`git push --tags`) | すべてのタグをリモートへ push します（`git push --tags`） |
 | `g` | Reload git status & history | Git の状態と履歴を最新に再取得します |
+| `s` | Pin / unpin the sidebar (keeps it open beside the editor; diffs then open in the other window) | サイドバーをピン留め／解除します（エディタの横に表示したままにします。差分は隣のウィンドウに表示されます） |
 
 ### Outline / アウトライン
 | Keys / キー | Command / コマンド | Description (English) | 説明 (日本語) |
@@ -758,6 +762,8 @@ A major mode decides how the buffer is syntax-highlighted and outlined. It is ch
 | Current Line Highlight | `hl-line-mode` / `global-hl-line-mode` / `set-hl-line-mode` / `get-hl-line-mode` | Highlight of the line the cursor is on (Emacs `hl-line-mode` compatible) | カーソル行のハイライト（Emacs `hl-line-mode` 互換） |
 | Line Numbers | `set-line-number-mode` / `get-line-number-mode` | Line numbers in the gutter (on/off) | 行番号の表示（on/off） |
 | File Tab Bar | `toggle-file-tabs` / `show-file-tabs` / `hide-file-tabs` / `get-show-file-tabs` | Tab bar listing open files at the top of the window | ウィンドウ上部に開いているファイルのタブバーを表示 |
+| Pin Workspace Sidebar | `toggle-workspace-sidebar-pin` / `set-workspace-sidebar-pin` / `get-workspace-sidebar-pin` | Keep the Workspace sidebar open beside the editor, also after a restart (off by default) | ワークスペースサイドバーをエディタの横に表示したままにする（再起動後も表示。デフォルト OFF） |
+| Pin Git Sidebar | `toggle-git-sidebar-pin` / `set-git-sidebar-pin` / `get-git-sidebar-pin` | Keep the Git sidebar open beside the editor, also after a restart (off by default) | Git サイドバーをエディタの横に表示したままにする（再起動後も表示。デフォルト OFF） |
 | Date & Time | `display-datetime-mode` / `set-display-datetime-format` / `get-display-datetime-format` | Date and time in the modeline, and its format (see [DateTime Format Tokens](#datetime-format-tokens--日時フォーマットトークン)) | モードラインの日時表示と、その書式（[DateTime Format Tokens](#datetime-format-tokens--日時フォーマットトークン) 参照） |
 | IME Indicator | `set-show-ime-indicator` / `get-show-ime-indicator` | IME state indicator (on/off/auto) | IME インジケータの表示（on/off/自動判定） |
 | Buffer Font | `set-font` / `get-font` | Font of the current buffer only | 現在のバッファだけに適用するフォント |
