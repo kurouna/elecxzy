@@ -1,22 +1,12 @@
 {
-    "\\C-s": "save-buffer",
-    "\\C-o": "find-file",
-    "\\C-p": "print-buffer",
-    "\\C-z": "undo",
-    "\\C-y": "redo",
-    "\\C-v": "yank",
-    "\\C-a": "mark-whole-buffer",
-    "\\C-f": "isearch-forward",
-    "\\C-h": "query-replace",
+  "F1" : "claude-cli",
+  "F2" : "antigravity-cli",
+  "F3" : "codex-cli",
 
-    "\\C-End": "end-of-buffer",
-    "\\C-Home": "beginning-of-buffer",
+  "F5" : "preview-dispatch",
 
-    "C-x C-r": "mark-whole-buffer",
-
-    "\\C-_": "",
-    "\\C-/": "",
-
-    "\\C-x": "kill-region",
-    "\\C-c": "kill-ring-save",
+  "F9" : "window-layout-rotate-anticlockwise",
+  "F10" : "window-layout-rotate-clockwise",
+  "F11" : "window-layout-flip-topdown",
+  "F12" : "window-layout-flip-leftright"
 }
