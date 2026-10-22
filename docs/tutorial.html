@@ -998,10 +998,12 @@ footer{
                 <tr><td><kbd>C-x C-f</kbd></td><td class="desc">ファイルを開きます</td></tr>
                 <tr><td><kbd>C-x M-f</kbd></td><td class="desc">OSダイアログを使用してファイルを開きます</td></tr>
                 <tr><td><kbd>C-x C-r</kbd></td><td class="desc">読み取り専用でファイルを開きます</td></tr>
+                <tr><td><kbd>C-x p f</kbd></td><td class="desc">ワークスペース（未オープン時は Git リポジトリかカレントディレクトリ）の全ファイルをライブ絞り込みして開きます</td></tr>
                 <tr><td><kbd>C-x C-s</kbd></td><td class="desc">現在のバッファを保存します</td></tr>
                 <tr><td><kbd>C-x C-w</kbd></td><td class="desc">名前を付けて保存します</td></tr>
                 <tr><td><kbd>C-x M-w</kbd></td><td class="desc">OSダイアログを使用して保存します</td></tr>
                 <tr><td><kbd>C-x i</kbd></td><td class="desc">カーソル位置にファイルを挿入します</td></tr>
+                <tr><td><kbd>M-x rename-visited-file</kbd></td><td class="desc">開いているファイルをディスク上でリネーム（移動）し、新しい名前のまま編集を続けます</td></tr>
                 <tr><td><kbd>C-x C-q</kbd></td><td class="desc">書き込み禁止状態を切り替えます</td></tr>
                 <tr><td><kbd>C-x x g</kbd> / <kbd>M-x revert-buffer</kbd></td><td class="desc">現在のバッファをディスクの内容で再読込します（C-_ で revert 前へ戻せます）</td></tr>
                 <tr><td><kbd>C-x C-c</kbd></td><td class="desc">アプリケーションを終了します</td></tr>
@@ -1284,6 +1286,7 @@ footer{
                 <tr><td><kbd>C-c</kbd> <kbd>→</kbd></td><td class="desc"><kbd>C-c</kbd> <kbd>←</kbd> で戻した構成をやり直します</td></tr>
                 <tr><td><kbd>C-x b</kbd></td><td class="desc">バッファを切り替えます（補完候補あり）</td></tr>
                 <tr><td><kbd>C-x C-b</kbd></td><td class="desc">バッファ一覧を表示します</td></tr>
+                <tr><td><kbd>C-x x i</kbd></td><td class="desc">別のバッファの内容をカーソル位置に挿入します</td></tr>
                 <tr><td><kbd>C-x k</kbd></td><td class="desc">バッファを閉じます</td></tr>
                 <tr><td><kbd>C-Tab</kbd> / <kbd>C-S-Tab</kbd></td><td class="desc">タブ順で次/前のタブに切り替えます（ファイルタブ表示中のみ）</td></tr>
                 <tr><td><kbd>M-x scratch-buffer</kbd></td><td class="desc"><code>*scratch*</code> バッファに切り替えます（存在しなければ新規作成）</td></tr>

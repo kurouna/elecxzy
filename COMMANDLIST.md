@@ -106,10 +106,12 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
 | `C-x C-f` | `find-file` | Open a file | ファイルを開きます |
 | `C-x M-f` | `find-file-dialog` | Open a file using OS dialog | OSダイアログを使用してファイルを開きます |
 | `C-x C-r` | `find-file-read-only` | Open a file as read-only | 読み取り専用でファイルを開きます |
+| `C-x p f` | `project-find-file` | Narrow every file in the workspace folders (or, with no workspace open, the Git repository or current directory) live in the minibuffer and open the one you pick (space-separated AND search; Git repositories honour `.gitignore`) | ワークスペースのフォルダ（未オープン時は Git リポジトリかカレントディレクトリ）の全ファイルをミニバッファでライブ絞り込みし、選んだファイルを開きます（空白区切りの AND 検索。Git リポジトリでは `.gitignore` を反映） |
 | `C-x C-s` | `save-buffer` | Save current buffer | 現在のバッファを保存します |
 | `C-x C-w` | `write-file` | Save buffer as a new file | 名前を付けて保存します |
 | `C-x M-w` | `write-file-dialog` | Save buffer using OS dialog | OSダイアログを使用して保存します |
 | `C-x i` | `insert-file` | Insert a file at cursor | カーソル位置にファイルを挿入します |
+| `M-x` | `rename-visited-file` | Rename or move the file the current buffer visits on disk, and keep editing it under the new name | 現在のバッファが開いているファイルをディスク上でリネーム（移動）し、新しい名前のまま編集を続けます |
 | `C-x C-q` | `read-only-mode` | Toggle read-only mode | 書き込み禁止状態を切り替えます |
 | `C-x x g` | `revert-buffer` | Revert current buffer from disk | 現在のバッファをディスクの内容で再読込します（C-_ で revert 前へ戻せます） |
 | `C-x C-c` | `quit` | Exit the application | アプリケーションを終了します |
@@ -491,6 +493,7 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
 |:---|:---|:---|:---|
 | `C-x b` | `switch-to-buffer` | Switch to another buffer | バッファを切り替えます（補完候補あり） |
 | `C-x C-b` | `list-buffers` | Show a list of all open buffers | バッファ一覧を表示します |
+| `C-x x i` | `insert-buffer` | Insert the whole text of another buffer at cursor (cursor stays at the start, mark at the end) | 別のバッファの内容をカーソル位置に挿入します（カーソルは先頭、マークは末尾に置きます） |
 | `C-x k` | `kill-buffer` | Close the current buffer | バッファを閉じます |
 | `C-Tab` | `next-tab` | Switch to the next tab in tab order (only while the file tab bar is shown) | タブ順で次のタブに切り替えます（ファイルタブ表示中のみ） |
 | `C-S-Tab` | `previous-tab` | Switch to the previous tab in tab order (only while the file tab bar is shown) | タブ順で前のタブに切り替えます（ファイルタブ表示中のみ） |
@@ -523,7 +526,7 @@ Exceptions / 例外:
 
 - **Kill Ring, Registers, Undo History** — `b` also closes the sidebar. / `b` でも閉じられます。
 - **Git** — moves with `C-n` / `Down` and `C-p` / `Up` (no `j` / `k`), scrolls with `C-v` / `M-v`, jumps with `M-<` / `M->`, has no `C-l`, and closes with `C-g` / `q` / `Esc`. / 移動は `C-n` / `Down`、`C-p` / `Up`（`j` / `k` は非対応）、スクロールは `C-v` / `M-v`、先頭・末尾は `M-<` / `M->`、`C-l` は非対応、閉じるのは `C-g` / `q` / `Esc` です。
-- **Settings** — closes with `C-g` / `C-q` / `Esc` or a right click on the backdrop. / 閉じるのは `C-g` / `C-q` / `Esc`、または背景の右クリックです。
+- **Settings** — moves with `Up` / `Down` (no `C-n` / `C-p` / `j` / `k`, `C-v` / `M-v`, `M-<` / `M->` or `C-l`), and closes with `C-g` / `C-q` / `Esc` or a right click on the backdrop. Its own keys are listed under [Settings Sidebar](#settings-sidebar--設定サイドバー). / 移動は `Up` / `Down`（`C-n` / `C-p` / `j` / `k`、`C-v` / `M-v`、`M-<` / `M->`、`C-l` は非対応）、閉じるのは `C-g` / `C-q` / `Esc`、または背景の右クリックです。固有のキーは [Settings Sidebar](#settings-sidebar--設定サイドバー) にあります。
 - **Pinned Workspace / Git** — a pinned sidebar stays open beside the editor, and both can be used. `C-g` / `q` / `Esc` return the keyboard to the editor instead of closing it; so does opening a file with `Enter` / `f` / a click in the Workspace. Clicking the editor or the sidebar moves the keyboard there, and a file opened from outside (file manager, drag & drop, menu) moves it to the editor. Keys the sidebar cannot use, such as `M-x` or `C-x C-s`, are reported in the echo area. Drag the right edge of a pinned sidebar to resize it (double-click resets it to 300px); the width is kept only while it stays pinned. / ピン留めしたサイドバーはエディタの横に表示されたままになり、両方を操作できます。`C-g` / `q` / `Esc` は閉じずにキーボードをエディタへ戻します（Workspace で `Enter` / `f` / クリックでファイルを開いたときも同様）。エディタやサイドバーをクリックするとキーボードはそちらへ移り、外部（エクスプローラ・ドラッグ＆ドロップ・メニュー）からファイルを開くとエディタへ移ります。`M-x` や `C-x C-s` などサイドバーで使えないキーは、エコー行でお知らせします。ピン留め中のサイドバーは右端をドラッグして幅を変えられ（ダブルクリックで 300px に戻る）、幅はピン留めしている間だけ保たれます。
 
 ### Filer / ファイラ
@@ -691,6 +694,14 @@ Keys inside the sidebar: / サイドバー内で使えるキー:
 
 | Keys / キー | Action (English) | 操作 (日本語) |
 |:---|:---|:---|
+| `Up` / `Down` | Move between settings | 設定の行を移動します |
+| `Home` / `End` / `PageUp` / `PageDown` | Jump to the first or last setting, or move eight rows | 先頭・末尾の設定へ移動、または 8 行ずつ移動します |
+| `Space` / `Enter` | Toggle a switch, or move into the setting's input | スイッチを切り替えます。それ以外の設定では入力欄へ入ります |
+| `Left` / `Right` | Decrease or increase a number, or pick the previous or next option | 数値を増減し、選択肢を前後に切り替えます |
+| `/` | Move to the search box | 検索欄へ移ります |
+| `Enter` (in an input) | Confirm the value and return to the setting | 値を確定して設定の行へ戻ります |
+| `Esc` (in an input or button) | Discard what you typed and return to the setting | 入力を取り消して設定の行へ戻ります |
+| `Esc` (in the search box) | Clear the search, or close when it is empty | 検索語を消します。空のときは閉じます |
 | `C-g` / `C-q` / `Esc` | Save & Close sidebar | 設定を保存して閉じます |
 | `Right Click` (Backdrop) | Save & Close sidebar | 背景の右クリックで閉じます |
 
@@ -881,9 +892,9 @@ Drop a TypeScript file in the `plugins` folder (next to `config.json`) that `exp
 | `C-c m` | `mcp-toggle` | Toggle the internal MCP server | 内蔵 MCP サーバーの起動・停止を切り替えます |
 
 > [!NOTE]
-> The `save_file` MCP tool refuses any target path that is not located under one of the directories listed in `mcpAllowedDirectories` (config.json / Settings → MCP). You must add at least one allowed root before starting the MCP server.
+> The `save_file` MCP tool refuses any target path that is not located under one of the directories listed in `mcpAllowedDirectories` (config.json / Settings → MCP). You must add at least one allowed root before starting the MCP server. The tools that read or change a buffer likewise refuse a buffer whose file lies outside those directories (`*scratch*` and untitled buffers are not restricted; buffers the editor builds from other files, such as `*grep*`, `*shell*` and previews, are refused).
 >
-> MCP の `save_file` ツールは、`mcpAllowedDirectories`（config.json / 設定サイドバー → MCP）に登録されたいずれかのディレクトリ配下のパスにしか保存できません。MCP サーバを起動する前に、許可ディレクトリを最低 1 件追加してください。
+> MCP の `save_file` ツールは、`mcpAllowedDirectories`（config.json / 設定サイドバー → MCP）に登録されたいずれかのディレクトリ配下のパスにしか保存できません。MCP サーバを起動する前に、許可ディレクトリを最低 1 件追加してください。バッファを読み書きするツールも、許可ディレクトリの外にあるファイルのバッファは拒否します（`*scratch*` と未保存の新規バッファは対象外。`*grep*`・`*shell*`・プレビューなど、エディタが他のファイルから作ったバッファは拒否します）。
 
 ### AI CLI
 
