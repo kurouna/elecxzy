@@ -760,6 +760,7 @@ A major mode decides how the buffer is syntax-highlighted and outlined. It is ch
 | `forest-theme` | Set color theme to Forest | カラーテーマを Forest に設定します |
 | `slate-dark-theme` | Set color theme to Slate Dark | カラーテーマを Slate Dark に設定します |
 | `slate-light-theme` | Set color theme to Slate Light | カラーテーマを Slate Light に設定します |
+| `e-paper-theme` | Set color theme to E-Paper (grey paper e-ink display) | カラーテーマを E-Paper（灰色の紙のような電子ペーパー）に設定します |
 | `terminal-green-theme` | Set color theme to Terminal Green (green phosphor CRT console) | カラーテーマを Terminal Green（緑色蛍光体の CRT コンソール）に設定します |
 | `terminal-amber-theme` | Set color theme to Terminal Amber (amber phosphor CRT console) | カラーテーマを Terminal Amber（アンバー蛍光体の CRT コンソール）に設定します |
 | `terminal-white-theme` | Set color theme to Terminal White (white phosphor CRT console) | カラーテーマを Terminal White（白色蛍光体の CRT コンソール）に設定します |
