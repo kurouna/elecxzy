@@ -404,7 +404,23 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
 ### Input Method / 入力メソッド
 | Keys / キー | Command / コマンド | Description (English) | 説明 (日本語) |
 |:---|:---|:---|:---|
-| `C-\` | — | Toggle IME (Input Method Editor) | IME（日本語入力）のON/OFFを切り替えます |
+| `C-\` | `toggle-input-method` | Toggle Japanese input on or off: the Windows IME, or the bundled Mozc when the input method is `mozc`. While Mozc is composing, commit and turn it off | 日本語入力の ON/OFF を切り替えます（Windows の IME、入力方式が `mozc` なら同梱の Mozc）。Mozc で変換中なら確定して OFF にします |
+| `M-x` | `mozc-restart` | Restart the bundled Mozc after it failed and fell back to the Windows IME | 失敗して Windows の IME に切り替わった同梱の Mozc を起動し直します |
+| `M-x` | `mozc-user-dict-add` | Add a word to the bundled Mozc user dictionary, asking for its reading, part of speech and comment (the selected text becomes the default word) | 同梱の Mozc のユーザー辞書に単語を登録します。よみ・品詞・コメントを尋ねます（選択中の文字列が単語の既定値） |
+| `M-x` | `mozc-user-dict-list` | List the words of the Mozc user dictionary in a `*Mozc User Dictionary*` buffer (`a` adds, `e` edits and `d` deletes the word on the line, `i` imports, `g` refreshes, `n` / `p` move between words, `q` closes) | Mozc のユーザー辞書の単語を `*Mozc User Dictionary*` バッファに一覧します（`a` 登録、`e` その行の単語を書き換え、`d` 削除、`i` 取り込み、`g` 再読込、`n` / `p` 単語の行を移動、`q` 閉じる） |
+| `e` | `mozc-user-dict-edit` | Change the word on the cursor line, asking each field again with its current value (in the Mozc user dictionary list) | カーソル行の単語を、今の値を既定値にして尋ね直して書き換えます（Mozc のユーザー辞書の一覧にて） |
+| `d` | `mozc-user-dict-delete` | Delete the word on the cursor line after asking (in the Mozc user dictionary list) | カーソル行の単語を、確かめてから削除します（Mozc のユーザー辞書の一覧にて） |
+| `n` / `p` | `mozc-user-dict-next-word` / `mozc-user-dict-previous-word` | Move to the next or previous word, skipping the legend and headings (in the Mozc user dictionary list) | 凡例・見出しを飛ばして、次・前の単語の行へ移ります（Mozc のユーザー辞書の一覧にて） |
+| `M-x` | `mozc-config` | List the settings of the bundled Mozc (punctuation, symbols, space, learning, special conversions, suggestions, secret mode…) in a `*Mozc Config*` buffer to change them (`RET` / `e` changes, `d` / `D` set one / all back to the default, `g` refreshes, `n` / `p` move between settings, `q` closes) | 同梱の Mozc の設定（句読点・記号・スペース・学習・特殊変換・サジェスト・シークレットモードなど）を `*Mozc Config*` バッファに一覧して変更します（`RET` / `e` 変更、`d` / `D` 一つ・すべてを既定に戻す、`g` 再読込、`n` / `p` 項目の行を移動、`q` 閉じる） |
+| `RET` / `e` | `mozc-config-edit` | Change the setting on the cursor line: on / off settings toggle, others are picked from their choices (in the Mozc settings list) | カーソル行の設定を変えます。有効・無効は切り替え、ほかは選択肢から選びます（Mozc の設定の一覧にて） |
+| `d` | `mozc-config-reset` | Set the setting on the cursor line back to its default (in the Mozc settings list) | カーソル行の設定を既定値に戻します（Mozc の設定の一覧にて） |
+| `D` | `mozc-config-reset-all` | Set every setting in the list back to its default after asking (in the Mozc settings list) | 一覧のすべての設定を、確かめてから既定値に戻します（Mozc の設定の一覧にて） |
+| `n` / `p` | `mozc-config-next-item` / `mozc-config-previous-item` | Move to the next or previous setting, skipping the legend and headings (in the Mozc settings list) | 凡例・見出しを飛ばして、次・前の設定の行へ移ります（Mozc の設定の一覧にて） |
+| `M-x` | `mozc-user-dict-import` | Import words from a text file with one word per line (reading, word, part of speech and comment separated by tabs), including a Microsoft IME text export. Parts of speech of Microsoft IME, ATOK and others are mapped to Mozc's as Mozc's dictionary tool does, and words whose part of speech Mozc does not have are left out | 1 行 1 語（よみ・単語・品詞・コメントをタブ区切り）のテキストファイルから単語を取り込みます。Microsoft IME の「テキストファイルで出力」もそのまま読めます。Microsoft IME・ATOK などの品詞名は Mozc の辞書ツールと同じく Mozc の品詞に読み替え、Mozc に当たる品詞が無い語は取り込みません |
+
+> The user dictionary is kept in the Mozc Profile Directory (Settings), separate from the dictionary of Emacs or Google Japanese Input. After a change the bundled Mozc restarts to read it, keeping Mozc on or off as it was. A part of speech Mozc does not know is imported as 名詞. / ユーザー辞書は Mozc Profile Directory（Settings）にあり、Emacs や Google 日本語入力の辞書とは別です。書き換えると同梱の Mozc が起動し直して読み直します（ON / OFF はそのまま）。Mozc に無い品詞は名詞として取り込みます。
+
+> While the bundled Mozc is composing, `RET` commits the preedit, `C-g` and `C-/` cancel it (`C-/` does not undo), arrows, `SPC` and `TAB` act on the conversion, and any other command key commits first and then runs (so `C-x u` undoes after committing). In the minibuffer, `RET` and `C-g` act only on the preedit; the next `RET` / `C-g` acts on the minibuffer. / 同梱の Mozc で未確定があるときは、`RET` で未確定を確定、`C-g` と `C-/` で未確定を取り消し（`C-/` は undo しません）、矢印・`SPC`・`TAB` は変換の操作で、それ以外のコマンドのキーは確定してから実行します（`C-x u` は確定の後で undo します）。ミニバッファでは `RET` と `C-g` は未確定にだけ効き、次の `RET` / `C-g` がミニバッファに効きます。
 
 ## Navigation & Search / 移動と検索
 
@@ -778,6 +794,7 @@ A major mode decides how the buffer is syntax-highlighted and outlined. It is ch
 | Pin Git Sidebar | `toggle-git-sidebar-pin` / `set-git-sidebar-pin` / `get-git-sidebar-pin` | Keep the Git sidebar open beside the editor, also after a restart (off by default) | Git サイドバーをエディタの横に表示したままにする（再起動後も表示。デフォルト OFF） |
 | Date & Time | `display-datetime-mode` / `set-display-datetime-format` / `get-display-datetime-format` | Date and time in the modeline, and its format (see [DateTime Format Tokens](#datetime-format-tokens--日時フォーマットトークン)) | モードラインの日時表示と、その書式（[DateTime Format Tokens](#datetime-format-tokens--日時フォーマットトークン) 参照） |
 | IME Indicator | `set-show-ime-indicator` / `get-show-ime-indicator` | IME state indicator (on/off/auto) | IME インジケータの表示（on/off/自動判定） |
+| Japanese Input Method | `set-japanese-input-method` / `get-japanese-input-method` | Japanese input through the Windows IME (`os`, default) or the bundled Mozc (`mozc`) | 日本語入力に Windows の IME（`os`、既定）と同梱の Mozc（`mozc`）のどちらを使うか |
 | Buffer Font | `set-font` / `get-font` | Font of the current buffer only | 現在のバッファだけに適用するフォント |
 | Default Font | `set-default-font` / `get-default-font` | Font used when a buffer has no font of its own | バッファ固有の指定が無いときに使われるフォント |
 | Font Size | `set-font-size` / `get-font-size` | Font size in points | フォントサイズ |

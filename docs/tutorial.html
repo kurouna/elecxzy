@@ -1175,7 +1175,12 @@ footer{
                 <tr><td><kbd>M-x calc-bezout-region</kbd></td><td class="desc">2 数について <code>a x + b y = gcd</code> を解き、互いに素なら mod 逆元も表示します</td></tr>
                 <tr><td><kbd>M-x calc-binomial-region</kbd></td><td class="desc">2 数の二項係数を厳密に表示します（<code>C(100,50)</code> の 29 桁も丸めません）</td></tr>
                 <tr><td><kbd>M-x calc-mod-region</kbd></td><td class="desc">ミニバッファで尋ねた法で、各整数を最小非負剰余に書き換えます</td></tr>
-                <tr><td><kbd>C-\</kbd></td><td class="desc">IME（日本語入力）のON/OFFを切り替えます</td></tr>
+                <tr><td><kbd>C-\</kbd></td><td class="desc">日本語入力の ON/OFF を切り替えます（Windows の IME、入力方式が <code>mozc</code> なら同梱の Mozc。<kbd>M-x toggle-input-method</kbd> と同じ）</td></tr>
+                <tr><td><kbd>M-x mozc-restart</kbd></td><td class="desc">失敗して Windows の IME に切り替わった同梱の Mozc を起動し直します</td></tr>
+                <tr><td><kbd>M-x mozc-user-dict-add</kbd></td><td class="desc">同梱の Mozc のユーザー辞書に単語を登録します（よみ・品詞・コメントを尋ねます。選択中の文字列が単語の既定値）</td></tr>
+                <tr><td><kbd>M-x mozc-user-dict-list</kbd></td><td class="desc">ユーザー辞書の単語を一覧します（<kbd>a</kbd> 登録、<kbd>e</kbd> 書き換え、<kbd>d</kbd> 削除、<kbd>i</kbd> 取り込み、<kbd>g</kbd> 再読込、<kbd>q</kbd> 閉じる）</td></tr>
+                <tr><td><kbd>M-x mozc-user-dict-import</kbd></td><td class="desc">Microsoft IME の「テキストファイルで出力」など、タブ区切りのテキスト辞書から単語を取り込みます（他の IME の品詞名は Mozc の品詞に読み替えます）</td></tr>
+                <tr><td><kbd>M-x mozc-config</kbd></td><td class="desc">句読点・記号・サジェスト・特殊変換などの Mozc の設定を一覧して変えます（<kbd>RET</kbd> 変更、<kbd>d</kbd> / <kbd>D</kbd> 既定に戻す、<kbd>q</kbd> 閉じる）</td></tr>
               </tbody>
             </table>
           </div>
@@ -1725,6 +1730,7 @@ footer{
                 <tr><td><kbd>M-x get-line-terminator</kbd></td><td class="desc">改行コードを表示します</td></tr>
                 <tr><td><kbd>M-x get-max-undo-limit</kbd></td><td class="desc">最大Undo回数を表示します</td></tr>
                 <tr><td><kbd>M-x get-show-ime-indicator</kbd></td><td class="desc">IMEインジケータの表示状態（自動判定を含む）を表示します</td></tr>
+                <tr><td><kbd>M-x get-japanese-input-method</kbd></td><td class="desc">日本語入力に Windows の IME と同梱の Mozc のどちらを使っているかを表示します</td></tr>
                 <tr><td><kbd>M-x get-cursor-vfx</kbd></td><td class="desc">カーソルの粒子エフェクト（VFX）の現在の設定を表示します</td></tr>
                 <tr><td><kbd>M-x get-macro-vfx</kbd></td><td class="desc">マクロ実行時の視覚効果（VFX）の現在の設定を表示します</td></tr>
                 <tr><td><kbd>M-x get-smooth-cursor</kbd></td><td class="desc">ヒュンヒュンカーソル（滑らかな移動）の現在の設定を表示します</td></tr>
@@ -1761,6 +1767,7 @@ footer{
                 <tr><td><kbd>M-x set-line-terminator</kbd></td><td class="desc">改行コードを設定します</td></tr>
                 <tr><td><kbd>M-x set-max-undo-limit</kbd></td><td class="desc">最大Undo回数を設定します</td></tr>
                 <tr><td><kbd>M-x set-show-ime-indicator</kbd></td><td class="desc">IMEインジケータの表示状態（ON/OFF/自動）を設定します</td></tr>
+                <tr><td><kbd>M-x set-japanese-input-method</kbd></td><td class="desc">日本語入力に Windows の IME（os）と同梱の Mozc（mozc）のどちらを使うかを設定します</td></tr>
                 <tr><td><kbd>M-x set-cursor-vfx</kbd></td><td class="desc">カーソルVFXの種類（OFF/Light Particle/Cyber Trace/Prismatic Nova/Arcane Sigil/Inferno Flame/Phantom Merge/Rubber Slime/Quantum Tunnel/Kawaii Shower/Elenyan）を選択します。<kbd>C-u N</kbd> を付けると Elenyan 選択時に猫の種類（1=子猫、2=黒猫、3=白猫）を選べます</td></tr>
                 <tr><td><kbd>C-c 0</kbd></td><td class="desc">カーソルVFXをオフにします</td></tr>
                 <tr><td><kbd>C-c 1</kbd></td><td class="desc">カーソルVFXを Light Particle に設定します</td></tr>

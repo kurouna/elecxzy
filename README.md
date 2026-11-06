@@ -35,7 +35,7 @@ Automatic updates are provided via the Microsoft Store. For the latest developme
 - **Technology Base**: Built on the Electron framework, utilizing HTML and CSS for the user interface, and TypeScript for application logic. It employs IPC communication between the Main and Renderer processes to handle system-level operations.
 - **Buffer Management**: Uses an RB-Tree (Red-Black Tree) based Piece Table. This allows efficient operations and incremental, delta-based undo histories for large files.
 - **Rendering Engine**: Implements a custom virtual rendering system. It utilizes the Canvas API for accurate text metrics (handling mixed full-width and half-width characters without fixed-width assumptions) and minimizes DOM reflows.
-- **IME Input Control**: Implements explicit handling of DOM composition events to manage uncommitted text state and focus. Additionally, it ignores IME input after prefix keys (e.g., `C-x`) to prevent conflicts between Japanese text input and Emacs command execution.
+- **IME Input Control**: Implements explicit handling of DOM composition events to manage uncommitted text state and focus. Additionally, it ignores IME input after prefix keys (e.g., `C-x`) to prevent conflicts between Japanese text input and Emacs command execution. The optional bundled standalone Mozc runs as a separate helper process (`mozc_emacs_helper.exe`) that the main process talks to over stdin/stdout, while the renderer draws the preedit and the candidate window itself and decides key by key whether a key goes to Mozc or to the Emacs command.
 - **Settings System**: Relies on static JSON configurations (`config.json`, `color-config.json`, `keybinds.json`) instead of a dynamic scripting engine.
 
 ### Key Features
@@ -93,6 +93,7 @@ Automatic updates are provided via the Microsoft Store. For the latest developme
 * **Lightweight Cursor-based Macros (Beta):** Reproduce repetitive text mutations (`insert`/`delete`) relative to the cursor position (`C-x (`, `C-x )`, `C-x e`). Supports prefix arguments for repetition (e.g., `C-u 10 C-x e`).
 * **Customizable Color Themes:** Personalize your workspace with 16 built-in themes (7 light / 9 dark) — **"Dark"** / **"Light"** (Catppuccin), **"Cyber"** (Neon/Futuristic), **"Cute"** (Pastel/Macaron), **"Tokyo Night"** (Storm Navy + Neon Cyan), **"Rose Pine Dawn"** (Warm Paper), **"Gruvbox"** (Retro Warm), **"Nord"** (Arctic Snow Light), **"Forest"** (Everforest Green), **"Slate Dark"** / **"Slate Light"** (Muted Blue-Grey, High Readability), **"E-Paper"** (Grey Paper E-Ink), **"Terminal Green"** / **"Terminal Amber"** / **"Terminal White"** (Pre-GUI CRT Console, P1 / P3 / P4 Phosphors), and **"Default"** — switchable via `M-x <theme-name>-theme`, or pick one from a list with `M-x set-theme`, which previews each theme live as you move through the candidates and restores the original on `Esc`.
 * **MCP Server Integration**: Functions as a Model Context Protocol (MCP) server, allowing AI assistants (Google Antigravity, Claude Desktop/Code, etc.) to read/edit buffers and control the editor directly via the **`ELECXZY_MCP_MODE`** environment variable.
+* **Japanese Input with a Bundled Standalone Mozc:** Choose **Japanese Input Method → `mozc`** in Settings (or `M-x set-japanese-input-method`) to type Japanese with the standalone Mozc bundled with elecxzy (mozc-emacs-standalone) instead of the Windows IME, in the editor and in the minibuffer (isearch, file names, command arguments). `C-\` (`M-x toggle-input-method`), 半角/全角 and the other Japanese keyboard keys turn it on and off, the mode line shows the input mode (あ / A …), and the preedit and candidate window are drawn in the editor's own font and theme. Learning and the user dictionary are kept in the app's own folder (Mozc Profile Directory; by default `mozc` inside the app data folder) and never touch the Mozc data of Emacs or Google Japanese Input. Words can be added to its user dictionary with `M-x mozc-user-dict-add`, listed, edited and deleted with `M-x mozc-user-dict-list`, and imported from a Microsoft IME text export with `M-x mozc-user-dict-import`. `M-x mozc-config` lists Mozc's own settings (punctuation, symbols, suggestions, special conversions, secret mode…) to change them. If the helper cannot run, elecxzy falls back to the Windows IME, says why once, and `M-x mozc-restart` tries again. The default stays `os` (the Windows IME).
 * **TypeScript Plugins:** Add your own `M-x` commands by dropping a `.ts` file into the `plugins` folder next to `config.json`. A plugin default-exports `{ command, description, execute(input) }` and runs in an isolated, network-blocked Web Worker with a configurable timeout (`M-x set-plugin-timeout`). See the **Plugins** section below.
 * **Custom Keybindings (`keybinds.json`)**: Override or remove default keybindings without rebuilding. Drop a `keybinds.json` next to `config.json` (open it any time with `M-x show-keybinds-config`); Emacs-style notation is supported (`\C-` = Ctrl, `\M-` = Alt, `\S-` = Shift for named keys like `"C-S-Tab"`; for single characters write the shifted character itself or a capital letter instead; space-separated tokens form a key sequence like `"C-x C-f"`), and an empty string value removes a binding. Function keys `F1`–`F12` can also be bound (e.g. `"F5": "revert-buffer"`, `"C-F12": "save-buffer"`); when unbound, the Electron default `F11` full-screen toggle is preserved. Parsing or validation problems are reported once in the echo line and never crash editing. Example:
   ```json
@@ -118,6 +119,7 @@ Automatic updates are provided via the Microsoft Store. For the latest developme
   <img src="./assets/screenshot/10-web-preview.png" height="170" alt="Web preview beside the code">
   <img src="./assets/screenshot/14-cursor-vfx.png" height="170" alt="Cursor VFX (Cute)">
   <img src="./assets/screenshot/17-theme-e-paper.png" height="170" alt="E-Paper theme: grey paper and near-black ink">
+  <img src="./assets/screenshot/18-mozc.png" height="170" alt="Converting Japanese with the bundled standalone Mozc and its candidate window (Tokyo Night)">
 </p>
 
 ### MCP Server Integration
@@ -226,7 +228,7 @@ Microsoft Store版は、自動更新が提供されます。最新の開発版�
 - **基盤技術**: Electronフレームワークをベースとし、UIの構築にHTML/CSS、アプリケーションロジックにTypeScriptを採用しています。メインプロセスとレンダラープロセス間のIPC通信を用いて、ファイルやウィンドウのシステム処理を連携させています。
 - **バッファ管理**: 赤黒木（RB-Tree）ベースの Piece Table をデータ構造として採用しています。差分（Delta）を利用したインクリメンタルなUndo履歴の構築により、大容量ファイルにおいてもメモリ使用量を抑えつつ編集操作が可能です。
 - **描画エンジン**: 仮想レンダリングによるカスタム描画系を実装しています。Canvas APIを利用した高精度な文字幅計測を組み込むことで、フォントサイズや全角・半角文字の混在に起因するレイアウトのズレを防ぎ、論理的なカーソル配置とスクロール計算を行っています。
-- **IME入力制御**: DOMのcompositionイベントを利用して未確定文字の強制確定やフォーカス管理を行っているほか、プリフィックスキー（`C-x`等）の入力直後はIMEの入力を無視する制御を入れることで、Emacsキーバインドと日本語入力の競合を防ぎ、コマンド実行の確実性を向上させています。
+- **IME入力制御**: DOMのcompositionイベントを利用して未確定文字の強制確定やフォーカス管理を行っているほか、プリフィックスキー（`C-x`等）の入力直後はIMEの入力を無視する制御を入れることで、Emacsキーバインドと日本語入力の競合を防ぎ、コマンド実行の確実性を向上させています。オプションで同梱するスタンドアロン版 Mozc は別プロセスの helper（`mozc_emacs_helper.exe`）として動き、メインプロセスが標準入出力でやり取りします。未確定と候補窓は renderer が自前で描き、キーごとに Mozc へ送るか Emacs のコマンドとして実行するかを決めます。
 - **設定機構**: 動的なスクリプトエンジンを持たず、静的な設定ファイル（`config.json`・`color-config.json`・`keybinds.json`）を用いてエディタの外観、基本的な挙動、キーバインドを管理します。
 
 ### 主な機能
@@ -284,6 +286,7 @@ Microsoft Store版は、自動更新が提供されます。最新の開発版�
 * **簡易的なカーソルベースマクロ (Beta):** カーソル位置を基準としたテキスト操作（挿入・削除）を記録・再現します（`C-x (`, `C-x )`, `C-x e`）。ユニバーサル引数による連続実行（`C-u 10 C-x e` 等）にも対応しています。
 * **カスタマイズ可能なカラーテーマ:** 16 種類の内蔵テーマ (ライト 7 / ダーク 9) で作業空間をパーソナライズできます。**"Dark"** / **"Light"** (Catppuccin)、**"Cyber"** (ネオン/近未来)、**"Cute"** (パステル/マカロン)、**"Tokyo Night"** (Storm 濃紺 + ネオンシアン)、**"Rose Pine Dawn"** (温かい紙)、**"Gruvbox"** (レトロ暖色)、**"Nord"** (北極の雪原ライト)、**"Forest"** (Everforest グリーン)、**"Slate Dark"** / **"Slate Light"** (低彩度ブルーグレー・高可読性)、**"E-Paper"** (灰色の紙の電子ペーパー)、**"Terminal Green"** / **"Terminal Amber"** / **"Terminal White"** (GUI 以前の CRT コンソール、P1 / P3 / P4 蛍光体)、**"Default"** を `M-x <テーマ名>-theme` で切り替え可能です。`M-x set-theme` なら一覧から選べます（候補を移動するたびにその配色がライブプレビューされ、`Esc` で元の配色に戻ります）。
 * **MCP サーバー統合**: Model Context Protocol (MCP) サーバーとして動作可能。環境変数 **`ELECXZY_MCP_MODE`** を **`true`** に指定して起動することで、AI アシスタント（Google Antigravity, Claude Desktop/Code 等）から直接バッファの読み書きやエディタ操作が行えます。
+* **スタンドアロン版 Mozc を同梱した日本語入力**: Settings の **Japanese Input Method** を **`mozc`** にする（または `M-x set-japanese-input-method`）と、Windows の IME の代わりに、同梱のスタンドアロン版 Mozc（mozc-emacs-standalone）で日本語を入力できます。編集画面とミニバッファ（isearch・ファイル名・コマンドの引数）で使えます。`C-\`（`M-x toggle-input-method`）や 半角/全角 などの日本語キーボードのキーで ON / OFF し、モードラインに入力モード（あ / A など）が出て、未確定と候補窓はエディタのフォントとテーマで描かれます。学習とユーザー辞書はアプリ専用のフォルダ（Mozc Profile Directory。既定はアプリのデータフォルダ内の `mozc`）に保存され、Emacs や Google 日本語入力の Mozc のデータには触れません。ユーザー辞書には `M-x mozc-user-dict-add` で単語を登録でき、`M-x mozc-user-dict-list` で一覧・書き換え・削除、`M-x mozc-user-dict-import` で Microsoft IME のテキスト辞書を取り込めます。句読点・記号・サジェスト・特殊変換・シークレットモードなどの Mozc の設定は `M-x mozc-config` で一覧して変えられます。helper が動かないときは Windows の IME に切り替えて理由を 1 回だけ表示し、`M-x mozc-restart` で再試行できます。既定は今までどおり `os`（Windows の IME）です。
 * **TypeScript プラグイン:** `config.json` と同じフォルダの `plugins` フォルダに `.ts` ファイルを置くだけで、独自の `M-x` コマンドを追加できます。プラグインは `{ command, description, execute(input) }` を default export し、隔離され通信が遮断された Web Worker 内でタイムアウト付き (`M-x set-plugin-timeout`) で実行されます。詳細は下記「プラグイン」を参照。
 * **キーバインドのカスタマイズ (`keybinds.json`)**: 再ビルドなしに既定キーマップを上書き・削除できます。`config.json` と同じユーザデータフォルダに `keybinds.json` を置くだけ（`M-x show-keybinds-config` でいつでも開けます）。記法は Emacs 互換で、`\C-` が `Ctrl`、`\M-` が `Alt`、`\S-` が `Shift`（`"C-S-Tab"` のような特殊キー用。単一文字は Shift 後の文字か大文字をそのまま書きます）、スペース区切りでキーシーケンス（`"C-x C-f"`）を表現できます。値を空文字 `""` にするとそのバインドを削除します。ファンクションキー `F1`〜`F12` も割り当て可能です（例: `"F5": "revert-buffer"`、`"C-F12": "save-buffer"`）。未割当のままなら Electron 既定の `F11` 全画面トグルはそのまま動作します。JSON の構文エラーや未登録コマンド ID などはエコーラインに 1 度だけまとめて表示され、起動・編集を止めることはありません。例:
   ```json
@@ -309,6 +312,7 @@ Microsoft Store版は、自動更新が提供されます。最新の開発版�
   <img src="./assets/screenshot/10-web-preview.png" height="170" alt="Web preview beside the code">
   <img src="./assets/screenshot/14-cursor-vfx.png" height="170" alt="Cursor VFX (Cute)">
   <img src="./assets/screenshot/17-theme-e-paper.png" height="170" alt="E-Paper theme: grey paper and near-black ink">
+  <img src="./assets/screenshot/18-mozc.png" height="170" alt="Converting Japanese with the bundled standalone Mozc and its candidate window (Tokyo Night)">
 </p>
 
 ### MCP サーバー統合
@@ -418,6 +422,14 @@ A: Yes, you can delete them safely. elecxzy uses an atomic-save pattern (write t
 
 A: The Microsoft Store build is packaged as an MSIX/appx app, which Windows runs inside a virtualized container. This layer adds overhead that can increase memory usage and make the editor feel sluggish — this is a characteristic of the packaging format rather than a bug in elecxzy. If it becomes noticeable, open Windows **Settings → Apps → Installed apps → elecxzy → ⋯ → Advanced options** and click **Reset**. Clearing the app's accumulated state often lowers memory usage and makes operation smoother again. Note that Reset clears the app's local data, so custom settings may return to their defaults — if you have customized `config.json`, `color-config.json`, or `keybinds.json`, back them up first. If you do not need the Store version specifically, the standalone installer (NSIS `.exe`) build avoids this overhead entirely.
 
+**Q: Should I use the bundled Mozc or the Windows IME?**
+
+A: The default `os` (the Windows IME) is the safe choice. The bundled standalone Mozc (`mozc`) is for people who want Mozc's conversion and an IME that never fights the Emacs keys. It works in the editor and the minibuffer; sidebar text fields (such as the Git commit message) keep using the Windows IME. **Screen reader users should stay on `os`**: the candidate window is marked up for assistive technology, but screen readers such as NVDA read the Windows IME's candidates far more reliably than an in-app window.
+
+**Q: Where does the bundled Mozc keep its learning and user dictionary?**
+
+A: In the Mozc Profile Directory (Settings), by default the `mozc` folder inside elecxzy's app data folder, separate from the Mozc data used by Emacs or Google Japanese Input. In the Microsoft Store version that folder lives inside the package's virtualized storage, so uninstalling (or Reset) removes the learning too.
+
 ### 日本語
 
 **Q: 右端で折り返し表示はできないのですか？**
@@ -440,6 +452,14 @@ A: 削除して問題ありません。elecxzy はクラッシュ時のファイ
 
 A: Microsoft Store 版は MSIX/appx 形式でパッケージ化されており、Windows はこれを仮想化されたコンテナ内で実行します。この仕組みによるオーバーヘッドでメモリ使用量が増え、動作が重く感じられることがあります（elecxzy 側の不具合ではなく、パッケージ形式に由来する挙動です）。気になる場合は、Windows の **[設定] → [アプリ] → [インストールされているアプリ] → [elecxzy] → [⋯] → [詳細オプション]** から **[リセット]** を実行してください。蓄積されたアプリの状態が消去され、メモリ使用量が減って動作が軽くなることがあります。なお、リセットはアプリのローカルデータを消去するため、カスタマイズした設定が初期状態に戻る場合があります。`config.json`・`color-config.json`・`keybinds.json` を編集している場合は、事前にバックアップしておくことをおすすめします。特に Store 版である必要がなければ、この種のオーバーヘッドがない単体インストーラ（NSIS `.exe`）版のご利用もご検討ください。
 
+**Q: 同梱の Mozc と Windows の IME のどちらを使えばよいですか？**
+
+A: 既定の `os`（Windows の IME）が無難です。同梱のスタンドアロン版 Mozc（`mozc`）は、Mozc の変換を使いたい方や、IME と Emacs のキーがぶつからない入力を求める方向けです。編集画面とミニバッファで使え、サイドバーの入力欄（Git のコミットメッセージなど）では Windows の IME のままです。**スクリーンリーダーをお使いの方は `os` のままにしてください**。候補窓には支援技術向けの印を付けていますが、NVDA などのスクリーンリーダーは Windows の IME の候補のほうをずっと確実に読み上げます。
+
+**Q: 同梱の Mozc の学習とユーザー辞書はどこに保存されますか？**
+
+A: Settings の Mozc Profile Directory（既定は elecxzy のアプリのデータフォルダ内の `mozc` フォルダ）です。Emacs や Google 日本語入力が使う Mozc のデータとは別です。Microsoft Store 版ではこのフォルダがパッケージの仮想化された領域にあるため、アンインストール（やリセット）で学習も消えます。
+
 ---
 
 ## License / ライセンス
@@ -447,6 +467,12 @@ A: Microsoft Store 版は MSIX/appx 形式でパッケージ化されており�
 This software is released under the [MIT License](./LICENSE).
 
 本ソフトウェアは [MITライセンス](./LICENSE) のもとで公開されています。
+
+### Third-party software / 第三者ソフトウェア
+
+elecxzy bundles `mozc_emacs_helper.exe` from [mozc-emacs-standalone](https://github.com/kurouna/mozc-emacs-standalone) (BSD-3-Clause), built from [Mozc](https://github.com/google/mozc) (BSD-3-Clause) with abseil-cpp (Apache-2.0), protobuf (BSD-3-Clause), WIL (MIT), the MinGW-w64 runtime, the Mozc OSS dictionary data and japanese-usage-dictionary (BSD-2-Clause). The license texts are installed next to the helper (`resources/mozc/LICENSES`) and shown by `M-x license`.
+
+elecxzy は [mozc-emacs-standalone](https://github.com/kurouna/mozc-emacs-standalone)（BSD-3-Clause）の `mozc_emacs_helper.exe` を同梱しています。これは [Mozc](https://github.com/google/mozc)（BSD-3-Clause）を abseil-cpp（Apache-2.0）・protobuf（BSD-3-Clause）・WIL（MIT）・MinGW-w64 のランタイム・Mozc の OSS 辞書データ・japanese-usage-dictionary（BSD-2-Clause）とともにビルドしたものです。ライセンスの全文は helper の隣（`resources/mozc/LICENSES`）に置かれ、`M-x license` でも表示できます。
 
 ## Acknowledgements / 謝辞
 
