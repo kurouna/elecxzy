@@ -1822,6 +1822,11 @@ footer{
                 <tr><td><kbd>C-g</kbd>（実行中）</td><td class="desc">AI CLI の実行を中断します。実行中はエコーラインに経過秒数が出ます</td></tr>
                 <tr><td><kbd>M-x set-ai-cli-timeout</kbd></td><td class="desc">AI CLI のタイムアウト（秒、既定 300・最大 3600）を設定します</td></tr>
                 <tr><td><kbd>M-x set-ai-cli-confirm-chars</kbd></td><td class="desc">送信前に確認する選択範囲の文字数（既定 20000、0 で確認しない）を設定します</td></tr>
+                <tr><td><kbd>M-x translate-region</kbd></td><td class="desc">選択範囲を elecdex の翻訳エンジン（PLaMo 3 Translate、Built with PLaMo）で訳し、<code style="font-family:var(--mono);font-size:11px;">*Translation*</code> に表示します。日本語は英語へ、それ以外は日本語へ訳します</td></tr>
+                <tr><td><kbd>M-x translate-buffer</kbd></td><td class="desc">バッファ全体を訳し、<code style="font-family:var(--mono);font-size:11px;">*Translation*</code> に表示します</td></tr>
+                <tr><td><kbd>M-x translate-region-replace</kbd> / <kbd>M-x translate-buffer-replace</kbd></td><td class="desc">選択範囲・バッファ全体を訳文に置き換えます。undo 1 回で戻ります</td></tr>
+                <tr><td><kbd>C-u M-x</kbd>（翻訳のコマンド）</td><td class="desc">訳先（53 言語とやさしい日本語）と、日本語なら文体（敬体・常体）を尋ねます</td></tr>
+                <tr><td><kbd>M-x translate-stop-engine</kbd></td><td class="desc">elecxzy が翻訳のために起動した llama-server を止めます（最後の翻訳から 5 分で自動的にも止まります）</td></tr>
                 <tr><td><kbd>M-!</kbd></td><td class="desc">シェルコマンドを1回実行します。短い出力はエコーライン、長い出力は <code style="font-family:var(--mono);font-size:11px;">*Shell Command Output*</code> に表示します（<kbd>C-u M-!</kbd> でカーソル位置に挿入）</td></tr>
                 <tr><td><kbd>M-|</kbd></td><td class="desc">選択範囲を標準入力としてシェルコマンドを実行します（<kbd>C-u M-|</kbd> で選択範囲を出力で置き換え）</td></tr>
                 <tr><td><kbd>M-x set-shell-command-timeout</kbd></td><td class="desc"><kbd>M-!</kbd> / <kbd>M-|</kbd> のタイムアウト（秒、既定 60・最大 3600）を設定します</td></tr>

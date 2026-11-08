@@ -76,6 +76,7 @@ Every command **elecxzy** offers, grouped by topic. Most commands run by pressin
     - [Plugins / プラグイン](#plugins--プラグイン)
     - [MCP (AI Integration / AI 連携)](#mcp-ai-integration--ai-連携)
     - [AI CLI](#ai-cli)
+    - [Translation / 翻訳](#translation--翻訳)
     - [Shell / シェル](#shell--シェル)
 
 ## Basics / 基本
@@ -934,6 +935,25 @@ Send an instruction — and the region, when one is selected — to an external 
 > `C-u` puts the answer into the buffer instead, replacing the region. Leaving the instruction empty and pressing `Enter` sends the region itself as the prompt, which suits text that already says what it wants. While an AI CLI is running, the echo area shows the elapsed seconds, and `C-g` cancels the run. A region longer than `aiCliConfirmChars` (20000 by default) asks for confirmation first. The command line each CLI is launched with can be changed with `claudeCliCommand`, `antigravityCliCommand` and `codexCliCommand` (config.json / Settings → AI CLI).
 >
 > `C-u` を付けると答えをバッファに入れ、選択範囲を置き換えます。指示文を空のまま `Enter` を押すと、選択範囲そのものをプロンプトとして送ります（やってほしいことが本文に書かれている場合に便利です）。AI CLI の実行中はエコーラインに経過秒数が出て、`C-g` で中断できます。`aiCliConfirmChars` (既定 20000) を超える選択範囲は、送信前に確認します。起動する行は `claudeCliCommand` / `antigravityCliCommand` / `codexCliCommand` (config.json / 設定サイドバー → AI CLI) で変更できます。
+
+### Translation / 翻訳
+
+Translate the region or the whole buffer with the translation engine of [elecdex](https://github.com/kurouna/elecdex), a sibling app: llama.cpp's `llama-server` and Preferred Networks' **PLaMo 3 Translate** model. Set up elecdex's TRANSLATE pane first (elecxzy downloads nothing itself). Each run reads `%APPDATA%\elecdex\translate\` and, when the engine cannot be used, says in the echo area how to fix it. When elecdex fetched the engine, elecxzy starts its own `llama-server` that only listens on this PC and stops it 5 minutes after the last translation; when elecdex points at a server of its own, elecxzy uses it only if it runs on this PC. The text you translate never leaves this PC. **Built with PLaMo**: the model is used under the [PLaMo Community License](https://plamo.preferredai.jp/info/plamo-community-license-ja).
+
+兄弟アプリ [elecdex](https://github.com/kurouna/elecdex) の翻訳エンジン (llama.cpp の `llama-server` と Preferred Networks の **PLaMo 3 Translate** モデル) で、選択範囲やバッファ全体を訳します。先に elecdex の TRANSLATE ペインでセットアップを済ませてください (elecxzy 自身は何もダウンロードしません)。実行のたびに `%APPDATA%\elecdex\translate\` を読み、エンジンを使えないときは直し方をエコーラインに表示します。elecdex が取ってきたエンジンなら、elecxzy はこの PC の中だけで受け付ける `llama-server` を自分で起動し、最後の翻訳から 5 分で止めます。elecdex が外部サーバーを指しているときは、この PC で動いているものだけを使います。訳す文がこの PC の外へ出ることはありません。**Built with PLaMo**: モデルは [PLaMo コミュニティライセンス](https://plamo.preferredai.jp/info/plamo-community-license-ja) の下で使います。
+
+| Keys / キー | Command / コマンド | Description (English) | 説明 (日本語) |
+|:---|:---|:---|:---|
+| `M-x` | `translate-region` | Translate the region into `*Translation*`, shown in the other pane as it arrives | 選択範囲を訳し、訳した端から隣のペインの `*Translation*` に表示します |
+| `M-x` | `translate-region-replace` | Replace the region with its translation (one undo restores it) | 選択範囲を訳文に置き換えます (1 回の undo で戻ります) |
+| `M-x` | `translate-buffer` | Translate the whole buffer into `*Translation*` | バッファ全体を訳し、`*Translation*` に表示します |
+| `M-x` | `translate-buffer-replace` | Replace the whole buffer with its translation (one undo restores it) | バッファ全体を訳文に置き換えます (1 回の undo で戻ります) |
+| `M-x` | `translate-stop-engine` | Stop the `llama-server` that elecxzy started for translation | elecxzy が翻訳のために起動した `llama-server` を止めます |
+
+> [!NOTE]
+> Japanese text is translated into English and anything else into Japanese. With `C-u`, the command asks for the target language (the model's 53 languages and Easy Japanese `ja(easy)`, completed by code or name) and, for Japanese, the style (`polite` or `plain`). Text is translated paragraph by paragraph (split at blank lines), keeping the blank lines and indentation; up to 20,000 characters per run. While it runs, the echo area shows the progress, and `C-g` cancels it: the replacing commands leave the buffer untouched, the others keep what has arrived so far. If the buffer changes while it waits, the translation goes to `*Translation*` instead of replacing anything. When you publish a translation, say that it is output of PLaMo 3 Translate, and do not rely on it as the only basis for legal, medical, financial or other important decisions (PLaMo Community License, articles 5 and 7). Commercial use of the model requires registering with Preferred Networks (article 3).
+>
+> 日本語の文は英語へ、それ以外は日本語へ訳します。`C-u` を付けると、訳先 (モデルが対応する 53 言語とやさしい日本語 `ja(easy)`。コードか名前で補完できます) と、日本語なら文体 (`polite` 敬体 / `plain` 常体) を尋ねます。空行で区切った段落ごとに訳し、空行とインデントは元のまま残します。1 回に訳せるのは 20,000 字までです。実行中はエコーラインに進み具合が出て、`C-g` で中断できます。置き換えるコマンドはバッファに触れず、それ以外は届いたところまでを残します。待っている間にバッファが変わったら、置き換えずに `*Translation*` に出します。訳文を公表するときは PLaMo 3 Translate の出力であることを明示し、法律・医療・金融などの重要な判断で訳文を唯一の根拠にしないでください (PLaMo コミュニティライセンス第 5 条・第 7 条)。モデルを商業目的で使うには、Preferred Networks への登録が要ります (第 3 条)。
 
 ### Shell / シェル
 | Keys / キー | Command / コマンド | Description (English) | 説明 (日本語) |
